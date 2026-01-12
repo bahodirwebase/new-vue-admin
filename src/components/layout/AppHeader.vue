@@ -26,18 +26,40 @@
       <n-space :size="isMobile ? 8 : 16">
         <n-popover trigger="hover" placement="bottom-end">
           <template #trigger>
-            <n-button quaternary circle>
+            <n-button quaternary circle class="notification-button">
               <template #icon>
                 <n-icon :component="NotificationsOutline" :size="20" />
               </template>
+              <n-badge :value="unreadCount" :max="99" class="notification-badge" />
             </n-button>
           </template>
           <div class="notification-dropdown">
-            <div class="notification-item">
-              <div class="notification-content">
-                <div class="notification-title">New message</div>
-                <div class="notification-text">You have a new message</div>
+            <div class="notification-header">
+              <span class="notification-title">Notifications</span>
+              <n-button text size="small" @click="markAllAsRead">Mark all as read</n-button>
+            </div>
+            <div class="notification-list">
+              <div 
+                v-for="notification in notifications" 
+                :key="notification.id"
+                class="notification-item"
+                :class="{ 'unread': !notification.read }"
+                @click="markAsRead(notification.id)"
+              >
+                <div class="notification-avatar">
+                  <n-avatar round :size="40" :style="{ backgroundColor: notification.color }">
+                    <n-icon :component="notification.icon" :size="20" style="color: white;" />
+                  </n-avatar>
+                </div>
+                <div class="notification-content">
+                  <div class="notification-message">{{ notification.message }}</div>
+                  <div class="notification-time">{{ notification.time }}</div>
+                </div>
+                <div v-if="!notification.read" class="notification-dot"></div>
               </div>
+            </div>
+            <div class="notification-footer">
+              <n-button text block>View all notifications</n-button>
             </div>
           </div>
         </n-popover>
@@ -92,7 +114,11 @@ import {
   SettingsOutline,
   PersonCircleOutline,
   LogOutOutline,
-  MenuOutline
+  MenuOutline,
+  MailOutline,
+  BagOutline,
+  CheckmarkCircleOutline,
+  AlertCircleOutline
 } from '@vicons/ionicons5'
 import { useThemeStore } from '@/stores/theme'
 import { NIcon } from 'naive-ui'
@@ -146,6 +172,57 @@ const userMenuOptions: DropdownOption[] = [
     icon: () => h(NIcon, { component: LogOutOutline })
   }
 ]
+
+// Notification data and functions
+const notifications = ref([
+  {
+    id: 1,
+    message: 'New order received from John Doe',
+    time: '2 minutes ago',
+    read: false,
+    icon: BagOutline,
+    color: '#3b82f6'
+  },
+  {
+    id: 2,
+    message: 'You have a new message from support',
+    time: '15 minutes ago',
+    read: false,
+    icon: MailOutline,
+    color: '#10b981'
+  },
+  {
+    id: 3,
+    message: 'Your order #12345 has been shipped',
+    time: '1 hour ago',
+    read: true,
+    icon: CheckmarkCircleOutline,
+    color: '#f59e0b'
+  },
+  {
+    id: 4,
+    message: 'System maintenance scheduled for tonight',
+    time: '3 hours ago',
+    read: true,
+    icon: AlertCircleOutline,
+    color: '#ef4444'
+  }
+])
+
+const unreadCount = computed(() => {
+  return notifications.value.filter(n => !n.read).length
+})
+
+const markAsRead = (id: number) => {
+  const notification = notifications.value.find(n => n.id === id)
+  if (notification) {
+    notification.read = true
+  }
+}
+
+const markAllAsRead = () => {
+  notifications.value.forEach(n => n.read = true)
+}
 </script>
 
 <style scoped>
@@ -186,31 +263,98 @@ const userMenuOptions: DropdownOption[] = [
   max-width: 90vw;
 }
 
+.notification-button {
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  z-index: 1;
+}
+
 .notification-dropdown {
-  padding: 8px;
-  min-width: 300px;
+  padding: 0;
+  min-width: 350px;
   max-width: 90vw;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+}
+
+.notification-title {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.notification-list {
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .notification-item {
-  padding: 12px;
-  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  cursor: pointer;
   transition: background-color 0.2s;
+  position: relative;
 }
 
 .notification-item:hover {
   background-color: var(--bg-tertiary);
 }
 
-.notification-title {
-  font-weight: 600;
-  margin-bottom: 4px;
-  color: var(--text-primary);
+.notification-item.unread {
+  background-color: var(--bg-primary);
 }
 
-.notification-text {
-  font-size: 13px;
+.notification-avatar {
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.notification-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-message {
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.notification-time {
+  font-size: 12px;
   color: var(--text-secondary);
+}
+
+.notification-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #3b82f6;
+  border-radius: 50%;
+  position: absolute;
+  top: 16px;
+  right: 12px;
+}
+
+.notification-footer {
+  padding: 8px 16px;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
 }
 
 /* Responsive adjustments */
@@ -228,7 +372,7 @@ const userMenuOptions: DropdownOption[] = [
   }
   
   .notification-dropdown {
-    min-width: 250px;
+    min-width: 300px;
   }
 }
 
@@ -242,7 +386,7 @@ const userMenuOptions: DropdownOption[] = [
   }
   
   .notification-dropdown {
-    min-width: 200px;
+    min-width: 280px;
   }
 }
 </style>
