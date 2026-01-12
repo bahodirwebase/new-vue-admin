@@ -139,24 +139,6 @@ const routes: RouteRecordRaw[] = [
         name: 'Form-Wizard',
         component: () => import('@/views/forms/Form-Wizard.vue'),
         meta: { title: 'Form Wizard', icon: 'chevron-forward-outline', group: 'Components' }
-      },
-      {
-        path: 'users',
-        name: 'Users',
-        component: () => import('@/views/Users.vue'),
-        meta: { title: 'Users', icon: 'people-outline' }
-      },
-      {
-        path: 'products',
-        name: 'Products',
-        component: () => import('@/views/Products.vue'),
-        meta: { title: 'Products', icon: 'cube-outline' }
-      },
-      {
-        path: 'settings',
-        name: 'Settings',
-        component: () => import('@/views/Settings.vue'),
-        meta: { title: 'Settings', icon: 'settings-outline' }
       }
     ]
   }

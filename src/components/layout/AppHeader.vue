@@ -119,7 +119,6 @@ import {
   BagOutline,
   CheckmarkCircleOutline,
   AlertCircleOutline,
-  SettingsOutline,
   ChatbubbleOutline,
   GridOutline,
   HelpCircleOutline,

@@ -67,15 +67,10 @@ import { computed, h, ref, watch, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { MenuOption } from 'naive-ui'
 import {
-  SpeedometerOutline,
   AnalyticsOutline,
-  PeopleOutline,
-  CubeOutline,
-  SettingsOutline,
   StorefrontOutline,
   GridOutline,
   RadioButtonOnOutline,
-  NotificationsOutline,
   AlertCircleOutline,
   PersonCircleOutline,
   RibbonOutline,
@@ -311,24 +306,6 @@ const menuOptions: MenuOption[] = [
     label: 'Form Wizard',
     key: 'Form-Wizard',
     icon: () => h(NIcon, { component: ChevronForwardOutline })
-  },
-  {
-    type: 'divider'
-  },
-  {
-    label: 'Users',
-    key: 'Users',
-    icon: () => h(NIcon, { component: PeopleOutline })
-  },
-  {
-    label: 'Products',
-    key: 'Products',
-    icon: () => h(NIcon, { component: CubeOutline })
-  },
-  {
-    label: 'Settings',
-    key: 'Settings',
-    icon: () => h(NIcon, { component: SettingsOutline })
   }
 ]
 
