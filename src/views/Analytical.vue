@@ -36,17 +36,37 @@
         </n-grid>
       </n-card>
 
-      <n-card title="Analytics Charts">
-        <div class="chart-placeholder">
-          <p>Analytical charts and graphs would be displayed here</p>
-        </div>
-      </n-card>
+      <n-grid :cols="2" :x-gap="16" :y-gap="16">
+        <n-grid-item>
+          <n-card title="Revenue & Profit Trends">
+            <LineChart />
+          </n-card>
+        </n-grid-item>
+        <n-grid-item>
+          <n-card title="Weekly Active Users">
+            <BarChart />
+          </n-card>
+        </n-grid-item>
+        <n-grid-item>
+          <n-card title="Traffic by Device Type">
+            <DoughnutChart />
+          </n-card>
+        </n-grid-item>
+        <n-grid-item>
+          <n-card title="Traffic Sources Distribution">
+            <PieChart />
+          </n-card>
+        </n-grid-item>
+      </n-grid>
     </n-space>
   </div>
 </template>
 
 <script setup lang="ts">
-// Analytical page component
+import LineChart from '@/components/charts/LineChart.vue'
+import BarChart from '@/components/charts/BarChart.vue'
+import DoughnutChart from '@/components/charts/DoughnutChart.vue'
+import PieChart from '@/components/charts/PieChart.vue'
 </script>
 
 <style scoped>
@@ -71,11 +91,17 @@
   color: var(--text-secondary);
 }
 
-.chart-placeholder {
-  padding: 60px 20px;
-  text-align: center;
-  color: var(--text-secondary);
-  background: var(--bg-tertiary);
-  border-radius: 8px;
+:deep(.n-card) {
+  height: 100%;
+}
+
+:deep(.n-card .n-card__content) {
+  padding: 16px;
+}
+
+@media (max-width: 768px) {
+  :deep(.n-grid) {
+    grid-template-columns: 1fr !important;
+  }
 }
 </style>

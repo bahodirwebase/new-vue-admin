@@ -38,6 +38,29 @@
         </n-grid>
       </n-card>
 
+      <n-grid :cols="2" :x-gap="16" :y-gap="16">
+        <n-grid-item>
+          <n-card title="Sales Performance">
+            <SalesChart />
+          </n-card>
+        </n-grid-item>
+        <n-grid-item>
+          <n-card title="Product Categories">
+            <CategoryChart />
+          </n-card>
+        </n-grid-item>
+        <n-grid-item>
+          <n-card title="Order Status">
+            <OrderStatusChart />
+          </n-card>
+        </n-grid-item>
+        <n-grid-item>
+          <n-card title="Quarterly Revenue">
+            <RevenueChart />
+          </n-card>
+        </n-grid-item>
+      </n-grid>
+
       <n-card title="Recent Orders">
         <n-list>
           <n-list-item v-for="order in orders" :key="order.id">
@@ -59,6 +82,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import SalesChart from '@/components/charts/SalesChart.vue'
+import CategoryChart from '@/components/charts/CategoryChart.vue'
+import OrderStatusChart from '@/components/charts/OrderStatusChart.vue'
+import RevenueChart from '@/components/charts/RevenueChart.vue'
 
 const orders = ref([
   { id: '12345', customer: 'John Doe', amount: 125.50, status: 'Completed' },
@@ -110,5 +137,19 @@ const orders = ref([
 .order-details {
   font-size: 14px;
   color: var(--text-secondary);
+}
+
+:deep(.n-card) {
+  height: 100%;
+}
+
+:deep(.n-card .n-card__content) {
+  padding: 16px;
+}
+
+@media (max-width: 768px) {
+  :deep(.n-grid) {
+    grid-template-columns: 1fr !important;
+  }
 }
 </style>
