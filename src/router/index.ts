@@ -21,6 +21,12 @@ const routes: RouteRecordRaw[] = [
         meta: { title: 'Commerce', icon: 'storefront-outline', group: 'Dashboard' }
       },
       {
+        path: 'calendar',
+        name: 'Calendar',
+        component: () => import('@/views/apps/Calendar.vue'),
+        meta: { title: 'Calendar', icon: 'calendar-outline', group: 'Apps' }
+      },
+      {
         path: 'alert',
         name: 'Alert',
         component: () => import('@/views/ui-elements/components/Alert.vue'),

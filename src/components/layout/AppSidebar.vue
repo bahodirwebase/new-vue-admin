@@ -93,7 +93,8 @@ import {
   RadioButtonOffOutline,
   ToggleOutline,
   CheckmarkOutline,
-  ChevronForwardOutline
+  ChevronForwardOutline,
+  CalendarOutline
 } from '@vicons/ionicons5'
 import { useThemeStore } from '@/stores/theme'
 import { NIcon } from 'naive-ui'
@@ -178,6 +179,16 @@ const menuOptions: MenuOption[] = [
     label: 'Commerce',
     key: 'Commerce',
     icon: () => h(NIcon, { component: StorefrontOutline })
+  },
+  {
+    type: 'group',
+    label: 'Apps',
+    key: 'apps-group'
+  },
+  {
+    label: 'Calendar',
+    key: 'Calendar',
+    icon: () => h(NIcon, { component: CalendarOutline })
   },
   {
     type: 'group',
