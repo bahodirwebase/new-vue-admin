@@ -24,6 +24,38 @@
 
     <div class="header-right">
       <n-space :size="isMobile ? 8 : 16">
+        <!-- Dark/Light Mode Toggle -->
+        <n-button quaternary circle @click="toggleTheme" class="theme-toggle">
+          <template #icon>
+            <n-icon :component="themeStore.isDark ? SunnyOutline : MoonOutline" :size="20" />
+          </template>
+        </n-button>
+
+        <!-- Fullscreen Toggle -->
+        <n-button quaternary circle @click="toggleFullscreen" class="fullscreen-toggle">
+          <template #icon>
+            <n-icon :component="ExpandOutline" :size="20" />
+          </template>
+        </n-button>
+
+        <!-- Language Selector -->
+        <n-dropdown :options="languageOptions" placement="bottom-end">
+          <n-button quaternary circle class="language-toggle">
+            <template #icon>
+              <n-icon :component="LanguageOutline" :size="20" />
+            </template>
+          </n-button>
+        </n-dropdown>
+
+        <!-- Apps Launcher -->
+        <n-dropdown :options="appsOptions" placement="bottom-end">
+          <n-button quaternary circle class="apps-toggle">
+            <template #icon>
+              <n-icon :component="AppsOutline" :size="20" />
+            </template>
+          </n-button>
+        </n-dropdown>
+
         <n-popover trigger="hover" placement="bottom-end">
           <template #trigger>
             <n-button quaternary circle class="notification-button">
@@ -86,7 +118,22 @@ import {
   MailOutline,
   BagOutline,
   CheckmarkCircleOutline,
-  AlertCircleOutline
+  AlertCircleOutline,
+  SettingsOutline,
+  ChatbubbleOutline,
+  GridOutline,
+  HelpCircleOutline,
+  WalletOutline,
+  LockClosedOutline,
+  CogOutline,
+  SunnyOutline,
+  MoonOutline,
+  ExpandOutline,
+  LanguageOutline,
+  AppsOutline,
+  CalendarOutline,
+  DocumentTextOutline,
+  AnalyticsOutline
 } from '@vicons/ionicons5'
 import { useThemeStore } from '@/stores/theme'
 import { NIcon } from 'naive-ui'
@@ -106,6 +153,56 @@ const toggleSidebar = () => {
   emit('toggleSidebar')
 }
 
+const toggleTheme = () => {
+  themeStore.setDark(!themeStore.isDark)
+}
+
+const toggleFullscreen = () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen()
+  } else {
+    document.exitFullscreen()
+  }
+}
+
+const languageOptions = [
+  {
+    label: 'English',
+    key: 'en'
+  },
+  {
+    label: 'Russian',
+    key: 'ru'
+  },
+  {
+    label: 'Uzbek',
+    key: 'uz'
+  }
+]
+
+const appsOptions = [
+  {
+    label: 'Calendar',
+    key: 'calendar',
+    icon: () => h(NIcon, { component: CalendarOutline })
+  },
+  {
+    label: 'Email',
+    key: 'email',
+    icon: () => h(NIcon, { component: MailOutline })
+  },
+  {
+    label: 'Documents',
+    key: 'documents',
+    icon: () => h(NIcon, { component: DocumentTextOutline })
+  },
+  {
+    label: 'Analytics',
+    key: 'analytics',
+    icon: () => h(NIcon, { component: AnalyticsOutline })
+  }
+]
+
 onMounted(() => {
   const handleResize = () => {
     windowWidth.value = window.innerWidth
@@ -123,15 +220,64 @@ const currentPageTitle = computed(() => {
 
 const userMenuOptions: DropdownOption[] = [
   {
-    label: 'Profile',
-    key: 'profile'
+    label: 'Welcome Admin!',
+    key: 'welcome',
+    props: {
+      style: {
+        fontWeight: '700',
+        fontSize: '14px',
+        color: 'var(--primary-color)',
+        padding: '0px 12px',
+        backgroundColor: 'rgba(99, 102, 241, 0.1)',
+        borderRadius: '6px',
+        margin: '4px 8px',
+        textAlign: 'center'
+      }
+    }
   },
   {
-    label: 'Settings',
-    key: 'settings'
+    label: 'Profile',
+    key: 'profile',
+    icon: () => h(NIcon, { component: PersonCircleOutline })
+  },
+  {
+    label: 'Messages',
+    key: 'messages',
+    icon: () => h(NIcon, { component: ChatbubbleOutline })
+  },
+  {
+    label: 'Taskboard',
+    key: 'taskboard',
+    icon: () => h(NIcon, { component: GridOutline })
+  },
+  {
+    label: 'Help',
+    key: 'help',
+    icon: () => h(NIcon, { component: HelpCircleOutline })
+  },
+  {
+    label: 'Balance : $5971.67',
+    key: 'balance',
+    icon: () => h(NIcon, { component: WalletOutline, style: 'color: var(--color-success)' }),
+    props: {
+      style: {
+        fontWeight: '600',
+        color: 'var(--color-success)'
+      }
+    }
   },
   {
     type: 'divider'
+  },
+  {
+    label: 'Settings',
+    key: 'new-settings',
+    icon: () => h(NIcon, { component: CogOutline })
+  },
+  {
+    label: 'Lock screen',
+    key: 'lock-screen',
+    icon: () => h(NIcon, { component: LockClosedOutline })
   },
   {
     label: 'Logout',
@@ -222,6 +368,21 @@ const markAllAsRead = () => {
 
 .notification-button {
   position: relative;
+}
+
+.theme-toggle,
+.fullscreen-toggle,
+.language-toggle,
+.apps-toggle {
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover,
+.fullscreen-toggle:hover,
+.language-toggle:hover,
+.apps-toggle:hover {
+  transform: scale(1.1);
+  background-color: var(--bg-tertiary);
 }
 
 .notification-badge {
