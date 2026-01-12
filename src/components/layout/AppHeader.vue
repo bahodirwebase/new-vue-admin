@@ -64,37 +64,6 @@
           </div>
         </n-popover>
 
-        <n-popover trigger="click" placement="bottom-end">
-          <template #trigger>
-            <n-button quaternary>
-              <template #icon>
-                <n-icon :component="SettingsOutline" :size="20" />
-              </template>
-              <span class="theme-text" v-if="isDesktop">Theme Settings</span>
-            </n-button>
-          </template>
-          <div class="theme-settings">
-            <n-space vertical :size="12">
-              <n-switch :value="themeStore.isDark" @update:value="themeStore.setDark">
-                <template #checked>Dark Mode</template>
-                <template #unchecked>Light Mode</template>
-              </n-switch>
-              <n-switch :value="themeStore.isBoxed" @update:value="themeStore.setBoxed">
-                <template #checked>Boxed Layout</template>
-                <template #unchecked>Full Width</template>
-              </n-switch>
-              <n-switch :value="themeStore.isMiniSidebar" @update:value="themeStore.setMiniSidebar">
-                <template #checked>Mini Sidebar</template>
-                <template #unchecked>Full Sidebar</template>
-              </n-switch>
-              <n-switch :value="themeStore.isBordered" @update:value="themeStore.setBordered">
-                <template #checked>Bordered Theme</template>
-                <template #unchecked>Shadow Theme</template>
-              </n-switch>
-            </n-space>
-          </div>
-        </n-popover>
-
         <n-dropdown :options="userMenuOptions" placement="bottom-end">
           <n-avatar round :size="32" style="cursor: pointer">
             <n-icon :component="PersonCircleOutline" :size="24" />
@@ -106,12 +75,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed, h, ref, onMounted, onUnmounted } from 'vue'
+import { computed, h, ref, onMounted, onUnmounted, markRaw } from 'vue'
 import { useRoute } from 'vue-router'
 import type { DropdownOption } from 'naive-ui'
 import {
   NotificationsOutline,
-  SettingsOutline,
   PersonCircleOutline,
   LogOutOutline,
   MenuOutline,
@@ -129,7 +97,6 @@ const themeStore = useThemeStore()
 const windowWidth = ref(window.innerWidth)
 
 const isMobile = computed(() => windowWidth.value < 768)
-const isDesktop = computed(() => windowWidth.value >= 768)
 
 const emit = defineEmits<{
   toggleSidebar: []
@@ -180,7 +147,7 @@ const notifications = ref([
     message: 'New order received from John Doe',
     time: '2 minutes ago',
     read: false,
-    icon: BagOutline,
+    icon: markRaw(BagOutline),
     color: '#3b82f6'
   },
   {
@@ -188,7 +155,7 @@ const notifications = ref([
     message: 'You have a new message from support',
     time: '15 minutes ago',
     read: false,
-    icon: MailOutline,
+    icon: markRaw(MailOutline),
     color: '#10b981'
   },
   {
@@ -196,7 +163,7 @@ const notifications = ref([
     message: 'Your order #12345 has been shipped',
     time: '1 hour ago',
     read: true,
-    icon: CheckmarkCircleOutline,
+    icon: markRaw(CheckmarkCircleOutline),
     color: '#f59e0b'
   },
   {
@@ -204,7 +171,7 @@ const notifications = ref([
     message: 'System maintenance scheduled for tonight',
     time: '3 hours ago',
     read: true,
-    icon: AlertCircleOutline,
+    icon: markRaw(AlertCircleOutline),
     color: '#ef4444'
   }
 ])
@@ -251,16 +218,6 @@ const markAllAsRead = () => {
   display: flex;
   align-items: center;
   flex-shrink: 0;
-}
-
-.theme-text {
-  margin-left: 8px;
-}
-
-.theme-settings {
-  padding: 8px;
-  min-width: 200px;
-  max-width: 90vw;
 }
 
 .notification-button {
@@ -367,10 +324,6 @@ const markAllAsRead = () => {
     min-width: 0;
   }
   
-  .theme-settings {
-    min-width: 180px;
-  }
-  
   .notification-dropdown {
     min-width: 300px;
   }
@@ -379,10 +332,6 @@ const markAllAsRead = () => {
 @media (max-width: 480px) {
   .app-header {
     padding: 0 12px;
-  }
-  
-  .theme-settings {
-    min-width: 160px;
   }
   
   .notification-dropdown {

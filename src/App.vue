@@ -30,10 +30,10 @@ const appClasses = computed(() => {
 const themeOverrides = computed<GlobalThemeOverrides>(() => {
   const base = themeStore.isDark ? {
     common: {
-      primaryColor: '#6366f1',
-      primaryColorHover: '#818cf8',
-      primaryColorPressed: '#4f46e5',
-      primaryColorSuppl: '#6366f1',
+      primaryColor: themeStore.primaryColor,
+      primaryColorHover: adjustColor(themeStore.primaryColor, 20),
+      primaryColorPressed: adjustColor(themeStore.primaryColor, -20),
+      primaryColorSuppl: themeStore.primaryColor,
       borderRadius: '8px',
       fontSize: '14px',
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
@@ -52,16 +52,16 @@ const themeOverrides = computed<GlobalThemeOverrides>(() => {
     },
     Menu: {
       borderRadius: '8px',
-      itemColorActive: '#6366f1',
-      itemColorActiveHover: '#818cf8',
+      itemColorActive: themeStore.primaryColor,
+      itemColorActiveHover: adjustColor(themeStore.primaryColor, 20),
       itemColorHover: 'rgba(99, 102, 241, 0.1)'
     }
   } : {
     common: {
-      primaryColor: '#6366f1',
-      primaryColorHover: '#818cf8',
-      primaryColorPressed: '#4f46e5',
-      primaryColorSuppl: '#6366f1',
+      primaryColor: themeStore.primaryColor,
+      primaryColorHover: adjustColor(themeStore.primaryColor, 20),
+      primaryColorPressed: adjustColor(themeStore.primaryColor, -20),
+      primaryColorSuppl: themeStore.primaryColor,
       borderRadius: '8px',
       fontSize: '14px',
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
@@ -80,14 +80,23 @@ const themeOverrides = computed<GlobalThemeOverrides>(() => {
     },
     Menu: {
       borderRadius: '8px',
-      itemColorActive: '#6366f1',
-      itemColorActiveHover: '#818cf8',
+      itemColorActive: themeStore.primaryColor,
+      itemColorActiveHover: adjustColor(themeStore.primaryColor, 20),
       itemColorHover: 'rgba(99, 102, 241, 0.1)'
     }
   }
 
   return base
 })
+
+// Helper function to adjust color brightness
+const adjustColor = (color: string, amount: number): string => {
+  const num = parseInt(color.replace('#', ''), 16)
+  const r = Math.min(255, Math.max(0, (num >> 16) + amount))
+  const g = Math.min(255, Math.max(0, ((num >> 8) & 0x00FF) + amount))
+  const b = Math.min(255, Math.max(0, (num & 0x0000FF) + amount))
+  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`
+}
 </script>
 
 <style scoped>

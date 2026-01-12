@@ -15,6 +15,8 @@
         </router-view>
       </n-layout-content>
     </n-layout>
+    <CustomizerButton @toggle="handleCustomizerToggle" />
+    <CustomizerSidebar :is-open="isCustomizerOpen" @close="closeCustomizer" />
   </n-layout>
 </template>
 
@@ -23,15 +25,26 @@ import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { useThemeStore } from '@/stores/theme'
 import AppSidebar from '@/components/layout/AppSidebar.vue'
 import AppHeader from '@/components/layout/AppHeader.vue'
+import CustomizerButton from '@/components/CustomizerButton.vue'
+import CustomizerSidebar from '@/components/CustomizerSidebar.vue'
 
 const themeStore = useThemeStore()
 const windowWidth = ref(window.innerWidth)
 const isCollapsed = ref(true)
+const isCustomizerOpen = ref(false)
 
 const isMobile = computed(() => windowWidth.value < 768)
 
 const toggleSidebar = () => {
   isCollapsed.value = !isCollapsed.value
+}
+
+const handleCustomizerToggle = () => {
+  isCustomizerOpen.value = !isCustomizerOpen.value
+}
+
+const closeCustomizer = () => {
+  isCustomizerOpen.value = false
 }
 
 onMounted(() => {
