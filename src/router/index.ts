@@ -189,6 +189,42 @@ const routes: RouteRecordRaw[] = [
         meta: { title: 'Icons', icon: 'apps-outline', group: 'Components' }
       },
       {
+        path: 'components/ui-elements/extra/divider',
+        name: 'Divider',
+        component: () => import('@/views/ui-elements/extra/Divider.vue'),
+        meta: { title: 'Divider', icon: 'remove-outline', group: 'Components', subgroup: 'Extra' }
+      },
+      {
+        path: 'components/ui-elements/extra/ellipsis',
+        name: 'Ellipsis',
+        component: () => import('@/views/ui-elements/extra/Ellipsis.vue'),
+        meta: { title: 'Ellipsis', icon: 'ellipsis-horizontal-outline', group: 'Components', subgroup: 'Extra' }
+      },
+      {
+        path: 'components/ui-elements/extra/gradient-text',
+        name: 'GradientText',
+        component: () => import('@/views/ui-elements/extra/GradientText.vue'),
+        meta: { title: 'Gradient Text', icon: 'color-palette-outline', group: 'Components', subgroup: 'Extra' }
+      },
+      {
+        path: 'components/ui-elements/extra/page-header',
+        name: 'PageHeader',
+        component: () => import('@/views/ui-elements/extra/PageHeader.vue'),
+        meta: { title: 'Page Header', icon: 'document-text-outline', group: 'Components', subgroup: 'Extra' }
+      },
+      {
+        path: 'components/ui-elements/extra/watermark',
+        name: 'Watermark',
+        component: () => import('@/views/ui-elements/extra/Watermark.vue'),
+        meta: { title: 'Watermark', icon: 'water-outline', group: 'Components', subgroup: 'Extra' }
+      },
+      {
+        path: 'components/ui-elements/extra/countdown',
+        name: 'CountDown',
+        component: () => import('@/views/ui-elements/extra/CountDown.vue'),
+        meta: { title: 'Countdown', icon: 'timer-outline', group: 'Components', subgroup: 'Extra' }
+      },
+      {
         path: 'forms/form-elements/select',
         name: 'Select',
         component: () => import('@/views/forms/form-elements/Select.vue'),

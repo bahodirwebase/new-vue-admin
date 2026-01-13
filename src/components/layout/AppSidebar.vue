@@ -1,47 +1,20 @@
 <template>
   <!-- Mobile overlay -->
-  <div 
-    v-if="props.isMobile && !isCollapsed" 
-    class="sidebar-overlay"
-    @click="toggleSidebar"
-  ></div>
-  
-  <n-layout-sider
-    :collapsed="isCollapsed"
-    :collapsed-width="collapsedWidth"
-    :width="sidebarWidth"
-    :native-scrollbar="false"
-    collapse-mode="width"
-    :collapsed-icon-size="22"
-    class="app-sidebar"
-    :inverted="themeStore.isDark"
-    :class="{ 'mobile-sidebar': props.isMobile }"
-  >
+  <div v-if="props.isMobile && !isCollapsed" class="sidebar-overlay" @click="toggleSidebar"></div>
+
+  <n-layout-sider :collapsed="isCollapsed" :collapsed-width="collapsedWidth" :width="sidebarWidth"
+    :native-scrollbar="false" collapse-mode="width" :collapsed-icon-size="22" class="app-sidebar"
+    :inverted="themeStore.isDark" :class="{ 'mobile-sidebar': props.isMobile }">
     <div class="sidebar-header">
       <div class="logo-container">
         <div class="logo-icon">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M12 2L2 7L12 12L22 7L12 2Z"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M2 17L12 22L22 17"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M2 12L12 17L22 12"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
           </svg>
         </div>
         <transition name="fade">
@@ -50,15 +23,8 @@
       </div>
     </div>
 
-    <n-menu
-      :collapsed="isCollapsed"
-      :collapsed-width="collapsedWidth"
-      :collapsed-icon-size="22"
-      :options="menuOptions"
-      :value="activeKey"
-      @update:value="handleMenuSelect"
-      :inverted="themeStore.isDark"
-    />
+    <n-menu :collapsed="isCollapsed" :collapsed-width="collapsedWidth" :collapsed-icon-size="22" :options="menuOptions"
+      :value="activeKey" @update:value="handleMenuSelect" :inverted="themeStore.isDark" />
   </n-layout-sider>
 </template>
 
@@ -97,7 +63,12 @@ import {
   WarningOutline,
   SettingsOutline,
   CardOutline,
-  HelpCircleOutline
+  HelpCircleOutline,
+  RemoveOutline,
+  ColorPaletteOutline,
+  WaterOutline,
+  TimerOutline,
+  CubeOutline
 } from '@vicons/ionicons5'
 import { useThemeStore } from '@/stores/theme'
 import { NIcon } from 'naive-ui'
@@ -154,7 +125,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  window.removeEventListener('resize', () => {})
+  window.removeEventListener('resize', () => { })
 })
 
 const collapsedWidth = computed(() => 64)
@@ -387,8 +358,43 @@ const menuOptions: MenuOption[] = [
     icon: () => h(NIcon, { component: AppsOutline })
   },
   {
-    type: 'divider'
+    label: 'Extra',
+    key: 'extra-group',
+    icon: () => h(NIcon, { component: CubeOutline }),
+    children: [
+      {
+        label: 'Divider',
+        key: 'Divider',
+        icon: () => h(NIcon, { component: RemoveOutline })
+      },
+      {
+        label: 'Ellipsis',
+        key: 'Ellipsis',
+        icon: () => h(NIcon, { component: EllipsisHorizontalOutline })
+      },
+      {
+        label: 'Gradient Text',
+        key: 'GradientText',
+        icon: () => h(NIcon, { component: ColorPaletteOutline })
+      },
+      {
+        label: 'Page Header',
+        key: 'PageHeader',
+        icon: () => h(NIcon, { component: DocumentTextOutline })
+      },
+      {
+        label: 'Watermark',
+        key: 'Watermark',
+        icon: () => h(NIcon, { component: WaterOutline })
+      },
+      {
+        label: 'Countdown',
+        key: 'CountDown',
+        icon: () => h(NIcon, { component: TimerOutline })
+      },
+    ]
   },
+
   {
     type: 'group',
     label: 'Forms',
@@ -430,7 +436,8 @@ const menuOptions: MenuOption[] = [
     label: 'Form Wizard',
     key: 'Form-Wizard',
     icon: () => h(NIcon, { component: ChevronForwardOutline })
-  }
+  },
+
 ]
 
 const handleMenuSelect = (key: string) => {
@@ -560,7 +567,7 @@ const handleMenuSelect = (key: string) => {
   .sidebar-overlay {
     display: block;
   }
-  
+
   .app-sidebar {
     position: fixed;
     left: 0;
@@ -568,15 +575,15 @@ const handleMenuSelect = (key: string) => {
     height: 100vh;
     box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
   }
-  
+
   .sidebar-header {
     padding: 0 12px;
   }
-  
+
   .logo-text {
     font-size: 20px;
   }
-  
+
   :deep(.n-menu) {
     max-height: calc(100vh - 64px);
   }
@@ -586,12 +593,12 @@ const handleMenuSelect = (key: string) => {
   .sidebar-header {
     padding: 0 8px;
   }
-  
+
   .logo-icon {
     width: 28px;
     height: 28px;
   }
-  
+
   .logo-text {
     font-size: 18px;
   }
