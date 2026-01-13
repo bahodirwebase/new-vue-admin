@@ -34,11 +34,11 @@
 
         <div class="sidebar-section">
           <div class="section-title">Labels</div>
-          <n-space vertical size="8">
+          <n-space vertical size="small" >
             <n-checkbox
               v-for="label in labels"
               :key="label.key"
-              :checked="selectedLabels.has(label.key)"
+              :checked="selectedLabels?.has(label.key)"
               @update:checked="setLabelChecked(label.key, $event)"
               size="small"
             >
