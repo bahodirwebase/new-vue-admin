@@ -1,13 +1,14 @@
 <template>
   <div class="auth-page">
-    <n-card class="auth-card">
+    <n-card class="auth-card" :bordered="false">
       <div class="auth-header">
+        <n-icon size="64" :component="ShieldCheckmarkOutline" class="auth-icon" />
         <h1 class="title">Two Step Verification</h1>
         <p class="subtitle">Enter the 6-digit code sent to your email</p>
       </div>
 
       <n-form ref="formRef" :model="model" :rules="rules" size="large" @submit.prevent="onSubmit">
-        <n-form-item path="code">
+        <n-form-item path="code" :show-label="false">
           <n-input-otp
             v-model:value="model.code"
             :length="6"
@@ -17,22 +18,55 @@
             @blur="onBlur"
             @finish="onFinish"
             @update:value="onUpdateValue"
-            block
+            :gap="8"
           />
         </n-form-item>
 
-        <n-button type="primary" block size="large" attr-type="submit" :loading="loading">
+        <n-button 
+          type="primary" 
+          block 
+          size="large" 
+          attr-type="submit" 
+          :loading="loading"
+          :disabled="model.code.length !== 6"
+        >
+          <template #icon>
+            <n-icon :component="LockClosedOutline" />
+          </template>
           Verify Code
         </n-button>
 
-        <div class="actions">
-          <n-button text @click="resendCode" :disabled="resendDisabled">
+        <n-space justify="space-between" align="center" style="margin-top: 16px;">
+          <n-button 
+            text 
+            @click="resendCode" 
+            :disabled="resendDisabled"
+            size="medium"
+          >
+            <template #icon>
+              <n-icon :component="RefreshOutline" />
+            </template>
             {{ resendDisabled ? `Resend in ${countdown}s` : 'Resend Code' }}
           </n-button>
-          <n-button text @click="goBack">
+          
+          <n-button text @click="goBack" size="medium">
+            <template #icon>
+              <n-icon :component="ArrowBackOutline" />
+            </template>
             Back to Login
           </n-button>
-        </div>
+        </n-space>
+
+        <n-alert 
+          type="info" 
+          style="margin-top: 16px;"
+          :show-icon="false"
+        >
+          <template #icon>
+            <n-icon :component="InformationCircleOutline" />
+          </template>
+          Didn't receive the code? Check your spam folder or request a new code.
+        </n-alert>
       </n-form>
     </n-card>
   </div>
@@ -43,6 +77,7 @@ import { reactive, ref, onMounted, onUnmounted } from 'vue'
 import type { FormInst, FormRules } from 'naive-ui'
 import { useMessage } from 'naive-ui'
 import { useRouter } from 'vue-router'
+import { ShieldCheckmarkOutline, LockClosedOutline, RefreshOutline, ArrowBackOutline, InformationCircleOutline } from '@vicons/ionicons5'
 
 const router = useRouter()
 const message = useMessage()
@@ -139,50 +174,61 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: var(--bg-primary);
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
 }
 
 .auth-card {
-  width: 420px;
+  width: 480px;
   max-width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .auth-header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
+}
+
+.auth-icon {
+  color: var(--primary-color);
+  margin-bottom: 16px;
 }
 
 .title {
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 800;
   color: var(--text-primary);
-  margin: 0 0 8px;
+  margin: 0 0 12px;
   font-family: var(--font-secondary);
+  line-height: 1.2;
 }
 
 .subtitle {
   font-size: 16px;
   color: var(--text-secondary);
   margin: 0;
+  line-height: 1.5;
 }
 
 .otp-input {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
-.actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 16px;
+.otp-input :deep(.n-input__input-el) {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 0.1em;
 }
 
 @media (max-width: 480px) {
   .auth-card {
     width: 100%;
+    padding: 16px;
   }
   
   .title {
-    font-size: 24px;
+    font-size: 28px;
   }
   
   .subtitle {

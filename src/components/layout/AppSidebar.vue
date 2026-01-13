@@ -93,7 +93,11 @@ import {
   ChatbubbleEllipsesOutline,
   MailOutline,
   LockClosedOutline,
-  ShieldCheckmarkOutline
+  ShieldCheckmarkOutline,
+  WarningOutline,
+  SettingsOutline,
+  CardOutline,
+  HelpCircleOutline
 } from '@vicons/ionicons5'
 import { useThemeStore } from '@/stores/theme'
 import { NIcon } from 'naive-ui'
@@ -248,6 +252,60 @@ const menuOptions: MenuOption[] = [
         label: 'Lock Screen',
         key: 'LockScreen',
         icon: () => h(NIcon, { component: LockClosedOutline })
+      }
+    ]
+  },
+  {
+    label: 'Errors',
+    key: 'errors-group',
+    icon: () => h(NIcon, { component: WarningOutline }),
+    children: [
+      {
+        label: '404 Not Found',
+        key: 'NotFound',
+        icon: () => h(NIcon, { component: AlertCircleOutline })
+      },
+      {
+        label: '403 Forbidden',
+        key: 'Forbidden',
+        icon: () => h(NIcon, { component: ShieldCheckmarkOutline })
+      },
+      {
+        label: '401 Unauthorized',
+        key: 'Unauthorized',
+        icon: () => h(NIcon, { component: LockClosedOutline })
+      },
+      {
+        label: '500 Server Error',
+        key: 'ServerError',
+        icon: () => h(NIcon, { component: WarningOutline })
+      }
+    ]
+  },
+  {
+    label: 'User',
+    key: 'user-group',
+    icon: () => h(NIcon, { component: PersonCircleOutline }),
+    children: [
+      {
+        label: 'User Profile',
+        key: 'UserProfile',
+        icon: () => h(NIcon, { component: PersonCircleOutline })
+      },
+      {
+        label: 'Account Settings',
+        key: 'AccountSettings',
+        icon: () => h(NIcon, { component: SettingsOutline })
+      },
+      {
+        label: 'Pricing',
+        key: 'Pricing',
+        icon: () => h(NIcon, { component: CardOutline })
+      },
+      {
+        label: 'FAQ',
+        key: 'Faq',
+        icon: () => h(NIcon, { component: HelpCircleOutline })
       }
     ]
   },

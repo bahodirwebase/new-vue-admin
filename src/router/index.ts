@@ -52,6 +52,30 @@ const routes: RouteRecordRaw[] = [
     meta: { title: 'Lock Screen', icon: 'lock-closed-outline', group: 'Pages', subgroup: 'Authentication' }
   },
   {
+    path: '/pages/errors/not-found',
+    name: 'NotFound',
+    component: () => import('@/views/pages/errors/NotFound.vue'),
+    meta: { title: '404 Not Found', icon: 'alert-circle-outline', group: 'Pages', subgroup: 'Errors' }
+  },
+  {
+    path: '/pages/errors/forbidden',
+    name: 'Forbidden',
+    component: () => import('@/views/pages/errors/Forbidden.vue'),
+    meta: { title: '403 Forbidden', icon: 'shield-checkmark-outline', group: 'Pages', subgroup: 'Errors' }
+  },
+  {
+    path: '/pages/errors/unauthorized',
+    name: 'Unauthorized',
+    component: () => import('@/views/pages/errors/Unauthorized.vue'),
+    meta: { title: '401 Unauthorized', icon: 'lock-closed-outline', group: 'Pages', subgroup: 'Errors' }
+  },
+  {
+    path: '/pages/errors/server-error',
+    name: 'ServerError',
+    component: () => import('@/views/pages/errors/ServerError.vue'),
+    meta: { title: '500 Server Error', icon: 'warning-outline', group: 'Pages', subgroup: 'Errors' }
+  },
+  {
     path: '/',
     component: MainLayout,
     redirect: '/dashboard/analytical',
@@ -199,6 +223,30 @@ const routes: RouteRecordRaw[] = [
         name: 'Form-Wizard',
         component: () => import('@/views/forms/Form-Wizard.vue'),
         meta: { title: 'Form Wizard', icon: 'chevron-forward-outline', group: 'Components' }
+      },
+      {
+        path: 'pages/user/user-profile',
+        name: 'UserProfile',
+        component: () => import('@/views/pages/user/UserProfile.vue'),
+        meta: { title: 'User Profile', icon: 'person-circle-outline', group: 'Pages', subgroup: 'User' }
+      },
+      {
+        path: 'pages/user/account-settings',
+        name: 'AccountSettings',
+        component: () => import('@/views/pages/user/AccountSettings.vue'),
+        meta: { title: 'Account Settings', icon: 'settings-outline', group: 'Pages', subgroup: 'User' }
+      },
+      {
+        path: 'pages/user/pricing',
+        name: 'Pricing',
+        component: () => import('@/views/pages/user/Pricing.vue'),
+        meta: { title: 'Pricing', icon: 'card-outline', group: 'Pages', subgroup: 'User' }
+      },
+      {
+        path: 'pages/user/faq',
+        name: 'Faq',
+        component: () => import('@/views/pages/user/Faq.vue'),
+        meta: { title: 'FAQ', icon: 'help-circle-outline', group: 'Pages', subgroup: 'User' }
       }
     ]
   }

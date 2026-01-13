@@ -1,138 +1,199 @@
 <template>
   <div class="email-app">
     <div class="email-layout">
-      <aside class="email-sidebar">
+      <n-card class="email-sidebar" :bordered="false">
         <div class="sidebar-top">
-          <n-button type="primary" block @click="openCompose">Compose</n-button>
+          <n-button type="primary" block @click="openCompose">
+            <template #icon>
+              <n-icon :component="CreateOutline" />
+            </template>
+            Compose
+          </n-button>
           <n-input
             v-model:value="searchQuery"
             placeholder="Search mail"
             clearable
             class="search-input"
+          >
+            <template #prefix>
+              <n-icon :component="SearchOutline" />
+            </template>
+          </n-input>
+        </div>
+
+        <div class="sidebar-section">
+          <n-menu
+            :options="menuOptions"
+            :value="activeFolder"
+            @update:value="handleMenuChange"
+            :collapsed="false"
+            :collapsed-width="64"
+            :collapsed-icon-size="22"
           />
         </div>
 
         <div class="sidebar-section">
-          <button
-            v-for="item in folders"
-            :key="item.key"
-            class="nav-item"
-            :class="{ active: activeFolder === item.key }"
-            type="button"
-            @click="activeFolder = item.key"
-          >
-            <span class="nav-label">{{ item.label }}</span>
-            <span v-if="item.count" class="nav-count">{{ item.count }}</span>
-          </button>
-        </div>
-
-        <div class="sidebar-section">
           <div class="section-title">Labels</div>
-          <div
-            v-for="label in labels"
-            :key="label.key"
-            class="label-item"
-          >
+          <n-space vertical size="8">
             <n-checkbox
+              v-for="label in labels"
+              :key="label.key"
               :checked="selectedLabels.has(label.key)"
               @update:checked="setLabelChecked(label.key, $event)"
+              size="small"
             >
-              <span class="label-row">
-                <span class="label-dot" :style="{ background: label.color }"></span>
-                <span class="nav-label">{{ label.label }}</span>
-              </span>
+              <template #default>
+                <n-space align="center" :size="8">
+                  <n-avatar :size="8" :style="{ background: label.color }" />
+                  <span class="nav-label">{{ label.label }}</span>
+                </n-space>
+              </template>
             </n-checkbox>
-          </div>
+          </n-space>
         </div>
-      </aside>
+      </n-card>
 
       <main class="email-main">
-        <div class="email-list">
-          <div class="list-header">
-            <div class="list-title">{{ activeFolderTitle }}</div>
-            <div class="list-meta">{{ filteredEmails.length }} mails</div>
-          </div>
+        <n-card class="email-list" :bordered="false">
+          <template #header>
+            <div class="list-header">
+              <div class="list-title">{{ activeFolderTitle }}</div>
+              <div class="list-meta">{{ filteredEmails.length }} mails</div>
+            </div>
+          </template>
 
           <div class="list-body">
-            <button
-              v-for="mail in filteredEmails"
-              :key="mail.id"
-              class="mail-item"
-              :class="{ active: selectedEmail?.id === mail.id, unread: !mail.read }"
-              type="button"
-              @click="selectEmail(mail)"
+            <n-virtual-list
+              :items="filteredEmails"
+              :item-size="120"
+              :height="600"
+              itemResizable
             >
-              <div class="mail-top">
-                <div class="mail-from">{{ mail.from }}</div>
-                <div class="mail-time">{{ formatTime(mail.date) }}</div>
-              </div>
-              <div class="mail-subject">{{ mail.subject }}</div>
-              <div class="mail-preview">{{ mail.preview }}</div>
-              <div v-if="mail.labels.length" class="mail-labels">
-                <span
-                  v-for="lk in mail.labels"
-                  :key="lk"
-                  class="mail-label"
-                  :style="{ background: labelColor(lk) }"
+              <template #default="{ item }">
+                <n-card
+                  :class="['mail-item', { active: selectedEmail?.id === item.id, unread: !item.read }]"
+                  hoverable
+                  @click="selectEmail(item)"
+                  size="small"
                 >
-                  {{ labelTitle(lk) }}
-                </span>
-              </div>
-            </button>
+                  <div class="mail-top">
+                    <div class="mail-from">
+                      <n-avatar :size="24" round>
+                        {{ item.from.charAt(0) }}
+                      </n-avatar>
+                      <span>{{ item.from }}</span>
+                    </div>
+                    <div class="mail-time">{{ formatTime(item.date) }}</div>
+                  </div>
+                  <div class="mail-subject">{{ item.subject }}</div>
+                  <div class="mail-preview">{{ item.preview }}</div>
+                  <div v-if="item.labels.length" class="mail-labels">
+                    <n-tag
+                      v-for="lk in item.labels"
+                      :key="lk"
+                      size="small"
+                      :style="{ background: labelColor(lk), color: 'white' }"
+                    >
+                      {{ labelTitle(lk) }}
+                    </n-tag>
+                  </div>
+                </n-card>
+              </template>
+            </n-virtual-list>
 
-            <div v-if="filteredEmails.length === 0" class="empty-list">
-              <div class="empty-title">No emails found</div>
-              <div class="empty-text">Try changing folder, labels, or search query.</div>
-            </div>
+            <n-empty v-if="filteredEmails.length === 0" description="No emails found">
+              <template #extra>
+                <n-text depth="3">Try changing folder, labels, or search query.</n-text>
+              </template>
+            </n-empty>
           </div>
-        </div>
+        </n-card>
 
-        <section class="email-preview" :class="{ empty: !selectedEmail }">
-          <div v-if="!selectedEmail" class="preview-empty">
-            <div class="empty-title">Select an email</div>
-            <div class="empty-text">Choose an email from the list to read it here.</div>
-          </div>
+        <n-card class="email-preview" :class="{ empty: !selectedEmail }" :bordered="false">
+          <n-empty v-if="!selectedEmail" description="Select an email">
+            <template #extra>
+              <n-text depth="3">Choose an email from the list to read it here.</n-text>
+            </template>
+          </n-empty>
 
           <div v-else class="preview-content">
             <div class="preview-header">
               <div class="preview-subject">{{ selectedEmail.subject }}</div>
-              <div class="preview-actions">
-                <n-button size="small" @click="markUnread">Mark unread</n-button>
-                <n-button size="small" @click="deleteMail">Trash</n-button>
-              </div>
+              <n-space>
+                <n-button size="small" @click="markUnread">
+                  <template #icon>
+                    <n-icon :component="MailUnreadOutline" />
+                  </template>
+                  Mark unread
+                </n-button>
+                <n-button size="small" type="error" @click="deleteMail">
+                  <template #icon>
+                    <n-icon :component="TrashOutline" />
+                  </template>
+                  Trash
+                </n-button>
+              </n-space>
             </div>
 
-            <div class="preview-meta">
-              <div class="meta-row">
-                <span class="meta-key">From</span>
-                <span class="meta-val">{{ selectedEmail.from }}</span>
-              </div>
-              <div class="meta-row">
-                <span class="meta-key">To</span>
-                <span class="meta-val">{{ selectedEmail.to }}</span>
-              </div>
-              <div class="meta-row">
-                <span class="meta-key">Date</span>
-                <span class="meta-val">{{ formatDateTime(selectedEmail.date) }}</span>
-              </div>
-            </div>
+            <n-descriptions :column="1" bordered size="small">
+              <n-descriptions-item label="From">
+                <n-space align="center">
+                  <n-avatar :size="20" round>
+                    {{ selectedEmail.from.charAt(0) }}
+                  </n-avatar>
+                  <span>{{ selectedEmail.from }}</span>
+                </n-space>
+              </n-descriptions-item>
+              <n-descriptions-item label="To">{{ selectedEmail.to }}</n-descriptions-item>
+              <n-descriptions-item label="Date">{{ formatDateTime(selectedEmail.date) }}</n-descriptions-item>
+            </n-descriptions>
 
             <div class="preview-body">
-              <div class="preview-text">{{ selectedEmail.body }}</div>
+              <n-scrollbar style="max-height: 400px;">
+                <div class="preview-text">{{ selectedEmail.body }}</div>
+              </n-scrollbar>
             </div>
           </div>
-        </section>
+        </n-card>
       </main>
     </div>
 
     <n-modal v-model:show="composeOpen" preset="card" title="Compose" :style="{ width: '720px', maxWidth: '95vw' }">
       <div class="compose-form">
-        <n-input v-model:value="compose.to" placeholder="To" />
-        <n-input v-model:value="compose.subject" placeholder="Subject" />
-        <n-input v-model:value="compose.body" type="textarea" placeholder="Message" :autosize="{ minRows: 8, maxRows: 14 }" />
+        <n-form>
+          <n-form-item :show-label="false">
+            <n-input v-model:value="compose.to" placeholder="To" clearable>
+              <template #prefix>
+                <n-icon :component="PersonOutline" />
+              </template>
+            </n-input>
+          </n-form-item>
+          <n-form-item :show-label="false">
+            <n-input v-model:value="compose.subject" placeholder="Subject" clearable>
+              <template #prefix>
+                <n-icon :component="DocumentTextOutline" />
+              </template>
+            </n-input>
+          </n-form-item>
+          <n-form-item :show-label="false">
+            <n-input
+              v-model:value="compose.body"
+              type="textarea"
+              placeholder="Message"
+              :autosize="{ minRows: 8, maxRows: 14 }"
+            />
+          </n-form-item>
+        </n-form>
         <div class="compose-actions">
-          <n-button type="primary" @click="sendCompose">Send</n-button>
-          <n-button @click="composeOpen = false">Cancel</n-button>
+          <n-space>
+            <n-button type="primary" @click="sendCompose">
+              <template #icon>
+                <n-icon :component="SendOutline" />
+              </template>
+              Send
+            </n-button>
+            <n-button @click="composeOpen = false">Cancel</n-button>
+          </n-space>
         </div>
       </div>
     </n-modal>
@@ -140,7 +201,24 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref, h } from 'vue'
+import { useMessage } from 'naive-ui'
+import { 
+  CreateOutline,
+  SearchOutline,
+  MailOutline,
+  SendOutline,
+  DocumentTextOutline,
+  PersonOutline,
+  TrashOutline,
+  MailUnreadOutline,
+  PaperPlaneOutline,
+  DocumentOutline,
+  WarningOutline,
+  TrashBinOutline
+} from '@vicons/ionicons5'
+
+const message = useMessage()
 
 type FolderKey = 'inbox' | 'sent' | 'draft' | 'spam' | 'trash'
 
@@ -237,6 +315,53 @@ const emailSeed: Email[] = [
   }
 ]
 
+const menuOptions = computed(() => [
+  {
+    label: 'Inbox',
+    key: 'inbox',
+    icon: () => h(MailOutline),
+    props: {
+      badge: folders.find(f => f.key === 'inbox')?.count || 0
+    }
+  },
+  {
+    label: 'Sent',
+    key: 'sent',
+    icon: () => h(PaperPlaneOutline),
+    props: {
+      badge: folders.find(f => f.key === 'sent')?.count || 0
+    }
+  },
+  {
+    label: 'Draft',
+    key: 'draft',
+    icon: () => h(DocumentOutline),
+    props: {
+      badge: folders.find(f => f.key === 'draft')?.count || 0
+    }
+  },
+  {
+    label: 'Spam',
+    key: 'spam',
+    icon: () => h(WarningOutline),
+    props: {
+      badge: folders.find(f => f.key === 'spam')?.count || 0
+    }
+  },
+  {
+    label: 'Trash',
+    key: 'trash',
+    icon: () => h(TrashBinOutline),
+    props: {
+      badge: folders.find(f => f.key === 'trash')?.count || 0
+    }
+  }
+])
+
+const handleMenuChange = (key: string) => {
+  activeFolder.value = key as FolderKey
+}
+
 const activeFolder = ref<FolderKey>('inbox')
 const searchQuery = ref('')
 const selectedLabels = ref(new Set<LabelKey>())
@@ -314,7 +439,10 @@ const openCompose = () => {
 }
 
 const sendCompose = () => {
-  if (!compose.to.trim() || !compose.subject.trim()) return
+  if (!compose.to.trim() || !compose.subject.trim()) {
+    message.warning('Please fill in recipient and subject')
+    return
+  }
 
   const newMail: Email = {
     id: Date.now(),
@@ -333,16 +461,19 @@ const sendCompose = () => {
   activeFolder.value = 'sent'
   selectedEmail.value = newMail
   composeOpen.value = false
+  message.success('Email sent successfully (demo)')
 }
 
 const markUnread = () => {
   if (!selectedEmail.value) return
   selectedEmail.value.read = false
+  message.info('Email marked as unread')
 }
 
 const deleteMail = () => {
   if (!selectedEmail.value) return
   selectedEmail.value.folder = 'trash'
+  message.warning('Email moved to trash')
   selectedEmail.value = filteredEmails.value[0] ?? null
 }
 </script>
@@ -364,22 +495,9 @@ const deleteMail = () => {
 .email-sidebar {
   width: 280px;
   flex-shrink: 0;
-  background: var(--bg-primary);
-  border-radius: 14px;
-  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
-  padding: 16px;
   gap: 16px;
-}
-
-.shadow-theme .email-sidebar {
-  border: none;
-  box-shadow: var(--shadow-md);
-}
-
-.bordered-theme .email-sidebar {
-  box-shadow: none;
 }
 
 .sidebar-top {
@@ -395,7 +513,7 @@ const deleteMail = () => {
 .sidebar-section {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .section-title {
@@ -404,72 +522,11 @@ const deleteMail = () => {
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin-top: 6px;
-}
-
-.nav-item,
-.label-item {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--text-primary);
-  font-family: inherit;
-  cursor: pointer;
-  text-align: left;
-}
-
-.nav-item:hover,
-.label-item:hover {
-  background: var(--bg-tertiary);
-}
-
-.nav-item.active {
-  background: rgba(99, 102, 241, 0.12);
-  border-color: rgba(99, 102, 241, 0.2);
+  margin-top: 8px;
 }
 
 .nav-label {
   font-weight: 600;
-}
-
-.nav-count {
-  font-size: 12px;
-  color: var(--text-secondary);
-}
-
-.label-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  flex-shrink: 0;
-}
-
-.label-row {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.label-item :deep(.n-checkbox) {
-  width: 100%;
-}
-
-.label-item :deep(.n-checkbox__label) {
-  font-family: inherit;
-}
-
-.selected-indicator {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: var(--primary-color);
-  flex-shrink: 0;
 }
 
 .email-main {
@@ -482,27 +539,12 @@ const deleteMail = () => {
 .email-list {
   width: 380px;
   flex-shrink: 0;
-  background: var(--bg-primary);
-  border-radius: 14px;
-  border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-.shadow-theme .email-list {
-  border: none;
-  box-shadow: var(--shadow-md);
-}
-
-.bordered-theme .email-list {
-  box-shadow: none;
-}
-
 .list-header {
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--border-color);
-  background: var(--bg-primary);
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -528,10 +570,10 @@ const deleteMail = () => {
 .mail-item {
   border: none;
   background: transparent;
-  padding: 12px 16px;
   text-align: left;
   cursor: pointer;
   border-bottom: 1px solid var(--border-color);
+  transition: all 0.2s ease;
 }
 
 .mail-item:hover {
@@ -551,9 +593,13 @@ const deleteMail = () => {
   display: flex;
   justify-content: space-between;
   gap: 10px;
+  align-items: center;
 }
 
 .mail-from {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: var(--text-primary);
   font-weight: 700;
 }
@@ -586,51 +632,10 @@ const deleteMail = () => {
   flex-wrap: wrap;
 }
 
-.mail-label {
-  font-size: 11px;
-  padding: 3px 8px;
-  border-radius: 999px;
-  color: #ffffff;
-}
-
-.empty-list {
-  padding: 28px 18px;
-}
-
-.empty-title {
-  font-weight: 800;
-  color: var(--text-primary);
-}
-
-.empty-text {
-  margin-top: 6px;
-  color: var(--text-secondary);
-  font-size: 13px;
-}
-
 .email-preview {
   flex: 1;
-  background: var(--bg-primary);
-  border-radius: 14px;
-  border: 1px solid var(--border-color);
   overflow: hidden;
   display: flex;
-}
-
-.shadow-theme .email-preview {
-  border: none;
-  box-shadow: var(--shadow-md);
-}
-
-.bordered-theme .email-preview {
-  box-shadow: none;
-}
-
-.preview-empty {
-  margin: auto;
-  padding: 16px;
-  text-align: center;
-  max-width: 380px;
 }
 
 .preview-content {
@@ -654,37 +659,6 @@ const deleteMail = () => {
   color: var(--text-primary);
 }
 
-.preview-actions {
-  display: flex;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.preview-meta {
-  padding: 14px 16px;
-  border-bottom: 1px solid var(--border-color);
-  display: grid;
-  gap: 6px;
-}
-
-.meta-row {
-  display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: 10px;
-  align-items: center;
-}
-
-.meta-key {
-  font-size: 12px;
-  color: var(--text-secondary);
-  font-weight: 700;
-}
-
-.meta-val {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
 .preview-body {
   padding: 16px;
   overflow: auto;
@@ -704,7 +678,6 @@ const deleteMail = () => {
 .compose-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
 }
 
 @media (max-width: 1024px) {

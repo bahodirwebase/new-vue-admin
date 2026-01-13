@@ -1,44 +1,23 @@
 <template>
   <div class="auth-page">
     <div class="auth-container">
-      <n-card class="auth-card" :shadow="true">
+      <n-card class="auth-card" :bordered="false" :shadow="true">
         <div class="auth-header">
           <div class="logo">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M12 2L2 7L12 12L22 7L12 2Z"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M2 17L12 22L22 17"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M2 12L12 17L22 12"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+            <n-icon size="48" :component="LayersOutline" />
           </div>
           <h1 class="title">Create Account</h1>
           <p class="subtitle">Join us today and get started</p>
         </div>
 
         <n-form ref="formRef" :model="model" :rules="rules" size="large" @submit.prevent="onSubmit">
-          <n-form-item path="name">
+          <n-form-item path="name" :show-label="false">
             <n-input
               v-model:value="model.name"
               placeholder="Full name"
               size="large"
               :input-props="{ autocomplete: 'name' }"
+              clearable
             >
               <template #prefix>
                 <n-icon :component="PersonOutline" />
@@ -46,12 +25,13 @@
             </n-input>
           </n-form-item>
 
-          <n-form-item path="email">
+          <n-form-item path="email" :show-label="false">
             <n-input
               v-model:value="model.email"
               placeholder="Email address"
               size="large"
               :input-props="{ autocomplete: 'email' }"
+              clearable
             >
               <template #prefix>
                 <n-icon :component="MailOutline" />
@@ -59,7 +39,7 @@
             </n-input>
           </n-form-item>
 
-          <n-form-item path="password">
+          <n-form-item path="password" :show-label="false">
             <n-input
               v-model:value="model.password"
               type="password"
@@ -67,6 +47,7 @@
               placeholder="Password"
               size="large"
               :input-props="{ autocomplete: 'new-password' }"
+              clearable
             >
               <template #prefix>
                 <n-icon :component="LockClosedOutline" />
@@ -74,7 +55,7 @@
             </n-input>
           </n-form-item>
 
-          <n-form-item path="confirmPassword">
+          <n-form-item path="confirmPassword" :show-label="false">
             <n-input
               v-model:value="model.confirmPassword"
               type="password"
@@ -82,6 +63,7 @@
               placeholder="Confirm password"
               size="large"
               :input-props="{ autocomplete: 'new-password' }"
+              clearable
             >
               <template #prefix>
                 <n-icon :component="LockClosedOutline" />
@@ -90,33 +72,54 @@
           </n-form-item>
 
           <n-form-item path="agree">
-            <n-checkbox v-model:checked="model.agree">
-              I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a>
+            <n-checkbox v-model:checked="model.agree" size="medium">
+              I agree to the <n-button text type="primary" size="small">Terms of Service</n-button> and <n-button text type="primary" size="small">Privacy Policy</n-button>
             </n-checkbox>
           </n-form-item>
 
-          <n-button type="primary" block size="large" attr-type="submit" :loading="loading">
+          <n-button 
+            type="primary" 
+            block 
+            size="large" 
+            attr-type="submit" 
+            :loading="loading"
+            :disabled="!model.agree"
+          >
+            <template #icon>
+              <n-icon :component="PersonAddOutline" />
+            </template>
             Create Account
           </n-button>
 
-          <div class="divider">
-            <span>or sign up with</span>
-          </div>
+          <n-divider style="margin: 20px 0;">
+            <span style="color: var(--text-secondary); font-size: 14px;">or sign up with</span>
+          </n-divider>
 
-          <div class="social-buttons">
-            <n-button size="large" block class="social-btn google">
+          <n-space vertical size="12">
+            <n-button 
+              size="large" 
+              block 
+              class="social-btn google"
+              @click="handleSocialLogin('google')"
+            >
               <template #icon>
                 <n-icon :component="LogoGoogle" />
               </template>
-              Google
+              Continue with Google
             </n-button>
-            <n-button size="large" block class="social-btn github">
+            
+            <n-button 
+              size="large" 
+              block 
+              class="social-btn github"
+              @click="handleSocialLogin('github')"
+            >
               <template #icon>
                 <n-icon :component="LogoGithub" />
               </template>
-              GitHub
+              Continue with GitHub
             </n-button>
-          </div>
+          </n-space>
 
           <div class="footer">
             <span class="muted">Already have an account?</span>
@@ -132,8 +135,10 @@
 import { reactive, ref } from 'vue'
 import type { FormInst, FormItemRule, FormRules } from 'naive-ui'
 import { useMessage } from 'naive-ui'
-import { PersonOutline, MailOutline, LockClosedOutline, LogoGoogle, LogoGithub } from '@vicons/ionicons5'
+import { useRouter } from 'vue-router'
+import { PersonOutline, MailOutline, LockClosedOutline, LogoGoogle, LogoGithub, LayersOutline, PersonAddOutline } from '@vicons/ionicons5'
 
+const router = useRouter()
 const message = useMessage()
 const loading = ref(false)
 const formRef = ref<FormInst | null>(null)
@@ -178,7 +183,12 @@ const onSubmit = async () => {
   setTimeout(() => {
     loading.value = false
     message.success('Account created (demo)')
+    router.push({ name: 'LoginAdvanced' })
   }, 700)
+}
+
+const handleSocialLogin = (provider: string) => {
+  message.info(`Continue with ${provider} (demo)`)
 }
 </script>
 
@@ -206,7 +216,7 @@ const onSubmit = async () => {
 
 .auth-container {
   width: 100%;
-  max-width: 460px;
+  max-width: 480px;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -221,7 +231,7 @@ const onSubmit = async () => {
 
 .auth-header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
 }
 
 .logo {
@@ -229,20 +239,25 @@ const onSubmit = async () => {
   height: 48px;
   margin: 0 auto 16px;
   color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .title {
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 32px;
+  font-weight: 800;
   color: var(--text-primary);
   margin: 0 0 8px;
   font-family: var(--font-secondary);
+  line-height: 1.2;
 }
 
 .subtitle {
   font-size: 16px;
   color: var(--text-secondary);
   margin: 0;
+  line-height: 1.5;
 }
 
 .auth-card {
@@ -253,6 +268,7 @@ const onSubmit = async () => {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+  padding: 32px;
 }
 
 .terms-link {
@@ -262,30 +278,6 @@ const onSubmit = async () => {
 
 .terms-link:hover {
   text-decoration: underline;
-}
-
-.divider {
-  text-align: center;
-  margin: 16px 0;
-  position: relative;
-}
-
-.divider::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: var(--border-color);
-}
-
-.divider span {
-  background: var(--bg-primary);
-  padding: 0 16px;
-  color: var(--text-secondary);
-  font-size: 14px;
-  position: relative;
 }
 
 .social-buttons {
@@ -303,6 +295,7 @@ const onSubmit = async () => {
 
 .social-btn.google:hover {
   background: #f8f9fa;
+  transform: translateY(-1px);
 }
 
 .social-btn.github {
@@ -313,11 +306,12 @@ const onSubmit = async () => {
 
 .social-btn.github:hover {
   background: #2f363d;
+  transform: translateY(-1px);
 }
 
 .footer {
   text-align: center;
-  margin-top: 16px;
+  margin-top: 24px;
 }
 
 .link {
@@ -335,13 +329,22 @@ const onSubmit = async () => {
   color: var(--text-secondary);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .auth-container {
     max-width: 100%;
+    position: static;
+    height: auto;
+    padding: 0;
+  }
+  
+  .auth-card {
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   }
   
   .title {
-    font-size: 24px;
+    font-size: 28px;
   }
   
   .subtitle {
