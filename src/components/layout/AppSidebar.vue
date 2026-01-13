@@ -4,7 +4,7 @@
 
   <n-layout-sider :collapsed="isCollapsed" :collapsed-width="collapsedWidth" :width="sidebarWidth"
     :native-scrollbar="false" collapse-mode="width" :collapsed-icon-size="22" class="app-sidebar"
-    :inverted="themeStore.isDark" :class="{ 'mobile-sidebar': props.isMobile }">
+    :inverted="themeStore.isDark" :class="{ 'mobile-sidebar': props.isMobile }" >
     <div class="sidebar-header">
       <div class="logo-container">
         <div class="logo-icon">
@@ -24,7 +24,7 @@
     </div>
 
     <n-menu :collapsed="isCollapsed" :collapsed-width="collapsedWidth" :collapsed-icon-size="22" :options="menuOptions"
-      :value="activeKey" @update:value="handleMenuSelect" :inverted="themeStore.isDark" />
+      :value="activeKey" @update:value="handleMenuSelect" :inverted="themeStore.isDark" accordion />
   </n-layout-sider>
 </template>
 
@@ -128,12 +128,12 @@ onUnmounted(() => {
   window.removeEventListener('resize', () => { })
 })
 
-const collapsedWidth = computed(() => 64)
+const collapsedWidth = computed(() => 80)
 const sidebarWidth = computed(() => {
   if (props.isMobile) {
     return isCollapsed.value ? 0 : 240
   }
-  return themeStore.isMiniSidebar ? 64 : 240
+  return themeStore.isMiniSidebar ? 80 : 240
 })
 
 const activeKey = computed(() => route.name as string)
@@ -147,7 +147,8 @@ const menuOptions: MenuOption[] = [
   {
     label: 'Analytical',
     key: 'Analytical',
-    icon: () => h(NIcon, { component: AnalyticsOutline })
+    icon: () => h(NIcon, { component: AnalyticsOutline }),
+    
   },
   {
     label: 'Commerce',
@@ -187,7 +188,7 @@ const menuOptions: MenuOption[] = [
       {
         label: 'Login (Simple)',
         key: 'LoginSimple',
-        icon: () => h(NIcon, { component: PersonCircleOutline })
+        icon: () => h(NIcon, { component: PersonCircleOutline }),
       },
       {
         label: 'Login (Advanced)',
@@ -531,6 +532,27 @@ const handleMenuSelect = (key: string) => {
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
+}
+
+/* Custom scrollbar that doesn't take up width */
+:deep(.n-menu)::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+:deep(.n-menu)::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+:deep(.n-menu)::-webkit-scrollbar-thumb {
+  background: transparent;
+  width: 0px;
+}
+
+/* Hide scrollbar for Firefox */
+:deep(.n-menu) {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 /* Active menu item text color */

@@ -1,0 +1,132 @@
+/* Naive UI Variables Configuration */
+
+/* Menu Variables */
+:root {
+  --n-item-height: 36px;
+}
+
+/* Menu Item Height Override */
+.n-menu-item-content {
+  height: var(--n-item-height) !important;
+  min-height: var(--n-item-height) !important;
+  line-height: var(--n-item-height) !important;
+}
+
+/* Menu Item Height in Collapsed State */
+.n-layout-sider--collapsed .n-menu-item-content {
+  height: var(--n-item-height) !important;
+  min-height: var(--n-item-height) !important;
+  line-height: var(--n-item-height) !important;
+}
+
+/* Submenu Item Height */
+.n-submenu-item-content {
+  height: var(--n-item-height) !important;
+  min-height: var(--n-item-height) !important;
+  line-height: var(--n-item-height) !important;
+}
+
+/* Menu Item Icon Alignment */
+.n-menu-item-content__icon {
+  height: var(--n-item-height) !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Menu Item Text Alignment */
+.n-menu-item-content__label {
+  height: var(--n-item-height) !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Group Labels Styling */
+.n-menu-item-group-title,
+.n-menu-item-group-header,
+.n-menu-item-group-label,
+.n-menu-item-group-title__content {
+  cursor: default !important;
+  pointer-events: none !important;
+  user-select: none;
+  font-weight: 700 !important;
+  color: var(--text-secondary) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em;
+  padding: 8px 12px 6px;
+  background: transparent !important;
+  font-size: 11px !important;
+  height: auto !important;
+  min-height: auto !important;
+  line-height: 1.2 !important;
+}
+
+/* Remove hover effect for group items */
+.n-menu-item-group .n-menu-item:hover,
+.n-menu-item-group .n-menu-item:hover .n-menu-item-content,
+.n-menu-item-group .n-menu-item:hover .n-menu-item-content__icon,
+.n-menu-item-group .n-menu-item:hover .n-menu-item-content__label {
+  background: transparent !important;
+  color: var(--text-secondary) !important;
+}
+
+/* Menu Item Spacing */
+.n-menu-item {
+  margin: 1px 0 !important;
+}
+
+/* Menu Item Border Radius */
+.n-menu-item-content {
+  border-radius: 6px !important;
+  margin: 0 8px !important;
+}
+
+/* Active Menu Item Styling */
+.n-menu-item--selected .n-menu-item-content {
+  background: var(--primary-color) !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+
+/* Menu Item Hover Styling */
+.n-menu-item:not(.n-menu-item--selected):hover .n-menu-item-content {
+  background: var(--hover-color) !important;
+}
+
+/* Collapsed Menu Item Styling */
+.n-layout-sider--collapsed .n-menu-item-content {
+  margin: 0 4px !important;
+  justify-content: center !important;
+}
+
+/* Submenu Arrow Alignment */
+.n-submenu-item-content__arrow {
+  height: var(--n-item-height) !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Menu Padding Adjustments */
+.n-menu {
+  padding: 4px 0 !important;
+}
+
+/* Scrollbar Styling (Hidden) */
+.n-menu::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.n-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.n-menu::-webkit-scrollbar-thumb {
+  background: transparent;
+  width: 0px;
+}
+
+/* Hide scrollbar for Firefox */
+.n-menu {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
