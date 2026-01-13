@@ -89,7 +89,11 @@ import {
   ToggleOutline,
   CheckmarkOutline,
   ChevronForwardOutline,
-  CalendarOutline
+  CalendarOutline,
+  ChatbubbleEllipsesOutline,
+  MailOutline,
+  LockClosedOutline,
+  ShieldCheckmarkOutline
 } from '@vicons/ionicons5'
 import { useThemeStore } from '@/stores/theme'
 import { NIcon } from 'naive-ui'
@@ -184,6 +188,68 @@ const menuOptions: MenuOption[] = [
     label: 'Calendar',
     key: 'Calendar',
     icon: () => h(NIcon, { component: CalendarOutline })
+  },
+  {
+    label: 'Chat',
+    key: 'Chat',
+    icon: () => h(NIcon, { component: ChatbubbleEllipsesOutline })
+  },
+  {
+    label: 'Email',
+    key: 'Email',
+    icon: () => h(NIcon, { component: MailOutline })
+  },
+  {
+    type: 'group',
+    label: 'Pages',
+    key: 'pages-group'
+  },
+  {
+    label: 'Authentication',
+    key: 'authentication-group',
+    icon: () => h(NIcon, { component: LockClosedOutline }),
+    children: [
+      {
+        label: 'Login (Simple)',
+        key: 'LoginSimple',
+        icon: () => h(NIcon, { component: PersonCircleOutline })
+      },
+      {
+        label: 'Login (Advanced)',
+        key: 'LoginAdvanced',
+        icon: () => h(NIcon, { component: PersonCircleOutline })
+      },
+      {
+        label: 'Register (Simple)',
+        key: 'RegisterSimple',
+        icon: () => h(NIcon, { component: DocumentTextOutline })
+      },
+      {
+        label: 'Register (Advanced)',
+        key: 'RegisterAdvanced',
+        icon: () => h(NIcon, { component: DocumentTextOutline })
+      },
+      {
+        label: 'Forgot Password',
+        key: 'ForgotPassword',
+        icon: () => h(NIcon, { component: MailOutline })
+      },
+      {
+        label: 'Reset Password',
+        key: 'ResetPassword',
+        icon: () => h(NIcon, { component: LockClosedOutline })
+      },
+      {
+        label: 'Two Step Verification',
+        key: 'TwoStepVerification',
+        icon: () => h(NIcon, { component: ShieldCheckmarkOutline })
+      },
+      {
+        label: 'Lock Screen',
+        key: 'LockScreen',
+        icon: () => h(NIcon, { component: LockClosedOutline })
+      }
+    ]
   },
   {
     type: 'group',

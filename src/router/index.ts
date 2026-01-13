@@ -4,6 +4,54 @@ import MainLayout from '@/layouts/MainLayout.vue'
 
 const routes: RouteRecordRaw[] = [
   {
+    path: '/auth/login-simple',
+    name: 'LoginSimple',
+    component: () => import('@/views/pages/auth/LoginSimple.vue'),
+    meta: { title: 'Login (Simple)', icon: 'person-circle-outline', group: 'Pages', subgroup: 'Authentication' }
+  },
+  {
+    path: '/auth/login-advanced',
+    name: 'LoginAdvanced',
+    component: () => import('@/views/pages/auth/LoginAdvanced.vue'),
+    meta: { title: 'Login (Advanced)', icon: 'person-circle-outline', group: 'Pages', subgroup: 'Authentication' }
+  },
+  {
+    path: '/auth/register-simple',
+    name: 'RegisterSimple',
+    component: () => import('@/views/pages/auth/RegisterSimple.vue'),
+    meta: { title: 'Register (Simple)', icon: 'document-text-outline', group: 'Pages', subgroup: 'Authentication' }
+  },
+  {
+    path: '/auth/register-advanced',
+    name: 'RegisterAdvanced',
+    component: () => import('@/views/pages/auth/RegisterAdvanced.vue'),
+    meta: { title: 'Register (Advanced)', icon: 'document-text-outline', group: 'Pages', subgroup: 'Authentication' }
+  },
+  {
+    path: '/auth/forgot-password',
+    name: 'ForgotPassword',
+    component: () => import('@/views/pages/auth/ForgotPassword.vue'),
+    meta: { title: 'Forgot Password', icon: 'mail-outline', group: 'Pages', subgroup: 'Authentication' }
+  },
+  {
+    path: '/auth/reset-password',
+    name: 'ResetPassword',
+    component: () => import('@/views/pages/auth/ResetPassword.vue'),
+    meta: { title: 'Reset Password', icon: 'lock-closed-outline', group: 'Pages', subgroup: 'Authentication' }
+  },
+  {
+    path: '/auth/two-step-verification',
+    name: 'TwoStepVerification',
+    component: () => import('@/views/pages/auth/TwoStepVerification.vue'),
+    meta: { title: 'Two Step Verification', icon: 'shield-checkmark-outline', group: 'Pages', subgroup: 'Authentication' }
+  },
+  {
+    path: '/auth/lockscreen',
+    name: 'LockScreen',
+    component: () => import('@/views/pages/auth/LockScreen.vue'),
+    meta: { title: 'Lock Screen', icon: 'lock-closed-outline', group: 'Pages', subgroup: 'Authentication' }
+  },
+  {
     path: '/',
     component: MainLayout,
     redirect: '/analytical',
@@ -25,6 +73,18 @@ const routes: RouteRecordRaw[] = [
         name: 'Calendar',
         component: () => import('@/views/apps/Calendar.vue'),
         meta: { title: 'Calendar', icon: 'calendar-outline', group: 'Apps' }
+      },
+      {
+        path: 'chat',
+        name: 'Chat',
+        component: () => import('@/views/apps/Chat.vue'),
+        meta: { title: 'Chat', icon: 'chatbubble-ellipses-outline', group: 'Apps' }
+      },
+      {
+        path: 'email',
+        name: 'Email',
+        component: () => import('@/views/apps/Email.vue'),
+        meta: { title: 'Email', icon: 'mail-outline', group: 'Apps' }
       },
       {
         path: 'alert',
