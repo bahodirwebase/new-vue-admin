@@ -8,12 +8,16 @@
 
       <n-form ref="formRef" :model="model" :rules="rules" size="large" @submit.prevent="onSubmit">
         <n-form-item path="code">
-          <n-otp-input
+          <n-input-otp
             v-model:value="model.code"
             :length="6"
             size="large"
             class="otp-input"
-            @complete="onComplete"
+            @focus="onFocus"
+            @blur="onBlur"
+            @finish="onFinish"
+            @update:value="onUpdateValue"
+            block
           />
         </n-form-item>
 
@@ -64,8 +68,21 @@ const countdown = ref(60)
 const resendDisabled = ref(true)
 let countdownTimer: number | null = null
 
-const onComplete = (code: string) => {
-  console.log('OTP completed:', code)
+const onFocus = (event: FocusEvent) => {
+  console.log('OTP focused:', event)
+}
+
+const onBlur = (event: FocusEvent) => {
+  console.log('OTP blurred:', event)
+}
+
+const onFinish = (value: string) => {
+  console.log('OTP finished:', value)
+  message.success('Code completed successfully!')
+}
+
+const onUpdateValue = (value: string) => {
+  console.log('OTP updated:', value)
 }
 
 const startCountdown = () => {
