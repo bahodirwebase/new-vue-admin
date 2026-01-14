@@ -13,49 +13,105 @@
       <n-space vertical :size="16">
         <div class="setting-group">
           <h4>Display Mode</h4>
-          <n-switch :value="themeStore.isDark" @update:value="themeStore.setDark">
-            <template #checked>Dark Mode</template>
-            <template #unchecked>Light Mode</template>
-          </n-switch>
+          <div class="card-options">
+            <div 
+              class="option-card"
+              :class="{ 'active': themeStore.isDark }"
+              @click="themeStore.setDark(true)"
+            >
+              <n-icon :component="MoonOutline" :size="20" />
+              <span>Dark Mode</span>
+            </div>
+            <div 
+              class="option-card"
+              :class="{ 'active': !themeStore.isDark }"
+              @click="themeStore.setDark(false)"
+            >
+              <n-icon :component="SunnyOutline" :size="20" />
+              <span>Light Mode</span>
+            </div>
+          </div>
         </div>
 
         <div class="setting-group">
           <h4>Layout</h4>
-          <n-switch :value="themeStore.isBoxed" @update:value="themeStore.setBoxed">
-            <template #checked>Boxed Layout</template>
-            <template #unchecked>Full Width</template>
-          </n-switch>
+          <div class="card-options">
+            <div 
+              class="option-card"
+              :class="{ 'active': themeStore.isBoxed }"
+              @click="themeStore.setBoxed(true)"
+            >
+              <n-icon :component="DesktopOutline" :size="20" />
+              <span>Boxed Layout</span>
+            </div>
+            <div 
+              class="option-card"
+              :class="{ 'active': !themeStore.isBoxed }"
+              @click="themeStore.setBoxed(false)"
+            >
+              <n-icon :component="ExpandOutline" :size="20" />
+              <span>Full Width</span>
+            </div>
+          </div>
         </div>
 
         <div class="setting-group">
           <h4>Sidebar</h4>
-          <n-switch :value="themeStore.isMiniSidebar" @update:value="themeStore.setMiniSidebar">
-            <template #checked>Mini Sidebar</template>
-            <template #unchecked>Full Sidebar</template>
-          </n-switch>
+          <div class="card-options">
+            <div 
+              class="option-card"
+              :class="{ 'active': themeStore.isMiniSidebar }"
+              @click="themeStore.setMiniSidebar(true)"
+            >
+              <n-icon :component="ContractOutline" :size="20" />
+              <span>Mini Sidebar</span>
+            </div>
+            <div 
+              class="option-card"
+              :class="{ 'active': !themeStore.isMiniSidebar }"
+              @click="themeStore.setMiniSidebar(false)"
+            >
+              <n-icon :component="ExpandOutline" :size="20" />
+              <span>Full Sidebar</span>
+            </div>
+          </div>
         </div>
 
         <div class="setting-group">
           <h4>Theme Style</h4>
-          <n-switch :value="themeStore.isBordered" @update:value="themeStore.setBordered">
-            <template #checked>Bordered Theme</template>
-            <template #unchecked>Shadow Theme</template>
-          </n-switch>
+          <div class="card-options">
+            <div 
+              class="option-card"
+              :class="{ 'active': themeStore.isBordered }"
+              @click="themeStore.setBordered(true)"
+            >
+              <n-icon :component="SquareOutline" :size="20" />
+              <span>Bordered Theme</span>
+            </div>
+            <div 
+              class="option-card"
+              :class="{ 'active': !themeStore.isBordered }"
+              @click="themeStore.setBordered(false)"
+            >
+              <n-icon :component="EllipseOutline" :size="20" />
+              <span>Shadow Theme</span>
+            </div>
+          </div>
         </div>
 
         <n-divider />
 
         <div class="setting-group">
           <h4>Primary Colors</h4>
-          <div class="color-options">
+          <div class="color-cards">
             <div 
               v-for="color in primaryColors" 
               :key="color.name"
-              class="color-option"
+              class="color-card"
               :class="{ 'active': selectedColor === color.name }"
-              :style="{ backgroundColor: color.value }"
               @click="selectColor(color)"
             >
+              <div class="color-preview" :style="{ backgroundColor: color.value }"></div>
               <span class="color-name">{{ color.name }}</span>
             </div>
           </div>
@@ -70,7 +126,16 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { CloseOutline } from '@vicons/ionicons5'
+import { 
+  CloseOutline, 
+  MoonOutline, 
+  SunnyOutline, 
+  DesktopOutline, 
+  ExpandOutline, 
+  ContractOutline,
+  SquareOutline,
+  EllipseOutline
+} from '@vicons/ionicons5'
 import { useThemeStore } from '@/stores/theme'
 
 interface Props {
@@ -172,55 +237,101 @@ const selectColor = (color: any) => {
   color: var(--text-primary);
 }
 
-.color-options {
+.card-options {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
-.color-option {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+.option-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
   cursor: pointer;
-  position: relative;
-  transition: transform 0.2s ease;
-  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  background: var(--bg-secondary);
+  gap: 8px;
+  min-height: 80px;
 }
 
-.color-option:hover {
-  transform: scale(1.1);
+.option-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
 }
 
-.color-option.active {
-  border-color: var(--text-primary);
-}
-
-.color-option.active::after {
-  content: '✓';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.option-card.active {
+  border-color: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color) 100%);
   color: white;
-  font-weight: bold;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.option-card.active span {
+  color: white;
+  font-weight: 500;
+}
+
+.option-card span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.color-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.color-card {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--bg-secondary);
+  gap: 10px;
+}
+
+.color-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);
+}
+
+.color-card.active {
+  border-color: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color) 100%);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.color-card.active .color-name {
+  color: white;
+  font-weight: 500;
+}
+
+.color-preview {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .color-name {
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 10px;
-  color: var(--text-secondary);
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.color-option:hover .color-name {
-  opacity: 1;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.2;
 }
 
 /* Responsive adjustments */
@@ -230,8 +341,23 @@ const selectColor = (color: any) => {
     right: -280px;
   }
   
-  .color-options {
-    grid-template-columns: repeat(3, 1fr);
+  .card-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .color-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .option-card {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 12px;
+    min-height: 60px;
+  }
+  
+  .option-card span {
+    text-align: left;
   }
 }
 </style>

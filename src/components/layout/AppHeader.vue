@@ -1,6 +1,7 @@
 <template>
   <n-layout-header class="app-header" :inverted="themeStore.isDark">
     <div class="header-left">
+      <!-- Sidebar Toggle (Mobile) -->
       <n-button 
         v-if="isMobile" 
         quaternary 
@@ -12,14 +13,19 @@
           <n-icon :component="MenuOutline" :size="20" />
         </template>
       </n-button>
-      <n-breadcrumb v-else>
-        <n-breadcrumb-item>
-          <router-link to="/dashboard">Home</router-link>
-        </n-breadcrumb-item>
-        <n-breadcrumb-item>
-          {{ currentPageTitle }}
-        </n-breadcrumb-item>
-      </n-breadcrumb>
+      
+      <!-- Sidebar Toggle (Desktop) -->
+      <n-button 
+        v-if="!isMobile" 
+        quaternary 
+        circle 
+        @click="toggleSidebar"
+        class="sidebar-toggle"
+      >
+        <template #icon>
+          <n-icon :component="themeStore.isMiniSidebar ? ChevronForwardOutline : ChevronBackOutline" :size="20" />
+        </template>
+      </n-button>
     </div>
 
     <div class="header-right">
@@ -34,7 +40,8 @@
         <!-- Fullscreen Toggle -->
         <n-button quaternary circle @click="toggleFullscreen" class="fullscreen-toggle">
           <template #icon>
-            <n-icon :component="ExpandOutline" :size="20" />
+            <n-icon v-if="!isFullscreen" :component="ExpandOutline" :size="20" />
+            <n-icon v-else :component="ContractOutline" :size="20" />
           </template>
         </n-button>
 
@@ -107,8 +114,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, h, ref, onMounted, onUnmounted, markRaw } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, h, ref, markRaw, onMounted, onUnmounted } from 'vue'
 import type { DropdownOption } from 'naive-ui'
 import {
   NotificationsOutline,
@@ -128,19 +134,21 @@ import {
   SunnyOutline,
   MoonOutline,
   ExpandOutline,
+  ContractOutline,
   LanguageOutline,
   AppsOutline,
-  CalendarOutline,
   DocumentTextOutline,
-  AnalyticsOutline
+  AnalyticsOutline,
+  ChevronForwardOutline,
+  ChevronBackOutline
 } from '@vicons/ionicons5'
 import { useThemeStore } from '@/stores/theme'
 import { NIcon } from 'naive-ui'
 
-const route = useRoute()
 const themeStore = useThemeStore()
 
 const windowWidth = ref(window.innerWidth)
+const isFullscreen = ref(false)
 
 const isMobile = computed(() => windowWidth.value < 768)
 
@@ -149,6 +157,7 @@ const emit = defineEmits<{
 }>()
 
 const toggleSidebar = () => {
+  themeStore.setMiniSidebar(!themeStore.isMiniSidebar)
   emit('toggleSidebar')
 }
 
@@ -156,15 +165,8 @@ const toggleTheme = () => {
   themeStore.setDark(!themeStore.isDark)
 }
 
-const toggleFullscreen = () => {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen()
-  } else {
-    document.exitFullscreen()
-  }
-}
 
-const languageOptions = [
+const languageOptions: DropdownOption[] = [
   {
     label: 'English',
     key: 'en'
@@ -179,12 +181,7 @@ const languageOptions = [
   }
 ]
 
-const appsOptions = [
-  {
-    label: 'Calendar',
-    key: 'calendar',
-    icon: () => h(NIcon, { component: CalendarOutline })
-  },
+const appsOptions: DropdownOption[] = [
   {
     label: 'Email',
     key: 'email',
@@ -202,20 +199,28 @@ const appsOptions = [
   }
 ]
 
+const updateFullscreenState = () => {
+  isFullscreen.value = !!document.fullscreenElement
+}
+
 onMounted(() => {
-  const handleResize = () => {
-    windowWidth.value = window.innerWidth
-  }
-  window.addEventListener('resize', handleResize)
+  updateFullscreenState()
+  document.addEventListener('fullscreenchange', updateFullscreenState)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('resize', () => {})
+  document.removeEventListener('fullscreenchange', updateFullscreenState)
 })
 
-const currentPageTitle = computed(() => {
-  return route.meta?.title || 'Dashboard'
-})
+const toggleFullscreen = () => {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen()
+  } else {
+    document.exitFullscreen()
+    // Toggle sidebar when exiting fullscreen
+    emit('toggleSidebar')
+  }
+}
 
 const userMenuOptions: DropdownOption[] = [
   {

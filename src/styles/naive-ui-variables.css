@@ -130,3 +130,15 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
+
+/* Guruh sarlavhasi ustiga borganda fon o'zgarmasligi uchun */
+.n-menu-item-group-title {
+  background-color: transparent !important;
+  cursor: default !important; /* Pointer (qo'lcha) chiqmasligi uchun */
+}
+
+/* Agar ichida hover effekti bo'lsa, uni ham o'chiramiz */
+.n-menu-item-group-title:hover {
+  background-color: transparent !important;
+}
