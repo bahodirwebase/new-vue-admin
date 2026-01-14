@@ -446,6 +446,26 @@ const menuOptions: MenuOption[] = [
         label: 'Switch',
         key: 'Switch',
         icon: () => h(NIcon, { component: ToggleOutline })
+      },
+      {
+        label: 'AutoComplete',
+        key: 'AutoComplete',
+        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+      },
+      {
+        label: 'Checkbox',
+        key: 'Checkbox',
+        icon: () => h(NIcon, { component: CheckboxOutline })
+      },
+      {
+        label: 'DatePicker',
+        key: 'DatePicker',
+        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+      },
+      {
+        label: 'Upload',
+        key: 'Upload',
+        icon: () => h(NIcon, { component: RadioButtonOffOutline })
       }
     ]
   },

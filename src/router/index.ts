@@ -273,6 +273,30 @@ const routes: RouteRecordRaw[] = [
         meta: { title: 'Switch', icon: 'toggle-outline', group: 'Components', subgroup: 'Form Elements' }
       },
       {
+        path: 'forms/form-elements/autocomplete',
+        name: 'AutoComplete',
+        component: () => import('@/views/forms/form-elements/AutoComplete.vue'),
+        meta: { title: 'AutoComplete', icon: 'radio-button-off-outline', group: 'Components', subgroup: 'Form Elements' }
+      },
+      {
+        path: 'forms/form-elements/checkbox',
+        name: 'Checkbox',
+        component: () => import('@/views/forms/form-elements/Checkbox.vue'),
+        meta: { title: 'Checkbox', icon: 'checkbox-outline', group: 'Components', subgroup: 'Form Elements' }
+      },
+      {
+        path: 'forms/form-elements/datepicker',
+        name: 'DatePicker',
+        component: () => import('@/views/forms/form-elements/DatePicker.vue'),
+        meta: { title: 'DatePicker', icon: 'radio-button-off-outline', group: 'Components', subgroup: 'Form Elements' }
+      },
+      {
+        path: 'forms/form-elements/upload',
+        name: 'Upload',
+        component: () => import('@/views/forms/form-elements/Upload.vue'),
+        meta: { title: 'Upload', icon: 'radio-button-off-outline', group: 'Components', subgroup: 'Form Elements' }
+      },
+      {
         path: 'forms/form-validation',
         name: 'Form-Validation',
         component: () => import('@/views/forms/Form-Validation.vue'),
