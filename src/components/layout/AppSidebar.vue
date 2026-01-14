@@ -68,7 +68,8 @@ import {
   ColorPaletteOutline,
   WaterOutline,
   TimerOutline,
-  CubeOutline
+  CubeOutline,
+  AddCircleOutline
 } from '@vicons/ionicons5'
 import { useThemeStore } from '@/stores/theme'
 import { NIcon } from 'naive-ui'
@@ -335,6 +336,26 @@ const menuOptions: MenuOption[] = [
         label: 'Tabs',
         key: 'Tabs',
         icon: () => h(NIcon, { component: AlbumsOutline })
+      },
+      {
+        label: 'Carousel',
+        key: 'Carousel',
+        icon: () => h(NIcon, { component: AlbumsOutline })
+      },
+      {
+        label: 'Collapse',
+        key: 'Collapse',
+        icon: () => h(NIcon, { component: RemoveOutline })
+      },
+      {
+        label: 'Tag',
+        key: 'Tag',
+        icon: () => h(NIcon, { component: RibbonOutline })
+      },
+      {
+        label: 'Float Button',
+        key: 'FloatButton',
+        icon: () => h(NIcon, { component: AddCircleOutline })
       },
       {
         label: 'Timeline',

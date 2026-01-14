@@ -177,6 +177,30 @@ const routes: RouteRecordRaw[] = [
         meta: { title: 'Tooltip', icon: 'information-circle-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
+        path: 'components/ui-elements/carousel',
+        name: 'Carousel',
+        component: () => import('@/views/ui-elements/components/Carousel.vue'),
+        meta: { title: 'Carousel', icon: 'albums-outline', group: 'Components', subgroup: 'UI Elements' }
+      },
+      {
+        path: 'components/ui-elements/collapse',
+        name: 'Collapse',
+        component: () => import('@/views/ui-elements/components/Collapse.vue'),
+        meta: { title: 'Collapse', icon: 'remove-outline', group: 'Components', subgroup: 'UI Elements' }
+      },
+      {
+        path: 'components/ui-elements/tag',
+        name: 'Tag',
+        component: () => import('@/views/ui-elements/components/Tag.vue'),
+        meta: { title: 'Tag', icon: 'ribbon-outline', group: 'Components', subgroup: 'UI Elements' }
+      },
+      {
+        path: 'components/ui-elements/float-button',
+        name: 'FloatButton',
+        component: () => import('@/views/ui-elements/components/FloatButton.vue'),
+        meta: { title: 'Float Button', icon: 'add-circle-outline', group: 'Components', subgroup: 'UI Elements' }
+      },
+      {
         path: 'components/typography',
         name: 'Typography',
         component: () => import('@/views/ui-elements/Typography.vue'),
