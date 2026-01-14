@@ -469,7 +469,18 @@ const handleMenuSelect = (key: string) => {
   height: 100vh;
   flex-shrink: 0;
   overflow: hidden;
-  transition: width 0.3s ease, transform 0.3s ease;
+}
+
+.n-layout-sider {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+:deep(.n-layout-sider-content) {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+:deep(.n-menu) {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .app-sidebar.mobile-sidebar {
@@ -520,10 +531,22 @@ const handleMenuSelect = (key: string) => {
   font-weight: 700;
   color: var(--text-primary);
   white-space: nowrap;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.n-layout-sider {
-  transition: width 0.3s ease;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-enter-from {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(-10px);
 }
 
 /* Keep menu scrollable under the fixed header */
@@ -532,6 +555,15 @@ const handleMenuSelect = (key: string) => {
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+:deep(.n-menu-item) {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+:deep(.n-menu-item-content) {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 /* Custom scrollbar that doesn't take up width */
