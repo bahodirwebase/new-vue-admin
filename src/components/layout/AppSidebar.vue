@@ -470,6 +470,63 @@ const menuOptions: MenuOption[] = [
     ]
   },
   {
+    label: 'Extra Form Elements',
+    key: 'extra-form-elements-group',
+    icon: () => h(NIcon, { component: DocumentTextOutline }),
+    children: [
+      {
+        label: 'Cascader',
+        key: 'Cascader',
+        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+      },
+      {
+        label: 'Color Picker',
+        key: 'ColorPicker',
+        icon: () => h(NIcon, { component: CheckboxOutline })
+      },
+      {
+        label: 'Dynamic Input',
+        key: 'DynamicInput',
+        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+      },
+      {
+        label: 'Dynamic Tags',
+        key: 'DynamicTags',
+        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+      },
+      {
+        label: 'Input Number',
+        key: 'InputNumber',
+        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+      },
+      {
+        label: 'Input OTP',
+        key: 'InputOtp',
+        icon: () => h(NIcon, { component: CheckboxOutline })
+      },
+      {
+        label: 'Mention',
+        key: 'Mention',
+        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+      },
+      {
+        label: 'Rate',
+        key: 'Rate',
+        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+      },
+      {
+        label: 'Transfer',
+        key: 'Transfer',
+        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+      },
+      {
+        label: 'Tree Select',
+        key: 'TreeSelect',
+        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+      }
+    ]
+  },
+  {
     label: 'Form Validation',
     key: 'Form-Validation',
     icon: () => h(NIcon, { component: CheckmarkOutline })

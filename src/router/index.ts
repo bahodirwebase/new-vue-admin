@@ -297,6 +297,66 @@ const routes: RouteRecordRaw[] = [
         meta: { title: 'Upload', icon: 'radio-button-off-outline', group: 'Components', subgroup: 'Form Elements' }
       },
       {
+        path: 'forms/extra/cascader',
+        name: 'Cascader',
+        component: () => import('@/views/forms/extra/Cascader.vue'),
+        meta: { title: 'Cascader', icon: 'radio-button-off-outline', group: 'Components', subgroup: 'Extra Form Elements' }
+      },
+      {
+        path: 'forms/extra/color-picker',
+        name: 'ColorPicker',
+        component: () => import('@/views/forms/extra/ColorPicker.vue'),
+        meta: { title: 'Color Picker', icon: 'checkbox-outline', group: 'Components', subgroup: 'Extra Form Elements' }
+      },
+      {
+        path: 'forms/extra/dynamic-input',
+        name: 'DynamicInput',
+        component: () => import('@/views/forms/extra/DynamicInput.vue'),
+        meta: { title: 'Dynamic Input', icon: 'radio-button-off-outline', group: 'Components', subgroup: 'Extra Form Elements' }
+      },
+      {
+        path: 'forms/extra/dynamic-tags',
+        name: 'DynamicTags',
+        component: () => import('@/views/forms/extra/DynamicTags.vue'),
+        meta: { title: 'Dynamic Tags', icon: 'radio-button-off-outline', group: 'Components', subgroup: 'Extra Form Elements' }
+      },
+      {
+        path: 'forms/extra/input-number',
+        name: 'InputNumber',
+        component: () => import('@/views/forms/extra/InputNumber.vue'),
+        meta: { title: 'Input Number', icon: 'checkbox-outline', group: 'Components', subgroup: 'Extra Form Elements' }
+      },
+      {
+        path: 'forms/extra/input-otp',
+        name: 'InputOtp',
+        component: () => import('@/views/forms/extra/InputOtp.vue'),
+        meta: { title: 'Input OTP', icon: 'radio-button-off-outline', group: 'Components', subgroup: 'Extra Form Elements' }
+      },
+      {
+        path: 'forms/extra/mention',
+        name: 'Mention',
+        component: () => import('@/views/forms/extra/Mention.vue'),
+        meta: { title: 'Mention', icon: 'checkbox-outline', group: 'Components', subgroup: 'Extra Form Elements' }
+      },
+      {
+        path: 'forms/extra/rate',
+        name: 'Rate',
+        component: () => import('@/views/forms/extra/Rate.vue'),
+        meta: { title: 'Rate', icon: 'radio-button-off-outline', group: 'Components', subgroup: 'Extra Form Elements' }
+      },
+      {
+        path: 'forms/extra/transfer',
+        name: 'Transfer',
+        component: () => import('@/views/forms/extra/Transfer.vue'),
+        meta: { title: 'Transfer', icon: 'radio-button-off-outline', group: 'Components', subgroup: 'Extra Form Elements' }
+      },
+      {
+        path: 'forms/extra/tree-select',
+        name: 'TreeSelect',
+        component: () => import('@/views/forms/extra/TreeSelect.vue'),
+        meta: { title: 'Tree Select', icon: 'radio-button-off-outline', group: 'Components', subgroup: 'Extra Form Elements' }
+      },
+      {
         path: 'forms/form-validation',
         name: 'Form-Validation',
         component: () => import('@/views/forms/Form-Validation.vue'),
