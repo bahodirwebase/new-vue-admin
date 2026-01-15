@@ -63,6 +63,7 @@
       @update:value="handleMenuSelect"
       :inverted="themeStore.isDark"
       accordion
+      :indent="24"
     />
   </n-layout-sider>
 </template>

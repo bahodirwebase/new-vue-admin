@@ -41,13 +41,12 @@ export const createThemeOverrides = (
       itemColorActive: primaryColor,
       itemColorActiveHover: adjustColor(primaryColor, 20),
       itemColorHover: 'rgba(99, 102, 241, 0.1)',
-      
       itemHeight: '40px',
       itemTextColorActive: '#fff',
       itemIconColorActive: '#fff',
       itemIconColorActiveHover: '#fff',
       itemTextColorActiveHover: '#fff',
-      
+
       // Minimized state
       itemColorActiveCollapsed: primaryColor,
     }
@@ -74,17 +73,16 @@ export const createThemeOverrides = (
       footerColor: '#ffffff'
     },
     Menu: {
-      borderRadius: '8px',      
+      borderRadius: '8px',
       itemColorActive: primaryColor,
       itemColorActiveHover: adjustColor(primaryColor, 20),
       itemColorHover: 'rgba(99, 102, 241, 0.1)',
-
       itemHeight: '40px',
       itemTextColorActive: '#fff',
       itemIconColorActive: '#fff',
       itemIconColorActiveHover: '#fff',
       itemTextColorActiveHover: '#fff',
-      
+
       // Minimized state
       itemColorActiveCollapsed: primaryColor,
     }
@@ -99,7 +97,7 @@ export const createDynamicTheme = (
   isDark: boolean = false
 ): GlobalThemeOverrides => {
   const baseTheme = createThemeOverrides(primaryColor, isDark)
-  
+
   return {
     ...baseTheme,
     Button: {
@@ -238,7 +236,7 @@ export const hexToRgb = (hex: string) => {
 export const withOpacity = (color: string, opacity: number): string => {
   const rgb = hexToRgb(color)
   if (!rgb) return color
-  
+
   return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`
 }
 
