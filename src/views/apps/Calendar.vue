@@ -91,21 +91,7 @@
         <n-card class="calendar-card">
           <!-- Month View -->
           <div v-if="currentView === 'month'" class="month-view">
-            <div class="view-header">
-              <n-space justify="space-between" align="center">
-                <n-button quaternary circle @click="previousMonth">
-                  <template #icon>
-                    <n-icon><ChevronBackOutline /></n-icon>
-                  </template>
-                </n-button>
-                <h2 class="view-title">{{ currentMonthYear }}</h2>
-                <n-button quaternary circle @click="nextMonth">
-                  <template #icon>
-                    <n-icon><ChevronForwardOutline /></n-icon>
-                  </template>
-                </n-button>
-              </n-space>
-            </div>
+            
             <n-calendar
               v-model:value="activeDate"
               #default="{ year, month, date }"
@@ -624,17 +610,7 @@ const formatDate = (date: Date) => {
 };
 
 // Navigation
-const previousMonth = () => {
-  const newDate = new Date(activeDate.value);
-  newDate.setMonth(newDate.getMonth() - 1);
-  activeDate.value = newDate.getTime();
-};
 
-const nextMonth = () => {
-  const newDate = new Date(activeDate.value);
-  newDate.setMonth(newDate.getMonth() + 1);
-  activeDate.value = newDate.getTime();
-};
 
 const previousWeek = () => {
   const newDate = new Date(activeDate.value);
