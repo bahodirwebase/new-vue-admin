@@ -1,41 +1,14 @@
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { watch } from 'vue'
+import { useLocalStorage } from '@/composables/useLocalStorage'
+import { THEME_CONSTANTS } from '@/constants'
 
 export const useThemeStore = defineStore('theme', () => {
-  const isDark = ref(false)
-  const isBoxed = ref(false)
-  const isMiniSidebar = ref(false)
-  const isBordered = ref(false)
-  const primaryColor = ref('#6366f1')
-
-  // Load from localStorage
-  const loadSettings = () => {
-    const stored = localStorage.getItem('manga-theme-settings')
-    if (stored) {
-      const settings = JSON.parse(stored)
-      isDark.value = settings.isDark ?? false
-      isBoxed.value = settings.isBoxed ?? false
-      isMiniSidebar.value = settings.isMiniSidebar ?? false
-      isBordered.value = settings.isBordered ?? false
-      primaryColor.value = settings.primaryColor ?? '#6366f1'
-    }
-  }
-
-  // Save to localStorage
-  const saveSettings = () => {
-    localStorage.setItem('manga-theme-settings', JSON.stringify({
-      isDark: isDark.value,
-      isBoxed: isBoxed.value,
-      isMiniSidebar: isMiniSidebar.value,
-      isBordered: isBordered.value,
-      primaryColor: primaryColor.value
-    }))
-  }
-
-  // Watch for changes and save
-  watch([isDark, isBoxed, isMiniSidebar, isBordered, primaryColor], () => {
-    saveSettings()
-  })
+  const isDark = useLocalStorage('manga-theme-isDark', false)
+  const isBoxed = useLocalStorage('manga-theme-isBoxed', false)
+  const isMiniSidebar = useLocalStorage('manga-theme-isMiniSidebar', false)
+  const isBordered = useLocalStorage('manga-theme-isBordered', false)
+  const primaryColor = useLocalStorage('manga-theme-primaryColor', THEME_CONSTANTS.DEFAULT_PRIMARY_COLOR as string)
 
   // Setters to keep switches in sync without double toggling
   const setDark = (value: boolean) => {
@@ -81,9 +54,6 @@ export const useThemeStore = defineStore('theme', () => {
     document.documentElement.style.setProperty('--primary-color-hover', hoverColor)
     document.documentElement.style.setProperty('--primary-color-pressed', pressedColor)
   }, { immediate: true })
-
-  // Initialize
-  loadSettings()
 
   return {
     isDark,
