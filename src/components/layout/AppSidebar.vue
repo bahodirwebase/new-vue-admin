@@ -69,7 +69,8 @@ import {
   WaterOutline,
   TimerOutline,
   CubeOutline,
-  AddCircleOutline
+  AddCircleOutline,
+  LayersOutline
 } from '@vicons/ionicons5'
 import { useThemeStore } from '@/stores/theme'
 import { NIcon } from 'naive-ui'
@@ -370,6 +371,50 @@ const menuOptions: MenuOption[] = [
     ]
   },
   {
+    label: 'Tables',
+    key: 'tables-group',
+    icon: () => h(NIcon, { component: GridOutline }),
+    children: [
+      {
+        label: 'Basic Table',
+        key: 'Basic-Table',
+        icon: () => h(NIcon, { component: GridOutline })
+      },
+      {
+        label: 'Data Table',
+        key: 'Data-Table',
+        icon: () => h(NIcon, { component: ListOutline })
+      }
+    ]
+  },
+  {
+    label: 'Charts',
+    key: 'charts-group',
+    icon: () => h(NIcon, { component: AnalyticsOutline }),
+    children: [
+      {
+        label: 'Line Chart',
+        key: 'Line-Chart',
+        icon: () => h(NIcon, { component: AnalyticsOutline })
+      },
+      {
+        label: 'Bar Chart',
+        key: 'Bar-Chart',
+        icon: () => h(NIcon, { component: GridOutline })
+      },
+      {
+        label: 'Pie Chart',
+        key: 'Pie-Chart',
+        icon: () => h(NIcon, { component: RadioButtonOnOutline })
+      },
+      {
+        label: 'Mixed Chart',
+        key: 'Mixed-Chart',
+        icon: () => h(NIcon, { component: LayersOutline })
+      }
+    ]
+  },
+  {
     label: 'Typography',
     key: 'Typography',
     icon: () => h(NIcon, { component: TextOutline })
@@ -540,6 +585,11 @@ const menuOptions: MenuOption[] = [
     label: 'Form Wizard',
     key: 'Form-Wizard',
     icon: () => h(NIcon, { component: ChevronForwardOutline })
+  },
+  {
+    label: 'Form Editor',
+    key: 'Form-Editor',
+    icon: () => h(NIcon, { component: TextOutline })
   },
 
 ]

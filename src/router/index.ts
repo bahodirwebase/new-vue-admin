@@ -201,6 +201,42 @@ const routes: RouteRecordRaw[] = [
         meta: { title: 'Float Button', icon: 'add-circle-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
+        path: 'components/tables/basic-table',
+        name: 'Basic-Table',
+        component: () => import('@/views/components/tables/Basic-Table.vue'),
+        meta: { title: 'Basic Table', icon: 'grid-outline', group: 'Components', subgroup: 'Tables' }
+      },
+      {
+        path: 'components/tables/data-table',
+        name: 'Data-Table',
+        component: () => import('@/views/components/tables/Data-Table.vue'),
+        meta: { title: 'Data Table', icon: 'list-outline', group: 'Components', subgroup: 'Tables' }
+      },
+      {
+        path: 'components/charts/line-chart',
+        name: 'Line-Chart',
+        component: () => import('@/views/components/charts/Line-Chart.vue'),
+        meta: { title: 'Line Chart', icon: 'analytics-outline', group: 'Components', subgroup: 'Charts' }
+      },
+      {
+        path: 'components/charts/bar-chart',
+        name: 'Bar-Chart',
+        component: () => import('@/views/components/charts/Bar-Chart.vue'),
+        meta: { title: 'Bar Chart', icon: 'bar-chart-outline', group: 'Components', subgroup: 'Charts' }
+      },
+      {
+        path: 'components/charts/pie-chart',
+        name: 'Pie-Chart',
+        component: () => import('@/views/components/charts/Pie-Chart.vue'),
+        meta: { title: 'Pie Chart', icon: 'pie-chart-outline', group: 'Components', subgroup: 'Charts' }
+      },
+      {
+        path: 'components/charts/mixed-chart',
+        name: 'Mixed-Chart',
+        component: () => import('@/views/components/charts/Mixed-Chart.vue'),
+        meta: { title: 'Mixed Chart', icon: 'layers-outline', group: 'Components', subgroup: 'Charts' }
+      },
+      {
         path: 'components/typography',
         name: 'Typography',
         component: () => import('@/views/ui-elements/Typography.vue'),
@@ -373,6 +409,12 @@ const routes: RouteRecordRaw[] = [
         name: 'Form-Wizard',
         component: () => import('@/views/forms/Form-Wizard.vue'),
         meta: { title: 'Form Wizard', icon: 'chevron-forward-outline', group: 'Components' }
+      },
+      {
+        path: 'forms/form-editor',
+        name: 'Form-Editor',
+        component: () => import('@/views/forms/Form-Editor.vue'),
+        meta: { title: 'Form Editor', icon: 'create-outline', group: 'Components' }
       },
       {
         path: 'pages/user/user-profile',
