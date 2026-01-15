@@ -19,7 +19,7 @@
         v-if="!isMobile" 
         quaternary 
         circle 
-        @click="toggleSidebar"
+        @click="minimizeSidebar"
         class="sidebar-toggle"
       >
         <template #icon>
@@ -339,6 +339,10 @@ const markAsRead = (id: number) => {
 
 const markAllAsRead = () => {
   notifications.value.forEach(n => n.read = true)
+}
+
+const minimizeSidebar = () => {
+  themeStore.setMiniSidebar(!themeStore.isMiniSidebar)
 }
 </script>
 

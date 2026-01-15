@@ -113,7 +113,6 @@ import {
 } from "@vicons/ionicons5";
 import { useThemeStore } from "@/stores/theme";
 import { NIcon, NBadge } from "naive-ui";
-import { BadgeFilled, BadgeRound, BlockOutlined } from "@vicons/material";
 
 interface IOptionBadge {
   value?: string | number;
@@ -245,6 +244,11 @@ const menuOptions: MenuOption[] = [
     label: "Email",
     key: "Email",
     icon: () => h(NIcon, { component: MailOutline }),
+  },
+  {
+    label: "E-commerce",
+    key: "Ecommerce",
+    icon: () => h(NIcon, { component: StorefrontOutline }),
   },
   {
     type: "group",
@@ -709,13 +713,13 @@ const menuOptions: MenuOption[] = [
   {
     label : 'Disabled Menu',
     key : 'disabled-menu',
-    icon : () => h(NIcon, { component : BlockOutlined }),
+    icon : () => h(NIcon, { component : SettingsOutline }),
     disabled : true
   },
   {
     label : renderCustomizeLabel('With Badge', '/', { value: '10', type: 'info' }),
     key : 'with-badge',
-    icon : () => h(NIcon, { component : BadgeRound }),
+    icon : () => h(NIcon, { component : RibbonOutline }),
     badge : '10'
   }
 ];
