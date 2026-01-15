@@ -1,20 +1,51 @@
 <template>
   <!-- Mobile overlay -->
-  <div v-if="props.isMobile && !isCollapsed" class="sidebar-overlay" @click="toggleSidebar"></div>
+  <div
+    v-if="props.isMobile && !isCollapsed"
+    class="sidebar-overlay"
+    @click="toggleSidebar"
+  ></div>
 
-  <n-layout-sider :collapsed="isCollapsed" :collapsed-width="collapsedWidth" :width="sidebarWidth"
-    :native-scrollbar="false" collapse-mode="width" :collapsed-icon-size="22" class="app-sidebar"
-    :inverted="themeStore.isDark" :class="{ 'mobile-sidebar': props.isMobile }" >
+  <n-layout-sider
+    :collapsed="isCollapsed"
+    :collapsed-width="collapsedWidth"
+    :width="sidebarWidth"
+    :native-scrollbar="false"
+    collapse-mode="width"
+    :collapsed-icon-size="22"
+    class="app-sidebar"
+    :inverted="themeStore.isDark"
+    :class="{ 'mobile-sidebar': props.isMobile }"
+  >
     <div class="sidebar-header">
       <div class="logo-container">
         <div class="logo-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2L2 7L12 12L22 7L12 2Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M2 17L12 22L22 17"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M2 12L12 17L22 12"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </div>
         <transition name="fade">
@@ -23,15 +54,23 @@
       </div>
     </div>
 
-    <n-menu :collapsed="isCollapsed" :collapsed-width="collapsedWidth" :collapsed-icon-size="22" :options="menuOptions"
-      :value="activeKey" @update:value="handleMenuSelect" :inverted="themeStore.isDark" accordion />
+    <n-menu
+      :collapsed="isCollapsed"
+      :collapsed-width="collapsedWidth"
+      :collapsed-icon-size="22"
+      :options="menuOptions"
+      :value="activeKey"
+      @update:value="handleMenuSelect"
+      :inverted="themeStore.isDark"
+      accordion
+    />
   </n-layout-sider>
 </template>
 
 <script setup lang="ts">
-import { computed, h, ref, watch, onMounted, onUnmounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import type { MenuOption } from 'naive-ui'
+import { computed, h, ref, watch, onMounted, onUnmounted } from "vue";
+import { RouteLocationRaw, useRoute, useRouter, RouterLink } from "vue-router";
+import type { MenuOption } from "naive-ui";
 import {
   AnalyticsOutline,
   StorefrontOutline,
@@ -70,536 +109,623 @@ import {
   TimerOutline,
   CubeOutline,
   AddCircleOutline,
-  LayersOutline
-} from '@vicons/ionicons5'
-import { useThemeStore } from '@/stores/theme'
-import { NIcon } from 'naive-ui'
+  LayersOutline,
+} from "@vicons/ionicons5";
+import { useThemeStore } from "@/stores/theme";
+import { NIcon, NBadge } from "naive-ui";
+import { BadgeFilled, BadgeRound, BlockOutlined } from "@vicons/material";
+
+interface IOptionBadge {
+  value?: string | number;
+  type?: 'default' | 'info' | 'success' | 'warning' | 'error';
+}
 
 const props = defineProps<{
-  collapsed?: boolean
-  isMobile?: boolean
-}>()
+  collapsed?: boolean;
+  isMobile?: boolean;
+}>();
 
 const emit = defineEmits<{
-  'update:collapsed': [value: boolean]
-  toggleSidebar: []
-}>()
+  "update:collapsed": [value: boolean];
+  toggleSidebar: [];
+}>();
 
-const route = useRoute()
-const router = useRouter()
-const themeStore = useThemeStore()
+const route = useRoute();
+const router = useRouter();
+const themeStore = useThemeStore();
 
-const windowWidth = ref(window.innerWidth)
-const isCollapsed = ref(props.collapsed || false)
+const windowWidth = ref(window.innerWidth);
+const isCollapsed = ref(props.collapsed || false);
 
-const isMobileComputed = computed(() => windowWidth.value < 768)
+const isMobileComputed = computed(() => windowWidth.value < 768);
 
-watch(() => props.collapsed, (val) => {
-  if (val !== undefined) {
-    isCollapsed.value = val
+watch(
+  () => props.collapsed,
+  (val) => {
+    if (val !== undefined) {
+      isCollapsed.value = val;
+    }
   }
-})
+);
 
-watch(() => themeStore.isMiniSidebar, (val) => {
-  if (!props.isMobile) {
-    isCollapsed.value = val
-  }
-}, { immediate: true })
+watch(
+  () => themeStore.isMiniSidebar,
+  (val) => {
+    if (!props.isMobile) {
+      isCollapsed.value = val;
+    }
+  },
+  { immediate: true }
+);
 
 watch(isMobileComputed, (val) => {
   if (val) {
-    isCollapsed.value = true
-    emit('update:collapsed', true)
+    isCollapsed.value = true;
+    emit("update:collapsed", true);
   }
-})
+});
 
 const toggleSidebar = () => {
-  isCollapsed.value = !isCollapsed.value
-  emit('update:collapsed', isCollapsed.value)
-  emit('toggleSidebar')
-}
+  isCollapsed.value = !isCollapsed.value;
+  emit("update:collapsed", isCollapsed.value);
+  emit("toggleSidebar");
+};
 
 onMounted(() => {
   const handleResize = () => {
-    windowWidth.value = window.innerWidth
-  }
-  window.addEventListener('resize', handleResize)
-})
+    windowWidth.value = window.innerWidth;
+  };
+  window.addEventListener("resize", handleResize);
+});
 
 onUnmounted(() => {
-  window.removeEventListener('resize', () => { })
-})
+  window.removeEventListener("resize", () => {});
+});
 
-const collapsedWidth = computed(() => 80)
+const collapsedWidth = computed(() => 80);
 const sidebarWidth = computed(() => {
   if (props.isMobile) {
-    return isCollapsed.value ? 0 : 240
+    return isCollapsed.value ? 0 : 240;
   }
-  return themeStore.isMiniSidebar ? 80 : 240
-})
+  return themeStore.isMiniSidebar ? 80 : 240;
+});
 
-const activeKey = computed(() => route.name as string)
+const renderCustomizeLabel = (label: string, router: RouteLocationRaw, optionBadge?: IOptionBadge) => {
+        return () => {
+            return h(
+                'div',
+                { class: 'menu-label ', style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' } },
+                [
+                    h(RouterLink,
+                        {
+                            to: router
+                        },
+                        { default: () => label }
+                    ),
+                    h(NBadge, { value: optionBadge?.value, type: optionBadge?.type || 'default', class: 'mr-1' })
+                ]
+            )
+        }
+    }
+
+const activeKey = computed(() => route.name as string);
 
 const menuOptions: MenuOption[] = [
   {
-    type: 'group',
-    label: 'Dashboard',
-    key: 'dashboard-group'
+    type: "group",
+    label: "Dashboard",
+    key: "dashboard-group",
   },
   {
-    label: 'Analytical',
-    key: 'Analytical',
+    label: "Analytical",
+    key: "Analytical",
     icon: () => h(NIcon, { component: AnalyticsOutline }),
-    
   },
   {
-    label: 'Commerce',
-    key: 'Commerce',
-    icon: () => h(NIcon, { component: StorefrontOutline })
+    label: "Commerce",
+    key: "Commerce",
+    icon: () => h(NIcon, { component: StorefrontOutline }),
   },
   {
-    type: 'group',
-    label: 'Apps',
-    key: 'apps-group'
+    type: "group",
+    label: "Apps",
+    key: "apps-group",
   },
   {
-    label: 'Calendar',
-    key: 'Calendar',
-    icon: () => h(NIcon, { component: CalendarOutline })
+    label: "Calendar",
+    key: "Calendar",
+    icon: () => h(NIcon, { component: CalendarOutline }),
   },
   {
-    label: 'Chat',
-    key: 'Chat',
-    icon: () => h(NIcon, { component: ChatbubbleEllipsesOutline })
+    label: "Chat",
+    key: "Chat",
+    icon: () => h(NIcon, { component: ChatbubbleEllipsesOutline }),
   },
   {
-    label: 'Email',
-    key: 'Email',
-    icon: () => h(NIcon, { component: MailOutline })
+    label: "Email",
+    key: "Email",
+    icon: () => h(NIcon, { component: MailOutline }),
   },
   {
-    type: 'group',
-    label: 'Pages',
-    key: 'pages-group'
+    type: "group",
+    label: "Pages",
+    key: "pages-group",
   },
   {
-    label: 'Authentication',
-    key: 'authentication-group',
+    label: "Authentication",
+    key: "authentication-group",
     icon: () => h(NIcon, { component: LockClosedOutline }),
     children: [
       {
-        label: 'Login (Simple)',
-        key: 'LoginSimple',
+        label: "Login (Simple)",
+        key: "LoginSimple",
         icon: () => h(NIcon, { component: PersonCircleOutline }),
       },
       {
-        label: 'Login (Advanced)',
-        key: 'LoginAdvanced',
-        icon: () => h(NIcon, { component: PersonCircleOutline })
+        label: "Login (Advanced)",
+        key: "LoginAdvanced",
+        icon: () => h(NIcon, { component: PersonCircleOutline }),
       },
       {
-        label: 'Register (Simple)',
-        key: 'RegisterSimple',
-        icon: () => h(NIcon, { component: DocumentTextOutline })
+        label: "Register (Simple)",
+        key: "RegisterSimple",
+        icon: () => h(NIcon, { component: DocumentTextOutline }),
       },
       {
-        label: 'Register (Advanced)',
-        key: 'RegisterAdvanced',
-        icon: () => h(NIcon, { component: DocumentTextOutline })
+        label: "Register (Advanced)",
+        key: "RegisterAdvanced",
+        icon: () => h(NIcon, { component: DocumentTextOutline }),
       },
       {
-        label: 'Forgot Password',
-        key: 'ForgotPassword',
-        icon: () => h(NIcon, { component: MailOutline })
+        label: "Forgot Password",
+        key: "ForgotPassword",
+        icon: () => h(NIcon, { component: MailOutline }),
       },
       {
-        label: 'Reset Password',
-        key: 'ResetPassword',
-        icon: () => h(NIcon, { component: LockClosedOutline })
+        label: "Reset Password",
+        key: "ResetPassword",
+        icon: () => h(NIcon, { component: LockClosedOutline }),
       },
       {
-        label: 'Two Step Verification',
-        key: 'TwoStepVerification',
-        icon: () => h(NIcon, { component: ShieldCheckmarkOutline })
+        label: "Two Step Verification",
+        key: "TwoStepVerification",
+        icon: () => h(NIcon, { component: ShieldCheckmarkOutline }),
       },
       {
-        label: 'Lock Screen',
-        key: 'LockScreen',
-        icon: () => h(NIcon, { component: LockClosedOutline })
-      }
-    ]
+        label: "Lock Screen",
+        key: "LockScreen",
+        icon: () => h(NIcon, { component: LockClosedOutline }),
+      },
+    ],
   },
   {
-    label: 'Errors',
-    key: 'errors-group',
+    label: "Errors",
+    key: "errors-group",
     icon: () => h(NIcon, { component: WarningOutline }),
     children: [
       {
-        label: '404 Not Found',
-        key: 'NotFound',
-        icon: () => h(NIcon, { component: AlertCircleOutline })
+        label: "404 Not Found",
+        key: "NotFound",
+        icon: () => h(NIcon, { component: AlertCircleOutline }),
       },
       {
-        label: '403 Forbidden',
-        key: 'Forbidden',
-        icon: () => h(NIcon, { component: ShieldCheckmarkOutline })
+        label: "403 Forbidden",
+        key: "Forbidden",
+        icon: () => h(NIcon, { component: ShieldCheckmarkOutline }),
       },
       {
-        label: '401 Unauthorized',
-        key: 'Unauthorized',
-        icon: () => h(NIcon, { component: LockClosedOutline })
+        label: "401 Unauthorized",
+        key: "Unauthorized",
+        icon: () => h(NIcon, { component: LockClosedOutline }),
       },
       {
-        label: '500 Server Error',
-        key: 'ServerError',
-        icon: () => h(NIcon, { component: WarningOutline })
-      }
-    ]
+        label: "500 Server Error",
+        key: "ServerError",
+        icon: () => h(NIcon, { component: WarningOutline }),
+      },
+    ],
   },
   {
-    label: 'User',
-    key: 'user-group',
+    label: "User",
+    key: "user-group",
     icon: () => h(NIcon, { component: PersonCircleOutline }),
     children: [
       {
-        label: 'User Profile',
-        key: 'UserProfile',
-        icon: () => h(NIcon, { component: PersonCircleOutline })
+        label: "User Profile",
+        key: "UserProfile",
+        icon: () => h(NIcon, { component: PersonCircleOutline }),
       },
       {
-        label: 'Account Settings',
-        key: 'AccountSettings',
-        icon: () => h(NIcon, { component: SettingsOutline })
+        label: "Account Settings",
+        key: "AccountSettings",
+        icon: () => h(NIcon, { component: SettingsOutline }),
       },
       {
-        label: 'Pricing',
-        key: 'Pricing',
-        icon: () => h(NIcon, { component: CardOutline })
+        label: "Pricing",
+        key: "Pricing",
+        icon: () => h(NIcon, { component: CardOutline }),
       },
       {
-        label: 'FAQ',
-        key: 'Faq',
-        icon: () => h(NIcon, { component: HelpCircleOutline })
-      }
-    ]
+        label: "FAQ",
+        key: "Faq",
+        icon: () => h(NIcon, { component: HelpCircleOutline }),
+      },
+    ],
   },
   {
-    type: 'group',
-    label: 'Components',
-    key: 'components-group'
+    type: "group",
+    label: "Components",
+    key: "components-group",
   },
   {
-    label: 'UI Elements',
-    key: 'ui-elements-group',
+    label: "UI Elements",
+    key: "ui-elements-group",
     icon: () => h(NIcon, { component: GridOutline }),
     children: [
       {
-        label: 'Alert',
-        key: 'Alert',
-        icon: () => h(NIcon, { component: AlertCircleOutline })
+        label: "Alert",
+        key: "Alert",
+        icon: () => h(NIcon, { component: AlertCircleOutline }),
       },
       {
-        label: 'Avatar',
-        key: 'Avatar',
-        icon: () => h(NIcon, { component: PersonCircleOutline })
+        label: "Avatar",
+        key: "Avatar",
+        icon: () => h(NIcon, { component: PersonCircleOutline }),
       },
       {
-        label: 'Badge',
-        key: 'Badge',
-        icon: () => h(NIcon, { component: RibbonOutline })
+        label: "Badge",
+        key: "Badge",
+        icon: () => h(NIcon, { component: RibbonOutline }),
       },
       {
-        label: 'Button',
-        key: 'Button',
-        icon: () => h(NIcon, { component: RadioButtonOnOutline })
+        label: "Button",
+        key: "Button",
+        icon: () => h(NIcon, { component: RadioButtonOnOutline }),
       },
       {
-        label: 'Modal',
-        key: 'Modal',
-        icon: () => h(NIcon, { component: BrowsersOutline })
+        label: "Modal",
+        key: "Modal",
+        icon: () => h(NIcon, { component: BrowsersOutline }),
       },
       {
-        label: 'List',
-        key: 'List',
-        icon: () => h(NIcon, { component: ListOutline })
+        label: "List",
+        key: "List",
+        icon: () => h(NIcon, { component: ListOutline }),
       },
       {
-        label: 'Menu',
-        key: 'Menu',
-        icon: () => h(NIcon, { component: MenuOutline })
+        label: "Menu",
+        key: "Menu",
+        icon: () => h(NIcon, { component: MenuOutline }),
       },
       {
-        label: 'Pagination',
-        key: 'Pagination',
-        icon: () => h(NIcon, { component: EllipsisHorizontalOutline })
+        label: "Pagination",
+        key: "Pagination",
+        icon: () => h(NIcon, { component: EllipsisHorizontalOutline }),
       },
       {
-        label: 'Tabs',
-        key: 'Tabs',
-        icon: () => h(NIcon, { component: AlbumsOutline })
+        label: "Tabs",
+        key: "Tabs",
+        icon: () => h(NIcon, { component: AlbumsOutline }),
       },
       {
-        label: 'Carousel',
-        key: 'Carousel',
-        icon: () => h(NIcon, { component: AlbumsOutline })
+        label: "Carousel",
+        key: "Carousel",
+        icon: () => h(NIcon, { component: AlbumsOutline }),
       },
       {
-        label: 'Collapse',
-        key: 'Collapse',
-        icon: () => h(NIcon, { component: RemoveOutline })
+        label: "Collapse",
+        key: "Collapse",
+        icon: () => h(NIcon, { component: RemoveOutline }),
       },
       {
-        label: 'Tag',
-        key: 'Tag',
-        icon: () => h(NIcon, { component: RibbonOutline })
+        label: "Tag",
+        key: "Tag",
+        icon: () => h(NIcon, { component: RibbonOutline }),
       },
       {
-        label: 'Float Button',
-        key: 'FloatButton',
-        icon: () => h(NIcon, { component: AddCircleOutline })
+        label: "Float Button",
+        key: "FloatButton",
+        icon: () => h(NIcon, { component: AddCircleOutline }),
       },
       {
-        label: 'Timeline',
-        key: 'Timeline',
-        icon: () => h(NIcon, { component: TimeOutline })
+        label: "Timeline",
+        key: "Timeline",
+        icon: () => h(NIcon, { component: TimeOutline }),
       },
       {
-        label: 'Tooltip',
-        key: 'Tooltip',
-        icon: () => h(NIcon, { component: InformationCircleOutline })
-      }
-    ]
+        label: "Tooltip",
+        key: "Tooltip",
+        icon: () => h(NIcon, { component: InformationCircleOutline }),
+      },
+    ],
   },
   {
-    label: 'Tables',
-    key: 'tables-group',
+    label: "Tables",
+    key: "tables-group",
     icon: () => h(NIcon, { component: GridOutline }),
     children: [
       {
-        label: 'Basic Table',
-        key: 'Basic-Table',
-        icon: () => h(NIcon, { component: GridOutline })
+        label: "Basic Table",
+        key: "Basic-Table",
+        icon: () => h(NIcon, { component: GridOutline }),
       },
       {
-        label: 'Data Table',
-        key: 'Data-Table',
-        icon: () => h(NIcon, { component: ListOutline })
-      }
-    ]
+        label: "Data Table",
+        key: "Data-Table",
+        icon: () => h(NIcon, { component: ListOutline }),
+      },
+    ],
   },
   {
-    label: 'Charts',
-    key: 'charts-group',
+    label: "Charts",
+    key: "charts-group",
     icon: () => h(NIcon, { component: AnalyticsOutline }),
     children: [
       {
-        label: 'Line Chart',
-        key: 'Line-Chart',
-        icon: () => h(NIcon, { component: AnalyticsOutline })
+        label: "Line Chart",
+        key: "Line-Chart",
+        icon: () => h(NIcon, { component: AnalyticsOutline }),
       },
       {
-        label: 'Bar Chart',
-        key: 'Bar-Chart',
-        icon: () => h(NIcon, { component: GridOutline })
+        label: "Bar Chart",
+        key: "Bar-Chart",
+        icon: () => h(NIcon, { component: GridOutline }),
       },
       {
-        label: 'Pie Chart',
-        key: 'Pie-Chart',
-        icon: () => h(NIcon, { component: RadioButtonOnOutline })
+        label: "Pie Chart",
+        key: "Pie-Chart",
+        icon: () => h(NIcon, { component: RadioButtonOnOutline }),
       },
       {
-        label: 'Mixed Chart',
-        key: 'Mixed-Chart',
-        icon: () => h(NIcon, { component: LayersOutline })
-      }
-    ]
+        label: "Mixed Chart",
+        key: "Mixed-Chart",
+        icon: () => h(NIcon, { component: LayersOutline }),
+      },
+    ],
   },
   {
-    label: 'Typography',
-    key: 'Typography',
-    icon: () => h(NIcon, { component: TextOutline })
+    label: "Typography",
+    key: "Typography",
+    icon: () => h(NIcon, { component: TextOutline }),
   },
   {
-    label: 'Icons',
-    key: 'Icons',
-    icon: () => h(NIcon, { component: AppsOutline })
+    label: "Icons",
+    key: "Icons",
+    icon: () => h(NIcon, { component: AppsOutline }),
   },
   {
-    label: 'Extra',
-    key: 'extra-group',
+    label: "Extra",
+    key: "extra-group",
     icon: () => h(NIcon, { component: CubeOutline }),
     children: [
       {
-        label: 'Divider',
-        key: 'Divider',
-        icon: () => h(NIcon, { component: RemoveOutline })
+        label: "Divider",
+        key: "Divider",
+        icon: () => h(NIcon, { component: RemoveOutline }),
       },
       {
-        label: 'Ellipsis',
-        key: 'Ellipsis',
-        icon: () => h(NIcon, { component: EllipsisHorizontalOutline })
+        label: "Ellipsis",
+        key: "Ellipsis",
+        icon: () => h(NIcon, { component: EllipsisHorizontalOutline }),
       },
       {
-        label: 'Gradient Text',
-        key: 'GradientText',
-        icon: () => h(NIcon, { component: ColorPaletteOutline })
+        label: "Gradient Text",
+        key: "GradientText",
+        icon: () => h(NIcon, { component: ColorPaletteOutline }),
       },
       {
-        label: 'Page Header',
-        key: 'PageHeader',
-        icon: () => h(NIcon, { component: DocumentTextOutline })
+        label: "Page Header",
+        key: "PageHeader",
+        icon: () => h(NIcon, { component: DocumentTextOutline }),
       },
       {
-        label: 'Watermark',
-        key: 'Watermark',
-        icon: () => h(NIcon, { component: WaterOutline })
+        label: "Watermark",
+        key: "Watermark",
+        icon: () => h(NIcon, { component: WaterOutline }),
       },
       {
-        label: 'Countdown',
-        key: 'CountDown',
-        icon: () => h(NIcon, { component: TimerOutline })
+        label: "Countdown",
+        key: "CountDown",
+        icon: () => h(NIcon, { component: TimerOutline }),
       },
-    ]
+    ],
   },
 
   {
-    type: 'group',
-    label: 'Forms',
-    key: 'forms-group'
+    type: "group",
+    label: "Forms",
+    key: "forms-group",
   },
   {
-    label: 'Form Elements',
-    key: 'form-elements-group',
+    label: "Form Elements",
+    key: "form-elements-group",
     icon: () => h(NIcon, { component: DocumentTextOutline }),
     children: [
       {
-        label: 'Select',
-        key: 'Select',
-        icon: () => h(NIcon, { component: CheckboxOutline })
+        label: "Select",
+        key: "Select",
+        icon: () => h(NIcon, { component: CheckboxOutline }),
       },
       {
-        label: 'Input',
-        key: 'Input',
-        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+        label: "Input",
+        key: "Input",
+        icon: () => h(NIcon, { component: RadioButtonOffOutline }),
       },
       {
-        label: 'Radio',
-        key: 'Radio',
-        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+        label: "Radio",
+        key: "Radio",
+        icon: () => h(NIcon, { component: RadioButtonOffOutline }),
       },
       {
-        label: 'Switch',
-        key: 'Switch',
-        icon: () => h(NIcon, { component: ToggleOutline })
+        label: "Switch",
+        key: "Switch",
+        icon: () => h(NIcon, { component: ToggleOutline }),
       },
       {
-        label: 'Slider',
-        key: 'Slider',
-        icon: () => h(NIcon, { component: RemoveOutline })
+        label: "Slider",
+        key: "Slider",
+        icon: () => h(NIcon, { component: RemoveOutline }),
       },
       {
-        label: 'AutoComplete',
-        key: 'AutoComplete',
-        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+        label: "AutoComplete",
+        key: "AutoComplete",
+        icon: () => h(NIcon, { component: RadioButtonOffOutline }),
       },
       {
-        label: 'Checkbox',
-        key: 'Checkbox',
-        icon: () => h(NIcon, { component: CheckboxOutline })
+        label: "Checkbox",
+        key: "Checkbox",
+        icon: () => h(NIcon, { component: CheckboxOutline }),
       },
       {
-        label: 'DatePicker',
-        key: 'DatePicker',
-        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+        label: "DatePicker",
+        key: "DatePicker",
+        icon: () => h(NIcon, { component: RadioButtonOffOutline }),
       },
       {
-        label: 'Upload',
-        key: 'Upload',
-        icon: () => h(NIcon, { component: RadioButtonOffOutline })
-      }
-    ]
+        label: "Upload",
+        key: "Upload",
+        icon: () => h(NIcon, { component: RadioButtonOffOutline }),
+      },
+    ],
   },
   {
-    label: 'Extra Form Elements',
-    key: 'extra-form-elements-group',
+    label: "Extra Form Elements",
+    key: "extra-form-elements-group",
     icon: () => h(NIcon, { component: DocumentTextOutline }),
     children: [
       {
-        label: 'Cascader',
-        key: 'Cascader',
-        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+        label: "Cascader",
+        key: "Cascader",
+        icon: () => h(NIcon, { component: RadioButtonOffOutline }),
       },
       {
-        label: 'Color Picker',
-        key: 'ColorPicker',
-        icon: () => h(NIcon, { component: CheckboxOutline })
+        label: "Color Picker",
+        key: "ColorPicker",
+        icon: () => h(NIcon, { component: CheckboxOutline }),
       },
       {
-        label: 'Dynamic Input',
-        key: 'DynamicInput',
-        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+        label: "Dynamic Input",
+        key: "DynamicInput",
+        icon: () => h(NIcon, { component: RadioButtonOffOutline }),
       },
       {
-        label: 'Dynamic Tags',
-        key: 'DynamicTags',
-        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+        label: "Dynamic Tags",
+        key: "DynamicTags",
+        icon: () => h(NIcon, { component: RadioButtonOffOutline }),
       },
       {
-        label: 'Input Number',
-        key: 'InputNumber',
-        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+        label: "Input Number",
+        key: "InputNumber",
+        icon: () => h(NIcon, { component: RadioButtonOffOutline }),
       },
       {
-        label: 'Input OTP',
-        key: 'InputOtp',
-        icon: () => h(NIcon, { component: CheckboxOutline })
+        label: "Input OTP",
+        key: "InputOtp",
+        icon: () => h(NIcon, { component: CheckboxOutline }),
       },
       {
-        label: 'Mention',
-        key: 'Mention',
-        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+        label: "Mention",
+        key: "Mention",
+        icon: () => h(NIcon, { component: RadioButtonOffOutline }),
       },
       {
-        label: 'Rate',
-        key: 'Rate',
-        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+        label: "Rate",
+        key: "Rate",
+        icon: () => h(NIcon, { component: RadioButtonOffOutline }),
       },
       {
-        label: 'Transfer',
-        key: 'Transfer',
-        icon: () => h(NIcon, { component: RadioButtonOffOutline })
+        label: "Transfer",
+        key: "Transfer",
+        icon: () => h(NIcon, { component: RadioButtonOffOutline }),
       },
       {
-        label: 'Tree Select',
-        key: 'TreeSelect',
-        icon: () => h(NIcon, { component: RadioButtonOffOutline })
-      }
-    ]
+        label: "Tree Select",
+        key: "TreeSelect",
+        icon: () => h(NIcon, { component: RadioButtonOffOutline }),
+      },
+    ],
   },
   {
-    label: 'Form Validation',
-    key: 'Form-Validation',
-    icon: () => h(NIcon, { component: CheckmarkOutline })
+    label: "Form Validation",
+    key: "Form-Validation",
+    icon: () => h(NIcon, { component: CheckmarkOutline }),
   },
   {
-    label: 'Form Wizard',
-    key: 'Form-Wizard',
-    icon: () => h(NIcon, { component: ChevronForwardOutline })
+    label: "Form Wizard",
+    key: "Form-Wizard",
+    icon: () => h(NIcon, { component: ChevronForwardOutline }),
   },
   {
-    label: 'Form Editor',
-    key: 'Form-Editor',
-    icon: () => h(NIcon, { component: TextOutline })
+    label: "Form Editor",
+    key: "Form-Editor",
+    icon: () => h(NIcon, { component: TextOutline }),
   },
-
-]
+  {
+    type: "group",
+    label: "Others",
+    key: "others-group",
+  },
+  {
+    label: "Menu Level 1",
+    key: "menu-level-1",
+    icon: () => h(NIcon, { component: MenuOutline }),
+    children: [
+      {
+        label: "Menu Level 2",
+        key: "menu-level-20",
+        icon: () => h(NIcon, { component: MenuOutline }),
+        children: [
+          {
+            label: "Menu Level 3",
+            key: "menu-level-301",
+            icon: () => h(NIcon, { component: MenuOutline }),
+          },
+          {
+            label: "Menu Level 3",
+            key: "menu-level-302",
+            icon: () => h(NIcon, { component: MenuOutline }),
+          },
+        ],
+      },
+      {
+        label: "Menu Level 2",
+        key: "menu-level-21",
+        icon: () => h(NIcon, { component: MenuOutline }),
+        children: [
+          {
+            label: "Menu Level 3",
+            key: "menu-level-303",
+            icon: () => h(NIcon, { component: MenuOutline }),
+          },
+          {
+            label: "Menu Level 3",
+            key: "menu-level-304",
+            icon: () => h(NIcon, { component: MenuOutline }),
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label : 'Disabled Menu',
+    key : 'disabled-menu',
+    icon : () => h(NIcon, { component : BlockOutlined }),
+    disabled : true
+  },
+  {
+    label : renderCustomizeLabel('With Badge', '/', { value: '10', type: 'info' }),
+    key : 'with-badge',
+    icon : () => h(NIcon, { component : BadgeRound }),
+    badge : '10'
+  }
+];
 
 const handleMenuSelect = (key: string) => {
   // Ignore group keys, only navigate to actual routes
-  if (!key.includes('-group')) {
-    router.push({ name: key })
+  if (!key.includes("-group")) {
+    router.push({ name: key });
   }
-}
+};
 </script>
 
 <style scoped>
@@ -684,12 +810,14 @@ const handleMenuSelect = (key: string) => {
   font-weight: 700;
   color: var(--text-primary);
   white-space: nowrap;
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fade-enter-from {
