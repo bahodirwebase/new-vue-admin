@@ -273,6 +273,12 @@ const routes: RouteRecordRaw[] = [
         meta: { title: 'Switch', icon: 'toggle-outline', group: 'Components', subgroup: 'Form Elements' }
       },
       {
+        path: 'forms/form-elements/slider',
+        name: 'Slider',
+        component: () => import('@/views/forms/form-elements/Slider.vue'),
+        meta: { title: 'Slider', icon: 'remove-outline', group: 'Components', subgroup: 'Form Elements' }
+      },
+      {
         path: 'forms/form-elements/autocomplete',
         name: 'AutoComplete',
         component: () => import('@/views/forms/form-elements/AutoComplete.vue'),

@@ -448,6 +448,11 @@ const menuOptions: MenuOption[] = [
         icon: () => h(NIcon, { component: ToggleOutline })
       },
       {
+        label: 'Slider',
+        key: 'Slider',
+        icon: () => h(NIcon, { component: RemoveOutline })
+      },
+      {
         label: 'AutoComplete',
         key: 'AutoComplete',
         icon: () => h(NIcon, { component: RadioButtonOffOutline })
