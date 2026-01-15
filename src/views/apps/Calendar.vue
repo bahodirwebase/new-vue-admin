@@ -1257,7 +1257,6 @@ onMounted(() => {
 
 :deep(.n-calendar-cell--selected) {
   background-color: rgba(102, 126, 234, 0.2) !important;
-  border: 2px solid #667eea !important;
 }
 
 /* Dark theme for calendar cells */
