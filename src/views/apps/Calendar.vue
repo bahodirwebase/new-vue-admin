@@ -1,29 +1,5 @@
 <template>
   <div class="calendar-app">
-    <!-- Header -->
-    <header class="calendar-header">
-      <div class="header-left">
-        <h1>Calendar</h1>
-        <p>Manage your events and schedule</p>
-      </div>
-      <div class="header-right">
-        <n-space>
-          <n-button @click="goToToday">
-            <template #icon>
-              <n-icon><CalendarOutline /></n-icon>
-            </template>
-            Today
-          </n-button>
-          <n-button type="primary" @click="openEventModal">
-            <template #icon>
-              <n-icon><AddOutline /></n-icon>
-            </template>
-            New Event
-          </n-button>
-        </n-space>
-      </div>
-    </header>
-
     <!-- Main Content -->
     <main class="calendar-main">
       <!-- Sidebar -->
@@ -32,10 +8,16 @@
           <n-space vertical size="large">
             <!-- View Switcher -->
             <div class="view-switcher">
-              <h4>View</h4>
-              <n-button-group vertical size="large" style="width: 100%">
-                <n-button 
-                  v-for="view in viewOptions" 
+              <n-button type="primary" size="large" block @click="openEventModal">
+                <template #icon>
+                  <n-icon ><AddOutline /></n-icon>
+                </template>
+                New Event
+              </n-button>
+              <!-- <h4>View</h4> -->
+              <n-button-group  vertical size="large" style="width: 100%; margin-top: 12px;">
+                <n-button
+                  v-for="view in viewOptions"
                   :key="view.value"
                   :type="currentView === view.value ? 'primary' : 'default'"
                   @click="currentView = view.value"
@@ -131,15 +113,24 @@
             >
               <div class="calendar-day-content">
                 <div class="day-number">{{ date }}</div>
-                <div v-if="getEventsForDate(year, month, date).length > 0" class="event-indicators">
-                  <div 
-                    v-for="event in getEventsForDate(year, month, date).slice(0, 3)" 
+                <div
+                  v-if="getEventsForDate(year, month, date).length > 0"
+                  class="event-indicators"
+                >
+                  <div
+                    v-for="event in getEventsForDate(year, month, date).slice(
+                      0,
+                      3
+                    )"
                     :key="event.id"
                     class="event-dot"
                     :style="{ backgroundColor: event.color }"
                     :title="event.title"
                   ></div>
-                  <div v-if="getEventsForDate(year, month, date).length > 3" class="more-events">
+                  <div
+                    v-if="getEventsForDate(year, month, date).length > 3"
+                    class="more-events"
+                  >
                     +{{ getEventsForDate(year, month, date).length - 3 }}
                   </div>
                 </div>
@@ -167,17 +158,21 @@
             <div class="week-grid">
               <div class="time-column">
                 <div v-for="hour in 24" :key="hour" class="time-slot">
-                  {{ String(hour - 1).padStart(2, '0') }}:00
+                  {{ String(hour - 1).padStart(2, "0") }}:00
                 </div>
               </div>
-              <div v-for="day in weekDays" :key="day.date.getTime()" class="day-column">
+              <div
+                v-for="day in weekDays"
+                :key="day.date.getTime()"
+                class="day-column"
+              >
                 <div class="day-header">
                   <div class="day-name">{{ day.name }}</div>
                   <div class="day-date">{{ day.date.getDate() }}</div>
                 </div>
                 <div class="day-events">
-                  <div 
-                    v-for="event in getEventsForDay(day.date)" 
+                  <div
+                    v-for="event in getEventsForDay(day.date)"
                     :key="event.id"
                     class="week-event"
                     :style="{ backgroundColor: event.color }"
@@ -210,10 +205,12 @@
             </div>
             <div class="day-timeline">
               <div v-for="hour in 24" :key="hour" class="hour-row">
-                <div class="hour-label">{{ String(hour - 1).padStart(2, '0') }}:00</div>
+                <div class="hour-label">
+                  {{ String(hour - 1).padStart(2, "0") }}:00
+                </div>
                 <div class="hour-content">
-                  <div 
-                    v-for="event in getEventsForHour(activeDate, hour - 1)" 
+                  <div
+                    v-for="event in getEventsForHour(activeDate, hour - 1)"
                     :key="event.id"
                     class="day-event"
                   >
@@ -232,12 +229,22 @@
               <h2 class="view-title">All Events</h2>
             </div>
             <div class="events-list">
-              <div v-for="event in sortedEvents" :key="event.id" class="event-item">
-                <div class="event-color-bar" :style="{ backgroundColor: event.color }"></div>
+              <div
+                v-for="event in sortedEvents"
+                :key="event.id"
+                class="event-item"
+              >
+                <div
+                  class="event-color-bar"
+                  :style="{ backgroundColor: event.color }"
+                ></div>
                 <div class="event-content">
                   <div class="event-header">
                     <h4 class="event-title">{{ event.title }}</h4>
-                    <n-tag :color="{ color: event.color, textColor: '#fff' }" size="small">
+                    <n-tag
+                      :color="{ color: event.color, textColor: '#fff' }"
+                      size="small"
+                    >
                       {{ event.category }}
                     </n-tag>
                   </div>
@@ -245,15 +252,28 @@
                     <p class="event-date">{{ formatDate(event.date) }}</p>
                     <p class="event-time">{{ event.time }}</p>
                   </div>
-                  <p v-if="event.description" class="event-description">{{ event.description }}</p>
+                  <p v-if="event.description" class="event-description">
+                    {{ event.description }}
+                  </p>
                 </div>
                 <div class="event-actions">
-                  <n-button quaternary circle size="small" @click="editEvent(event)">
+                  <n-button
+                    quaternary
+                    circle
+                    size="small"
+                    @click="editEvent(event)"
+                  >
                     <template #icon>
                       <n-icon><CreateOutline /></n-icon>
                     </template>
                   </n-button>
-                  <n-button quaternary circle size="small" type="error" @click="deleteEvent(event.id)">
+                  <n-button
+                    quaternary
+                    circle
+                    size="small"
+                    type="error"
+                    @click="deleteEvent(event.id)"
+                  >
                     <template #icon>
                       <n-icon><TrashOutline /></n-icon>
                     </template>
@@ -267,28 +287,28 @@
     </main>
 
     <!-- Event Modal -->
-    <n-modal 
-      v-model:show="showModal" 
+    <n-modal
+      v-model:show="showModal"
       :mask-closable="false"
-      preset="card" 
-      :title="editingEvent ? 'Edit Event' : 'Create New Event'" 
+      preset="card"
+      :title="editingEvent ? 'Edit Event' : 'Create New Event'"
       style="width: 600px"
       class="event-modal"
     >
       <n-form ref="formRef" :model="eventForm" :rules="formRules">
         <n-form-item label="Event Title" path="title">
-          <n-input 
-            v-model:value="eventForm.title" 
+          <n-input
+            v-model:value="eventForm.title"
             placeholder="Enter event title"
             size="large"
           />
         </n-form-item>
-        
+
         <n-grid :cols="2" :x-gap="16">
           <n-form-item-grid-item :span="1">
             <n-form-item label="Date">
-              <n-date-picker 
-                v-model:value="eventForm.date" 
+              <n-date-picker
+                v-model:value="eventForm.date"
                 type="date"
                 value-format="timestamp"
                 size="large"
@@ -298,8 +318,8 @@
           </n-form-item-grid-item>
           <n-form-item-grid-item :span="1">
             <n-form-item label="Time">
-              <n-time-picker 
-                v-model:value="eventForm.time" 
+              <n-time-picker
+                v-model:value="eventForm.time"
                 format="HH:mm"
                 value-format="timestamp"
                 size="large"
@@ -310,39 +330,39 @@
         </n-grid>
 
         <n-form-item label="Category" path="category">
-          <n-select 
-            v-model:value="eventForm.category" 
-            :options="categoryOptions" 
+          <n-select
+            v-model:value="eventForm.category"
+            :options="categoryOptions"
             placeholder="Select category"
             size="large"
           />
         </n-form-item>
 
         <n-form-item label="Color" path="color">
-          <n-color-picker 
-            v-model:value="eventForm.color" 
-            :modes="['hex']" 
+          <n-color-picker
+            v-model:value="eventForm.color"
+            :modes="['hex']"
             size="large"
             style="width: 100%"
           />
         </n-form-item>
 
         <n-form-item label="Description" path="description">
-          <n-input 
-            v-model:value="eventForm.description" 
-            type="textarea" 
+          <n-input
+            v-model:value="eventForm.description"
+            type="textarea"
             placeholder="Event description (optional)"
             :rows="3"
             size="large"
           />
         </n-form-item>
       </n-form>
-      
+
       <template #footer>
         <n-space justify="end">
           <n-button @click="closeModal">Cancel</n-button>
           <n-button type="primary" @click="saveEvent">
-            {{ editingEvent ? 'Update' : 'Create' }}
+            {{ editingEvent ? "Update" : "Create" }}
           </n-button>
         </n-space>
       </template>
@@ -351,426 +371,410 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
-import { useMessage } from 'naive-ui'
-import { 
-  CalendarOutline, 
-  AddOutline, 
-  CreateOutline, 
-  TrashOutline, 
+import { ref, computed, onMounted } from "vue";
+import { useMessage } from "naive-ui";
+import {
+  CreateOutline,
+  TrashOutline,
   DownloadOutline,
-  ChevronBackOutline, 
+  ChevronBackOutline,
   ChevronForwardOutline,
   GridOutline,
   ListOutline,
   CalendarNumberOutline,
-  TimeOutline
-} from '@vicons/ionicons5'
-import type { FormRules, FormInst } from 'naive-ui'
+  TimeOutline,
+  AddOutline,
+} from "@vicons/ionicons5";
+import type { FormRules, FormInst } from "naive-ui";
 
 interface Event {
-  id: number
-  title: string
-  date: Date
-  time: string
-  category: string
-  color: string
-  description?: string
+  id: number;
+  title: string;
+  date: Date;
+  time: string;
+  category: string;
+  color: string;
+  description?: string;
 }
 
-const message = useMessage()
-const formRef = ref<FormInst | null>(null)
-const currentView = ref('month')
-const activeDate = ref(Date.now())
-const showModal = ref(false)
-const editingEvent = ref<Event | null>(null)
+const message = useMessage();
+const formRef = ref<FormInst | null>(null);
+const currentView = ref("month");
+const activeDate = ref(Date.now());
+const showModal = ref(false);
+const editingEvent = ref<Event | null>(null);
 
 // View options with icons
 const viewOptions = [
-  { label: 'Month', value: 'month', icon: 'CalendarNumberOutline' },
-  { label: 'Week', value: 'week', icon: 'GridOutline' },
-  { label: 'Day', value: 'day', icon: 'TimeOutline' },
-  { label: 'List', value: 'list', icon: 'ListOutline' }
-]
+  { label: "Month", value: "month", icon: CalendarNumberOutline },
+  { label: "Week", value: "week", icon: GridOutline },
+  { label: "Day", value: "day", icon: TimeOutline },
+  { label: "List", value: "list", icon: ListOutline },
+];
 
 // Category options
 const categoryOptions = [
-  { label: 'Work', value: 'work' },
-  { label: 'Personal', value: 'personal' },
-  { label: 'Meeting', value: 'meeting' },
-  { label: 'Education', value: 'education' },
-  { label: 'Health', value: 'health' },
-  { label: 'Social', value: 'social' },
-  { label: 'Other', value: 'other' }
-]
+  { label: "Work", value: "work" },
+  { label: "Personal", value: "personal" },
+  { label: "Meeting", value: "meeting" },
+  { label: "Education", value: "education" },
+  { label: "Health", value: "health" },
+  { label: "Social", value: "social" },
+  { label: "Other", value: "other" },
+];
 
 // Form validation rules
 const formRules: FormRules = {
   title: {
     required: true,
-    message: 'Please enter event title',
-    trigger: 'blur'
-  }
-}
+    message: "Please enter event title",
+    trigger: "blur",
+  },
+};
 
 // Event form
 const eventForm = ref({
-  title: '',
+  title: "",
   date: Date.now(),
   time: Date.now(),
-  category: 'work',
-  color: '#18a058',
-  description: ''
-})
+  category: "work",
+  color: "#18a058",
+  description: "",
+});
 
 // Sample events
 const events = ref<Event[]>([
   {
     id: 1,
-    title: 'Team Meeting',
+    title: "Team Meeting",
     date: new Date(),
-    time: '10:00',
-    category: 'work',
-    color: '#18a058',
-    description: 'Weekly team sync meeting'
+    time: "10:00",
+    category: "work",
+    color: "#18a058",
+    description: "Weekly team sync meeting",
   },
   {
     id: 2,
-    title: 'Lunch with Client',
+    title: "Lunch with Client",
     date: new Date(),
-    time: '12:30',
-    category: 'work',
-    color: '#2080f0',
-    description: 'Discuss project requirements'
+    time: "12:30",
+    category: "work",
+    color: "#2080f0",
+    description: "Discuss project requirements",
   },
   {
     id: 3,
-    title: 'Gym Session',
+    title: "Gym Session",
     date: new Date(Date.now() + 24 * 60 * 60 * 1000),
-    time: '18:00',
-    category: 'health',
-    color: '#f0a020',
-    description: 'Workout session'
-  }
-])
+    time: "18:00",
+    category: "health",
+    color: "#f0a020",
+    description: "Workout session",
+  },
+]);
 
 // Computed properties
 const currentMonthYear = computed(() => {
-  return new Date(activeDate.value).toLocaleDateString('en-US', { 
-    month: 'long', 
-    year: 'numeric' 
-  })
-})
+  return new Date(activeDate.value).toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
+});
 
 const weekDays = computed(() => {
-  const startOfWeek = new Date(activeDate.value)
-  const day = startOfWeek.getDay()
-  const diff = startOfWeek.getDate() - day
-  startOfWeek.setDate(diff)
-  
-  const days = []
-  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-  
+  const startOfWeek = new Date(activeDate.value);
+  const day = startOfWeek.getDay();
+  const diff = startOfWeek.getDate() - day;
+  startOfWeek.setDate(diff);
+
+  const days = [];
+  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
   for (let i = 0; i < 7; i++) {
-    const currentDate = new Date(startOfWeek)
-    currentDate.setDate(startOfWeek.getDate() + i)
+    const currentDate = new Date(startOfWeek);
+    currentDate.setDate(startOfWeek.getDate() + i);
     days.push({
       name: dayNames[i],
-      date: currentDate
-    })
+      date: currentDate,
+    });
   }
-  
-  return days
-})
+
+  return days;
+});
 
 const weekRange = computed(() => {
-  const start = weekDays.value[0].date
-  const end = weekDays.value[6].date
-  return `${start.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${end.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`
-})
+  const start = weekDays.value[0].date;
+  const end = weekDays.value[6].date;
+  return `${start.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  })} - ${end.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  })}`;
+});
 
 const selectedDayFormatted = computed(() => {
-  return new Date(activeDate.value).toLocaleDateString('en-US', { 
-    weekday: 'long', 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  })
-})
+  return new Date(activeDate.value).toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+});
 
 const sortedEvents = computed(() => {
   return [...events.value].sort((a, b) => {
-    const dateA = new Date(a.date)
-    const dateB = new Date(b.date)
-    return dateA.getTime() - dateB.getTime()
-  })
-})
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateA.getTime() - dateB.getTime();
+  });
+});
 
 const todayEvents = computed(() => {
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-  const tomorrow = new Date(today)
-  tomorrow.setDate(today.getDate() + 1)
-  
-  return events.value.filter(event => {
-    const eventDate = new Date(event.date)
-    return eventDate >= today && eventDate < tomorrow
-  })
-})
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  return events.value.filter((event) => {
+    const eventDate = new Date(event.date);
+    return eventDate >= today && eventDate < tomorrow;
+  });
+});
 
 const thisWeekEvents = computed(() => {
-  const today = new Date()
-  const startOfWeek = new Date(today)
-  const day = startOfWeek.getDay()
-  const diff = startOfWeek.getDate() - day
-  startOfWeek.setDate(diff)
-  const endOfWeek = new Date(startOfWeek)
-  endOfWeek.setDate(startOfWeek.getDate() + 6)
-  
-  return events.value.filter(event => {
-    const eventDate = new Date(event.date)
-    return eventDate >= startOfWeek && eventDate <= endOfWeek
-  })
-})
+  const today = new Date();
+  const startOfWeek = new Date(today);
+  const day = startOfWeek.getDay();
+  const diff = startOfWeek.getDate() - day;
+  startOfWeek.setDate(diff);
+  const endOfWeek = new Date(startOfWeek);
+  endOfWeek.setDate(startOfWeek.getDate() + 6);
+
+  return events.value.filter((event) => {
+    const eventDate = new Date(event.date);
+    return eventDate >= startOfWeek && eventDate <= endOfWeek;
+  });
+});
 
 const upcomingEvents = computed(() => {
-  const today = new Date()
-  today.setHours(0, 0, 0, 0)
-  
-  return events.value.filter(event => {
-    const eventDate = new Date(event.date)
-    return eventDate >= today
-  })
-})
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  return events.value.filter((event) => {
+    const eventDate = new Date(event.date);
+    return eventDate >= today;
+  });
+});
 
 const currentPeriodInfo = computed(() => {
   switch (currentView.value) {
-    case 'month':
-      return currentMonthYear.value
-    case 'week':
-      return weekRange.value
-    case 'day':
-      return selectedDayFormatted.value
-    case 'list':
-      return `All Events (${events.value.length})`
+    case "month":
+      return currentMonthYear.value;
+    case "week":
+      return weekRange.value;
+    case "day":
+      return selectedDayFormatted.value;
+    case "list":
+      return `All Events (${events.value.length})`;
     default:
-      return ''
+      return "";
   }
-})
+});
 
 // Methods
 const getEventsForDate = (year: number, month: number, date: number) => {
-  return events.value.filter(event => {
-    const eventDate = new Date(event.date)
-    return eventDate.getFullYear() === year && 
-           eventDate.getMonth() === month - 1 && // Fix month indexing
-           eventDate.getDate() === date
-  })
-}
+  return events.value.filter((event) => {
+    const eventDate = new Date(event.date);
+    return (
+      eventDate.getFullYear() === year &&
+      eventDate.getMonth() === month - 1 && // Fix month indexing
+      eventDate.getDate() === date
+    );
+  });
+};
 
 const getEventsForDay = (date: Date) => {
-  return events.value.filter(event => {
-    const eventDate = new Date(event.date)
-    return eventDate.toDateString() === date.toDateString()
-  })
-}
+  return events.value.filter((event) => {
+    const eventDate = new Date(event.date);
+    return eventDate.toDateString() === date.toDateString();
+  });
+};
 
 const getEventsForHour = (date: number, hour: number) => {
-  return events.value.filter(event => {
-    const eventDate = new Date(event.date)
-    const eventHour = parseInt(event.time.split(':')[0])
-    return eventDate.toDateString() === new Date(date).toDateString() && eventHour === hour
-  })
-}
+  return events.value.filter((event) => {
+    const eventDate = new Date(event.date);
+    const eventHour = parseInt(event.time.split(":")[0]);
+    return (
+      eventDate.toDateString() === new Date(date).toDateString() &&
+      eventHour === hour
+    );
+  });
+};
 
 const formatDate = (date: Date) => {
-  return new Date(date).toLocaleDateString('en-US', { 
-    weekday: 'short',
-    month: 'short', 
-    day: 'numeric',
-    year: 'numeric'
-  })
-}
+  return new Date(date).toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+};
 
 // Navigation
 const previousMonth = () => {
-  const newDate = new Date(activeDate.value)
-  newDate.setMonth(newDate.getMonth() - 1)
-  activeDate.value = newDate.getTime()
-}
+  const newDate = new Date(activeDate.value);
+  newDate.setMonth(newDate.getMonth() - 1);
+  activeDate.value = newDate.getTime();
+};
 
 const nextMonth = () => {
-  const newDate = new Date(activeDate.value)
-  newDate.setMonth(newDate.getMonth() + 1)
-  activeDate.value = newDate.getTime()
-}
+  const newDate = new Date(activeDate.value);
+  newDate.setMonth(newDate.getMonth() + 1);
+  activeDate.value = newDate.getTime();
+};
 
 const previousWeek = () => {
-  const newDate = new Date(activeDate.value)
-  newDate.setDate(newDate.getDate() - 7)
-  activeDate.value = newDate.getTime()
-}
+  const newDate = new Date(activeDate.value);
+  newDate.setDate(newDate.getDate() - 7);
+  activeDate.value = newDate.getTime();
+};
 
 const nextWeek = () => {
-  const newDate = new Date(activeDate.value)
-  newDate.setDate(newDate.getDate() + 7)
-  activeDate.value = newDate.getTime()
-}
+  const newDate = new Date(activeDate.value);
+  newDate.setDate(newDate.getDate() + 7);
+  activeDate.value = newDate.getTime();
+};
 
 const previousDay = () => {
-  const newDate = new Date(activeDate.value)
-  newDate.setDate(newDate.getDate() - 1)
-  activeDate.value = newDate.getTime()
-}
+  const newDate = new Date(activeDate.value);
+  newDate.setDate(newDate.getDate() - 1);
+  activeDate.value = newDate.getTime();
+};
 
 const nextDay = () => {
-  const newDate = new Date(activeDate.value)
-  newDate.setDate(newDate.getDate() + 1)
-  activeDate.value = newDate.getTime()
-}
-
-const goToToday = () => {
-  activeDate.value = Date.now()
-}
+  const newDate = new Date(activeDate.value);
+  newDate.setDate(newDate.getDate() + 1);
+  activeDate.value = newDate.getTime();
+};
 
 // Event management
 const openEventModal = () => {
-  editingEvent.value = null
+  editingEvent.value = null;
   eventForm.value = {
-    title: '',
+    title: "",
     date: Date.now(),
     time: Date.now(),
-    category: 'work',
-    color: '#18a058',
-    description: ''
-  }
-  showModal.value = true
-}
+    category: "work",
+    color: "#18a058",
+    description: "",
+  };
+  showModal.value = true;
+};
 
 const editEvent = (event: Event) => {
-  editingEvent.value = event
+  editingEvent.value = event;
   eventForm.value = {
     title: event.title,
     date: event.date.getTime(),
-    time: new Date().setHours(...event.time.split(':').map(Number) as [number, number], 0, 0),
+    time: new Date().setHours(
+      ...(event.time.split(":").map(Number) as [number, number]),
+      0,
+      0
+    ),
     category: event.category,
     color: event.color,
-    description: event.description || ''
-  }
-  showModal.value = true
-}
+    description: event.description || "",
+  };
+  showModal.value = true;
+};
 
 const closeModal = () => {
-  showModal.value = false
-  editingEvent.value = null
+  showModal.value = false;
+  editingEvent.value = null;
   eventForm.value = {
-    title: '',
+    title: "",
     date: Date.now(),
     time: Date.now(),
-    category: 'work',
-    color: '#18a058',
-    description: ''
-  }
-}
+    category: "work",
+    color: "#18a058",
+    description: "",
+  };
+};
 
 const saveEvent = async () => {
-  if (!formRef.value) return
-  
+  if (!formRef.value) return;
+
   try {
-    await formRef.value.validate()
-    
+    await formRef.value.validate();
+
     const eventData = {
       ...eventForm.value,
       date: new Date(eventForm.value.date!),
-      time: new Date(eventForm.value.time!).toLocaleTimeString('en-US', { 
-        hour: '2-digit', 
-        minute: '2-digit',
-        hour12: false 
-      })
-    }
-    
+      time: new Date(eventForm.value.time!).toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      }),
+    };
+
     if (editingEvent.value) {
       // Update existing event
-      const index = events.value.findIndex(e => e.id === editingEvent.value!.id)
+      const index = events.value.findIndex(
+        (e) => e.id === editingEvent.value!.id
+      );
       if (index !== -1) {
-        events.value[index] = { ...eventData, id: editingEvent.value!.id }
+        events.value[index] = { ...eventData, id: editingEvent.value!.id };
       }
-      message.success('Event updated successfully')
+      message.success("Event updated successfully");
     } else {
       // Create new event
-      events.value.push({ ...eventData, id: Date.now() })
-      message.success('Event created successfully')
+      events.value.push({ ...eventData, id: Date.now() });
+      message.success("Event created successfully");
     }
-    
-    closeModal()
+
+    closeModal();
   } catch (error) {
-    console.error('Form validation failed:', error)
+    console.error("Form validation failed:", error);
   }
-}
+};
 
 const deleteEvent = (eventId: number) => {
-  const index = events.value.findIndex(e => e.id === eventId)
+  const index = events.value.findIndex((e) => e.id === eventId);
   if (index !== -1) {
-    events.value.splice(index, 1)
-    message.success('Event deleted successfully')
+    events.value.splice(index, 1);
+    message.success("Event deleted successfully");
   }
-}
+};
 
 const exportEvents = () => {
-  const data = JSON.stringify(events.value, null, 2)
-  const blob = new Blob([data], { type: 'application/json' })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = `events-${new Date().toISOString().split('T')[0]}.json`
-  a.click()
-  URL.revokeObjectURL(url)
-  message.success('Events exported successfully')
-}
+  const data = JSON.stringify(events.value, null, 2);
+  const blob = new Blob([data], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `events-${new Date().toISOString().split("T")[0]}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  message.success("Events exported successfully");
+};
 
 const clearAllEvents = () => {
-  events.value = []
-  message.success('All events cleared')
-}
+  events.value = [];
+  message.success("All events cleared");
+};
 
 onMounted(() => {
-  activeDate.value = Date.now()
-})
+  activeDate.value = Date.now();
+});
 </script>
 
 <style scoped>
-/* CSS Variables for theme */
-:root {
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-card: #ffffff;
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --text-muted: #94a3b8;
-  --border-color: #e2e8f0;
-  --shadow-light: rgba(0, 0, 0, 0.1);
-  --shadow-dark: rgba(0, 0, 0, 0.3);
-}
-
-/* Dark theme variables */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-primary: #0f172a;
-    --bg-secondary: #1e293b;
-    --bg-card: #1e293b;
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-muted: #cbd5e1;
-    --border-color: #334155;
-    --shadow-light: rgba(0, 0, 0, 0.3);
-    --shadow-dark: rgba(0, 0, 0, 0.5);
-  }
-}
-
 .calendar-app {
   min-height: 100vh;
   padding: 20px;
-  background: var(--bg-primary);
   color: var(--text-primary);
 }
 
@@ -780,7 +784,6 @@ onMounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: 24px 32px;
-  background: var(--bg-secondary);
   backdrop-filter: blur(10px);
   border-radius: 16px;
   margin-bottom: 24px;
@@ -819,7 +822,7 @@ onMounted(() => {
 .sidebar-card {
   border-radius: 16px;
   box-shadow: 0 8px 32px var(--shadow-light);
-  background: var(--bg-card);
+  /* background: var(--bg-card); */
 }
 
 .view-switcher h4,
@@ -839,7 +842,11 @@ onMounted(() => {
 }
 
 .stat-card {
-  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--border-color) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--bg-secondary) 0%,
+    var(--border-color) 100%
+  );
   padding: 16px;
   border-radius: 12px;
   text-align: center;
@@ -876,7 +883,7 @@ onMounted(() => {
   border-radius: 16px;
   box-shadow: 0 8px 32px var(--shadow-light);
   height: fit-content;
-  background: var(--bg-card);
+  /* background: var(--bg-card); */
 }
 
 .view-header {
@@ -911,6 +918,11 @@ onMounted(() => {
   font-size: 14px;
   color: var(--text-primary);
   margin-bottom: auto;
+  transition: color 0.2s ease;
+}
+
+.calendar-day-content:hover .day-number {
+  color: var(--primary-color);
 }
 
 .event-indicators {
@@ -927,17 +939,23 @@ onMounted(() => {
   border-radius: 50%;
   flex-shrink: 0;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .event-dot:hover {
   transform: scale(1.5);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .more-events {
   font-size: 8px;
   color: var(--text-secondary);
   margin-left: 2px;
+  transition: color 0.2s ease;
+}
+
+.calendar-day-content:hover .more-events {
+  color: var(--primary-color);
 }
 
 /* Week View */
@@ -964,12 +982,22 @@ onMounted(() => {
   font-size: 12px;
   color: var(--text-secondary);
   border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s ease;
+}
+
+.time-slot:hover {
+  background-color: var(--bg-tertiary);
 }
 
 .day-column {
   background: var(--bg-card);
   border-right: 1px solid var(--border-color);
   position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.day-column:hover {
+  background-color: var(--bg-secondary);
 }
 
 .day-header {
@@ -994,22 +1022,25 @@ onMounted(() => {
 .day-events {
   position: relative;
   min-height: 440px;
-  padding: 4px;
+  padding: 8px;
 }
 
 .week-event {
   padding: 4px 8px;
-  margin: 2px 0;
+  margin-bottom: 4px;
   border-radius: 6px;
-  color: var(--text-primary);
-  font-size: 11px;
+  font-size: 12px;
+  color: white;
   cursor: pointer;
-  transition: transform 0.2s ease;
-  background: #475569;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .week-event:hover {
-  transform: scale(1.02);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Day View */
@@ -1025,6 +1056,11 @@ onMounted(() => {
   display: flex;
   border-bottom: 1px solid var(--border-color);
   min-height: 60px;
+  transition: background-color 0.2s ease;
+}
+
+.hour-row:hover {
+  background-color: var(--bg-secondary);
 }
 
 .hour-row:last-child {
@@ -1041,6 +1077,11 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.hour-label:hover {
+  background-color: var(--bg-tertiary);
 }
 
 .hour-content {
@@ -1057,6 +1098,13 @@ onMounted(() => {
   border-radius: 6px;
   background: #475569;
   color: var(--text-primary);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.day-event:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* List View */
@@ -1065,6 +1113,7 @@ onMounted(() => {
   overflow-y: auto;
   padding: 16px;
   background: var(--bg-card);
+  border-radius: 12px;
 }
 
 .event-item {
@@ -1143,6 +1192,8 @@ onMounted(() => {
 /* Modal */
 .event-modal {
   border-radius: 16px;
+  background: var(--bg-card);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* Responsive Design */
@@ -1151,11 +1202,11 @@ onMounted(() => {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .calendar-sidebar {
     order: 2;
   }
-  
+
   .calendar-content {
     order: 1;
   }
@@ -1165,35 +1216,35 @@ onMounted(() => {
   .calendar-app {
     padding: 12px;
   }
-  
+
   .calendar-header {
     flex-direction: column;
     gap: 16px;
     align-items: flex-start;
     padding: 20px;
   }
-  
+
   .header-left h1 {
     font-size: 24px;
   }
-  
+
   .calendar-main {
     gap: 16px;
   }
-  
+
   .week-grid {
     grid-template-columns: 60px repeat(7, 1fr);
   }
-  
+
   .time-slot {
     font-size: 10px;
   }
-  
+
   .hour-label {
     width: 60px;
     font-size: 12px;
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr;
   }
