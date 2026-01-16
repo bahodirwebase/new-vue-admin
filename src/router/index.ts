@@ -131,91 +131,91 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'components/ui-elements/alert',
         name: 'Alert',
-        component: () => import('@/views/ui-elements/components/Alert.vue'),
+        component : () => import('@/views/components/ui-elements/Alert.vue'),
         meta: { title: 'Alert', icon: 'alert-circle-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
         path: 'components/ui-elements/avatar',
         name: 'Avatar',
-        component: () => import('@/views/ui-elements/components/Avatar.vue'),
+        component : () => import('@/views/components/ui-elements/Avatar.vue'),
         meta: { title: 'Avatar', icon: 'person-circle-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
         path: 'components/ui-elements/badge',
         name: 'Badge',
-        component: () => import('@/views/ui-elements/components/Badge.vue'),
+        component: () => import('@/views/components/ui-elements/Badge.vue'),
         meta: { title: 'Badge', icon: 'ribbon-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
         path: 'components/ui-elements/button',
         name: 'Button',
-        component: () => import('@/views/ui-elements/components/Button.vue'),
+        component: () => import('@/views/components/ui-elements/Button.vue'),
         meta: { title: 'Button', icon: 'radio-button-on-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
         path: 'components/ui-elements/modal',
         name: 'Modal',
-        component: () => import('@/views/ui-elements/components/Modal.vue'),
+        component: () => import('@/views/components/ui-elements/Modal.vue'),
         meta: { title: 'Modal', icon: 'browsers-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
         path: 'components/ui-elements/list',
         name: 'List',
-        component: () => import('@/views/ui-elements/components/List.vue'),
+        component: () => import('@/views/components/ui-elements/List.vue'),
         meta: { title: 'List', icon: 'list-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
         path: 'components/ui-elements/menu',
         name: 'Menu',
-        component: () => import('@/views/ui-elements/components/Menu.vue'),
+        component: () => import('@/views/components/ui-elements/Menu.vue'),
         meta: { title: 'Menu', icon: 'menu-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
         path: 'components/ui-elements/pagination',
         name: 'Pagination',
-        component: () => import('@/views/ui-elements/components/Pagination.vue'),
+        component: () => import('@/views/components/ui-elements/Pagination.vue'),
         meta: { title: 'Pagination', icon: 'ellipsis-horizontal-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
         path: 'components/ui-elements/tabs',
         name: 'Tabs',
-        component: () => import('@/views/ui-elements/components/Tabs.vue'),
+        component: () => import('@/views/components/ui-elements/Tabs.vue'),
         meta: { title: 'Tabs', icon: 'albums-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
         path: 'components/ui-elements/timeline',
         name: 'Timeline',
-        component: () => import('@/views/ui-elements/components/Timeline.vue'),
+        component: () => import('@/views/components/ui-elements/Timeline.vue'),
         meta: { title: 'Timeline', icon: 'time-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
         path: 'components/ui-elements/tooltip',
         name: 'Tooltip',
-        component: () => import('@/views/ui-elements/components/Tooltip.vue'),
+        component: () => import('@/views/components/ui-elements/Tooltip.vue'),
         meta: { title: 'Tooltip', icon: 'information-circle-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
         path: 'components/ui-elements/carousel',
         name: 'Carousel',
-        component: () => import('@/views/ui-elements/components/Carousel.vue'),
+        component: () => import('@/views/components/ui-elements/Carousel.vue'),
         meta: { title: 'Carousel', icon: 'albums-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
         path: 'components/ui-elements/collapse',
         name: 'Collapse',
-        component: () => import('@/views/ui-elements/components/Collapse.vue'),
+        component: () => import('@/views/components/ui-elements/Collapse.vue'),
         meta: { title: 'Collapse', icon: 'remove-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
         path: 'components/ui-elements/tag',
         name: 'Tag',
-        component: () => import('@/views/ui-elements/components/Tag.vue'),
+        component: () => import('@/views/components/ui-elements/Tag.vue'),
         meta: { title: 'Tag', icon: 'ribbon-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
         path: 'components/ui-elements/float-button',
         name: 'FloatButton',
-        component: () => import('@/views/ui-elements/components/FloatButton.vue'),
+        component: () => import('@/views/components/ui-elements/FloatButton.vue'),
         meta: { title: 'Float Button', icon: 'add-circle-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
@@ -257,49 +257,49 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'components/typography',
         name: 'Typography',
-        component: () => import('@/views/ui-elements/Typography.vue'),
+        component: () => import('@/views/components/Typography.vue'),
         meta: { title: 'Typography', icon: 'text-outline', group: 'Components' }
       },
       {
         path: 'components/icons',
         name: 'Icons',
-        component: () => import('@/views/ui-elements/Icons.vue'),
+        component: () => import('@/views/components/Icons.vue'),
         meta: { title: 'Icons', icon: 'apps-outline', group: 'Components' }
       },
       {
         path: 'components/ui-elements/extra/divider',
         name: 'Divider',
-        component: () => import('@/views/ui-elements/extra/Divider.vue'),
+        component: () => import('@/views/components/extra/Divider.vue'),
         meta: { title: 'Divider', icon: 'remove-outline', group: 'Components', subgroup: 'Extra' }
       },
       {
         path: 'components/ui-elements/extra/ellipsis',
         name: 'Ellipsis',
-        component: () => import('@/views/ui-elements/extra/Ellipsis.vue'),
+        component: () => import('@/views/components/extra/Ellipsis.vue'),
         meta: { title: 'Ellipsis', icon: 'ellipsis-horizontal-outline', group: 'Components', subgroup: 'Extra' }
       },
       {
         path: 'components/ui-elements/extra/gradient-text',
         name: 'GradientText',
-        component: () => import('@/views/ui-elements/extra/GradientText.vue'),
+        component: () => import('@/views/components/extra/GradientText.vue'),
         meta: { title: 'Gradient Text', icon: 'color-palette-outline', group: 'Components', subgroup: 'Extra' }
       },
       {
         path: 'components/ui-elements/extra/page-header',
         name: 'PageHeader',
-        component: () => import('@/views/ui-elements/extra/PageHeader.vue'),
+        component: () => import('@/views/components/extra/PageHeader.vue'),
         meta: { title: 'Page Header', icon: 'document-text-outline', group: 'Components', subgroup: 'Extra' }
       },
       {
         path: 'components/ui-elements/extra/watermark',
         name: 'Watermark',
-        component: () => import('@/views/ui-elements/extra/Watermark.vue'),
+        component: () => import('@/views/components/extra/Watermark.vue'),
         meta: { title: 'Watermark', icon: 'water-outline', group: 'Components', subgroup: 'Extra' }
       },
       {
         path: 'components/ui-elements/extra/countdown',
         name: 'CountDown',
-        component: () => import('@/views/ui-elements/extra/CountDown.vue'),
+        component: () => import('@/views/components/extra/CountDown.vue'),
         meta: { title: 'Countdown', icon: 'timer-outline', group: 'Components', subgroup: 'Extra' }
       },
       {
