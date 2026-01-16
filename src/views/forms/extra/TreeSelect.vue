@@ -283,10 +283,6 @@ const deleteFiles = () => {
   padding: 0;
 }
 
-.n-card {
-  margin-bottom: 12px;
-}
-
 .n-p {
   margin: 0;
   color: var(--text-secondary);

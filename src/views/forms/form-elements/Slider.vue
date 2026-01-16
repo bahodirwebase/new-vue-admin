@@ -203,7 +203,4 @@ const railStyle = ({
 .slider-demo {
   max-width: 100%;
 }
-.n-card {
-  margin-bottom: 12px;
-}
 </style>

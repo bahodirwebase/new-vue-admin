@@ -1481,9 +1481,6 @@ const validateMediumStep = () => {
   padding: 0;
 }
 
-.n-card {
-  margin-bottom: 16px;
-}
 
 .wizard-content {
   margin: 24px 0;

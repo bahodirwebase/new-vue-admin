@@ -234,13 +234,6 @@ const handlePageSizeChange = (size: number) => {
 </script>
 
 <style scoped>
-.ui-page {
-  max-width: 100%;
-}
-
-.page-header {
-  margin-bottom: 8px;
-}
 
 .page-title {
   font-family: var(--font-secondary);
@@ -260,7 +253,5 @@ const handlePageSizeChange = (size: number) => {
   font-size: 14px;
 }
 
-.n-card {
-  margin-bottom: 12px;
-}
+
 </style>

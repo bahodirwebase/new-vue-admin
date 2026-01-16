@@ -228,13 +228,6 @@ import { NSpace, NCard } from 'naive-ui'
 </script>
 
 <style scoped>
-.ui-page {
-  max-width: 100%;
-}
-
-.page-header {
-  margin-bottom: 8px;
-}
 
 .page-title {
   font-family: var(--font-secondary);
@@ -257,9 +250,7 @@ import { NSpace, NCard } from 'naive-ui'
 .animated-gradient {
   animation: gradient-shift 3s ease infinite;
 }
-.n-card{
-  margin-bottom: 12px;
-}
+
 
 @keyframes gradient-shift {
 

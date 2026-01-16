@@ -157,13 +157,6 @@ const handleClose = (tag: string) => {
 </script>
 
 <style scoped>
-.ui-page {
-  max-width: 100%;
-}
-
-.page-header {
-  margin-bottom: 8px;
-}
 
 .page-title {
   font-family: var(--font-secondary);
@@ -199,7 +192,4 @@ const handleClose = (tag: string) => {
   font-weight: 500;
 }
 
-.n-card {
-  margin-bottom: 12px;
-}
 </style>

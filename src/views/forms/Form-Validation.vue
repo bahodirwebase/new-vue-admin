@@ -512,9 +512,6 @@ const removeField = (index: number) => {
   padding: 0;
 }
 
-.n-card {
-  margin-bottom: 16px;
-}
 
 .n-code {
   margin-top: 8px;

@@ -137,3 +137,12 @@
 .gap-3 { gap: 12px; }
 .gap-4 { gap: 16px; }
 .gap-5 { gap: 20px; }
+
+
+.ui-page {
+  max-width: 100%;
+}
+
+.page-header {
+  margin-bottom: 8px;
+}

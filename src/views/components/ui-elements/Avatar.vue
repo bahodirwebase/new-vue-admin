@@ -167,13 +167,6 @@ const avatarOptions: AvatarOption[] = [
 </script>
 
 <style scoped>
-.ui-page {
-  max-width: 100%;
-}
-
-.page-header {
-  margin-bottom: 8px;
-}
 
 .page-title {
   font-family: var(--font-secondary);
@@ -188,7 +181,5 @@ const avatarOptions: AvatarOption[] = [
   color: var(--text-secondary);
 }
 
-.n-card {
-  margin-bottom: 12px;
-}
+
 </style>

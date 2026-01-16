@@ -116,13 +116,6 @@ import { CheckmarkCircle } from '@vicons/ionicons5'
 </script>
 
 <style scoped>
-.ui-page {
-  max-width: 100%;
-}
-
-.page-header {
-  margin-bottom: 8px;
-}
 
 .page-title {
   font-family: var(--font-secondary);
@@ -136,7 +129,5 @@ import { CheckmarkCircle } from '@vicons/ionicons5'
   font-size: 16px;
   color: var(--text-secondary);
 }
-.n-card {
-  margin-bottom: 12px;
-}
+
 </style>

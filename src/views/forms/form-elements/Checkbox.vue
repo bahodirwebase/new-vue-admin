@@ -186,10 +186,6 @@ const updateTodo = (todo: any) => {
   padding: 0;
 }
 
-.n-card {
-  margin-bottom: 16px;
-}
-
 .n-p {
   margin: 0;
   color: var(--text-secondary);

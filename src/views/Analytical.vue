@@ -74,10 +74,6 @@ import PieChart from '@/components/charts/PieChart.vue'
   max-width: 100%;
 }
 
-.page-header {
-  margin-bottom: 8px;
-}
-
 .page-title {
   font-family: var(--font-secondary);
   font-size: 32px;
