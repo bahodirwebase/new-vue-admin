@@ -156,27 +156,7 @@ const themePreviewStyle = computed(() => ({
 </script>
 
 <style scoped>
-.color-picker-demo {
-  padding: 0;
-}
-
-.n-card {
-  margin-bottom: 12px;
-}
-
-.n-p {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: 14px;
-}
-
-.theme-customizer {
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 16px;
-  background: var(--bg-secondary);
-  margin-bottom: 16px;
-}
+/* Component-specific styles are now in common.css */
 
 .theme-preview {
   text-align: center;

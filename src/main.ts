@@ -5,6 +5,7 @@ import router from './router'
 import naive from 'naive-ui'
 import './styles/main.css'
 import './styles/accessibility.css'
+import './styles/common.css'
 
 const app = createApp(App)
 const pinia = createPinia()

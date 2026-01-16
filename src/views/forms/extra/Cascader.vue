@@ -216,17 +216,5 @@ const categoryOptions = [
 </script>
 
 <style scoped>
-.cascader-demo {
-  padding: 0;
-}
-
-.n-card {
-  margin-bottom: 12px;
-}
-
-.n-p {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: 14px;
-}
+/* Component-specific styles are now in common.css */
 </style>

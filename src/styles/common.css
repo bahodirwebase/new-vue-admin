@@ -1,0 +1,139 @@
+/* Common styles for all demo pages */
+
+/* Demo page containers */
+.demo-page,
+.ui-page,
+.radio-demo,
+.select-demo,
+.slider-demo,
+.switch-demo,
+.upload-demo,
+.cascader-demo,
+.color-picker-demo,
+.dynamic-input-demo,
+.dynamic-tags-demo,
+.input-number-demo,
+.input-otp-demo,
+.mention-demo,
+.rate-demo,
+.transfer-demo,
+.tree-select-demo {
+  padding: 0;
+}
+
+/* Card styling for demo pages */
+.n-card {
+  margin-bottom: 12px;
+}
+
+/* Text paragraph styling */
+.n-p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* Grid layout common styles */
+.n-grid {
+  width: 100%;
+}
+
+.n-gi {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Form demo specific styles */
+.form-elements-demo {
+  padding: 0;
+}
+
+/* Component specific demo styles */
+.checkbox-demo,
+.date-picker-demo,
+.input-demo {
+  padding: 0;
+}
+
+/* Real world example containers */
+.product-config,
+.team-form,
+.project-tags,
+.two-factor,
+.comment-system,
+.product-review,
+.team-assignment,
+.file-explorer {
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .n-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Animation utilities */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Common spacing utilities */
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 4px; }
+.mb-2 { margin-bottom: 8px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-5 { margin-bottom: 20px; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 4px; }
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 12px; }
+.mt-4 { margin-top: 16px; }
+.mt-5 { margin-top: 20px; }
+
+/* Text utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary { color: var(--text-tertiary); }
+
+/* Display utilities */
+.d-flex { display: flex; }
+.d-block { display: block; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-none { display: none; }
+
+/* Flex utilities */
+.flex-column { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.align-center { align-items: center; }
+.align-start { align-items: flex-start; }
+.align-end { align-items: flex-end; }
+
+/* Gap utilities */
+.gap-1 { gap: 4px; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 12px; }
+.gap-4 { gap: 16px; }
+.gap-5 { gap: 20px; }
