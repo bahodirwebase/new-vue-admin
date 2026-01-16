@@ -1,120 +1,91 @@
 <template>
   <div class="tree-select-demo">
     <n-space vertical :size="24">
-      <n-card title="Basic Tree Select">
-        <n-space vertical :size="16">
-          <n-tree-select
-            v-model:value="basicValue"
-            :options="basicOptions"
-            placeholder="Select option"
-          />
-          <n-p>Selected: {{ JSON.stringify(basicValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Multiple Selection">
-        <n-space vertical :size="16">
-          <n-tree-select
-            v-model:value="multipleValue"
-            :options="basicOptions"
-            multiple
-            placeholder="Select multiple options"
-          />
-          <n-p>Selected: {{ JSON.stringify(multipleValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Checkable Tree Select">
-        <n-space vertical :size="16">
-          <n-tree-select
-            v-model:value="checkableValue"
-            :options="basicOptions"
-            checkable
-            placeholder="Checkable selection"
-          />
-          <n-p>Selected: {{ JSON.stringify(checkableValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Tree Select with Search">
-        <n-space vertical :size="16">
-          <n-tree-select
-            v-model:value="searchValue"
-            :options="basicOptions"
-            filterable
-            placeholder="Search and select"
-          />
-          <n-p>Selected: {{ JSON.stringify(searchValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Tree Select with Custom Render">
-        <n-space vertical :size="16">
-          <n-tree-select
-            v-model:value="customValue"
-            :options="customOptions"
-            :render-option="renderCustomOption"
-            placeholder="Custom rendered options"
-          />
-          <n-p>Selected: {{ JSON.stringify(customValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Tree Select with Expand All">
-        <n-space vertical :size="16">
-          <n-tree-select
-            v-model:value="expandValue"
-            :options="basicOptions"
-            :default-expand-all="true"
-            placeholder="All expanded by default"
-          />
-          <n-p>Selected: {{ JSON.stringify(expandValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Tree Select Sizes">
-        <n-space vertical :size="16">
-          <n-space>
-            <n-tree-select v-model:value="smallValue" size="small" placeholder="Small" />
-            <n-tree-select v-model:value="mediumValue" size="medium" placeholder="Medium" />
-            <n-tree-select v-model:value="largeValue" size="large" placeholder="Large" />
-          </n-space>
-        </n-space>
-      </n-card>
-
-      <n-card title="Real World Example - File Explorer">
-        <n-space vertical :size="16">
-          <div class="file-explorer">
-            <n-space vertical :size="12">
-              <span>Select files or folders:</span>
-              <n-tree-select
-                v-model:value="selectedFiles"
-                :options="fileOptions"
-                :render-option="renderFileOption"
-                checkable
-                filterable
-                placeholder="Choose files..."
-              />
+      <n-grid :cols="2" :x-gap="12">
+        <n-gi>
+          <n-card title="Basic Tree Select">
+            <n-space vertical :size="16">
+              <n-tree-select v-model:value="basicValue" :options="basicOptions" placeholder="Select option" />
+              <n-p>Selected: {{ JSON.stringify(basicValue) }}</n-p>
             </n-space>
-            <n-input
-              v-model:value="destination"
-              placeholder="Destination path"
-              style="margin-top: 12px;"
-            />
-            <n-space :size="8" style="margin-top: 12px;">
-              <n-button type="primary" @click="copyFiles">
-                Copy Files
-              </n-button>
-              <n-button @click="moveFiles">
-                Move Files
-              </n-button>
-              <n-button @click="deleteFiles">
-                Delete Files
-              </n-button>
+          </n-card>
+
+          <n-card title="Multiple Selection">
+            <n-space vertical :size="16">
+              <n-tree-select v-model:value="multipleValue" :options="basicOptions" multiple
+                placeholder="Select multiple options" />
+              <n-p>Selected: {{ JSON.stringify(multipleValue) }}</n-p>
             </n-space>
-          </div>
-        </n-space>
-      </n-card>
+          </n-card>
+
+          <n-card title="Checkable Tree Select">
+            <n-space vertical :size="16">
+              <n-tree-select v-model:value="checkableValue" :options="basicOptions" checkable
+                placeholder="Checkable selection" />
+              <n-p>Selected: {{ JSON.stringify(checkableValue) }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="Tree Select with Search">
+            <n-space vertical :size="16">
+              <n-tree-select v-model:value="searchValue" :options="basicOptions" filterable
+                placeholder="Search and select" />
+              <n-p>Selected: {{ JSON.stringify(searchValue) }}</n-p>
+            </n-space>
+          </n-card>
+        </n-gi>
+        <n-gi>
+          <n-card title="Tree Select with Custom Render">
+            <n-space vertical :size="16">
+              <n-tree-select v-model:value="customValue" :options="customOptions" :render-option="renderCustomOption"
+                placeholder="Custom rendered options" />
+              <n-p>Selected: {{ JSON.stringify(customValue) }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="Tree Select with Expand All">
+            <n-space vertical :size="16">
+              <n-tree-select v-model:value="expandValue" :options="basicOptions" :default-expand-all="true"
+                placeholder="All expanded by default" />
+              <n-p>Selected: {{ JSON.stringify(expandValue) }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="Tree Select Sizes">
+            <n-space vertical :size="16">
+              <n-space>
+                <n-tree-select v-model:value="smallValue" size="small" placeholder="Small" />
+                <n-tree-select v-model:value="mediumValue" size="medium" placeholder="Medium" />
+                <n-tree-select v-model:value="largeValue" size="large" placeholder="Large" />
+              </n-space>
+            </n-space>
+          </n-card>
+
+          <n-card title="Real World Example - File Explorer">
+            <n-space vertical :size="16">
+              <div class="file-explorer">
+                <n-space vertical :size="12">
+                  <span>Select files or folders:</span>
+                  <n-tree-select v-model:value="selectedFiles" :options="fileOptions" :render-option="renderFileOption"
+                    checkable filterable placeholder="Choose files..." />
+                </n-space>
+                <n-input v-model:value="destination" placeholder="Destination path" style="margin-top: 12px;" />
+                <n-space :size="8" style="margin-top: 12px;">
+                  <n-button type="primary" @click="copyFiles">
+                    Copy Files
+                  </n-button>
+                  <n-button @click="moveFiles">
+                    Move Files
+                  </n-button>
+                  <n-button @click="deleteFiles">
+                    Delete Files
+                  </n-button>
+                </n-space>
+              </div>
+            </n-space>
+          </n-card>
+        </n-gi>
+      </n-grid>
     </n-space>
   </div>
 </template>
@@ -213,7 +184,7 @@ const customOptions = [
 
 const renderCustomOption = ({ option }: any) => {
   return h('div', { style: 'display: flex; align-items: center; gap: 8px;' }, [
-    option.type && h(NTag, { 
+    option.type && h(NTag, {
       type: option.type === 'framework' ? 'info' : option.type === 'category' ? 'warning' : 'success',
       size: 'small'
     }, { default: () => option.type }),
@@ -275,7 +246,7 @@ const renderFileOption = ({ option }: any) => {
   return h('div', { style: 'display: flex; align-items: center; gap: 8px;' }, [
     h('span', { style: 'font-size: 16px;' }, option.label.split(' ')[0]),
     h('span', option.label.split(' ')[1]),
-    option.size && h(NTag, { 
+    option.size && h(NTag, {
       type: 'info',
       size: 'small'
     }, { default: () => option.size })
@@ -313,7 +284,7 @@ const deleteFiles = () => {
 }
 
 .n-card {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .n-p {

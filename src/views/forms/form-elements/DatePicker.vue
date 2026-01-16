@@ -1,71 +1,47 @@
 <template>
   <div class="datepicker-demo">
     <n-space vertical :size="24">
-      <n-card title="Basic DatePicker">
-        <n-space vertical :size="16">
-          <n-date-picker
-            v-model:value="basicValue"
-            type="date"
-            placeholder="Select date"
-          />
-          <n-p>Selected date: {{ formatDate(basicValue) }}</n-p>
-        </n-space>
-      </n-card>
+      <n-grid x-gap="12" :cols="2">
+        <n-gi>
+          <n-card title="Basic DatePicker">
+            <n-space vertical :size="16">
+              <n-date-picker v-model:value="basicValue" type="date" placeholder="Select date" />
+              <n-p>Selected date: {{ formatDate(basicValue) }}</n-p>
+            </n-space>
+          </n-card>
+          <n-card title="Date Range">
+            <n-space vertical :size="16">
+              <n-date-picker v-model:value="rangeValue" type="daterange" placeholder="Select date range" />
+              <n-p>Range: {{ formatDateRange(rangeValue) }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Date Range">
-        <n-space vertical :size="16">
-          <n-date-picker
-            v-model:value="rangeValue"
-            type="daterange"
-            placeholder="Select date range"
-          />
-          <n-p>Range: {{ formatDateRange(rangeValue) }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="DateTime Picker">
+            <n-space vertical :size="16">
+              <n-date-picker v-model:value="datetimeValue" type="datetime" placeholder="Select date and time" />
+              <n-p>Selected datetime: {{ formatDateTime(datetimeValue) }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="DateTime Picker">
+          <n-card title="Custom Format">
+            <n-space vertical :size="16">
+              <n-date-picker v-model:value="formatValue" type="date" format="yyyy-MM-dd" placeholder="YYYY-MM-DD" />
+              <n-p>Formatted: {{ formatDate(formatValue) }}</n-p>
+            </n-space>
+          </n-card>
+          <n-card title="Disabled Dates">
         <n-space vertical :size="16">
-          <n-date-picker
-            v-model:value="datetimeValue"
-            type="datetime"
-            placeholder="Select date and time"
-          />
-          <n-p>Selected datetime: {{ formatDateTime(datetimeValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Custom Format">
-        <n-space vertical :size="16">
-          <n-date-picker
-            v-model:value="formatValue"
-            type="date"
-            format="yyyy-MM-dd"
-            placeholder="YYYY-MM-DD"
-          />
-          <n-p>Formatted: {{ formatDate(formatValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Disabled Dates">
-        <n-space vertical :size="16">
-          <n-date-picker
-            v-model:value="disabledValue"
-            type="date"
-            :disabled-date="disabledDate"
-            placeholder="Select date (weekends disabled)"
-          />
+          <n-date-picker v-model:value="disabledValue" type="date" :disabled-date="disabledDate"
+            placeholder="Select date (weekends disabled)" />
           <n-p>Selected date: {{ formatDate(disabledValue) }}</n-p>
         </n-space>
       </n-card>
-
-      <n-card title="Shortcuts">
+        </n-gi>
+        <n-gi>
+          <n-card title="Shortcuts">
         <n-space vertical :size="16">
-          <n-date-picker
-            v-model:value="shortcutsValue"
-            type="date"
-            placeholder="Select date with shortcuts"
-            :shortcuts="shortcuts"
-          />
+          <n-date-picker v-model:value="shortcutsValue" type="date" placeholder="Select date with shortcuts"
+            :shortcuts="shortcuts" />
           <n-p>Selected date: {{ formatDate(shortcutsValue) }}</n-p>
         </n-space>
       </n-card>
@@ -73,74 +49,36 @@
       <n-card title="Date Picker Sizes">
         <n-space vertical :size="16">
           <n-space>
-            <n-date-picker
-              v-model:value="smallValue"
-              size="small"
-              type="date"
-              placeholder="Small"
-            />
-            <n-date-picker
-              v-model:value="mediumValue"
-              size="medium"
-              type="date"
-              placeholder="Medium"
-            />
-            <n-date-picker
-              v-model:value="largeValue"
-              size="large"
-              type="date"
-              placeholder="Large"
-            />
+            <n-date-picker v-model:value="smallValue" size="small" type="date" placeholder="Small" />
+            <n-date-picker v-model:value="mediumValue" size="medium" type="date" placeholder="Medium" />
+            <n-date-picker v-model:value="largeValue" size="large" type="date" placeholder="Large" />
           </n-space>
         </n-space>
       </n-card>
 
       <n-card title="Date Picker Events">
         <n-space vertical :size="16">
-          <n-date-picker
-            v-model:value="eventValue"
-            type="date"
-            placeholder="Select date"
-            @update:value="handleDateChange"
-            @panel-visible-change="handlePanelVisible"
-          />
+          <n-date-picker v-model:value="eventValue" type="date" placeholder="Select date"
+            @update:value="handleDateChange" @panel-visible-change="handlePanelVisible" />
           <n-p>Last event: {{ lastEvent || 'No events yet' }}</n-p>
         </n-space>
       </n-card>
 
       <n-card title="Real World Example - Event Registration">
         <n-space vertical :size="16">
-          <n-input
-            v-model:value="eventName"
-            placeholder="Event name"
-            style="margin-bottom: 12px;"
-          />
-          <n-date-picker
-            v-model:value="eventDate"
-            type="datetime"
-            placeholder="Event date and time"
-            style="margin-bottom: 12px;"
-          />
-          <n-date-picker
-            v-model:value="registrationDeadline"
-            type="date"
-            placeholder="Registration deadline"
-            style="margin-bottom: 12px;"
-          />
-          <n-input-number
-            v-model:value="maxParticipants"
-            placeholder="Max participants"
-            style="margin-bottom: 12px;"
-          />
-          <n-button
-            type="primary"
-            :disabled="isRegistrationDisabled"
-            @click="registerEvent"
-          >
+          <n-input v-model:value="eventName" placeholder="Event name" style="margin-bottom: 12px;" />
+          <n-date-picker v-model:value="eventDate" type="datetime" placeholder="Event date and time"
+            style="margin-bottom: 12px;" />
+          <n-date-picker v-model:value="registrationDeadline" type="date" placeholder="Registration deadline"
+            style="margin-bottom: 12px;" />
+          <n-input-number v-model:value="maxParticipants" placeholder="Max participants" style="margin-bottom: 12px;" />
+          <n-button type="primary" :disabled="isRegistrationDisabled" @click="registerEvent">
             Register Event
           </n-button>
         </n-space>
       </n-card>
+        </n-gi>
+      </n-grid> 
     </n-space>
   </div>
 </template>
@@ -255,5 +193,8 @@ const formatDateTime = (timestamp: number | null) => {
   margin: 0;
   color: var(--text-secondary);
   font-size: 14px;
+}
+.n-card{
+  margin-bottom: 12px;
 }
 </style>

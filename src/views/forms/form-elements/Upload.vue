@@ -1,175 +1,122 @@
 <template>
   <div class="upload-demo">
     <n-space vertical :size="24">
-      <n-card title="Basic Upload">
-        <n-space vertical :size="16">
-          <n-upload
-            v-model:file-list="basicFileList"
-            action="/api/upload"
-            :default-upload="false"
-          >
-            <n-button>Click to Upload</n-button>
-          </n-upload>
-          <n-p>Files: {{ basicFileList.length }}</n-p>
-        </n-space>
-      </n-card>
+      <n-grid :cols="2" :x-gap="12">
+        <n-gi>
+          <n-card title="Basic Upload">
+            <n-space vertical :size="16">
+              <n-upload v-model:file-list="basicFileList" action="/api/upload" :default-upload="false">
+                <n-button>Click to Upload</n-button>
+              </n-upload>
+              <n-p>Files: {{ basicFileList.length }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Multiple Files">
-        <n-space vertical :size="16">
-          <n-upload
-            v-model:file-list="multipleFileList"
-            action="/api/upload"
-            multiple
-            :default-upload="false"
-          >
-            <n-button>Upload Multiple Files</n-button>
-          </n-upload>
-          <n-p>Files: {{ multipleFileList.length }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Multiple Files">
+            <n-space vertical :size="16">
+              <n-upload v-model:file-list="multipleFileList" action="/api/upload" multiple :default-upload="false">
+                <n-button>Upload Multiple Files</n-button>
+              </n-upload>
+              <n-p>Files: {{ multipleFileList.length }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Drag and Drop">
-        <n-space vertical :size="16">
-          <n-upload
-            v-model:file-list="dragFileList"
-            action="/api/upload"
-            directory-dnd
-            :default-upload="false"
-          >
-            <n-upload-dragger>
-              <div style="margin-bottom: 12px">
-                <n-icon size="48" :depth="3">
-                  <CloudUploadOutline />
-                </n-icon>
+          <n-card title="Drag and Drop">
+            <n-space vertical :size="16">
+              <n-upload v-model:file-list="dragFileList" action="/api/upload" directory-dnd :default-upload="false">
+                <n-upload-dragger>
+                  <div style="margin-bottom: 12px">
+                    <n-icon size="48" :depth="3">
+                      <CloudUploadOutline />
+                    </n-icon>
+                  </div>
+                  <n-text style="font-size: 16px">
+                    Click or drag files to this area to upload
+                  </n-text>
+                  <n-p depth="3" style="margin: 8px 0 0 0">
+                    Support for single or bulk upload. Strictly prohibit from uploading company data or other
+                    band files
+                  </n-p>
+                </n-upload-dragger>
+              </n-upload>
+              <n-p>Files: {{ dragFileList.length }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="File Types">
+            <n-space vertical :size="16">
+              <n-upload v-model:file-list="imageFileList" action="/api/upload" accept="image/*" :default-upload="false">
+                <n-button>Upload Images Only</n-button>
+              </n-upload>
+              <n-upload v-model:file-list="documentFileList" action="/api/upload" accept=".pdf,.doc,.docx"
+                :default-upload="false">
+                <n-button>Upload Documents</n-button>
+              </n-upload>
+            </n-space>
+          </n-card>
+
+          <n-card title="Size Limit">
+            <n-space vertical :size="16">
+              <n-upload v-model:file-list="sizeFileList" action="/api/upload" :max-size="1024 * 1024"
+                @exceed="handleSizeError" :default-upload="false">
+                <n-button>Upload (Max 1MB)</n-button>
+              </n-upload>
+              <n-p>Files: {{ sizeFileList.length }}</n-p>
+            </n-space>
+          </n-card>
+        </n-gi>
+        <n-gi>
+          <n-card title="Custom Action">
+            <n-space vertical :size="16">
+              <n-upload v-model:file-list="customFileList" :custom-request="customUpload" @change="handleCustomChange">
+                <n-button>Custom Upload</n-button>
+              </n-upload>
+              <n-p>Files: {{ customFileList.length }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="Before Upload">
+            <n-space vertical :size="16">
+              <n-upload v-model:file-list="beforeFileList" :before-upload="beforeUpload" @change="handleBeforeChange">
+                <n-button>Upload with Validation</n-button>
+              </n-upload>
+              <n-p>Files: {{ beforeFileList.length }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="Upload Progress">
+            <n-space vertical :size="16">
+              <n-upload v-model:file-list="progressFileList" :custom-request="uploadWithProgress"
+                @change="handleProgressChange">
+                <n-button>Upload with Progress</n-button>
+              </n-upload>
+              <div v-if="uploadProgress > 0" style="margin-top: 12px;">
+                <n-progress :percentage="uploadProgress" />
               </div>
-              <n-text style="font-size: 16px">
-                Click or drag files to this area to upload
-              </n-text>
-              <n-p depth="3" style="margin: 8px 0 0 0">
-                Support for single or bulk upload. Strictly prohibit from uploading company data or other
-                band files
-              </n-p>
-            </n-upload-dragger>
-          </n-upload>
-          <n-p>Files: {{ dragFileList.length }}</n-p>
-        </n-space>
-      </n-card>
+            </n-space>
+          </n-card>
 
-      <n-card title="File Types">
-        <n-space vertical :size="16">
-          <n-upload
-            v-model:file-list="imageFileList"
-            action="/api/upload"
-            accept="image/*"
-            :default-upload="false"
-          >
-            <n-button>Upload Images Only</n-button>
-          </n-upload>
-          <n-upload
-            v-model:file-list="documentFileList"
-            action="/api/upload"
-            accept=".pdf,.doc,.docx"
-            :default-upload="false"
-          >
-            <n-button>Upload Documents</n-button>
-          </n-upload>
-        </n-space>
-      </n-card>
-
-      <n-card title="Size Limit">
-        <n-space vertical :size="16">
-          <n-upload
-            v-model:file-list="sizeFileList"
-            action="/api/upload"
-            :max-size="1024 * 1024"
-            @exceed="handleSizeError"
-            :default-upload="false"
-          >
-            <n-button>Upload (Max 1MB)</n-button>
-          </n-upload>
-          <n-p>Files: {{ sizeFileList.length }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Custom Action">
-        <n-space vertical :size="16">
-          <n-upload
-            v-model:file-list="customFileList"
-            :custom-request="customUpload"
-            @change="handleCustomChange"
-          >
-            <n-button>Custom Upload</n-button>
-          </n-upload>
-          <n-p>Files: {{ customFileList.length }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Before Upload">
-        <n-space vertical :size="16">
-          <n-upload
-            v-model:file-list="beforeFileList"
-            :before-upload="beforeUpload"
-            @change="handleBeforeChange"
-          >
-            <n-button>Upload with Validation</n-button>
-          </n-upload>
-          <n-p>Files: {{ beforeFileList.length }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Upload Progress">
-        <n-space vertical :size="16">
-          <n-upload
-            v-model:file-list="progressFileList"
-            :custom-request="uploadWithProgress"
-            @change="handleProgressChange"
-          >
-            <n-button>Upload with Progress</n-button>
-          </n-upload>
-          <div v-if="uploadProgress > 0" style="margin-top: 12px;">
-            <n-progress :percentage="uploadProgress" />
-          </div>
-        </n-space>
-      </n-card>
-
-      <n-card title="Real World Example - Profile Picture">
-        <n-space vertical :size="16">
-          <div class="profile-upload">
-            <n-avatar 
-              v-if="profilePicture" 
-              :size="120" 
-              :src="profilePicture.url" 
-            />
-            <n-avatar v-else :size="120">
-              <n-icon size="48">
-                <PersonOutline />
-              </n-icon>
-            </n-avatar>
-            <n-upload
-              v-model:file-list="profileFileList"
-              :max="1"
-              accept="image/*"
-              :before-upload="beforeProfileUpload"
-              @change="handleProfileChange"
-              style="margin-top: 12px;"
-            >
-              <n-button type="primary">Change Profile Picture</n-button>
-            </n-upload>
-            <n-input
-              v-model:value="profileName"
-              placeholder="Profile name"
-              style="margin-top: 12px;"
-            />
-            <n-input
-              v-model:value="profileBio"
-              type="textarea"
-              placeholder="Bio"
-              :rows="3"
-              style="margin-top: 12px;"
-            />
-          </div>
-        </n-space>
-      </n-card>
+          <n-card title="Real World Example - Profile Picture">
+            <n-space vertical :size="16">
+              <div class="profile-upload">
+                <n-avatar v-if="profilePicture" :size="120" :src="profilePicture.url" />
+                <n-avatar v-else :size="120">
+                  <n-icon size="48">
+                    <PersonOutline />
+                  </n-icon>
+                </n-avatar>
+                <n-upload v-model:file-list="profileFileList" :max="1" accept="image/*"
+                  :before-upload="beforeProfileUpload" @change="handleProfileChange" style="margin-top: 12px;">
+                  <n-button type="primary">Change Profile Picture</n-button>
+                </n-upload>
+                <n-input v-model:value="profileName" placeholder="Profile name" style="margin-top: 12px;" />
+                <n-input v-model:value="profileBio" type="textarea" placeholder="Bio" :rows="3"
+                  style="margin-top: 12px;" />
+              </div>
+            </n-space>
+          </n-card>
+        </n-gi>
+      </n-grid>
     </n-space>
   </div>
 </template>
@@ -282,7 +229,7 @@ const handleProfileChange = (options: any) => {
 }
 
 .n-card {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .n-p {

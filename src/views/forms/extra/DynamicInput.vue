@@ -1,93 +1,64 @@
 <template>
   <div class="dynamic-input-demo">
     <n-space vertical :size="24">
-      <n-card title="Basic Dynamic Input">
-        <n-space vertical :size="16">
-          <n-dynamic-input
-            v-model:value="basicValue"
-            placeholder="Enter item"
-          />
-          <n-p>Items: {{ JSON.stringify(basicValue) }}</n-p>
-        </n-space>
-      </n-card>
+      <n-grid :x-gap="12" :cols="2">
+        <n-gi>
+          <n-card title="Basic Dynamic Input">
+            <n-space vertical :size="16">
+              <n-dynamic-input v-model:value="basicValue" placeholder="Enter item" />
+              <n-p>Items: {{ JSON.stringify(basicValue) }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Dynamic Input with Presets">
-        <n-space vertical :size="16">
-          <n-dynamic-input
-            v-model:value="presetValue"
-            placeholder="Enter email"
-            :preset="emailPreset"
-          />
-          <n-p>Emails: {{ JSON.stringify(presetValue) }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Dynamic Input with Presets">
+            <n-space vertical :size="16">
+              <n-dynamic-input v-model:value="presetValue" placeholder="Enter email" :preset="emailPreset" />
+              <n-p>Emails: {{ JSON.stringify(presetValue) }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Dynamic Input with Custom Create">
-        <n-space vertical :size="16">
-          <n-dynamic-input
-            v-model:value="customValue"
-            placeholder="Enter tag"
-            :on-create="createTag"
-          />
-          <n-p>Tags: {{ JSON.stringify(customValue) }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Dynamic Input with Custom Create">
+            <n-space vertical :size="16">
+              <n-dynamic-input v-model:value="customValue" placeholder="Enter tag" :on-create="createTag" />
+              <n-p>Tags: {{ JSON.stringify(customValue) }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Dynamic Input with Validation">
-        <n-space vertical :size="16">
-          <n-dynamic-input
-            v-model:value="validatedValue"
-            placeholder="Enter valid email"
-            :on-create="validateEmail"
-          />
-          <n-p>Valid emails: {{ JSON.stringify(validatedValue) }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Dynamic Input with Validation">
+            <n-space vertical :size="16">
+              <n-dynamic-input v-model:value="validatedValue" placeholder="Enter valid email"
+                :on-create="validateEmail" />
+              <n-p>Valid emails: {{ JSON.stringify(validatedValue) }}</n-p>
+            </n-space>
+          </n-card>
+        </n-gi>
+        <n-gi>
+          <n-card title="Dynamic Input with Max Items">
+            <n-space vertical :size="16">
+              <n-dynamic-input v-model:value="maxValue" placeholder="Enter skill" :max="3" />
+              <n-p>Skills (max 3): {{ JSON.stringify(maxValue) }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Dynamic Input with Max Items">
-        <n-space vertical :size="16">
-          <n-dynamic-input
-            v-model:value="maxValue"
-            placeholder="Enter skill"
-            :max="3"
-          />
-          <n-p>Skills (max 3): {{ JSON.stringify(maxValue) }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Dynamic Input with Key-Value">
+            <n-space vertical :size="16">
+              <n-dynamic-input v-model:value="keyValue" :preset="keyValuePreset" />
+              <n-p>Key-Value pairs: {{ JSON.stringify(keyValue) }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Dynamic Input with Key-Value">
-        <n-space vertical :size="16">
-          <n-dynamic-input
-            v-model:value="keyValue"
-            :preset="keyValuePreset"
-          />
-          <n-p>Key-Value pairs: {{ JSON.stringify(keyValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Real World Example - Team Members">
-        <n-space vertical :size="16">
-          <div class="team-form">
-            <n-dynamic-input
-              v-model:value="teamMembers"
-              :preset="memberPreset"
-              placeholder="Add team member"
-            />
-            <n-input
-              v-model:value="teamName"
-              placeholder="Team name"
-              style="margin-top: 12px;"
-            />
-            <n-input
-              v-model:value="teamDescription"
-              type="textarea"
-              placeholder="Team description"
-              :rows="3"
-              style="margin-top: 12px;"
-            />
-          </div>
-        </n-space>
-      </n-card>
+          <n-card title="Real World Example - Team Members">
+            <n-space vertical :size="16">
+              <div class="team-form">
+                <n-dynamic-input v-model:value="teamMembers" :preset="memberPreset" placeholder="Add team member" />
+                <n-input v-model:value="teamName" placeholder="Team name" style="margin-top: 12px;" />
+                <n-input v-model:value="teamDescription" type="textarea" placeholder="Team description" :rows="3"
+                  style="margin-top: 12px;" />
+              </div>
+            </n-space>
+          </n-card>
+        </n-gi>
+      </n-grid>
     </n-space>
   </div>
 </template>
@@ -177,7 +148,7 @@ const memberPreset = () => {
 }
 
 .n-card {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .n-p {

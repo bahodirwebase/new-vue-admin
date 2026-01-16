@@ -1,141 +1,102 @@
 <template>
   <div class="input-otp-demo">
     <n-space vertical :size="24">
-      <n-card title="Basic OTP Input">
-        <n-space vertical :size="16">
-          <n-input-otp
-            v-model:value="basicValue"
-            :length="6"
-          />
-          <n-p>OTP: {{ basicValue }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="OTP Input with Different Lengths">
-        <n-space vertical :size="16">
-          <n-space vertical :size="8">
-            <span>4 digits:</span>
-            <n-input-otp
-              v-model:value="fourDigitValue"
-              :length="4"
-            />
-          </n-space>
-          <n-space vertical :size="8">
-            <span>6 digits:</span>
-            <n-input-otp
-              v-model:value="sixDigitValue"
-              :length="6"
-            />
-          </n-space>
-          <n-space vertical :size="8">
-            <span>8 digits:</span>
-            <n-input-otp
-              v-model:value="eightDigitValue"
-              :length="8"
-            />
-          </n-space>
-        </n-space>
-      </n-card>
-
-      <n-card title="OTP Input with Validation">
-        <n-space vertical :size="16">
-          <n-input-otp
-            v-model:value="validatedValue"
-            :length="6"
-            :on-complete="validateOtp"
-          />
-          <n-p>OTP: {{ validatedValue }}</n-p>
-          <n-p v-if="validationMessage" :style="{ color: validationColor }">
-            {{ validationMessage }}
-          </n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="OTP Input with Auto Focus">
-        <n-space vertical :size="16">
-          <n-input-otp
-            v-model:value="autoFocusValue"
-            :length="6"
-            :auto-focus="true"
-          />
-          <n-p>OTP: {{ autoFocusValue }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="OTP Input with Separator">
-        <n-space vertical :size="16">
-          <n-input-otp
-            v-model:value="separatedValue"
-            :length="6"
-            separator="-"
-          />
-          <n-p>OTP: {{ separatedValue }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="OTP Input Sizes">
-        <n-space vertical :size="16">
-          <n-space vertical :size="8">
-            <span>Small:</span>
-            <n-input-otp
-              v-model:value="smallValue"
-              :length="6"
-              size="small"
-            />
-          </n-space>
-          <n-space vertical :size="8">
-            <span>Medium:</span>
-            <n-input-otp
-              v-model:value="mediumValue"
-              :length="6"
-              size="medium"
-            />
-          </n-space>
-          <n-space vertical :size="8">
-            <span>Large:</span>
-            <n-input-otp
-              v-model:value="largeValue"
-              :length="6"
-              size="large"
-            />
-          </n-space>
-        </n-space>
-      </n-card>
-
-      <n-card title="Real World Example - Two-Factor Authentication">
-        <n-space vertical :size="16">
-          <div class="two-factor">
-            <n-space vertical :size="12">
-              <span>Enter the 6-digit code sent to your email:</span>
-              <n-input-otp
-                v-model:value="twoFactorValue"
-                :length="6"
-                :on-complete="handleTwoFactor"
-                :auto-focus="true"
-              />
+      <n-grid :cols="2" :x-gap="12">
+        <n-gi>
+          <n-card title="Basic OTP Input">
+            <n-space vertical :size="16">
+              <n-input-otp v-model:value="basicValue" :length="6" />
+              <n-p>OTP: {{ basicValue }}</n-p>
             </n-space>
-            <n-space vertical :size="12">
-              <span>Backup code (8 digits):</span>
-              <n-input-otp
-                v-model:value="backupCodeValue"
-                :length="8"
-                :on-complete="handleBackupCode"
-              />
+          </n-card>
+
+          <n-card title="OTP Input with Different Lengths">
+            <n-space vertical :size="16">
+              <n-space vertical :size="8">
+                <span>4 digits:</span>
+                <n-input-otp v-model:value="fourDigitValue" :length="4" />
+              </n-space>
+              <n-space vertical :size="8">
+                <span>6 digits:</span>
+                <n-input-otp v-model:value="sixDigitValue" :length="6" />
+              </n-space>
+              <n-space vertical :size="8">
+                <span>8 digits:</span>
+                <n-input-otp v-model:value="eightDigitValue" :length="8" />
+              </n-space>
             </n-space>
-            <n-space :size="12">
-              <n-button @click="resendCode" :loading="resendLoading">
-                Resend Code
-              </n-button>
-              <n-button @click="useBackupCode">
-                Use Backup Code
-              </n-button>
+          </n-card>
+
+          <n-card title="OTP Input with Validation">
+            <n-space vertical :size="16">
+              <n-input-otp v-model:value="validatedValue" :length="6" :on-complete="validateOtp" />
+              <n-p>OTP: {{ validatedValue }}</n-p>
+              <n-p v-if="validationMessage" :style="{ color: validationColor }">
+                {{ validationMessage }}
+              </n-p>
             </n-space>
-          </div>
-          <n-p v-if="authMessage" :style="{ color: authColor }">
-            {{ authMessage }}
-          </n-p>
-        </n-space>
-      </n-card>
+          </n-card>
+
+          <n-card title="OTP Input with Auto Focus">
+            <n-space vertical :size="16">
+              <n-input-otp v-model:value="autoFocusValue" :length="6" :auto-focus="true" />
+              <n-p>OTP: {{ autoFocusValue }}</n-p>
+            </n-space>
+          </n-card>
+        </n-gi>
+        <n-gi>
+          <n-card title="OTP Input with Separator">
+            <n-space vertical :size="16">
+              <n-input-otp v-model:value="separatedValue" :length="6" separator="-" />
+              <n-p>OTP: {{ separatedValue }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="OTP Input Sizes">
+            <n-space vertical :size="16">
+              <n-space vertical :size="8">
+                <span>Small:</span>
+                <n-input-otp v-model:value="smallValue" :length="6" size="small" />
+              </n-space>
+              <n-space vertical :size="8">
+                <span>Medium:</span>
+                <n-input-otp v-model:value="mediumValue" :length="6" size="medium" />
+              </n-space>
+              <n-space vertical :size="8">
+                <span>Large:</span>
+                <n-input-otp v-model:value="largeValue" :length="6" size="large" />
+              </n-space>
+            </n-space>
+          </n-card>
+
+          <n-card title="Real World Example - Two-Factor Authentication">
+            <n-space vertical :size="16">
+              <div class="two-factor">
+                <n-space vertical :size="12">
+                  <span>Enter the 6-digit code sent to your email:</span>
+                  <n-input-otp v-model:value="twoFactorValue" :length="6" :on-complete="handleTwoFactor"
+                    :auto-focus="true" />
+                </n-space>
+                <n-space vertical :size="12">
+                  <span>Backup code (8 digits):</span>
+                  <n-input-otp v-model:value="backupCodeValue" :length="8" :on-complete="handleBackupCode" />
+                </n-space>
+                <n-space :size="12">
+                  <n-button @click="resendCode" :loading="resendLoading">
+                    Resend Code
+                  </n-button>
+                  <n-button @click="useBackupCode">
+                    Use Backup Code
+                  </n-button>
+                </n-space>
+              </div>
+              <n-p v-if="authMessage" :style="{ color: authColor }">
+                {{ authMessage }}
+              </n-p>
+            </n-space>
+          </n-card>
+        </n-gi>
+      </n-grid>
     </n-space>
   </div>
 </template>
@@ -232,7 +193,7 @@ const useBackupCode = () => {
 }
 
 .n-card {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .n-p {

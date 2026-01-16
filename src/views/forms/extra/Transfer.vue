@@ -1,109 +1,74 @@
 <template>
   <div class="transfer-demo">
     <n-space vertical :size="24">
-      <n-card title="Basic Transfer">
-        <n-space vertical :size="16">
-          <n-transfer
-            v-model:value="basicValue"
-            :options="basicOptions"
-          />
-          <n-p>Selected: {{ JSON.stringify(basicValue) }}</n-p>
-        </n-space>
-      </n-card>
 
-      <n-card title="Transfer with Search">
-        <n-space vertical :size="16">
-          <n-transfer
-            v-model:value="searchValue"
-            :options="basicOptions"
-            filterable
-          />
-          <n-p>Selected: {{ JSON.stringify(searchValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Transfer with Multiple Selection">
-        <n-space vertical :size="16">
-          <n-transfer
-            v-model:value="multipleValue"
-            :options="basicOptions"
-            source-filterable
-            target-filterable
-          />
-          <n-p>Selected: {{ JSON.stringify(multipleValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Transfer with Custom Render">
-        <n-space vertical :size="16">
-          <n-transfer
-            v-model:value="customValue"
-            :options="customOptions"
-            :render-source-label="renderSourceLabel"
-            :render-target-label="renderTargetLabel"
-          />
-          <n-p>Selected: {{ JSON.stringify(customValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Transfer with Disabled Items">
-        <n-space vertical :size="16">
-          <n-transfer
-            v-model:value="disabledValue"
-            :options="disabledOptions"
-          />
-          <n-p>Selected: {{ JSON.stringify(disabledValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Transfer with Pagination">
-        <n-space vertical :size="16">
-          <n-transfer
-            v-model:value="paginationValue"
-            :options="largeOptions"
-            :pagination="{ pageSize: 10 }"
-            source-filterable
-          />
-          <n-p>Selected: {{ JSON.stringify(paginationValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Real World Example - Team Assignment">
-        <n-space vertical :size="16">
-          <div class="team-assignment">
-            <n-space vertical :size="12">
-              <span>Assign team members to project:</span>
-              <n-transfer
-                v-model:value="assignedMembers"
-                :options="teamOptions"
-                :render-source-label="renderTeamMember"
-                :render-target-label="renderAssignedMember"
-                source-filterable
-                target-filterable
-              />
+      <n-grid :cols="2" :x-gap="12">
+        <n-gi>
+          <n-card title="Basic Transfer">
+            <n-space vertical :size="16">
+              <n-transfer v-model:value="basicValue" :options="basicOptions" />
+              <n-p>Selected: {{ JSON.stringify(basicValue) }}</n-p>
             </n-space>
-            <n-input
-              v-model:value="projectName"
-              placeholder="Project name"
-              style="margin-top: 12px;"
-            />
-            <n-input
-              v-model:value="projectDescription"
-              type="textarea"
-              placeholder="Project description"
-              :rows="3"
-              style="margin-top: 12px;"
-            />
-            <n-button
-              type="primary"
-              @click="assignTeam"
-              style="margin-top: 12px;"
-            >
-              Assign Team
-            </n-button>
-          </div>
-        </n-space>
-      </n-card>
+          </n-card>
+
+          <n-card title="Transfer with Search">
+            <n-space vertical :size="16">
+              <n-transfer v-model:value="searchValue" :options="basicOptions" filterable />
+              <n-p>Selected: {{ JSON.stringify(searchValue) }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="Transfer with Multiple Selection">
+            <n-space vertical :size="16">
+              <n-transfer v-model:value="multipleValue" :options="basicOptions" source-filterable target-filterable />
+              <n-p>Selected: {{ JSON.stringify(multipleValue) }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="Transfer with Custom Render">
+            <n-space vertical :size="16">
+              <n-transfer v-model:value="customValue" :options="customOptions" :render-source-label="renderSourceLabel"
+                :render-target-label="renderTargetLabel" />
+              <n-p>Selected: {{ JSON.stringify(customValue) }}</n-p>
+            </n-space>
+          </n-card>
+        </n-gi>
+        <n-gi>
+          <n-card title="Transfer with Disabled Items">
+            <n-space vertical :size="16">
+              <n-transfer v-model:value="disabledValue" :options="disabledOptions" />
+              <n-p>Selected: {{ JSON.stringify(disabledValue) }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="Transfer with Pagination">
+            <n-space vertical :size="16">
+              <n-transfer v-model:value="paginationValue" :options="largeOptions" :pagination="{ pageSize: 10 }"
+                source-filterable />
+              <n-p>Selected: {{ JSON.stringify(paginationValue) }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="Real World Example - Team Assignment">
+            <n-space vertical :size="16">
+              <div class="team-assignment">
+                <n-space vertical :size="12">
+                  <span>Assign team members to project:</span>
+                  <n-transfer v-model:value="assignedMembers" :options="teamOptions"
+                    :render-source-label="renderTeamMember" :render-target-label="renderAssignedMember"
+                    source-filterable target-filterable />
+                </n-space>
+                <n-input v-model:value="projectName" placeholder="Project name" style="margin-top: 12px;" />
+                <n-input v-model:value="projectDescription" type="textarea" placeholder="Project description" :rows="3"
+                  style="margin-top: 12px;" />
+                <n-button type="primary" @click="assignTeam" style="margin-top: 12px;">
+                  Assign Team
+                </n-button>
+              </div>
+            </n-space>
+          </n-card>
+        </n-gi>
+      </n-grid>
     </n-space>
   </div>
 </template>
@@ -145,7 +110,7 @@ const customOptions = [
 
 const renderSourceLabel = ({ option }: any) => {
   return h('div', { style: 'display: flex; align-items: center; gap: 8px;' }, [
-    h(NTag, { 
+    h(NTag, {
       type: option.type === 'framework' ? 'info' : 'success',
       size: 'small'
     }, { default: () => option.type }),
@@ -155,7 +120,7 @@ const renderSourceLabel = ({ option }: any) => {
 
 const renderTargetLabel = ({ option }: any) => {
   return h('div', { style: 'display: flex; align-items: center; gap: 8px;' }, [
-    h('span', { 
+    h('span', {
       style: `display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: ${option.color};`
     }),
     h('span', option.label)
@@ -187,33 +152,33 @@ const projectName = ref('')
 const projectDescription = ref('')
 
 const teamOptions = [
-  { 
-    label: 'John Doe', 
-    value: 'john', 
+  {
+    label: 'John Doe',
+    value: 'john',
     role: 'Frontend Developer',
     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=john'
   },
-  { 
-    label: 'Jane Smith', 
-    value: 'jane', 
+  {
+    label: 'Jane Smith',
+    value: 'jane',
     role: 'Backend Developer',
     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=jane'
   },
-  { 
-    label: 'Bob Johnson', 
-    value: 'bob', 
+  {
+    label: 'Bob Johnson',
+    value: 'bob',
     role: 'UI/UX Designer',
     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=bob'
   },
-  { 
-    label: 'Alice Brown', 
-    value: 'alice', 
+  {
+    label: 'Alice Brown',
+    value: 'alice',
     role: 'DevOps Engineer',
     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=alice'
   },
-  { 
-    label: 'Charlie Wilson', 
-    value: 'charlie', 
+  {
+    label: 'Charlie Wilson',
+    value: 'charlie',
     role: 'QA Engineer',
     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=charlie'
   }
@@ -241,7 +206,7 @@ const assignTeam = () => {
     message.error('Please enter a project name')
     return
   }
-  
+
   if (assignedMembers.value.length === 0) {
     message.error('Please assign at least one team member')
     return
@@ -262,7 +227,7 @@ const assignTeam = () => {
 }
 
 .n-card {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .n-p {

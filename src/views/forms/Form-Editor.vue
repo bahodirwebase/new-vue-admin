@@ -17,16 +17,16 @@
         <n-space>
           <n-button-group size="small">
             <n-button @click="editor?.chain().focus().toggleBold().run()" :type="editor?.isActive('bold') ? 'primary' : 'default'">
-              <n-icon :component="TextOutline" />
+              <n-icon :component="FormatBoldOutlined" />
             </n-button>
             <n-button @click="editor?.chain().focus().toggleItalic().run()" :type="editor?.isActive('italic') ? 'primary' : 'default'">
-              <n-icon :component="TextOutline" />
+              <n-icon :component="FormatItalicOutlined" />
             </n-button>
             <n-button @click="editor?.chain().focus().toggleUnderline().run()" :type="editor?.isActive('underline') ? 'primary' : 'default'">
-              <n-icon :component="TextOutline" />
+              <n-icon :component="FormatUnderlinedOutlined" />
             </n-button>
             <n-button @click="editor?.chain().focus().toggleStrike().run()" :type="editor?.isActive('strike') ? 'primary' : 'default'">
-              <n-icon :component="TextOutline" />
+              <n-icon :component="FormatStrikethroughOutlined" />
             </n-button>
           </n-button-group>
 
@@ -116,13 +116,13 @@ import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import { 
-  TextOutline,
   CodeSlashOutline,
   ListOutline,
   ArrowUndoOutline,
   ArrowRedoOutline
 } from '@vicons/ionicons5'
 import { useMessage } from 'naive-ui'
+import { FormatBoldOutlined, FormatItalicOutlined, FormatStrikethroughOutlined, FormatUnderlinedOutlined } from '@vicons/material'
 
 const message = useMessage()
 const content = ref('')

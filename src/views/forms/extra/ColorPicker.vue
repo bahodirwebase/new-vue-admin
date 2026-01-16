@@ -1,7 +1,9 @@
 <template>
   <div class="color-picker-demo">
     <n-space vertical :size="24">
-      <n-card title="Basic Color Picker">
+      <n-grid :cols="2" :x-gap="12">
+        <n-gi>
+          <n-card title="Basic Color Picker">
         <n-space vertical :size="16">
           <n-color-picker v-model:value="basicValue" />
           <n-p>Selected color: {{ basicValue }}</n-p>
@@ -37,8 +39,9 @@
           </n-space>
         </n-space>
       </n-card>
-
-      <n-card title="Color Picker with Actions">
+          </n-gi>
+          <n-gi>
+            <n-card title="Color Picker with Actions">
         <n-space vertical :size="16">
           <n-color-picker
             v-model:value="actionValue"
@@ -86,6 +89,8 @@
           </div>
         </n-space>
       </n-card>
+          </n-gi>
+      </n-grid>      
     </n-space>
   </div>
 </template>
@@ -156,7 +161,7 @@ const themePreviewStyle = computed(() => ({
 }
 
 .n-card {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .n-p {

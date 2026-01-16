@@ -1,117 +1,90 @@
 <template>
   <div class="mention-demo">
     <n-space vertical :size="24">
-      <n-card title="Basic Mention">
-        <n-space vertical :size="16">
-          <n-mention
-            v-model:value="basicValue"
-            :options="basicOptions"
-            placeholder="Type @ to mention..."
-          />
-          <n-p>Text: {{ basicValue }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Mention with Different Prefixes">
-        <n-space vertical :size="16">
-          <n-mention
-            v-model:value="prefixValue"
-            :options="prefixOptions"
-            :prefix="['@', '#']"
-            placeholder="Type @ or # to mention..."
-          />
-          <n-p>Text: {{ prefixValue }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Mention with Async Options">
-        <n-space vertical :size="16">
-          <n-mention
-            v-model:value="asyncValue"
-            :options="asyncOptions"
-            :loading="asyncLoading"
-            placeholder="Type @ to search users..."
-            @search="handleSearch"
-          />
-          <n-p>Text: {{ asyncValue }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Mention with Custom Render">
-        <n-space vertical :size="16">
-          <n-mention
-            v-model:value="customValue"
-            :options="customOptions"
-            :render-option="renderCustomOption"
-            placeholder="Type @ to mention..."
-          />
-          <n-p>Text: {{ customValue }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Mention in Textarea">
-        <n-space vertical :size="16">
-          <n-mention
-            v-model:value="textareaValue"
-            type="textarea"
-            :options="basicOptions"
-            placeholder="Type @ to mention in textarea..."
-            :rows="4"
-          />
-          <n-p>Text: {{ textareaValue }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Mention with Validation">
-        <n-space vertical :size="16">
-          <n-mention
-            v-model:value="validatedValue"
-            :options="basicOptions"
-            placeholder="Mention team members only..."
-            :on-select="validateMention"
-          />
-          <n-p>Text: {{ validatedValue }}</n-p>
-          <n-p v-if="validationMessage" :style="{ color: validationColor }">
-            {{ validationMessage }}
-          </n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Real World Example - Comment System">
-        <n-space vertical :size="16">
-          <div class="comment-system">
-            <n-space vertical :size="12">
-              <span>Write a comment:</span>
-              <n-mention
-                v-model:value="commentText"
-                type="textarea"
-                :options="userOptions"
-                :prefix="['@', '#']"
-                :render-option="renderUserOption"
-                placeholder="Write your comment... Use @ to mention users, # for tags"
-                :rows="3"
-              />
-              <n-space :size="8">
-                <n-button type="primary" @click="postComment">
-                  Post Comment
-                </n-button>
-                <n-button @click="clearComment">
-                  Clear
-                </n-button>
-              </n-space>
+      <n-grid :cols="2" :x-gap="12">
+        <n-gi>
+          <n-card title="Basic Mention">
+            <n-space vertical :size="16">
+              <n-mention v-model:value="basicValue" :options="basicOptions" placeholder="Type @ to mention..." />
+              <n-p>Text: {{ basicValue }}</n-p>
             </n-space>
-            <div class="comments-list">
-              <div v-for="comment in comments" :key="comment.id" class="comment-item">
-                <div class="comment-header">
-                  <strong>{{ comment.author }}</strong>
-                  <span class="comment-time">{{ comment.time }}</span>
+          </n-card>
+
+          <n-card title="Mention with Different Prefixes">
+            <n-space vertical :size="16">
+              <n-mention v-model:value="prefixValue" :options="prefixOptions" :prefix="['@', '#']"
+                placeholder="Type @ or # to mention..." />
+              <n-p>Text: {{ prefixValue }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="Mention with Async Options">
+            <n-space vertical :size="16">
+              <n-mention v-model:value="asyncValue" :options="asyncOptions" :loading="asyncLoading"
+                placeholder="Type @ to search users..." @search="handleSearch" />
+              <n-p>Text: {{ asyncValue }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="Mention with Custom Render">
+            <n-space vertical :size="16">
+              <n-mention v-model:value="customValue" :options="customOptions" :render-option="renderCustomOption"
+                placeholder="Type @ to mention..." />
+              <n-p>Text: {{ customValue }}</n-p>
+            </n-space>
+          </n-card>
+        </n-gi>
+        <n-gi>
+          <n-card title="Mention in Textarea">
+            <n-space vertical :size="16">
+              <n-mention v-model:value="textareaValue" type="textarea" :options="basicOptions"
+                placeholder="Type @ to mention in textarea..." :rows="4" />
+              <n-p>Text: {{ textareaValue }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="Mention with Validation">
+            <n-space vertical :size="16">
+              <n-mention v-model:value="validatedValue" :options="basicOptions"
+                placeholder="Mention team members only..." :on-select="validateMention" />
+              <n-p>Text: {{ validatedValue }}</n-p>
+              <n-p v-if="validationMessage" :style="{ color: validationColor }">
+                {{ validationMessage }}
+              </n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="Real World Example - Comment System">
+            <n-space vertical :size="16">
+              <div class="comment-system">
+                <n-space vertical :size="12">
+                  <span>Write a comment:</span>
+                  <n-mention v-model:value="commentText" type="textarea" :options="userOptions" :prefix="['@', '#']"
+                    :render-option="renderUserOption"
+                    placeholder="Write your comment... Use @ to mention users, # for tags" :rows="3" />
+                  <n-space :size="8">
+                    <n-button type="primary" @click="postComment">
+                      Post Comment
+                    </n-button>
+                    <n-button @click="clearComment">
+                      Clear
+                    </n-button>
+                  </n-space>
+                </n-space>
+                <div class="comments-list">
+                  <div v-for="comment in comments" :key="comment.id" class="comment-item">
+                    <div class="comment-header">
+                      <strong>{{ comment.author }}</strong>
+                      <span class="comment-time">{{ comment.time }}</span>
+                    </div>
+                    <div class="comment-content" v-html="formatComment(comment.text)"></div>
+                  </div>
                 </div>
-                <div class="comment-content" v-html="formatComment(comment.text)"></div>
               </div>
-            </div>
-          </div>
-        </n-space>
-      </n-card>
+            </n-space>
+          </n-card>
+        </n-gi>
+      </n-grid>
     </n-space>
   </div>
 </template>
@@ -153,7 +126,7 @@ const handleSearch = (query: string) => {
     asyncOptions.value = []
     return
   }
-  
+
   asyncLoading.value = true
   setTimeout(() => {
     asyncOptions.value = [
@@ -265,7 +238,7 @@ const formatComment = (text: string) => {
 }
 
 .n-card {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .n-p {

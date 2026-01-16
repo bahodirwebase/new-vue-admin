@@ -1,83 +1,54 @@
 <template>
   <div class="select-demo">
     <n-space vertical :size="24">
-      <n-card title="Basic Select">
-        <n-space vertical :size="16">
-          <n-select
-            v-model:value="selectedValue"
-            :options="options"
-            placeholder="Select an option"
-            clearable
-          />
-          <n-p>Selected value: {{ selectedValue || 'None' }}</n-p>
-        </n-space>
-      </n-card>
+      <n-grid :cols="2" :x-gap="12">
+        <n-gi>
+          <n-card title="Basic Select">
+            <n-space vertical :size="16">
+              <n-select v-model:value="selectedValue" :options="options" placeholder="Select an option" clearable />
+              <n-p>Selected value: {{ selectedValue || 'None' }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Multiple Select">
-        <n-space vertical :size="16">
-          <n-select
-            v-model:value="multipleValues"
-            :options="options"
-            multiple
-            placeholder="Select multiple options"
-            clearable
-          />
-          <n-p>Selected values: {{ multipleValues.length > 0 ? multipleValues.join(', ') : 'None' }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Multiple Select">
+            <n-space vertical :size="16">
+              <n-select v-model:value="multipleValues" :options="options" multiple placeholder="Select multiple options"
+                clearable />
+              <n-p>Selected values: {{ multipleValues.length > 0 ? multipleValues.join(', ') : 'None' }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Searchable Select">
-        <n-space vertical :size="16">
-          <n-select
-            v-model:value="searchValue"
-            :options="searchOptions"
-            filterable
-            placeholder="Search and select"
-            clearable
-          />
-          <n-p>Selected value: {{ searchValue || 'None' }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Searchable Select">
+            <n-space vertical :size="16">
+              <n-select v-model:value="searchValue" :options="searchOptions" filterable placeholder="Search and select"
+                clearable />
+              <n-p>Selected value: {{ searchValue || 'None' }}</n-p>
+            </n-space>
+          </n-card>
+        </n-gi>
+        <n-gi>
+          <n-card title="Disabled Select">
+            <n-space vertical :size="16">
+              <n-select v-model:value="disabledValue" :options="options" placeholder="This is disabled" disabled />
+              <n-select v-model:value="readonlyValue" :options="options" placeholder="This is readonly" readonly />
+            </n-space>
+          </n-card>
 
-      <n-card title="Disabled Select">
-        <n-space vertical :size="16">
-          <n-select
-            v-model:value="disabledValue"
-            :options="options"
-            placeholder="This is disabled"
-            disabled
-          />
-          <n-select
-            v-model:value="readonlyValue"
-            :options="options"
-            placeholder="This is readonly"
-            readonly
-          />
-        </n-space>
-      </n-card>
+          <n-card title="Select with Tags">
+            <n-space vertical :size="16">
+              <n-select v-model:value="tagValues" :options="tagOptions" multiple placeholder="Select with tags"
+                :tag="true" />
+            </n-space>
+          </n-card>
 
-      <n-card title="Select with Tags">
-        <n-space vertical :size="16">
-          <n-select
-            v-model:value="tagValues"
-            :options="tagOptions"
-            multiple
-            placeholder="Select with tags"
-            :tag="true"
-          />
-        </n-space>
-      </n-card>
-
-      <n-card title="Grouped Select">
-        <n-space vertical :size="16">
-          <n-select
-            v-model:value="groupedValue"
-            :options="groupedOptions"
-            placeholder="Select from groups"
-          />
-          <n-p>Selected value: {{ groupedValue || 'None' }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Grouped Select">
+            <n-space vertical :size="16">
+              <n-select v-model:value="groupedValue" :options="groupedOptions" placeholder="Select from groups" />
+              <n-p>Selected value: {{ groupedValue || 'None' }}</n-p>
+            </n-space>
+          </n-card>
+        </n-gi>
+      </n-grid>
     </n-space>
   </div>
 </template>
@@ -149,7 +120,7 @@ const groupedOptions = [
 }
 
 .n-card {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .n-p {

@@ -1,128 +1,93 @@
 <template>
   <div class="input-number-demo">
     <n-space vertical :size="24">
-      <n-card title="Basic Input Number">
-        <n-space vertical :size="16">
-          <n-input-number
-            v-model:value="basicValue"
-            placeholder="Enter number"
-          />
-          <n-p>Value: {{ basicValue }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Input Number with Min/Max">
-        <n-space vertical :size="16">
-          <n-input-number
-            v-model:value="minMaxValue"
-            :min="0"
-            :max="100"
-            placeholder="0-100"
-          />
-          <n-p>Value: {{ minMaxValue }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Input Number with Step">
-        <n-space vertical :size="16">
-          <n-input-number
-            v-model:value="stepValue"
-            :step="5"
-            placeholder="Step 5"
-          />
-          <n-p>Value: {{ stepValue }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Input Number with Precision">
-        <n-space vertical :size="16">
-          <n-input-number
-            v-model:value="precisionValue"
-            :precision="2"
-            placeholder="2 decimal places"
-          />
-          <n-p>Value: {{ precisionValue }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Input Number Sizes">
-        <n-space vertical :size="16">
-          <n-space>
-            <n-input-number v-model:value="smallValue" size="small" placeholder="Small" />
-            <n-input-number v-model:value="mediumValue" size="medium" placeholder="Medium" />
-            <n-input-number v-model:value="largeValue" size="large" placeholder="Large" />
-          </n-space>
-        </n-space>
-      </n-card>
-
-      <n-card title="Input Number States">
-        <n-space vertical :size="16">
-          <n-space>
-            <n-input-number v-model:value="normalValue" placeholder="Normal" />
-            <n-input-number v-model:value="disabledValue" disabled placeholder="Disabled" />
-            <n-input-number v-model:value="readonlyValue" readonly placeholder="Readonly" />
-          </n-space>
-        </n-space>
-      </n-card>
-
-      <n-card title="Input Number with Buttons">
-        <n-space vertical :size="16">
-          <n-input-number
-            v-model:value="buttonValue"
-            :button-placement="'both'"
-            placeholder="With buttons"
-          />
-          <n-p>Value: {{ buttonValue }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Real World Example - Product Configuration">
-        <n-space vertical :size="16">
-          <div class="product-config">
-            <n-space vertical :size="12">
-              <span>Quantity:</span>
-              <n-input-number
-                v-model:value="quantity"
-                :min="1"
-                :max="99"
-                :step="1"
-              />
+      <n-grid :cols="2" :x-gap="12">
+        <n-gi>
+          <n-card title="Basic Input Number">
+            <n-space vertical :size="16">
+              <n-input-number v-model:value="basicValue" placeholder="Enter number" />
+              <n-p>Value: {{ basicValue }}</n-p>
             </n-space>
-            <n-space vertical :size="12">
-              <span>Price ($):</span>
-              <n-input-number
-                v-model:value="price"
-                :min="0"
-                :precision="2"
-                :step="0.01"
-              />
+          </n-card>
+
+          <n-card title="Input Number with Min/Max">
+            <n-space vertical :size="16">
+              <n-input-number v-model:value="minMaxValue" :min="0" :max="100" placeholder="0-100" />
+              <n-p>Value: {{ minMaxValue }}</n-p>
             </n-space>
-            <n-space vertical :size="12">
-              <span>Discount (%):</span>
-              <n-input-number
-                v-model:value="discount"
-                :min="0"
-                :max="100"
-                :step="1"
-              />
+          </n-card>
+
+          <n-card title="Input Number with Step">
+            <n-space vertical :size="16">
+              <n-input-number v-model:value="stepValue" :step="5" placeholder="Step 5" />
+              <n-p>Value: {{ stepValue }}</n-p>
             </n-space>
-            <n-space vertical :size="12">
-              <span>Weight (kg):</span>
-              <n-input-number
-                v-model:value="weight"
-                :min="0"
-                :precision="3"
-                :step="0.1"
-              />
+          </n-card>
+
+          <n-card title="Input Number with Precision">
+            <n-space vertical :size="16">
+              <n-input-number v-model:value="precisionValue" :precision="2" placeholder="2 decimal places" />
+              <n-p>Value: {{ precisionValue }}</n-p>
             </n-space>
-          </div>
-          <div class="calculation-result">
-            <n-p><strong>Total: ${{ total.toFixed(2) }}</strong></n-p>
-            <n-p><strong>Final Price: ${{ finalPrice.toFixed(2) }}</strong></n-p>
-            <n-p><strong>Total Weight: {{ weight }} kg</strong></n-p>
-          </div>
-        </n-space>
-      </n-card>
+          </n-card>
+        </n-gi>
+        <n-gi>
+          <n-card title="Input Number Sizes">
+            <n-space vertical :size="16">
+              <n-space>
+                <n-input-number v-model:value="smallValue" size="small" placeholder="Small" />
+                <n-input-number v-model:value="mediumValue" size="medium" placeholder="Medium" />
+                <n-input-number v-model:value="largeValue" size="large" placeholder="Large" />
+              </n-space>
+            </n-space>
+          </n-card>
+
+          <n-card title="Input Number States">
+            <n-space vertical :size="16">
+              <n-space>
+                <n-input-number v-model:value="normalValue" placeholder="Normal" />
+                <n-input-number v-model:value="disabledValue" disabled placeholder="Disabled" />
+                <n-input-number v-model:value="readonlyValue" readonly placeholder="Readonly" />
+              </n-space>
+            </n-space>
+          </n-card>
+
+          <n-card title="Input Number with Buttons">
+            <n-space vertical :size="16">
+              <n-input-number v-model:value="buttonValue" :button-placement="'both'" placeholder="With buttons" />
+              <n-p>Value: {{ buttonValue }}</n-p>
+            </n-space>
+          </n-card>
+
+          <n-card title="Real World Example - Product Configuration">
+            <n-space vertical :size="16">
+              <div class="product-config">
+                <n-space vertical :size="12">
+                  <span>Quantity:</span>
+                  <n-input-number v-model:value="quantity" :min="1" :max="99" :step="1" />
+                </n-space>
+                <n-space vertical :size="12">
+                  <span>Price ($):</span>
+                  <n-input-number v-model:value="price" :min="0" :precision="2" :step="0.01" />
+                </n-space>
+                <n-space vertical :size="12">
+                  <span>Discount (%):</span>
+                  <n-input-number v-model:value="discount" :min="0" :max="100" :step="1" />
+                </n-space>
+                <n-space vertical :size="12">
+                  <span>Weight (kg):</span>
+                  <n-input-number v-model:value="weight" :min="0" :precision="3" :step="0.1" />
+                </n-space>
+              </div>
+              <div class="calculation-result">
+                <n-p><strong>Total: ${{ total.toFixed(2) }}</strong></n-p>
+                <n-p><strong>Final Price: ${{ finalPrice.toFixed(2) }}</strong></n-p>
+                <n-p><strong>Total Weight: {{ weight }} kg</strong></n-p>
+              </div>
+            </n-space>
+          </n-card>
+        </n-gi>
+      </n-grid>
     </n-space>
   </div>
 </template>
@@ -177,7 +142,7 @@ const finalPrice = computed(() => {
 }
 
 .n-card {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .n-p {

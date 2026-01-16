@@ -1,85 +1,58 @@
 <template>
   <div class="cascader-demo">
     <n-space vertical :size="24">
-      <n-card title="Basic Cascader">
-        <n-space vertical :size="16">
-          <n-cascader
-            v-model:value="basicValue"
-            :options="basicOptions"
-            placeholder="Select option"
-          />
-          <n-p>Selected: {{ JSON.stringify(basicValue) }}</n-p>
-        </n-space>
-      </n-card>
+      <n-grid :cols="2" :x-gap="12">
+        <n-gi>
+          <n-card title="Basic Cascader">
+            <n-space vertical :size="16">
+              <n-cascader v-model:value="basicValue" :options="basicOptions" placeholder="Select option" />
+              <n-p>Selected: {{ JSON.stringify(basicValue) }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Multiple Selection">
-        <n-space vertical :size="16">
-          <n-cascader
-            v-model:value="multipleValue"
-            :options="basicOptions"
-            multiple
-            placeholder="Select multiple options"
-          />
-          <n-p>Selected: {{ JSON.stringify(multipleValue) }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Multiple Selection">
+            <n-space vertical :size="16">
+              <n-cascader v-model:value="multipleValue" :options="basicOptions" multiple
+                placeholder="Select multiple options" />
+              <n-p>Selected: {{ JSON.stringify(multipleValue) }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Expand Trigger">
-        <n-space vertical :size="16">
-          <n-cascader
-            v-model:value="hoverValue"
-            :options="basicOptions"
-            expand-trigger="hover"
-            placeholder="Hover to expand"
-          />
-          <n-p>Selected: {{ JSON.stringify(hoverValue) }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Expand Trigger">
+            <n-space vertical :size="16">
+              <n-cascader v-model:value="hoverValue" :options="basicOptions" expand-trigger="hover"
+                placeholder="Hover to expand" />
+              <n-p>Selected: {{ JSON.stringify(hoverValue) }}</n-p>
+            </n-space>
+          </n-card>
+        </n-gi>
+        <n-gi>
+          <n-card title="Checkable">
+            <n-space vertical :size="16">
+              <n-cascader v-model:value="checkableValue" :options="basicOptions" checkable
+                placeholder="Checkable options" />
+              <n-p>Selected: {{ JSON.stringify(checkableValue) }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Checkable">
-        <n-space vertical :size="16">
-          <n-cascader
-            v-model:value="checkableValue"
-            :options="basicOptions"
-            checkable
-            placeholder="Checkable options"
-          />
-          <n-p>Selected: {{ JSON.stringify(checkableValue) }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Custom Render">
+            <n-space vertical :size="16">
+              <n-cascader v-model:value="customValue" :options="customOptions" :render-option="renderCustomOption"
+                placeholder="Custom rendered options" />
+              <n-p>Selected: {{ JSON.stringify(customValue) }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Custom Render">
-        <n-space vertical :size="16">
-          <n-cascader
-            v-model:value="customValue"
-            :options="customOptions"
-            :render-option="renderCustomOption"
-            placeholder="Custom rendered options"
-          />
-          <n-p>Selected: {{ JSON.stringify(customValue) }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Real World Example - Product Category">
-        <n-space vertical :size="16">
-          <n-cascader
-            v-model:value="categoryValue"
-            :options="categoryOptions"
-            placeholder="Select product category"
-            checkable
-          />
-          <n-input
-            v-model:value="productName"
-            placeholder="Product name"
-            style="margin-top: 12px;"
-          />
-          <n-input-number
-            v-model:value="productPrice"
-            placeholder="Price"
-            style="margin-top: 12px;"
-          />
-        </n-space>
-      </n-card>
+          <n-card title="Real World Example - Product Category">
+            <n-space vertical :size="16">
+              <n-cascader v-model:value="categoryValue" :options="categoryOptions" placeholder="Select product category"
+                checkable />
+              <n-input v-model:value="productName" placeholder="Product name" style="margin-top: 12px;" />
+              <n-input-number v-model:value="productPrice" placeholder="Price" style="margin-top: 12px;" />
+            </n-space>
+          </n-card>
+        </n-gi>
+      </n-grid>
     </n-space>
   </div>
 </template>
@@ -177,7 +150,7 @@ const customOptions = [
 
 const renderCustomOption = ({ option }: any) => {
   return h('div', { style: 'display: flex; align-items: center; gap: 8px;' }, [
-    option.type && h(NTag, { 
+    option.type && h(NTag, {
       type: option.type === 'framework' ? 'info' : 'success',
       size: 'small'
     }, { default: () => option.type }),
@@ -248,7 +221,7 @@ const categoryOptions = [
 }
 
 .n-card {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .n-p {

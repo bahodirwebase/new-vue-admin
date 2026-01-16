@@ -1,99 +1,66 @@
 <template>
   <div class="autocomplete-demo">
     <n-space vertical :size="24">
-      <n-card title="Basic AutoComplete">
-        <n-space vertical :size="16">
-          <n-auto-complete
-            v-model:value="basicValue"
-            :options="basicOptions"
-            placeholder="Type to search..."
-          />
-          <n-p>Selected value: {{ basicValue || 'None' }}</n-p>
-        </n-space>
-      </n-card>
+      <n-grid x-gap="12" :cols="2">
+        <n-gi>
+          <n-card title="Basic AutoComplete">
+            <n-space vertical :size="16">
+              <n-auto-complete v-model:value="basicValue" :options="basicOptions" placeholder="Type to search..." />
+              <n-p>Selected value: {{ basicValue || 'None' }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Custom Filter">
-        <n-space vertical :size="16">
-          <n-auto-complete
-            v-model:value="filterValue"
-            :options="filterOptions"
-            :filter-option="customFilter"
-            placeholder="Custom filter..."
-          />
-          <n-p>Selected value: {{ filterValue || 'None' }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Custom Filter">
+            <n-space vertical :size="16">
+              <n-auto-complete v-model:value="filterValue" :options="filterOptions" :filter-option="customFilter"
+                placeholder="Custom filter..." />
+              <n-p>Selected value: {{ filterValue || 'None' }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Multiple Selection">
-        <n-space vertical :size="16">
-          <n-auto-complete
-            v-model:value="multipleValue"
-            :options="multipleOptions"
-            multiple
-            placeholder="Select multiple options..."
-          />
-          <n-p>Selected values: {{ JSON.stringify(multipleValue) }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Multiple Selection">
+            <n-space vertical :size="16">
+              <n-auto-complete v-model:value="multipleValue" :options="multipleOptions" multiple
+                placeholder="Select multiple options..." />
+              <n-p>Selected values: {{ JSON.stringify(multipleValue) }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Grouped Options">
-        <n-space vertical :size="16">
-          <n-auto-complete
-            v-model:value="groupedValue"
-            :options="groupedOptions"
-            placeholder="Search in groups..."
-          />
-          <n-p>Selected value: {{ groupedValue || 'None' }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Grouped Options">
+            <n-space vertical :size="16">
+              <n-auto-complete v-model:value="groupedValue" :options="groupedOptions"
+                placeholder="Search in groups..." />
+              <n-p>Selected value: {{ groupedValue || 'None' }}</n-p>
+            </n-space>
+          </n-card>
+        </n-gi>
+        <n-gi>
+          <n-card title="Async Options">
+            <n-space vertical :size="16">
+              <n-auto-complete v-model:value="asyncValue" :options="asyncOptions" :loading="asyncLoading"
+                placeholder="Search async..." clearable @update:value="performAsyncSearch" />
+              <n-p>Selected value: {{ asyncValue || 'None' }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Async Options">
-        <n-space vertical :size="16">
-          <n-auto-complete
-            v-model:value="asyncValue"
-            :options="asyncOptions"
-            :loading="asyncLoading"
-            placeholder="Search async..."
-            clearable
-            @update:value="performAsyncSearch"
-          />
-          <n-p>Selected value: {{ asyncValue || 'None' }}</n-p>
-        </n-space>
-      </n-card>
+          <n-card title="Custom Render">
+            <n-space vertical :size="16">
+              <n-auto-complete v-model:value="customValue" :options="customOptions" :render-option="renderCustomOption"
+                placeholder="Custom rendered options" />
+              <n-p>Selected value: {{ customValue || 'None' }}</n-p>
+            </n-space>
+          </n-card>
 
-      <n-card title="Custom Render">
-        <n-space vertical :size="16">
-          <n-auto-complete
-            v-model:value="customValue"
-            :options="customOptions"
-            :render-option="renderCustomOption"
-            placeholder="Custom rendered options"
-          />
-          <n-p>Selected value: {{ customValue || 'None' }}</n-p>
-        </n-space>
-      </n-card>
-
-      <n-card title="Real World Example - Email Compose">
-        <n-space vertical :size="16">
-          <n-input
-            v-model:value="emailSubject"
-            placeholder="Email subject"
-            style="margin-bottom: 12px;"
-          />
-          <n-auto-complete
-            v-model:value="emailTo"
-            :options="emailOptions"
-            placeholder="To:"
-            style="margin-bottom: 12px;"
-          />
-          <n-input
-            v-model:value="emailMessage"
-            type="textarea"
-            placeholder="Message"
-            :rows="4"
-          />
-        </n-space>
-      </n-card>
+          <n-card title="Real World Example - Email Compose">
+            <n-space vertical :size="16">
+              <n-input v-model:value="emailSubject" placeholder="Email subject" style="margin-bottom: 12px;" />
+              <n-auto-complete v-model:value="emailTo" :options="emailOptions" placeholder="To:"
+                style="margin-bottom: 12px;" />
+              <n-input v-model:value="emailMessage" type="textarea" placeholder="Message" :rows="4" />
+            </n-space>
+          </n-card>
+        </n-gi>
+      </n-grid>
     </n-space>
   </div>
 </template>
@@ -187,7 +154,7 @@ const customOptions = [
 
 const renderCustomOption = ({ option }: any) => {
   return h('div', { style: 'display: flex; align-items: center; gap: 8px;' }, [
-    h(NTag, { 
+    h(NTag, {
       type: option.type === 'framework' ? 'info' : 'success',
       size: 'small'
     }, { default: () => option.type }),
@@ -220,5 +187,8 @@ const emailOptions = [
   margin: 0;
   color: var(--text-secondary);
   font-size: 14px;
+}
+.n-card {
+  margin-bottom: 12px;
 }
 </style>
