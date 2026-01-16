@@ -213,12 +213,6 @@ const routes: RouteRecordRaw[] = [
         meta: { title: 'Tag', icon: 'ribbon-outline', group: 'Components', subgroup: 'UI Elements' }
       },
       {
-        path: 'components/ui-elements/float-button',
-        name: 'FloatButton',
-        component: () => import('@/views/components/ui-elements/FloatButton.vue'),
-        meta: { title: 'Float Button', icon: 'add-circle-outline', group: 'Components', subgroup: 'UI Elements' }
-      },
-      {
         path: 'components/tables/basic-table',
         name: 'Basic-Table',
         component: () => import('@/views/components/tables/Basic-Table.vue'),

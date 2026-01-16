@@ -109,7 +109,6 @@ import {
   WaterOutline,
   TimerOutline,
   CubeOutline,
-  AddCircleOutline,
   LayersOutline,
 } from "@vicons/ionicons5";
 import { useThemeStore } from "@/stores/theme";
@@ -426,11 +425,6 @@ const menuOptions: MenuOption[] = [
         label: "Tag",
         key: "Tag",
         icon: () => h(NIcon, { component: RibbonOutline }),
-      },
-      {
-        label: "Float Button",
-        key: "FloatButton",
-        icon: () => h(NIcon, { component: AddCircleOutline }),
       },
       {
         label: "Timeline",
