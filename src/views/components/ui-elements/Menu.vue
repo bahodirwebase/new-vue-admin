@@ -6,49 +6,48 @@
         <p class="page-subtitle">Navigation menus for organizing content and features</p>
       </div>
 
-      <n-grid :cols="2" :x-gap="16">
-        <n-grid-item>
+      <n-grid x-gap="12" :cols="2" >
+        <n-gi>
           <n-card title="Vertical Menu">
             <n-menu :options="verticalMenuOptions" :default-expanded-keys="['dashboard']" />
           </n-card>
-        </n-grid-item>
-
-        <n-grid-item>
+          <n-card title="Menu with Icons">
+            <n-menu :options="iconMenuOptions" :default-expanded-keys="['products']" />
+          </n-card>
+          <n-card title="Collapsible Menu">
+            <n-menu
+              :options="collapsibleMenuOptions"
+              :default-expanded-keys="['dashboard', 'products']"
+              accordion
+            />
+          </n-card>
+        </n-gi>
+        <n-gi>
           <n-card title="Horizontal Menu">
             <n-menu mode="horizontal" :options="horizontalMenuOptions" />
           </n-card>
-        </n-grid-item>
+          <n-card title="Menu Styles">
+            <n-space vertical :size="16">
+              <div>
+                <h3 style="margin-bottom: 12px; color: var(--text-primary)">
+                  Default Style
+                </h3>
+                <n-menu :options="styleMenuOptions" />
+              </div>
+
+              <div>
+                <h3 style="margin-bottom: 12px; color: var(--text-primary)">
+                  Inverted Style
+                </h3>
+                <n-menu :options="styleMenuOptions" inverted />
+              </div>
+            </n-space>
+          </n-card>
+          <n-card title="Menu with Badges">
+            <n-menu :options="badgeMenuOptions" />
+          </n-card>
+        </n-gi>
       </n-grid>
-
-      <n-card title="Menu with Icons">
-        <n-menu :options="iconMenuOptions" :default-expanded-keys="['products']" />
-      </n-card>
-
-      <n-card title="Menu Styles">
-        <n-grid :cols="2" :x-gap="16">
-          <n-grid-item>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Default Style</h3>
-            <n-menu :options="styleMenuOptions" />
-          </n-grid-item>
-
-          <n-grid-item>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Inverted Style</h3>
-            <n-menu :options="styleMenuOptions" inverted />
-          </n-grid-item>
-        </n-grid>
-      </n-card>
-
-      <n-card title="Collapsible Menu">
-        <n-menu
-          :options="collapsibleMenuOptions"
-          :default-expanded-keys="['dashboard', 'products']"
-          accordion
-        />
-      </n-card>
-
-      <n-card title="Menu with Badges">
-        <n-menu :options="badgeMenuOptions" />
-      </n-card>
     </n-space>
   </div>
 </template>
@@ -224,5 +223,9 @@ const badgeMenuOptions: MenuOption[] = [
 .page-subtitle {
   font-size: 16px;
   color: var(--text-secondary);
+}
+
+.n-card {
+  margin-bottom: 12px;
 }
 </style>

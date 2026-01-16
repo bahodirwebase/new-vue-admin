@@ -6,212 +6,165 @@
         <p class="page-subtitle">Floating action buttons for primary actions and quick access</p>
       </div>
 
-      <n-card title="Basic Float Button">
-        <n-space vertical :size="16">
-          <div>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Default Float Button</h3>
-            <div class="demo-area">
-              <n-float-button>
-                <template #icon>
-                  <n-icon :component="AddOutline" />
-                </template>
-              </n-float-button>
-            </div>
-          </div>
-        </n-space>
-      </n-card>
-
-      <n-card title="Float Button Types">
-        <n-space vertical :size="16">
-          <div>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Different Types</h3>
-            <div class="demo-area">
-              <div class="float-buttons-grid">
-                <n-float-button type="primary">
-                  <template #icon>
-                    <n-icon :component="AddOutline" />
-                  </template>
-                </n-float-button>
-                <n-float-button type="success">
-                  <template #icon>
-                    <n-icon :component="CheckmarkOutline" />
-                  </template>
-                </n-float-button>
-                <n-float-button type="warning">
-                  <template #icon>
-                    <n-icon :component="WarningOutline" />
-                  </template>
-                </n-float-button>
-                <n-float-button type="error">
-                  <template #icon>
-                    <n-icon :component="TrashOutline" />
-                  </template>
-                </n-float-button>
-                <n-float-button type="info">
-                  <template #icon>
-                    <n-icon :component="InformationCircleOutline" />
-                  </template>
-                </n-float-button>
-              </div>
-            </div>
-          </div>
-        </n-space>
-      </n-card>
-
-      <n-card title="Float Button Styles">
-        <n-space vertical :size="16">
-          <div>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Square Shape</h3>
-            <div class="demo-area">
-              <div class="float-buttons-grid">
-                <n-float-button shape="square">
-                  <template #icon>
-                    <n-icon :component="AddOutline" />
-                  </template>
-                </n-float-button>
-                <n-float-button type="primary" shape="square">
-                  <template #icon>
-                    <n-icon :component="SettingsOutline" />
-                  </template>
-                </n-float-button>
-                <n-float-button type="success" shape="square">
-                  <template #icon>
-                    <n-icon :component="MailOutline" />
-                  </template>
-                </n-float-button>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Menu Float Button</h3>
-            <div class="demo-area">
-              <n-float-button :menu-props="menuOptions">
-                <template #icon>
-                  <n-icon :component="EllipsisVerticalOutline" />
-                </template>
-              </n-float-button>
-            </div>
-          </div>
-        </n-space>
-      </n-card>
-
-      <n-card title="Float Button Positioning">
-        <n-space vertical :size="16">
-          <div>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Custom Position</h3>
-            <div class="demo-area">
-              <n-float-button :right="100" :bottom="100">
-                <template #icon>
-                  <n-icon :component="AddOutline" />
-                </template>
-              </n-float-button>
-              <n-float-button :left="100" :bottom="100" type="primary">
-                <template #icon>
-                  <n-icon :component="ChatbubbleOutline" />
-                </template>
-              </n-float-button>
-              <n-float-button :right="100" :top="100" type="success">
-                <template #icon>
-                  <n-icon :component="NotificationsOutline" />
-                </template>
-              </n-float-button>
-              <n-float-button :left="100" :top="100" type="warning">
-                <template #icon>
-                  <n-icon :component="HelpCircleOutline" />
-                </template>
-              </n-float-button>
-            </div>
-          </div>
-        </n-space>
-      </n-card>
-
-      <n-card title="Float Button Features">
-        <n-space vertical :size="16">
-          <div>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">With Badge</h3>
-            <div class="demo-area">
-              <n-float-button>
-                <template #icon>
-                  <n-icon :component="NotificationsOutline" />
-                </template>
-                <template #badge>
-                  <n-badge :value="5" :max="99" />
-                </template>
-              </n-float-button>
-              <n-float-button type="error" style="margin-left: 80px;">
-                <template #icon>
-                  <n-icon :component="MailOutline" />
-                </template>
-                <template #badge>
-                  <n-badge :value="12" :max="99" />
-                </template>
-              </n-float-button>
-              <n-float-button type="warning" style="margin-left: 160px;">
-                <template #icon>
-                  <n-icon :component="ChatbubbleOutline" />
-                </template>
-                <template #badge>
-                  <n-badge dot />
-                </template>
-              </n-float-button>
-            </div>
-          </div>
-
-          <div>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Custom Content</h3>
-            <div class="demo-area">
-              <n-float-button type="primary">
-                <div class="custom-content">
-                  <n-icon :component="AddOutline" />
-                  <span>Add</span>
-                </div>
-              </n-float-button>
-              <n-float-button type="success" style="margin-left: 80px;">
-                <div class="custom-content">
-                  <n-icon :component="DownloadOutline" />
-                  <span>Download</span>
-                </div>
-              </n-float-button>
-            </div>
-          </div>
-        </n-space>
-      </n-card>
-
-      <n-card title="Float Button Interactions">
-        <n-space vertical :size="16">
-          <div>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Tooltip Integration</h3>
-            <div class="demo-area">
-              <n-tooltip trigger="hover">
-                <template #trigger>
-                  <n-float-button type="primary">
+      <n-grid x-gap="12" :cols="2" >
+        <n-gi>
+          <n-card title="Basic Float Button">
+            <n-space vertical :size="16">
+              <div>
+                <h3 style="margin-bottom: 12px; color: var(--text-primary)">
+                  Default Float Button
+                </h3>
+                <div class="demo-area">
+                  <n-float-button>
                     <template #icon>
                       <n-icon :component="AddOutline" />
                     </template>
                   </n-float-button>
-                </template>
-                Add new item
-              </n-tooltip>
-              <n-float-button type="success" style="margin-left: 80px;">
-                <template #icon>
-                  <n-icon :component="ShareOutline" />
-                </template>
-              </n-float-button>
-              <n-tooltip trigger="hover" placement="left">
-                <template #trigger>
-                  <n-float-button type="warning" style="margin-left: 160px;">
+                </div>
+              </div>
+            </n-space>
+          </n-card>
+          <n-card title="Float Button Styles">
+            <n-space vertical :size="16">
+              <div>
+                <h3 style="margin-bottom: 12px; color: var(--text-primary)">
+                  Square Shape
+                </h3>
+                <div class="demo-area">
+                  <div class="float-buttons-grid">
+                    <n-float-button shape="square">
+                      <template #icon>
+                        <n-icon :component="AddOutline" />
+                      </template>
+                    </n-float-button>
+                    <n-float-button type="primary" shape="square">
+                      <template #icon>
+                        <n-icon :component="SettingsOutline" />
+                      </template>
+                    </n-float-button>
+                    <n-float-button type="success" shape="square">
+                      <template #icon>
+                        <n-icon :component="MailOutline" />
+                      </template>
+                    </n-float-button>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 style="margin-bottom: 12px; color: var(--text-primary)">
+                  Menu Float Button
+                </h3>
+                <div class="demo-area">
+                  <n-float-button :menu-props="menuOptions">
+                    <template #icon>
+                      <n-icon :component="EllipsisVerticalOutline" />
+                    </template>
+                  </n-float-button>
+                </div>
+              </div>
+            </n-space>
+          </n-card>
+        </n-gi>
+        <n-gi>
+          <n-card title="Float Button Types">
+            <n-space vertical :size="16">
+              <div>
+                <h3 style="margin-bottom: 12px; color: var(--text-primary)">
+                  Different Types
+                </h3>
+                <div class="demo-area">
+                  <div class="float-buttons-grid">
+                    <n-float-button type="primary">
+                      <template #icon>
+                        <n-icon :component="AddOutline" />
+                      </template>
+                    </n-float-button>
+                    <n-float-button type="success">
+                      <template #icon>
+                        <n-icon :component="CheckmarkOutline" />
+                      </template>
+                    </n-float-button>
+                    <n-float-button type="warning">
+                      <template #icon>
+                        <n-icon :component="WarningOutline" />
+                      </template>
+                    </n-float-button>
+                    <n-float-button type="error">
+                      <template #icon>
+                        <n-icon :component="TrashOutline" />
+                      </template>
+                    </n-float-button>
+                    <n-float-button type="info">
+                      <template #icon>
+                        <n-icon :component="InformationCircleOutline" />
+                      </template>
+                    </n-float-button>
+                  </div>
+                </div>
+              </div>
+            </n-space>
+          </n-card>
+          <n-card title="Float Button Positioning">
+            <n-space vertical :size="16">
+              <div>
+                <h3 style="margin-bottom: 12px; color: var(--text-primary)">
+                  Custom Position
+                </h3>
+                <div class="demo-area">
+                  <n-float-button :right="100" :bottom="100">
+                    <template #icon>
+                      <n-icon :component="AddOutline" />
+                    </template>
+                  </n-float-button>
+                  <n-float-button :left="100" :bottom="100" type="primary">
+                    <template #icon>
+                      <n-icon :component="ChatbubbleOutline" />
+                    </template>
+                  </n-float-button>
+                  <n-float-button :right="100" :top="100" type="success">
+                    <template #icon>
+                      <n-icon :component="NotificationsOutline" />
+                    </template>
+                  </n-float-button>
+                  <n-float-button :left="100" :top="100" type="warning">
                     <template #icon>
                       <n-icon :component="HelpCircleOutline" />
                     </template>
                   </n-float-button>
-                </template>
-                Get help
-              </n-tooltip>
-            </div>
-          </div>
-        </n-space>
-      </n-card>
+                </div>
+              </div>
+            </n-space>
+          </n-card>
+          <n-card title="Float Button Features">
+            <n-space vertical :size="16">
+              <div>
+                <h3 style="margin-bottom: 12px; color: var(--text-primary)">
+                  With Badge
+                </h3>
+                <div class="demo-area">
+                  <n-float-button>
+                    <template #icon>
+                      <n-icon :component="NotificationsOutline" />
+                    </template>
+                    <template #badge>
+                      <n-badge :value="5" :max="99" />
+                    </template>
+                  </n-float-button>
+                  <n-float-button type="error" style="margin-left: 80px;">
+                    <template #icon>
+                      <n-icon :component="MailOutline" />
+                    </template>
+                    <template #badge>
+                      <n-badge :value="12" :max="99" />
+                    </template>
+                  </n-float-button>
+                </div>
+              </div>
+            </n-space>
+          </n-card>
+        </n-gi>
+      </n-grid>
     </n-space>
   </div>
 </template>
@@ -229,9 +182,7 @@ import {
   EllipsisVerticalOutline,
   NotificationsOutline,
   ChatbubbleOutline,
-  HelpCircleOutline,
-  DownloadOutline,
-  ShareOutline
+  HelpCircleOutline
 } from '@vicons/ionicons5'
 import { NIcon } from 'naive-ui'
 
@@ -303,5 +254,9 @@ const menuOptions = {
   align-items: center;
   gap: 2px;
   font-size: 10px;
+}
+
+.n-card {
+  margin-bottom: 12px;
 }
 </style>

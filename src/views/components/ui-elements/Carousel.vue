@@ -6,117 +6,120 @@
         <p class="page-subtitle">A slideshow component for cycling through elements—images or slides of text</p>
       </div>
 
-      <n-card title="Basic Carousel">
-        <n-space vertical :size="16">
-          <div>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Auto-play Carousel</h3>
-            <n-carousel autoplay show-dots style="height: 300px">
-              <img class="carousel-img" src="https://picsum.photos/800/400?random=1" alt="Slide 1">
-              <img class="carousel-img" src="https://picsum.photos/800/400?random=2" alt="Slide 2">
-              <img class="carousel-img" src="https://picsum.photos/800/400?random=3" alt="Slide 3">
-              <img class="carousel-img" src="https://picsum.photos/800/400?random=4" alt="Slide 4">
-            </n-carousel>
-          </div>
+      <n-grid x-gap="12" :cols="2">
+        <n-gi>
+          <n-card title="Basic Carousel">
+            <n-space vertical :size="16">
+              <div>
+                <h3 style="margin-bottom: 12px; color: var(--text-primary)">Auto-play Carousel</h3>
+                <n-carousel autoplay show-dots style="height: 300px">
+                  <img class="carousel-img" src="https://picsum.photos/800/400?random=1" alt="Slide 1">
+                  <img class="carousel-img" src="https://picsum.photos/800/400?random=2" alt="Slide 2">
+                  <img class="carousel-img" src="https://picsum.photos/800/400?random=3" alt="Slide 3">
+                  <img class="carousel-img" src="https://picsum.photos/800/400?random=4" alt="Slide 4">
+                </n-carousel>
+              </div>
 
-          <div>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Manual Carousel</h3>
-            <n-carousel show-dots style="height: 300px">
-              <img class="carousel-img" src="https://picsum.photos/800/400?random=5" alt="Slide 1">
-              <img class="carousel-img" src="https://picsum.photos/800/400?random=6" alt="Slide 2">
-              <img class="carousel-img" src="https://picsum.photos/800/400?random=7" alt="Slide 3">
-            </n-carousel>
-          </div>
-        </n-space>
-      </n-card>
+              <div>
+                <h3 style="margin-bottom: 12px; color: var(--text-primary)">Manual Carousel</h3>
+                <n-carousel show-dots style="height: 300px">
+                  <img class="carousel-img" src="https://picsum.photos/800/400?random=5" alt="Slide 1">
+                  <img class="carousel-img" src="https://picsum.photos/800/400?random=6" alt="Slide 2">
+                  <img class="carousel-img" src="https://picsum.photos/800/400?random=7" alt="Slide 3">
+                </n-carousel>
+              </div>
+            </n-space>
+          </n-card>
+          <n-card title="Carousel Controls">
+            <n-space vertical :size="16">
+              <div>
+                <h3 style="margin-bottom: 12px; color: var(--text-primary)">Manual Controls</h3>
+                <n-carousel ref="carouselRef" :show-dots="false" style="height: 300px">
+                  <div class="control-slide">
+                    <h3>Slide 1</h3>
+                    <p>This is first slide with manual controls</p>
+                  </div>
+                  <div class="control-slide">
+                    <h3>Slide 2</h3>
+                    <p>Navigate through slides using buttons below</p>
+                  </div>
+                  <div class="control-slide">
+                    <h3>Slide 3</h3>
+                    <p>You can control every aspect of carousel</p>
+                  </div>
+                </n-carousel>
+                <div class="manual-controls">
+                  <n-space>
+                    <n-button @click="prevSlide" circle>
+                      <template #icon>
+                        <n-icon :component="ChevronBackOutline" />
+                      </template>
+                    </n-button>
+                    <n-button @click="nextSlide" circle>
+                      <template #icon>
+                        <n-icon :component="ChevronForwardOutline" />
+                      </template>
+                    </n-button>
+                  </n-space>
+                </div>
+              </div>
+            </n-space>
+          </n-card>
+        </n-gi>
+        <n-gi>
+          <n-card title="Carousel Styles">
+            <n-space vertical :size="16">
+              <div>
+                <h3 style="margin-bottom: 12px; color: var(--text-primary)">Without Dots</h3>
+                <n-carousel :show-dots="false" style="height: 300px">
+                  <img class="carousel-img" src="https://picsum.photos/800/400?random=8" alt="Slide 1">
+                  <img class="carousel-img" src="https://picsum.photos/800/400?random=9" alt="Slide 2">
+                  <img class="carousel-img" src="https://picsum.photos/800/400?random=10" alt="Slide 3">
+                </n-carousel>
+              </div>
 
-      <n-card title="Carousel Styles">
-        <n-space vertical :size="16">
-          <div>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Without Dots</h3>
-            <n-carousel :show-dots="false" style="height: 300px">
-              <img class="carousel-img" src="https://picsum.photos/800/400?random=8" alt="Slide 1">
-              <img class="carousel-img" src="https://picsum.photos/800/400?random=9" alt="Slide 2">
-              <img class="carousel-img" src="https://picsum.photos/800/400?random=10" alt="Slide 3">
-            </n-carousel>
-          </div>
-
-          <div>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Custom Content</h3>
-            <n-carousel show-dots style="height: 300px">
-              <div class="custom-slide">
-                <h3>Welcome to Our Platform</h3>
-                <p>Discover amazing features and possibilities</p>
+              <div>
+                <h3 style="margin-bottom: 12px; color: var(--text-primary)">Custom Content</h3>
+                <n-carousel show-dots style="height: 300px">
+                  <div class="custom-slide">
+                    <h3>Welcome to Our Platform</h3>
+                    <p>Discover amazing features and possibilities</p>
+                  </div>
+                  <div class="custom-slide">
+                    <h3>Modern Design</h3>
+                    <p>Beautiful and intuitive user interface</p>
+                  </div>
+                  <div class="custom-slide">
+                    <h3>Powerful Features</h3>
+                    <p>Everything you need in one place</p>
+                  </div>
+                </n-carousel>
               </div>
-              <div class="custom-slide">
-                <h3>Modern Design</h3>
-                <p>Beautiful and intuitive user interface</p>
+            </n-space>
+          </n-card>
+          <n-card title="Carousel Directions">
+            <n-space vertical :size="16">
+              <div>
+                <h3 style="margin-bottom: 12px; color: var(--text-primary)">Vertical Carousel</h3>
+                <n-carousel direction="vertical" style="height: 300px">
+                  <div class="vertical-slide">
+                    <h4>First Feature</h4>
+                    <p>Advanced analytics and reporting</p>
+                  </div>
+                  <div class="vertical-slide">
+                    <h4>Second Feature</h4>
+                    <p>Real-time collaboration tools</p>
+                  </div>
+                  <div class="vertical-slide">
+                    <h4>Third Feature</h4>
+                    <p>Customizable workflows</p>
+                  </div>
+                </n-carousel>
               </div>
-              <div class="custom-slide">
-                <h3>Powerful Features</h3>
-                <p>Everything you need in one place</p>
-              </div>
-            </n-carousel>
-          </div>
-        </n-space>
-      </n-card>
-
-      <n-card title="Carousel Directions">
-        <n-space vertical :size="16">
-          <div>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Vertical Carousel</h3>
-            <n-carousel direction="vertical" style="height: 300px">
-              <div class="vertical-slide">
-                <h4>First Feature</h4>
-                <p>Advanced analytics and reporting</p>
-              </div>
-              <div class="vertical-slide">
-                <h4>Second Feature</h4>
-                <p>Real-time collaboration tools</p>
-              </div>
-              <div class="vertical-slide">
-                <h4>Third Feature</h4>
-                <p>Customizable workflows</p>
-              </div>
-            </n-carousel>
-          </div>
-        </n-space>
-      </n-card>
-
-      <n-card title="Carousel Controls">
-        <n-space vertical :size="16">
-          <div>
-            <h3 style="margin-bottom: 12px; color: var(--text-primary)">Manual Controls</h3>
-            <n-carousel ref="carouselRef" :show-dots="false" style="height: 300px">
-              <div class="control-slide">
-                <h3>Slide 1</h3>
-                <p>This is the first slide with manual controls</p>
-              </div>
-              <div class="control-slide">
-                <h3>Slide 2</h3>
-                <p>Navigate through slides using the buttons below</p>
-              </div>
-              <div class="control-slide">
-                <h3>Slide 3</h3>
-                <p>You can control every aspect of the carousel</p>
-              </div>
-            </n-carousel>
-            <div class="manual-controls">
-              <n-space>
-                <n-button @click="prevSlide" circle>
-                  <template #icon>
-                    <n-icon :component="ChevronBackOutline" />
-                  </template>
-                </n-button>
-                <n-button @click="nextSlide" circle>
-                  <template #icon>
-                    <n-icon :component="ChevronForwardOutline" />
-                  </template>
-                </n-button>
-              </n-space>
-            </div>
-          </div>
-        </n-space>
-      </n-card>
+            </n-space>
+          </n-card>
+        </n-gi>
+      </n-grid>
     </n-space>
   </div>
 </template>
@@ -242,5 +245,9 @@ const nextSlide = () => {
   display: flex;
   justify-content: center;
   margin-top: 16px;
+}
+
+.n-card {
+  margin-bottom: 12px;
 }
 </style>
