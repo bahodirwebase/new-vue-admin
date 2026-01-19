@@ -5,71 +5,179 @@
         <h1 class="page-title">Analytical Dashboard</h1>
         <p class="page-subtitle">Detailed analytics and insights</p>
       </div>
-
-      <n-card title="Analytical Overview">
-        <n-grid :cols="4" :x-gap="16" :y-gap="16">
-          <n-grid-item>
-            <n-statistic label="Total Revenue" :value="125430">
-              <template #prefix>$</template>
-              <template #suffix>
-                <span style="color: #10b981; font-size: 14px">+15.3%</span>
-              </template>
-            </n-statistic>
-          </n-grid-item>
-          <n-grid-item>
-            <n-statistic label="Active Users" :value="8945">
-              <template #suffix>
-                <span style="color: #10b981; font-size: 14px">+8.7%</span>
-              </template>
-            </n-statistic>
-          </n-grid-item>
-          <n-grid-item>
-            <n-statistic label="Conversion Rate" :value="12.5">
-              <template #suffix>%</template>
-            </n-statistic>
-          </n-grid-item>
-          <n-grid-item>
-            <n-statistic label="Avg. Session" :value="4.2">
-              <template #suffix>min</template>
-            </n-statistic>
-          </n-grid-item>
-        </n-grid>
-      </n-card>
-
-      <n-grid :cols="2" :x-gap="16" :y-gap="16">
-        <n-grid-item>
-          <n-card title="Revenue & Profit Trends">
-            <LineChart />
+      <n-grid y-gap="24" x-gap="24" :cols="4">
+        <n-gi>
+          <n-card>
+            <div class="card-header">
+              <h3>Revenue Analytics</h3>
+              <div>
+                <n-icon :component="TrendingUpOutline" size="18" color="var(--color-success)"></n-icon>
+                <span class="success-badge">+12.5%</span>
+              </div>
+            </div>
+            <h1>$5.17M</h1>
+            <div class="chart-wrapper">
+              <apexchart
+                type="area"
+                height="150"
+                :options="(chartOptions as ApexOptions)"
+                :series="series"
+              ></apexchart>
+            </div>
           </n-card>
-        </n-grid-item>
-        <n-grid-item>
-          <n-card title="Weekly Active Users">
-            <BarChart />
+        </n-gi>
+        <n-gi>
+          <n-card>
+            <div class="card-header">
+              <h3>Revenue Analytics</h3>
+              <div>
+                <n-icon :component="TrendingUpOutline" size="18" color="var(--color-success)"></n-icon>
+                <span class="success-badge">+12.5%</span>
+              </div>
+            </div>
+            <h1>$5.17M</h1>
+            <div class="chart-wrapper">
+              <apexchart
+                type="area"
+                height="150"
+                :options="(chartOptions as ApexOptions)"
+                :series="series"
+              ></apexchart>
+            </div>
           </n-card>
-        </n-grid-item>
-        <n-grid-item>
-          <n-card title="Traffic by Device Type">
-            <DoughnutChart />
+        </n-gi>
+        <n-gi>
+          <n-card>
+            <div class="card-header">
+              <h3>Revenue Analytics</h3>
+              <div>
+                <n-icon :component="TrendingUpOutline" size="18" color="var(--color-success)"></n-icon>
+                <span class="success-badge">+12.5%</span>
+              </div>
+            </div>
+            <h1>$5.17M</h1>
+            <div class="chart-wrapper">
+              <apexchart
+                type="area"
+                height="150"
+                :options="(chartOptions as ApexOptions)"
+                :series="series"
+              ></apexchart>
+            </div>
           </n-card>
-        </n-grid-item>
-        <n-grid-item>
-          <n-card title="Traffic Sources Distribution">
-            <PieChart />
+        </n-gi>
+        <n-gi>
+          <n-card>
+            <div class="card-header">
+              <h3>Revenue Analytics</h3>
+              <div>
+                <n-icon :component="TrendingUpOutline" size="18" color="var(--color-success)"></n-icon>
+                <span class="success-badge">+12.5%</span>
+              </div>
+            </div>
+            <h1>$5.17M</h1>
+            <div class="chart-wrapper">
+              <apexchart
+                type="area"
+                height="150"
+                :options="(chartOptions as ApexOptions)"
+                :series="series"
+              ></apexchart>
+            </div>
           </n-card>
-        </n-grid-item>
+        </n-gi>
+        
       </n-grid>
     </n-space>
   </div>
 </template>
 
 <script setup lang="ts">
-import LineChart from '@/components/charts/LineChart.vue'
-import BarChart from '@/components/charts/BarChart.vue'
-import DoughnutChart from '@/components/charts/DoughnutChart.vue'
-import PieChart from '@/components/charts/PieChart.vue'
+import { ref } from "vue";
+import VueApexCharts from "vue3-apexcharts";
+import type { ApexOptions } from "apexcharts";
+import { TrendingUpOutline } from "@vicons/ionicons5";
+
+// 2. Komponent sifatida ishlatish (script setup ichida shunchaki o'zgaruvchi sifatida)
+const apexchart = VueApexCharts;
+
+
+const series = ref([
+  {
+    name: "Revenue",
+    data: [31,0, 32, 90, 120, 51, 42, 109, 100, 40, 35],
+  },
+]);
+
+const chartOptions = ref<ApexOptions>({
+  chart: {
+    toolbar: { show: false }, // Ortiqcha tugmalarni o'chirish
+    sparkline: { enabled: false }, // Card ichiga to'liq sig'ishi uchun
+    dropShadow: {
+      enabled: true,
+      top: 10,
+      left: 0,
+      blur: 4,
+      color: "var(--color-success)", // Soya rangi
+      opacity: 0.25,
+    },
+  },
+  colors: ["var(--color-success)"],
+  stroke: {
+    curve: "smooth", // Yumshoq chiziqlar
+    width: 2,
+  },
+  fill: {
+    type: "gradient",
+    gradient: {
+      shadeIntensity: 1,
+      opacityFrom: 0.5,
+      opacityTo: 0, // Pastga qarab yo'qolib boruvchi gradient
+    },
+  },
+  dataLabels: { enabled: false },
+  grid: { show: false }, // Setka chiziqlarini o'chirish (toza ko'rinish uchun)
+  xaxis: { labels: { show: false }, axisBorder: { show: false }, axisTicks: { show: false } },
+  yaxis: { show: false },
+});
 </script>
 
 <style scoped>
+.stats-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Card soyasi */
+  padding: 20px;
+  overflow: hidden;
+}
+.chart-wrapper {
+  margin: -40px -27px; 
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.card-header h3{
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary) !important;
+}
+.card-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background-color: color-mix(in srgb, var(--primary-color), white 75%);
+  border-radius: 18px;
+}
+
+.card-header-actions .n-icon {
+  color: var(--primary-color);
+  font-size: 24px;
+}
 .analytical-page {
   max-width: 100%;
 }
@@ -93,6 +201,17 @@ import PieChart from '@/components/charts/PieChart.vue'
 
 :deep(.n-card .n-card__content) {
   padding: 16px;
+}
+.success-badge {
+  background-color: var(--color-success);
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  color: white;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 8px;
 }
 
 @media (max-width: 768px) {
