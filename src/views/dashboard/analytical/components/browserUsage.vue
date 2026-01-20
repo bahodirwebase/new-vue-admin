@@ -1,7 +1,7 @@
 <template>
   <n-card class="projects-card" :bordered="false">
       <div class="card-header">
-        <h3 class="card-title">Projects Overview</h3>
+        <h3 class="card-title">Browser Usage</h3>
         <n-button text class="expand-btn">
           <n-icon :size="20">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -20,50 +20,63 @@
         />
       </div>
 
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-indicator in-progress"></div>
-          <div class="stat-content">
-            <span class="stat-label">In Progress:</span>
-            <span class="stat-value">14</span>
+      <n-list :show-divider="true" size="small">
+        <n-list-item>
+          <div class="browser-stat">
+            <div class="stat-indicator chrome"></div>
+            <div class="stat-content">
+              <span class="stat-label">Chrome:</span>
+              <span class="stat-value">14</span>
+            </div>
           </div>
-        </div>
-
-        <div class="stat-item">
-          <div class="stat-indicator completed"></div>
-          <div class="stat-content">
-            <span class="stat-label">Completed:</span>
-            <span class="stat-value">32</span>
+        </n-list-item>
+        <n-list-item>
+          <div class="browser-stat">
+            <div class="stat-indicator firefox"></div>
+            <div class="stat-content">
+              <span class="stat-label">Firefox:</span>
+              <span class="stat-value">32</span>
+            </div>
           </div>
-        </div>
-
-        <div class="stat-item">
-          <div class="stat-indicator not-started"></div>
-          <div class="stat-content">
-            <span class="stat-label">Not Started:</span>
-            <span class="stat-value">54</span>
+        </n-list-item>
+        <n-list-item>
+          <div class="browser-stat">
+            <div class="stat-indicator edge"></div>
+            <div class="stat-content">
+              <span class="stat-label">Edge:</span>
+              <span class="stat-value">54</span>
+            </div>
           </div>
-        </div>
-      </div>
+        </n-list-item>
+        <n-list-item>
+          <div class="browser-stat">
+            <div class="stat-indicator other"></div>
+            <div class="stat-content">
+              <span class="stat-label">Other:</span>
+              <span class="stat-value">10</span>
+            </div>
+          </div>
+        </n-list-item>
+      </n-list>
     </n-card>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { NCard, NButton, NIcon } from 'naive-ui';
+import { NCard, NButton, NIcon, NList, NListItem } from 'naive-ui';
 import VueApexCharts from 'vue3-apexcharts';
 
 const apexchart = VueApexCharts;
 
-const series = ref([14, 32, 54]);
+const series = ref([14, 32, 54, 10]);
 
 const chartOptions = ref({
   chart: {
     type: 'donut',
     fontFamily: 'Inter, sans-serif'
   },
-  labels: ['In Progress', 'Completed', 'Not Started'],
-  colors: ['var(--color-warning)', 'var(--color-primary)', 'var(--text-tertiary)'],
+  labels: ['Chrome', 'Firefox', 'Edge', 'Other'],
+  colors: ['var(--color-warning)', 'var(--color-primary)', 'var(--color-info)', 'var(--text-tertiary)'],
   plotOptions: {
     pie: {
       donut: {
@@ -137,13 +150,7 @@ const chartOptions = ref({
   margin: 0 auto 1.5rem;
 }
 
-.stats-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-}
-
-.stat-item {
+.browser-stat {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -156,15 +163,19 @@ const chartOptions = ref({
   flex-shrink: 0;
 }
 
-.stat-indicator.in-progress {
+.stat-indicator.chrome {
   background: var(--color-warning);
 }
 
-.stat-indicator.completed {
+.stat-indicator.firefox {
   background: var(--color-primary);
 }
 
-.stat-indicator.not-started {
+.stat-indicator.edge {
+  background: var(--color-info);
+}
+
+.stat-indicator.other {
   background: var(--text-tertiary);
 }
 
@@ -184,6 +195,15 @@ const chartOptions = ref({
   font-size: 0.875rem;
   color: var(--text-primary);
   font-weight: 700;
+}
+
+/* Naive UI List overrides */
+:deep(.n-list-item) {
+  padding: 0.25rem 0;
+}
+
+:deep(.n-list-item:not(:last-child)) {
+  border-bottom: none;
 }
 
 /* Dark mode specific styles */

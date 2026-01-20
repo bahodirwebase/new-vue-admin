@@ -201,6 +201,39 @@ const transactionsData = ref([
     date: "22 June 2024",
     status: "completed",
   },
+  {
+    id : 7,
+    customer: "John Cooper",
+    avatar: "https://i.pravatar.cc/150?img=12",
+    item: "AirPods Pro",
+    date: "23 June 2024",
+    status: "pending",
+  },
+  {
+    id : 8,
+    customer: "John Cooper",
+    avatar: "https://i.pravatar.cc/150?img=12",
+    item: "AirPods Pro",
+    date: "23 June 2024",
+    status: "pending",   
+  },
+  {
+    id: 9,
+    customer: "Emma Wilson",
+    avatar: "https://i.pravatar.cc/150?img=9",
+    item: "iPad Air",
+    date: "22 June 2024",
+    status: "completed",
+  },
+  {
+    id: 10,
+    customer: "John Cooper",
+    avatar: "https://i.pravatar.cc/150?img=12",
+    item: "AirPods Pro",
+    date: "23 June 2024",
+    status: "pending",
+  },
+      
 ]);
 
 // Table columns
@@ -413,17 +446,6 @@ const handleMore = (row: Transaction) => {
   background: var(--bg-secondary);
 }
 
-/* Card overrides */
-:deep(.n-card-header) {
-  padding: 20px 24px;
-  border-bottom: 1px solid var(--border-color);
-  background: var(--bg-primary);
-}
-
-:deep(.n-card__content) {
-  padding: 0 !important;
-  background: var(--bg-primary);
-}
 
 /* Table overrides */
 :deep(.n-data-table-th) {

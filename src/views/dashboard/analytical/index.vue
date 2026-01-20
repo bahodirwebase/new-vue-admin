@@ -1,5 +1,5 @@
 <template>
-  
+
   <div class="analytical-page">
     <n-space vertical :size="24">
       <div class="page-header">
@@ -7,6 +7,99 @@
         <p class="page-subtitle">Detailed analytics and insights</p>
       </div>
       <n-grid y-gap="24" x-gap="24" :cols="6">
+        <n-gi v-for="value in 6" :key="value">
+          <statistics />
+        </n-gi>
+      </n-grid>
+      <n-grid x-gap="18" y-gap="18" cols="2">
+        <n-gi>
+          <n-grid y-gap="18" x-gap="18" :cols="2">
+            <n-gi>
+              <n-card>
+                <div class="card-header">
+                  <h3>Users</h3>
+                  <div>
+                    <n-icon :component="TrendingUpOutline" size="18" color="var(--color-success)"></n-icon>
+                    <span class="custom-badge bg-success">+12.5%</span>
+                  </div>
+                </div>
+                <h1>28.05k</h1>
+                <div class="chart-wrapper">
+                  <apexchart type="area" height="150" :options="(chartOptions as ApexOptions)" :series="series">
+                  </apexchart>
+                </div>
+              </n-card>
+            </n-gi>
+            <n-gi>
+              <n-card>
+                <div class="card-header">
+                  <h3>Sessions</h3>
+                  <div>
+                    <n-icon :component="TrendingUpOutline" size="18" color="var(--color-success)"></n-icon>
+                    <span class="custom-badge bg-success">+12.5%</span>
+                  </div>
+                </div>
+                <h1>97.66k</h1>
+                <div class="chart-wrapper">
+                  <apexchart type="area" height="150" :options="(chartOptions as ApexOptions)" :series="series">
+                  </apexchart>
+                </div>
+              </n-card>
+            </n-gi>
+            <n-gi>
+              <n-card>
+                <div class="card-header">
+                  <h3>Av. Visit Duration</h3>
+                  <div>
+                    <n-icon :component="TrendingDownOutline" size="18" color="var(--color-error)"></n-icon>
+                    <span class="custom-badge bg-error">-5.2%</span>
+                  </div>
+                </div>
+                <h1>3m 40ses</h1>
+                <div class="chart-wrapper">
+                  <apexchart type="area" height="150" :options="(chartOptions3 as ApexOptions)" :series="series3">
+                  </apexchart>
+                </div>
+              </n-card>
+            </n-gi>
+            <n-gi>
+              <n-card>
+                <div class="card-header">
+                  <h3>Bounce rate</h3>
+                  <div>
+                    <n-icon :component="TrendingUpOutline" size="18" color="var(--color-success)"></n-icon>
+                    <span class="custom-badge bg-success">+12.5%</span>
+                  </div>
+                </div>
+                <h1>33.48%</h1>
+                <div class="chart-wrapper">
+                  <apexchart type="area" height="150" :options="(chartOptions as ApexOptions)" :series="series">
+                  </apexchart>
+                </div>
+              </n-card>
+            </n-gi>
+          </n-grid>
+        </n-gi>
+        <n-gi>
+          <lineChart />
+        </n-gi>
+      </n-grid>
+      <n-grid y-gap="8" x-gap="8" :cols="4">
+        <n-gi>
+          <latestLeads />
+        </n-gi>
+        <n-gi>
+          <browserUsage />
+        </n-gi>
+        <n-gi :span="2">
+          <customerTransaction />
+        </n-gi>
+      </n-grid>
+
+
+
+
+      <!-- <n-grid y-gap="24" x-gap="24" :cols="6">
         <n-gi v-for="value in 6" :key="value">
           <ai />
         </n-gi>
@@ -21,85 +114,16 @@
           <ai2 />
         </n-gi>
       </n-grid>
-      <n-grid y-gap="24" x-gap="24" :cols="2">
-        <n-gi v-for="value in 2" :key="value">
-          <ai3 />
-        </n-gi>
-      </n-grid>
       <n-grid y-gap="24" x-gap="24" :cols="4">
         <n-gi v-for="value in 4" :key="value">
           <ai4 />
         </n-gi>
       </n-grid>
-      <n-grid y-gap="24" x-gap="24" :cols="4">
-        <n-gi>
-          <n-card>
-            <div class="card-header">
-              <h3>Users</h3>
-              <div>
-                <n-icon :component="TrendingUpOutline" size="18" color="var(--color-success)"></n-icon>
-                <span class="custom-badge bg-success">+12.5%</span>
-              </div>
-            </div>
-            <h1>28.05k</h1>
-            <div class="chart-wrapper">
-              <apexchart type="area" height="150" :options="(chartOptions as ApexOptions)" :series="series"></apexchart>
-            </div>
-          </n-card>
-        </n-gi>
-        <n-gi>
-          <n-card>
-            <div class="card-header">
-              <h3>Sessions</h3>
-              <div>
-                <n-icon :component="TrendingUpOutline" size="18" color="var(--color-success)"></n-icon>
-                <span class="custom-badge bg-success">+12.5%</span>
-              </div>
-            </div>
-            <h1>97.66k</h1>
-            <div class="chart-wrapper">
-              <apexchart type="area" height="150" :options="(chartOptions as ApexOptions)" :series="series"></apexchart>
-            </div>
-          </n-card>
-        </n-gi>
-        <n-gi>
-          <n-card>
-            <div class="card-header">
-              <h3>Av. Visit Duration</h3>
-              <div>
-                <n-icon :component="TrendingDownOutline" size="18" color="var(--color-error)"></n-icon>
-                <span class="custom-badge bg-error">-5.2%</span>
-              </div>
-            </div>
-            <h1>3m 40ses</h1>
-            <div class="chart-wrapper">
-              <apexchart type="area" height="150" :options="(chartOptions3 as ApexOptions)" :series="series3">
-              </apexchart>
-            </div>
-          </n-card>
-        </n-gi>
-        <n-gi>
-          <n-card>
-            <div class="card-header">
-              <h3>Bounce rate</h3>
-              <div>
-                <n-icon :component="TrendingUpOutline" size="18" color="var(--color-success)"></n-icon>
-                <span class="custom-badge bg-success">+12.5%</span>
-              </div>
-            </div>
-            <h1>33.48%</h1>
-            <div class="chart-wrapper">
-              <apexchart type="area" height="150" :options="(chartOptions as ApexOptions)" :series="series"></apexchart>
-            </div>
-          </n-card>
-        </n-gi>
-
-      </n-grid>
       <n-grid y-gap="24" x-gap="24" :cols="1">
         <n-gi>
           <table1 />
         </n-gi>
-      </n-grid>
+      </n-grid> -->
     </n-space>
   </div>
 </template>
@@ -108,13 +132,13 @@
 import { ref } from "vue";
 import VueApexCharts from "vue3-apexcharts";
 import type { ApexOptions } from "apexcharts";
-import ai from "./ai.vue";
-import ai1 from "./ai1.vue";
-import ai2 from "./ai2.vue";
-import ai3 from "./ai3.vue";
-import ai4 from "./ai4.vue"
-import {  TrendingDownOutline, TrendingUpOutline } from "@vicons/ionicons5";
-import table1 from "./table.vue";
+import statistics from "./components/statistics.vue";
+// import upcomingMeetings from "./components/upcomingMeetings.vue";
+import latestLeads from "./components/latestLeads.vue";
+import lineChart from "./components/lineChart.vue";
+import { TrendingDownOutline, TrendingUpOutline } from "@vicons/ionicons5";
+import customerTransaction from "./components/customerTransaction.vue";
+import browserUsage from "./components/browserUsage.vue";
 // 2. Komponent sifatida ishlatish (script setup ichida shunchaki o'zgaruvchi sifatida)
 const apexchart = VueApexCharts;
 
@@ -211,6 +235,7 @@ const chartOptions3 = ref<ApexOptions>({
 .chart-wrapper {
   margin: -40px -20px;
 }
+
 .avatar-wrapper {
   width: 48px;
   height: 48px;
@@ -221,6 +246,7 @@ const chartOptions3 = ref<ApexOptions>({
   align-items: center;
   justify-content: center;
 }
+
 .card-header {
   display: flex;
   justify-content: space-between;

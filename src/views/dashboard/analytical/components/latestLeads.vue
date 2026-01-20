@@ -123,7 +123,7 @@ const leads = ref([
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.875rem 0;
+    padding: 0.4rem 0;
     border-bottom: 1px solid var(--border-color);
     transition: all 0.2s ease;
 }
