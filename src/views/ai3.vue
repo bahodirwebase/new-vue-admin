@@ -70,12 +70,12 @@ const chartOptions = ref({
   stroke: {
     curve: 'smooth',
     width: 3,
-    colors: ['#5B5FEF']
+    colors: ['var(--color-primary)']
   },
   markers: {
     size: 5,
-    colors: ['#5B5FEF'],
-    strokeColors: '#fff',
+    colors: ['var(--color-primary)'],
+    strokeColors: 'var(--bg-primary)',
     strokeWidth: 2,
     hover: {
       size: 7
@@ -83,7 +83,7 @@ const chartOptions = ref({
   },
   grid: {
     show: true,
-    borderColor: '#f1f1f1',
+    borderColor: 'var(--border-color)',
     strokeDashArray: 3,
     position: 'back',
     xaxis: {
@@ -101,7 +101,7 @@ const chartOptions = ref({
     categories: ['Jan 2', 'Jan 9', 'Jan 16', 'Jan 23', 'Jan 30', 'Jan 35', 'Jan 35', 'Jan 35'],
     labels: {
       style: {
-        colors: '#9ca3af',
+        colors: 'var(--text-secondary)',
         fontSize: '12px',
         fontWeight: 500
       }
@@ -119,7 +119,7 @@ const chartOptions = ref({
     tickAmount: 5,
     labels: {
       style: {
-        colors: '#9ca3af',
+        colors: 'var(--text-secondary)',
         fontSize: '12px',
         fontWeight: 500
       }
@@ -127,7 +127,7 @@ const chartOptions = ref({
   },
   tooltip: {
     enabled: true,
-    theme: 'light',
+    theme: 'dark',
     style: {
       fontSize: '12px'
     },
@@ -142,7 +142,7 @@ const chartOptions = ref({
       {
         x: 'Jan 9',
         strokeDashArray: 4,
-        borderColor: '#5B5FEF',
+        borderColor: 'var(--color-primary)',
         borderWidth: 2,
         opacity: 0.3
       }
@@ -152,13 +152,11 @@ const chartOptions = ref({
 </script>
 
 <style scoped>
-
-
 .chart-card {
   width: 100%;
   border-radius: 1.25rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  background: white;
+  box-shadow: var(--shadow-md);
+  background: var(--bg-primary);
 }
 
 .card-header {
@@ -171,23 +169,39 @@ const chartOptions = ref({
 .card-title {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0;
 }
 
 .menu-btn {
-  color: #6b7280;
+  color: var(--text-secondary);
   padding: 0.25rem;
   transition: all 0.2s ease;
 }
 
 .menu-btn:hover {
-  color: #374151;
-  background: #f3f4f6;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
   border-radius: 0.5rem;
 }
 
 .chart-wrapper {
   margin: 0 -1rem;
+}
+
+/* Dark mode specific styles */
+[data-theme="dark"] .menu-btn:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .chart-card {
+    border-radius: 1rem;
+  }
+  
+  .chart-wrapper {
+    margin: 0 -0.5rem;
+  }
 }
 </style>

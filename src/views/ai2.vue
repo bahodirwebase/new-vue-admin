@@ -81,8 +81,8 @@ const leads = ref([
     width: 100%;
     max-width: 420px;
     border-radius: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-    background: white;
+    box-shadow: var(--shadow-md);
+    background: var(--bg-primary);
 }
 
 .card-header {
@@ -95,12 +95,12 @@ const leads = ref([
 .card-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #1f2937;
+    color: var(--text-primary);
     margin: 0;
 }
 
 .see-all-btn {
-    color: #f97316;
+    color: var(--color-warning);
     font-weight: 600;
     font-size: 0.9375rem;
     padding: 0;
@@ -108,7 +108,8 @@ const leads = ref([
 }
 
 .see-all-btn:hover {
-    color: #ea580c;
+    color: var(--color-warning);
+    opacity: 0.8;
     transform: translateX(2px);
 }
 
@@ -123,7 +124,7 @@ const leads = ref([
     align-items: center;
     justify-content: space-between;
     padding: 0.875rem 0;
-    border-bottom: 1px solid #f3f4f6;
+    border-bottom: 1px solid var(--border-color);
     transition: all 0.2s ease;
 }
 
@@ -133,11 +134,12 @@ const leads = ref([
 
 .lead-item:hover {
     padding-left: 0.5rem;
-    background: #fef3f2;
+    background: var(--bg-secondary);
     margin-left: -0.5rem;
     margin-right: -0.5rem;
     padding-right: 0.5rem;
     border-radius: 0.5rem;
+    border-bottom-color: transparent;
 }
 
 .lead-left {
@@ -149,12 +151,32 @@ const leads = ref([
 .lead-name {
     font-size: 0.9375rem;
     font-weight: 500;
-    color: #1f2937;
+    color: var(--text-primary);
 }
 
 .lead-time {
     font-size: 0.8125rem;
-    color: #9ca3af;
+    color: var(--text-secondary);
     font-weight: 500;
+}
+
+/* Dark mode specific styles */
+[data-theme="dark"] .lead-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .leads-card {
+        max-width: 100%;
+    }
+    
+    .lead-item {
+        padding: 0.75rem 0;
+    }
+    
+    .lead-left {
+        gap: 0.75rem;
+    }
 }
 </style>

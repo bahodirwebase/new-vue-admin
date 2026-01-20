@@ -2,7 +2,7 @@
   <n-card class="meetings-card" :bordered="false">
       <div class="card-header">
         <h3 class="card-title">Upcoming Meetings</h3>
-        <n-icon :size="24" color="#10b981" class="calendar-icon">
+        <n-icon :size="24" color="var(--color-success)" class="calendar-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
           </svg>
@@ -93,14 +93,12 @@ const laterMeetings = ref([
 </script>
 
 <style scoped>
-
-
 .meetings-card {
   width: 100%;
   max-width: 420px;
   border-radius: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-  background: white;
+  box-shadow: var(--shadow-md);
+  background: var(--bg-primary);
 }
 
 .card-header {
@@ -113,7 +111,7 @@ const laterMeetings = ref([
 .card-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -122,7 +120,7 @@ const laterMeetings = ref([
 }
 
 .time-badge {
-  color: #6b7280;
+  color: var(--text-secondary);
   font-size: 0.875rem;
   margin-bottom: 1rem;
   font-weight: 500;
@@ -139,15 +137,17 @@ const laterMeetings = ref([
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: #f9fafb;
+  background: var(--bg-secondary);
   border-radius: 0.875rem;
   transition: all 0.2s ease;
   cursor: pointer;
+  border: 1px solid var(--border-color);
 }
 
 .meeting-item:hover {
-  background: #f3f4f6;
+  background: var(--bg-tertiary);
   transform: translateX(4px);
+  border-color: var(--color-primary);
 }
 
 .meeting-icon {
@@ -168,27 +168,43 @@ const laterMeetings = ref([
 .meeting-title {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0;
   line-height: 1.4;
 }
 
 .meeting-subtitle {
   font-size: 0.8125rem;
-  color: #6b7280;
+  color: var(--text-secondary);
   margin: 0.25rem 0 0 0;
 }
 
 .time-section {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-color);
 }
 
 .time-label {
-  color: #6b7280;
+  color: var(--text-secondary);
   font-size: 0.875rem;
   margin-bottom: 1rem;
   font-weight: 500;
+}
+
+/* Dark mode specific styles */
+[data-theme="dark"] .meeting-item:hover {
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .meetings-card {
+    max-width: 100%;
+  }
+  
+  .meeting-item {
+    padding: 0.875rem;
+  }
 }
 </style>

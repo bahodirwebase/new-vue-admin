@@ -797,8 +797,9 @@ onMounted(() => {
 
 .sidebar-card {
   border-radius: 16px;
-  box-shadow: 0 8px 32px var(--shadow-light);
-  /* background: var(--bg-card); */
+  box-shadow: var(--shadow-md);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
 }
 
 .view-switcher h4,
@@ -821,12 +822,13 @@ onMounted(() => {
   background: linear-gradient(
     135deg,
     var(--bg-secondary) 0%,
-    var(--border-color) 100%
+    var(--bg-tertiary) 100%
   );
   padding: 16px;
   border-radius: 12px;
   text-align: center;
   transition: transform 0.2s ease;
+  border: 1px solid var(--border-color);
 }
 
 .stat-card:hover {
@@ -857,9 +859,10 @@ onMounted(() => {
 
 .calendar-card {
   border-radius: 16px;
-  box-shadow: 0 8px 32px var(--shadow-light);
+  box-shadow: var(--shadow-md);
   height: fit-content;
-  /* background: var(--bg-card); */
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
 }
 
 .view-header {
@@ -966,14 +969,14 @@ onMounted(() => {
 }
 
 .day-column {
-  background: var(--bg-card);
+  background: var(--bg-secondary);
   border-right: 1px solid var(--border-color);
   position: relative;
   transition: background-color 0.2s ease;
 }
 
 .day-column:hover {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-tertiary);
 }
 
 .day-header {
@@ -1072,7 +1075,7 @@ onMounted(() => {
   margin-bottom: 4px;
   padding: 8px;
   border-radius: 6px;
-  background: #475569;
+  background: var(--color-primary);
   color: var(--text-primary);
   transition: all 0.2s ease;
   cursor: pointer;
@@ -1088,15 +1091,16 @@ onMounted(() => {
   max-height: 600px;
   overflow-y: auto;
   padding: 16px;
-  background: var(--bg-card);
+  background: var(--bg-secondary);
   border-radius: 12px;
+  border: 1px solid var(--border-color);
 }
 
 .event-item {
   display: flex;
   align-items: flex-start;
   padding: 16px;
-  background: var(--bg-card);
+  background: var(--bg-primary);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   margin-bottom: 12px;
@@ -1235,10 +1239,37 @@ onMounted(() => {
   background-color: rgba(102, 126, 234, 0.2) !important;
 }
 
-/* Dark theme for calendar cells */
+/* Dark mode specific styles */
+[data-theme="dark"] .calendar-header {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .sidebar-card {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .calendar-card {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .event-modal {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced hover effects for dark mode */
+[data-theme="dark"] .stat-card:hover {
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+[data-theme="dark"] .event-item:hover {
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+/* Dark theme for calendar cells - enhanced */
 @media (prefers-color-scheme: dark) {
   :deep(.n-calendar) {
-    background-color: var(--bg-card) !important;
+    background-color: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
   }
 
   :deep(.n-calendar .n-calendar-day) {
@@ -1247,11 +1278,11 @@ onMounted(() => {
   }
 
   :deep(.n-calendar .n-calendar-day:hover) {
-    background-color: var(--bg-secondary) !important;
+    background-color: var(--bg-tertiary) !important;
   }
 
   :deep(.n-calendar .n-calendar-day.n-calendar-cell--today) {
-    background-color: rgba(102, 126, 234, 0.1) !important;
+    background-color: rgba(99, 102, 241, 0.15) !important;
   }
 
   :deep(.n-calendar .n-calendar-weekdays) {

@@ -14,12 +14,10 @@
 </script>
 
 <style scoped>
-
-
 .stat-card {
-  background: white;
+  background: var(--bg-primary);
   border-radius: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  box-shadow: var(--shadow-md);
   padding: 1.5rem;
   width: 100%;
   transition: all 0.3s ease;
@@ -27,35 +25,50 @@
 }
 
 .stat-card:hover {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
 }
 
 .stat-value {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #1f2937;
-  margin: 0 0 0.75rem 0;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
   line-height: 1;
 }
 
 .stat-info {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .stat-icon {
-  width: 1.25rem;
-  height: 1.25rem;
-  color: #f97316;
+  width: 2rem;
+  height: 2rem;
+  color: var(--color-primary);
   flex-shrink: 0;
 }
 
 .stat-label {
-  color: #374151;
-  font-weight: 500;
   font-size: 0.875rem;
-  line-height: 1.2;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Dark mode hover effects */
+[data-theme="dark"] .stat-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .stat-card {
+    padding: 1.25rem;
+  }
+  
+  .stat-value {
+    font-size: 2rem;
+  }
 }
 </style>

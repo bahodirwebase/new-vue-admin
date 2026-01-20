@@ -95,6 +95,11 @@
         </n-gi>
 
       </n-grid>
+      <n-grid y-gap="24" x-gap="24" :cols="1">
+        <n-gi>
+          <table1 />
+        </n-gi>
+      </n-grid>
     </n-space>
   </div>
 </template>
@@ -109,7 +114,7 @@ import ai2 from "./ai2.vue";
 import ai3 from "./ai3.vue";
 import ai4 from "./ai4.vue"
 import {  TrendingDownOutline, TrendingUpOutline } from "@vicons/ionicons5";
-
+import table1 from "./table.vue";
 // 2. Komponent sifatida ishlatish (script setup ichida shunchaki o'zgaruvchi sifatida)
 const apexchart = VueApexCharts;
 
@@ -195,22 +200,22 @@ const chartOptions3 = ref<ApexOptions>({
 
 <style scoped>
 .stats-card {
-  background: #ffffff;
+  background: var(--bg-primary);
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-  /* Card soyasi */
+  box-shadow: var(--shadow-md);
   padding: 20px;
   overflow: hidden;
+  border: 1px solid var(--border-color);
 }
 
 .chart-wrapper {
-  margin: -40px -27px;
+  margin: -40px -20px;
 }
 .avatar-wrapper {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background-color: color-mix(in srgb, var(--primary-color), white 75%);
+  background-color: color-mix(in srgb, var(--primary-color), var(--bg-primary) 75%);
   color: var(--primary-color);
   display: flex;
   align-items: center;
@@ -235,7 +240,7 @@ const chartOptions3 = ref<ApexOptions>({
   justify-content: center;
   width: 56px;
   height: 56px;
-  background-color: color-mix(in srgb, var(--primary-color), white 75%);
+  background-color: color-mix(in srgb, var(--primary-color), var(--bg-primary) 75%);
   border-radius: 18px;
 }
 
@@ -263,6 +268,8 @@ const chartOptions3 = ref<ApexOptions>({
 
 :deep(.n-card) {
   height: 100%;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
 }
 
 :deep(.n-card .n-card__content) {
@@ -279,6 +286,28 @@ const chartOptions3 = ref<ApexOptions>({
   font-weight: 500;
   margin-left: 8px;
 }
+
+.bg-success {
+  background-color: var(--color-success);
+}
+
+.bg-error {
+  background-color: var(--color-error);
+}
+
+/* Dark mode specific styles */
+[data-theme="dark"] .stats-card {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .card-header-actions:hover {
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+[data-theme="dark"] .avatar-wrapper:hover {
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
 
 @media (max-width: 768px) {
   :deep(.n-grid) {

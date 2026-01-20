@@ -63,7 +63,7 @@ const chartOptions = ref({
     fontFamily: 'Inter, sans-serif'
   },
   labels: ['In Progress', 'Completed', 'Not Started'],
-  colors: ['#FB923C', '#3B82F6', '#E5E7EB'],
+  colors: ['var(--color-warning)', 'var(--color-primary)', 'var(--text-tertiary)'],
   plotOptions: {
     pie: {
       donut: {
@@ -83,7 +83,7 @@ const chartOptions = ref({
   stroke: {
     show: true,
     width: 8,
-    colors: ['#fff']
+    colors: ['var(--bg-primary)']
   },
   tooltip: {
     enabled: true,
@@ -97,13 +97,11 @@ const chartOptions = ref({
 </script>
 
 <style scoped>
-
-
 .projects-card {
   width: 100%;
   border-radius: 1.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  background: white;
+  box-shadow: var(--shadow-md);
+  background: var(--bg-primary);
 }
 
 .card-header {
@@ -116,19 +114,19 @@ const chartOptions = ref({
 .card-title {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--text-primary);
   margin: 0;
 }
 
 .expand-btn {
-  color: #6b7280;
+  color: var(--text-secondary);
   padding: 0.375rem;
   transition: all 0.2s ease;
 }
 
 .expand-btn:hover {
-  color: #374151;
-  background: #f3f4f6;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
   border-radius: 0.5rem;
 }
 
@@ -159,15 +157,15 @@ const chartOptions = ref({
 }
 
 .stat-indicator.in-progress {
-  background: #FB923C;
+  background: var(--color-warning);
 }
 
 .stat-indicator.completed {
-  background: #3B82F6;
+  background: var(--color-primary);
 }
 
 .stat-indicator.not-started {
-  background: #9CA3AF;
+  background: var(--text-tertiary);
 }
 
 .stat-content {
@@ -178,13 +176,33 @@ const chartOptions = ref({
 
 .stat-label {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
 .stat-value {
   font-size: 0.875rem;
-  color: #1f2937;
+  color: var(--text-primary);
   font-weight: 700;
+}
+
+/* Dark mode specific styles */
+[data-theme="dark"] .expand-btn:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .projects-card {
+    border-radius: 1rem;
+  }
+  
+  .chart-container {
+    margin: 0 auto 1rem;
+  }
+  
+  .stats-grid {
+    gap: 0.75rem;
+  }
 }
 </style>
