@@ -336,7 +336,7 @@ const initConversionChart = () => {
     },
     dataLabels: { enabled: true, style: { fontSize: '11px' } },
     grid: { show: false },
-    tooltip: { theme: 'light', shared: true }
+    tooltip: { theme: 'light', shared: false }
   }
   new ApexCharts(document.querySelector('#conversionChart'), options).render()
 }
