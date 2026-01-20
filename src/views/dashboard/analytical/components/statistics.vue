@@ -16,7 +16,7 @@
 <style scoped>
 .stat-card {
   background: var(--bg-primary);
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   box-shadow: var(--shadow-md);
   padding: 1.5rem;
   width: 100%;

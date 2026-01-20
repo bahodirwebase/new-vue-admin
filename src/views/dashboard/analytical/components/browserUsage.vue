@@ -112,7 +112,6 @@ const chartOptions = ref({
 <style scoped>
 .projects-card {
   width: 100%;
-  border-radius: 1.5rem;
   box-shadow: var(--shadow-md);
   background: var(--bg-primary);
 }

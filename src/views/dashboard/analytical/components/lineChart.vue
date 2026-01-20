@@ -154,7 +154,6 @@ const chartOptions = ref({
 <style scoped>
 .chart-card {
   width: 100%;
-  border-radius: 1.25rem;
   box-shadow: var(--shadow-md);
   background: var(--bg-primary);
 }

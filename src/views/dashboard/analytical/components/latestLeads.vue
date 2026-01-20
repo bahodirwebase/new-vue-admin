@@ -79,8 +79,6 @@ const leads = ref([
 <style scoped>
 .leads-card {
     width: 100%;
-    max-width: 420px;
-    border-radius: 1.5rem;
     box-shadow: var(--shadow-md);
     background: var(--bg-primary);
 }

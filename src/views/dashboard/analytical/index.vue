@@ -1,12 +1,12 @@
 <template>
 
   <div class="analytical-page">
-    <n-space vertical :size="24">
+    <n-space vertical :size="18">
       <div class="page-header">
         <h1 class="page-title">Analytical Dashboard</h1>
         <p class="page-subtitle">Detailed analytics and insights</p>
       </div>
-      <n-grid y-gap="24" x-gap="24" :cols="6">
+      <n-grid y-gap="18" x-gap="18" :cols="6">
         <n-gi v-for="value in 6" :key="value">
           <statistics />
         </n-gi>
@@ -84,7 +84,7 @@
           <lineChart />
         </n-gi>
       </n-grid>
-      <n-grid y-gap="8" x-gap="8" :cols="4">
+      <n-grid y-gap="18" x-gap="18" :cols="4">
         <n-gi>
           <latestLeads />
         </n-gi>
@@ -96,34 +96,6 @@
         </n-gi>
       </n-grid>
 
-
-
-
-      <!-- <n-grid y-gap="24" x-gap="24" :cols="6">
-        <n-gi v-for="value in 6" :key="value">
-          <ai />
-        </n-gi>
-      </n-grid>
-      <n-grid y-gap="24" x-gap="24" :cols="4">
-        <n-gi v-for="value in 4" :key="value">
-          <ai1 />
-        </n-gi>
-      </n-grid>
-      <n-grid y-gap="24" x-gap="24" :cols="4">
-        <n-gi v-for="value in 4" :key="value">
-          <ai2 />
-        </n-gi>
-      </n-grid>
-      <n-grid y-gap="24" x-gap="24" :cols="4">
-        <n-gi v-for="value in 4" :key="value">
-          <ai4 />
-        </n-gi>
-      </n-grid>
-      <n-grid y-gap="24" x-gap="24" :cols="1">
-        <n-gi>
-          <table1 />
-        </n-gi>
-      </n-grid> -->
     </n-space>
   </div>
 </template>
@@ -133,13 +105,12 @@ import { ref } from "vue";
 import VueApexCharts from "vue3-apexcharts";
 import type { ApexOptions } from "apexcharts";
 import statistics from "./components/statistics.vue";
-// import upcomingMeetings from "./components/upcomingMeetings.vue";
 import latestLeads from "./components/latestLeads.vue";
 import lineChart from "./components/lineChart.vue";
 import { TrendingDownOutline, TrendingUpOutline } from "@vicons/ionicons5";
 import customerTransaction from "./components/customerTransaction.vue";
 import browserUsage from "./components/browserUsage.vue";
-// 2. Komponent sifatida ishlatish (script setup ichida shunchaki o'zgaruvchi sifatida)
+
 const apexchart = VueApexCharts;
 
 
