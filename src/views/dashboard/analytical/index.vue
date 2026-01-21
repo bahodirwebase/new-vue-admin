@@ -194,14 +194,7 @@ const chartOptions3 = ref<ApexOptions>({
 </script>
 
 <style scoped>
-.stats-card {
-  background: var(--bg-primary);
-  border-radius: 16px;
-  box-shadow: var(--shadow-md);
-  padding: 20px;
-  overflow: hidden;
-  border: 1px solid var(--border-color);
-}
+
 
 .chart-wrapper {
   margin: -40px -20px;
@@ -284,18 +277,6 @@ const chartOptions3 = ref<ApexOptions>({
   margin-left: 8px;
 }
 
-.bg-success {
-  background-color: var(--color-success);
-}
-
-.bg-error {
-  background-color: var(--color-error);
-}
-
-/* Dark mode specific styles */
-[data-theme="dark"] .stats-card {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
 
 [data-theme="dark"] .card-header-actions:hover {
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
