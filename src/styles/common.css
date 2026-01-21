@@ -24,6 +24,7 @@
 /* Card styling for demo pages */
 .n-card {
   margin-bottom: 12px;
+  background: var(--bg-primary);
 }
 
 /* Text paragraph styling */
