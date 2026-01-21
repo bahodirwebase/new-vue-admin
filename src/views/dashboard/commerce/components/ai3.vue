@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import {  computed } from 'vue'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
 import { EllipsisHorizontalOutline } from '@vicons/ionicons5'
 import VueApexCharts from 'vue3-apexcharts'
@@ -137,7 +137,7 @@ const chartOptions = computed(() => ({
 
 <style scoped>
 .monthly-target {
-  background: #ffffff;
+  background: var(--bg-primary);
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -154,7 +154,6 @@ const chartOptions = computed(() => ({
 .monthly-target__title {
   font-size: 20px;
   font-weight: 700;
-  color: #1a1a1a;
   margin: 0;
 }
 
@@ -165,7 +164,7 @@ const chartOptions = computed(() => ({
 }
 
 .menu-button:hover {
-  color: #666666;
+  color: var(--text-secondary);
 }
 
 .monthly-target__chart {
@@ -205,13 +204,12 @@ const chartOptions = computed(() => ({
 .achievement__title {
   font-size: 18px;
   font-weight: 700;
-  color: #1a1a1a;
   margin: 0 0 8px 0;
 }
 
 .achievement__description {
   font-size: 14px;
-  color: #666666;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin: 0;
 }

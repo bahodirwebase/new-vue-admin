@@ -89,7 +89,7 @@ const handleMenuSelect = (key: string) => {
 
 <style scoped>
 .active-user {
-  background: #ffffff;
+  background: var(--bg-primary);
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -106,7 +106,6 @@ const handleMenuSelect = (key: string) => {
 .active-user__title {
   font-size: 20px;
   font-weight: 700;
-  color: #1a1a1a;
   margin: 0;
 }
 
@@ -138,7 +137,6 @@ const handleMenuSelect = (key: string) => {
 .stats-main__value {
   font-size: 36px;
   font-weight: 700;
-  color: #1a1a1a;
   margin: 0;
   line-height: 1.2;
   letter-spacing: -0.5px;
@@ -196,7 +194,6 @@ const handleMenuSelect = (key: string) => {
 
 .country-item__percentage {
   font-size: 14px;
-  color: #1a1a1a;
   font-weight: 600;
 }
 

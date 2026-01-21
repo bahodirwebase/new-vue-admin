@@ -192,7 +192,7 @@ const chartOptions = computed(() => ({
 
 <style scoped>
 .revenue-analytics {
-  background: #ffffff;
+  background: var(--bg-primary);
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);

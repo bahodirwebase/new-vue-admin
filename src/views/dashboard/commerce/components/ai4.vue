@@ -154,7 +154,7 @@ const handleSeeAll = () => {
 
 <style scoped>
 .top-categories {
-  background: #ffffff;
+  background: var(--bg-primary);
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -171,7 +171,6 @@ const handleSeeAll = () => {
 .top-categories__title {
   font-size: 20px;
   font-weight: 700;
-  color: #1a1a1a;
   margin: 0;
 }
 
@@ -242,21 +241,13 @@ const handleSeeAll = () => {
 .category-item__value {
   font-size: 15px;
   font-weight: 600;
-  color: #1a1a1a;
 }
 
-/* ApexCharts customization */
-:deep(.apexcharts-text) {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
 
 :deep(.apexcharts-datalabel-label) {
   fill: #999999 !important;
 }
 
-:deep(.apexcharts-datalabel-value) {
-  fill: #1a1a1a !important;
-}
 
 /* Responsive */
 @media (max-width: 480px) {

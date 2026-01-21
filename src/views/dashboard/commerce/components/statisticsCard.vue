@@ -31,7 +31,6 @@
 </template>
 
 <script setup lang="ts">
-import { h } from 'vue'
 import { CashOutline, CartOutline, PeopleOutline } from '@vicons/ionicons5'
 
 interface StatCard {
@@ -87,7 +86,6 @@ const cards: StatCard[] = [
   min-width: 280px;
   padding: 24px;
   border-radius: 12px;
-  background: #ffffff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
 }
@@ -98,15 +96,15 @@ const cards: StatCard[] = [
 }
 
 .stat-card--orange {
-  background: linear-gradient(135deg, #fff5eb 0%, #ffffff 100%);
+  background: linear-gradient(135deg, #fff5eb 0%, var(--bg-primary) 100%);
 }
 
 .stat-card--gray {
-  background: #ffffff;
+  background: var(--bg-primary);
 }
 
 .stat-card--blue {
-  background: #ffffff;
+  background: var(--bg-primary);
 }
 
 .stat-card__header {
@@ -119,7 +117,7 @@ const cards: StatCard[] = [
 .stat-card__title {
   font-size: 14px;
   font-weight: 500;
-  color: #666666;
+  color: var(--text-secondary);
   letter-spacing: 0.3px;
 }
 
@@ -157,7 +155,6 @@ const cards: StatCard[] = [
 .stat-card__value {
   font-size: 32px;
   font-weight: 700;
-  color: #1a1a1a;
   line-height: 1.2;
   letter-spacing: -0.5px;
 }

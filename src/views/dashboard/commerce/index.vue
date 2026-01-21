@@ -7,7 +7,7 @@
       </div>
       <n-grid :x-gap="18" :y-gap="18" :cols="4">
         <n-gi :span="3">
-          <ai />
+          <statisticsCard />
           <NGrid :x-gap="18" :y-gap="18" :cols="3">
             <NGi :span="2">
                 <ai2 style="margin-top: 18px;" />
@@ -40,7 +40,7 @@
 <script setup lang="ts">
 import { NGrid, NGi } from "naive-ui";
 import { CashOutline, CartOutline, PeopleOutline } from "@vicons/ionicons5";
-import ai from "./components/ai.vue";
+import statisticsCard from "./components/statisticsCard.vue";
 import ai2 from "./components/ai2.vue";
 import ai3 from "./components/ai3.vue";
 import ai4 from "./components/ai4.vue";

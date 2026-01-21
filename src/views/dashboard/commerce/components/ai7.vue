@@ -131,7 +131,7 @@ const chartOptions = computed(() => ({
 
 <style scoped>
 .traffic-sources {
-  background: #ffffff;
+  background: var(--bg-primary);
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -148,7 +148,6 @@ const chartOptions = computed(() => ({
 .traffic-sources__title {
   font-size: 20px;
   font-weight: 700;
-  color: #1a1a1a;
   margin: 0;
 }
 
@@ -159,7 +158,7 @@ const chartOptions = computed(() => ({
 }
 
 .menu-button:hover {
-  color: #666666;
+  color: var(--text-secondary);
 }
 
 .traffic-sources__chart {

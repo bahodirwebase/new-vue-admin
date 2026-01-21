@@ -209,7 +209,7 @@ const columns: DataTableColumns<Order> = [
 
 <style scoped>
 .recent-orders {
-  background: #ffffff;
+  background: var(--bg-primary);
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -226,7 +226,6 @@ const columns: DataTableColumns<Order> = [
 .recent-orders__title {
   font-size: 20px;
   font-weight: 700;
-  color: #1a1a1a;
   margin: 0;
   flex-shrink: 0;
 }

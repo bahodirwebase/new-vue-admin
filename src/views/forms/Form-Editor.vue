@@ -1,6 +1,6 @@
 <template>
   <div class="form-editor">
-    <n-card title="Form Editor" class="editor-card">
+    <n-card title="Form Editor" >
       <template #header-extra>
         <n-space>
           <n-button @click="clearEditor" type="warning" size="small">
@@ -193,13 +193,10 @@ onBeforeUnmount(() => {
   gap: 16px;
 }
 
-.editor-card, .preview-card {
-  background: white;
-}
 
 .editor-toolbar {
   padding: 12px;
-  background: #f8f9fa;
+  background: var(--bg-primary);
   border-radius: 6px;
   margin-bottom: 16px;
 }
@@ -209,7 +206,7 @@ onBeforeUnmount(() => {
   border: 1px solid #e0e0e0;
   border-radius: 6px;
   padding: 16px;
-  background: white;
+  background: var(--bg-primary);
 }
 
 .form-fields-section {
@@ -225,7 +222,7 @@ onBeforeUnmount(() => {
   padding: 16px;
   border: 1px solid #e0e0e0;
   border-radius: 6px;
-  background: #fafafa;
+  background: var(--bg-primary);
 }
 
 /* TipTap Editor Styles */
@@ -277,14 +274,7 @@ onBeforeUnmount(() => {
   font-family: monospace;
 }
 
-/* Form Field Styles */
-:deep(.form-field) {
-  margin: 16px 0;
-  padding: 12px;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  background: #f9f9f9;
-}
+
 
 :deep(.form-field label) {
   display: block;

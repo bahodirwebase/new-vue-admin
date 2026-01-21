@@ -164,7 +164,7 @@ const chartOptions = computed(() => ({
 
 <style scoped>
 .conversion-rate {
-  background: #ffffff;
+  background: var(--bg-primary);
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -180,7 +180,6 @@ const chartOptions = computed(() => ({
 .conversion-rate__title {
   font-size: 20px;
   font-weight: 700;
-  color: #1a1a1a;
   margin: 0;
 }
 
@@ -230,7 +229,6 @@ const chartOptions = computed(() => ({
 .stat-box__value {
   font-size: 24px;
   font-weight: 700;
-  color: #1a1a1a;
   line-height: 1.2;
   letter-spacing: -0.5px;
 }
