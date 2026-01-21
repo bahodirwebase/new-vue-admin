@@ -61,7 +61,7 @@ const onSubmit = async () => {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: var(--bg-primary);
+  background: var(--bg-secondary);
 }
 
 .auth-card {
