@@ -514,6 +514,7 @@ const deleteMail = () => {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-top: 16px;
 }
 
 .section-title {
@@ -646,7 +647,6 @@ const deleteMail = () => {
 
 .preview-header {
   padding: 16px;
-  border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: flex-start;
   justify-content: space-between;

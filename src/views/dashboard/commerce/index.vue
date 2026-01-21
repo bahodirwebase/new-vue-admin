@@ -38,7 +38,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { NCard, NGrid, NGi, NStatistic, NIcon } from "naive-ui";
+import { NGrid, NGi } from "naive-ui";
 import { CashOutline, CartOutline, PeopleOutline } from "@vicons/ionicons5";
 import ai from "./components/ai.vue";
 import ai2 from "./components/ai2.vue";
@@ -82,10 +82,10 @@ const stats: StatCard[] = [
   },
 ];
 
-const formatChange = (change: number): string => {
-  const sign = change >= 0 ? "+" : "";
-  return `${sign}${change.toFixed(2)}%`;
-};
+// const formatChange = (change: number): string => {
+//   const sign = change >= 0 ? "+" : "";
+//   return `${sign}${change.toFixed(2)}%`;
+// };
 </script>
 <style scoped>
 .analytical-page {

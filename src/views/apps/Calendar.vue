@@ -143,6 +143,7 @@
             </div>
             <div class="week-grid">
               <div class="time-column">
+                <div class="time-slot"></div>
                 <div v-for="hour in 24" :key="hour" class="time-slot">
                   {{ String(hour - 1).padStart(2, "0") }}:00
                 </div>
@@ -867,7 +868,6 @@ onMounted(() => {
 
 .view-header {
   padding: 24px 24px 16px;
-  border-bottom: 1px solid var(--border-color);
 }
 
 .view-title {
@@ -954,7 +954,7 @@ onMounted(() => {
 }
 
 .time-slot {
-  height: 60px;
+  height: 69px;
   display: flex;
   align-items: center;
   justify-content: center;

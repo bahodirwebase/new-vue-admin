@@ -6,7 +6,7 @@
         <div class="sidebar-header">
           <h3>Chats</h3>
           <n-button quaternary circle size="small">
-            <n-icon><EllipsisVerticalOutline /></n-icon>
+            <n-icon size="20"><EllipsisVerticalOutline /></n-icon>
           </n-button>
         </div>
         <div class="chat-list">
@@ -60,10 +60,10 @@
             </div>
             <div class="chat-header-right">
               <n-button quaternary circle size="small">
-                <n-icon><SearchOutline /></n-icon>
+                <n-icon size="20"><SearchOutline /></n-icon>
               </n-button>
               <n-button quaternary circle size="small">
-                <n-icon><EllipsisVerticalOutline /></n-icon>
+                <n-icon size="20"><EllipsisVerticalOutline /></n-icon>
               </n-button>
             </div>
           </div>
@@ -104,7 +104,7 @@
           <div class="input-area">
             <div class="input-wrapper">
               <n-button quaternary circle size="medium" class="attach-btn">
-                <n-icon><AttachOutline /></n-icon>
+                <n-icon size="20"><AttachOutline /></n-icon>
               </n-button>
               <div class="input-container">
                 <input
@@ -122,7 +122,7 @@
                 class="emoji-btn"
                 @click="showEmojiPicker = !showEmojiPicker"
               >
-                <n-icon><HappyOutline /></n-icon>
+                <n-icon size="20"><HappyOutline /></n-icon>
               </n-button>
               <n-button 
                 type="primary" 
@@ -132,7 +132,7 @@
                 @click="sendMessage"
                 :disabled="!inputMessage.trim() || isTyping"
               >
-                <n-icon><SendOutline /></n-icon>
+                <n-icon size="16"><SendOutline /></n-icon>
               </n-button>
             </div>
           </div>
@@ -735,7 +735,7 @@ document.addEventListener('click', handleClickOutside)
 }
 
 .send-btn {
-  color: #ffffff;
+  color: var(--primary-color);
   background: var(--message-user-bg);
 }
 
