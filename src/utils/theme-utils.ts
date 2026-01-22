@@ -74,6 +74,10 @@ export const createThemeOverrides = (
           paginationBorderColor: "#333333",
           loadingColor: "#60a5fa",
         },
+        Checkbox : {
+          color: 'var(--bg-primary)',
+          colorTableHeader : 'var(--bg-primary)',
+        }
       }
     : {
         common: {

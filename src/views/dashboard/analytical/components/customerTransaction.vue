@@ -480,7 +480,6 @@ const handleMore = (row: Transaction) => {
 /* Checkbox styling */
 :deep(.n-checkbox .n-checkbox-box) {
   border-radius: 4px;
-  border-color: var(--border-color);
 }
 
 :deep(.n-checkbox .n-checkbox-box:hover) {
