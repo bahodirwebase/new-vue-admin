@@ -1,11 +1,12 @@
 export const THEME_CONSTANTS = {
   DEFAULT_PRIMARY_COLOR: '#6366f1' as const,
   BREAKPOINTS: {
-    XS: 576,
-    SM: 768,
-    MD: 992,
-    LG: 1200,
-    XL: 1400
+    xxs : 375,
+    xs: 576,
+    sm: 768,
+    md: 992,
+    lg: 1200,
+    xl: 1400
   },
   SIDEBAR: {
     COLLAPSED_WIDTH: 80,

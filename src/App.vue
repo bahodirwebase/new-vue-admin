@@ -1,5 +1,5 @@
 <template>
-  <n-config-provider :theme="theme" :theme-overrides="themeOverrides">
+  <n-config-provider :theme="theme" :theme-overrides="themeOverrides" :breakpoints="THEME_CONSTANTS.BREAKPOINTS">
     <n-message-provider>
       
     <n-global-style />
@@ -15,6 +15,7 @@ import { computed } from 'vue'
 import { darkTheme, type GlobalThemeOverrides } from 'naive-ui'
 import { useThemeStore } from '@/stores/theme'
 import { createThemeOverrides } from '@/utils/theme-utils'
+import { THEME_CONSTANTS } from '@/constants/theme'
 
 const themeStore = useThemeStore()
 

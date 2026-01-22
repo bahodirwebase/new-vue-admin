@@ -6,7 +6,8 @@
         <h1 class="page-title">Analytical Dashboard</h1>
         <p class="page-subtitle">Detailed analytics and insights</p>
       </div>
-      <n-grid y-gap="18" x-gap="18" :cols="6">
+      <n-grid y-gap="18" x-gap="18" cols="1 xxs:2 sm:3 md:4 lg:5 xl:6"
+        responsive="screen">
         <n-gi v-for="(item, index) in statisticsInfo" :key="index">
           <statistics :value="item.value" :icon="item.icon" :label="item.label" />
         </n-gi>

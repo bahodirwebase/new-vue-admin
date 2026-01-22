@@ -74,12 +74,7 @@
   width: 100%;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .n-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
+
 
 /* Animation utilities */
 .fade-in {

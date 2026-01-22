@@ -1,4 +1,5 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { THEME_CONSTANTS } from '@/constants/theme'
 
 export interface Breakpoints {
   xs: boolean
@@ -25,12 +26,12 @@ export function useBreakpoints() {
   })
 
   const breakpoints = computed<Breakpoints>(() => ({
-    xs: windowWidth.value < 576,
-    sm: windowWidth.value >= 576 && windowWidth.value < 768,
-    md: windowWidth.value >= 768 && windowWidth.value < 992,
-    lg: windowWidth.value >= 992 && windowWidth.value < 1200,
-    xl: windowWidth.value >= 1200 && windowWidth.value < 1400,
-    xxl: windowWidth.value >= 1400
+    xs: windowWidth.value < THEME_CONSTANTS.BREAKPOINTS.xs,
+    sm: windowWidth.value >= THEME_CONSTANTS.BREAKPOINTS.xs && windowWidth.value < THEME_CONSTANTS.BREAKPOINTS.sm,
+    md: windowWidth.value >= THEME_CONSTANTS.BREAKPOINTS.sm && windowWidth.value < THEME_CONSTANTS.BREAKPOINTS.md,
+    lg: windowWidth.value >= THEME_CONSTANTS.BREAKPOINTS.md && windowWidth.value < THEME_CONSTANTS.BREAKPOINTS.lg,
+    xl: windowWidth.value >= THEME_CONSTANTS.BREAKPOINTS.lg && windowWidth.value < THEME_CONSTANTS.BREAKPOINTS.xl,
+    xxl: windowWidth.value >= THEME_CONSTANTS.BREAKPOINTS.xl
   }))
 
   const isMobile = computed(() => breakpoints.value.xs || breakpoints.value.sm)
