@@ -106,7 +106,7 @@ const chartOptions = computed(() => ({
           offsetY: -5,
           fontSize: '48px',
           fontWeight: 700,
-          color: '#1a1a1a',
+          color: 'var(--text-secondary)',
           formatter: function (val: number) {
             return val + '%'
           }
@@ -120,14 +120,14 @@ const chartOptions = computed(() => ({
       shade: 'light',
       type: 'horizontal',
       shadeIntensity: 0.5,
-      gradientToColors: ['#ff8c1a'],
+      gradientToColors: ['var(--primary-color)'],
       inverseColors: false,
       opacityFrom: 1,
       opacityTo: 1,
       stops: [0, 100]
     }
   },
-  colors: ['#ff9f43'],
+  colors: ['var(--primary-color)'],
   stroke: {
     lineCap: 'round'
   },

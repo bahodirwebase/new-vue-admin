@@ -460,9 +460,7 @@ const exportData = () => {
   gap: 16px;
 }
 
-.table-card {
-  background: white;
-}
+
 
 .mb-4 {
   margin-bottom: 16px;

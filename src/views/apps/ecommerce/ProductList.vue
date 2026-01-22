@@ -244,7 +244,8 @@ import {
   RefreshOutline,
   CreateOutline,
   TrashOutline,
-  EyeOutline
+  EyeOutline,
+  ListOutline
 } from '@vicons/ionicons5'
 import { NTag, NButton, NIcon } from 'naive-ui'
 
@@ -592,6 +593,7 @@ onMounted(() => {
 .product-card {
   cursor: pointer;
   transition: transform 0.2s;
+  background-color: var(--bg-secondary);
 }
 
 .product-card:hover {

@@ -10,6 +10,10 @@
   
   /* Dynamic primary colors (set by theme store) */
   --primary-color: #6366f1;
+  --primary-color-100 : rgb(var(--primary-color) / 0.1);
+  --primary-color-200 : rgb(var(--primary-color) / 0.2);
+  --primary-color-300 : rgb(var(--primary-color) / 0.3);
+  --primary-color-400 : rgb(var(--primary-color) / 0.4);
   --primary-color-hover: #818cf8;
   --primary-color-pressed: #4f46e5;
   

@@ -19,20 +19,24 @@
         <apexchart
           type="line"
           height="280"
-          :options="chartOptions"
+          :options="(chartOptions as ApexOptions)"
           :series="series"
+          :key="(isDark as any)"
         />
       </div>
     </n-card>
 </template>
 
-<script setup>
-import { ref } from 'vue';
+<script setup lang="ts">
+import { ref, watch, toRef } from 'vue';
 import { NCard, NButton, NIcon, NDropdown } from 'naive-ui';
 import VueApexCharts from 'vue3-apexcharts';
-
+import { useThemeStore } from '@/stores/theme';
+import type { ApexOptions } from 'apexcharts';
+const themeStore = useThemeStore();
 const apexchart = VueApexCharts;
 
+const isDark = toRef(themeStore, 'isDark');
 const dropdownOptions = [
   { label: 'Export', key: 'export' },
   { label: 'Share', key: 'share' },
@@ -70,11 +74,11 @@ const chartOptions = ref({
   stroke: {
     curve: 'smooth',
     width: 3,
-    colors: ['var(--color-primary)']
+    colors: ['var(--primary-color)']
   },
   markers: {
     size: 5,
-    colors: ['var(--color-primary)'],
+    colors: ['var(--primary-color)'],
     strokeColors: 'var(--bg-primary)',
     strokeWidth: 2,
     hover: {
@@ -125,18 +129,7 @@ const chartOptions = ref({
       }
     }
   },
-  tooltip: {
-    enabled: true,
-    theme: 'dark',
-    style: {
-      fontSize: '12px'
-    },
-    y: {
-      formatter: function(val) {
-        return val + ' calls'
-      }
-    }
-  },
+  
   annotations: {
     xaxis: [
       {
@@ -147,8 +140,27 @@ const chartOptions = ref({
         opacity: 0.3
       }
     ]
-  }
+  },
+  tooltip: {
+    theme: 'light', // Initial theme, will be updated by watch
+    // style: {
+    //   fontSize: '12px'
+    // },
+    y: {
+      formatter: function(val: any) {
+        return val + ' calls'
+      }
+    }
+  },
 });
+watch(
+  isDark,
+  (newValue) => {
+    if(chartOptions.value.tooltip){
+      chartOptions.value.tooltip.theme = newValue ? 'dark' : 'light'
+    }
+  }
+)
 </script>
 
 <style scoped>

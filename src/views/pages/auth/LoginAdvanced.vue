@@ -257,14 +257,10 @@ const onSubmit = async () => {
 }
 
 .social-btn.google {
-  background: #fff;
-  color: #000;
+  background-color: var(--bg-primary);
   border: 1px solid var(--border-color);
 }
 
-.social-btn.google:hover {
-  background: #f8f9fa;
-}
 
 .social-btn.github {
   background: #24292e;

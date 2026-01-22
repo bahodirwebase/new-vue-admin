@@ -239,9 +239,6 @@ const deleteUser = (user: RowData) => {
   gap: 16px;
 }
 
-.table-card {
-  background: white;
-}
 
 :deep(.n-data-table) {
   font-size: 14px;

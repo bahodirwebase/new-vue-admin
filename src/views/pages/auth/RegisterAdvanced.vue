@@ -10,8 +10,8 @@
           <p class="subtitle">Join us today and get started</p>
         </div>
 
-        <n-form ref="formRef" :model="model" :rules="rules" size="large" @submit.prevent="onSubmit">
-          <n-form-item path="name" :show-label="false">
+        <n-form ref="formRef" :model="model" :rules="rules" size="large" @submit.prevent="onSubmit" >
+          <n-form-item path="name" :show-label="false" >
             <n-input
               v-model:value="model.name"
               placeholder="Full name"
@@ -95,7 +95,7 @@
             <span style="color: var(--text-secondary); font-size: 14px;">or sign up with</span>
           </n-divider>
 
-          <n-space vertical size="12">
+          <n-space vertical :size="12" >
             <n-button 
               size="large" 
               block 
@@ -288,13 +288,11 @@ const handleSocialLogin = (provider: string) => {
 }
 
 .social-btn.google {
-  background: #fff;
-  color: #000;
+  background: var(--bg-primary);
   border: 1px solid var(--border-color);
 }
 
 .social-btn.google:hover {
-  background: #f8f9fa;
   transform: translateY(-1px);
 }
 

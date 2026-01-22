@@ -20,7 +20,7 @@
         @select="handlePeriodSelect"
         trigger="click"
       >
-        <n-button class="period-button" type="warning" strong>
+        <n-button class="period-button" type="primary" strong>
           {{ selectedPeriod }}
           <template #icon>
             <n-icon :component="ChevronDownOutline" />
@@ -99,7 +99,7 @@ const chartOptions = computed(() => ({
     },
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
   },
-  colors: ['#ff8c1a', '#ffb366'],
+  colors: ['var(--primary-color)', 'var(--primary-color)'],
   stroke: {
     curve: 'smooth',
     width: [3, 3],
@@ -130,7 +130,7 @@ const chartOptions = computed(() => ({
   },
   markers: {
     size: [5, 0],
-    colors: ['#ff8c1a'],
+    colors: ['var(--primary-color)'],
     strokeColors: '#fff',
     strokeWidth: 2,
     hover: {
@@ -214,7 +214,6 @@ const chartOptions = computed(() => ({
 .revenue-analytics__title {
   font-size: 20px;
   font-weight: 700;
-  color: #1a1a1a;
   margin: 0;
 }
 
@@ -236,7 +235,7 @@ const chartOptions = computed(() => ({
 }
 
 .legend-item__line--revenue {
-  background: #ff8c1a;
+  background: var(--primary-color);
 }
 
 .legend-item__line--order {
@@ -262,14 +261,14 @@ const chartOptions = computed(() => ({
   padding: 0 16px;
   font-weight: 600;
   font-size: 14px;
-  background: linear-gradient(135deg, #ff9f43 0%, #ff8c1a 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color) 100%);
   border: none;
-  box-shadow: 0 2px 8px rgba(255, 140, 26, 0.25);
+  box-shadow: 0 1px 8px var(--primary-color);
   transition: all 0.3s ease;
 }
 
 .period-button:hover {
-  box-shadow: 0 4px 12px rgba(255, 140, 26, 0.35);
+  box-shadow: 0 2px 12px var(--primary-color);
   transform: translateY(-1px);
 }
 
@@ -279,16 +278,16 @@ const chartOptions = computed(() => ({
 
 /* Custom ApexCharts tooltip styling */
 :deep(.custom-tooltip) {
-  background: #ffffff;
+  background: var(--bg-primary);
   padding: 12px 16px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border: 1px solid #f0f0f0;
+  border: 1px solid var(--text-secondary);
 }
 
 :deep(.custom-tooltip__label) {
   font-size: 12px;
-  color: #999999;
+  color: var(--text-secondary);
   margin-bottom: 4px;
   font-weight: 400;
 }
@@ -296,7 +295,6 @@ const chartOptions = computed(() => ({
 :deep(.custom-tooltip__value) {
   font-size: 18px;
   font-weight: 700;
-  color: #1a1a1a;
 }
 
 :deep(.apexcharts-tooltip) {

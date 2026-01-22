@@ -7,20 +7,6 @@
         <p>Advanced online store management system</p>
       </div>
       <div class="header-right">
-        <n-space>
-          <n-button @click="refreshData">
-            <template #icon>
-              <n-icon><RefreshOutline /></n-icon>
-            </template>
-            Refresh
-          </n-button>
-          <n-button type="primary" @click="showAddProductModal">
-            <template #icon>
-              <n-icon><AddOutline /></n-icon>
-            </template>
-            Add Product
-          </n-button>
-        </n-space>
       </div>
     </header>
 
@@ -114,8 +100,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { 
-  RefreshOutline, 
-  AddOutline, 
   GridOutline, 
   CartOutline, 
   PeopleOutline, 
@@ -199,10 +183,6 @@ const refreshData = () => {
   }
 }
 
-const showAddProductModal = () => {
-  // TODO: Implement add product modal
-  console.log('Show add product modal')
-}
 
 const applyFilters = () => {
   // TODO: Apply filters to product list
@@ -216,7 +196,6 @@ onMounted(() => {
 
 <style scoped>
 .ecommerce-app {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   background: var(--n-color);
@@ -257,10 +236,7 @@ onMounted(() => {
   overflow-y: auto;
 }
 
-.sidebar-card {
-  margin: 16px;
-  border-radius: 8px;
-}
+
 
 .nav-section h4,
 .stats-section h4,

@@ -122,7 +122,7 @@
           <n-tab-pane name="social" tab="Social Links">
             <div class="section">
               <h3>Social Links</h3>
-              <n-space vertical size="12">
+              <n-space vertical :size="12">
                 <n-button 
                   v-for="link in profile.socialLinks" 
                   :key="link.name"

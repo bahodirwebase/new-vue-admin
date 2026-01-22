@@ -20,7 +20,7 @@
         />
       </div>
 
-      <n-list :show-divider="true" size="small">
+      <n-list :show-divider="true" size="small" >
         <n-list-item>
           <div class="browser-stat">
             <div class="stat-indicator chrome"></div>

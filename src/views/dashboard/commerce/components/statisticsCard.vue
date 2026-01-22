@@ -9,7 +9,7 @@
       <div class="stat-card__header">
         <span class="stat-card__title">{{ card.title }}</span>
         <div class="stat-card__icon" :class="`stat-card__icon--${card.color}`">
-          <component :is="card.icon" />
+          <n-icon :size="24" :component="card.icon" />
         </div>
       </div>
       
@@ -32,6 +32,7 @@
 
 <script setup lang="ts">
 import { CashOutline, CartOutline, PeopleOutline } from '@vicons/ionicons5'
+import { NIcon } from 'naive-ui'
 
 interface StatCard {
   title: string
@@ -96,7 +97,7 @@ const cards: StatCard[] = [
 }
 
 .stat-card--orange {
-  background: linear-gradient(135deg, #fff5eb 0%, var(--bg-primary) 100%);
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-primary) 100%);
 }
 
 .stat-card--gray {
@@ -104,7 +105,7 @@ const cards: StatCard[] = [
 }
 
 .stat-card--blue {
-  background: var(--bg-primary);
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-primary) 100%);
 }
 
 .stat-card__header {
@@ -132,7 +133,7 @@ const cards: StatCard[] = [
 }
 
 .stat-card__icon--orange {
-  background: linear-gradient(135deg, #ff9f43 0%, #ff8c1a 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color) 100%);
   color: #ffffff;
 }
 

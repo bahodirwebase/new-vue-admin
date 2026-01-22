@@ -13,12 +13,11 @@
             v-model:value="model.code"
             :length="6"
             size="large"
-            class="otp-input"
             @focus="onFocus"
             @blur="onBlur"
             @finish="onFinish"
             @update:value="onUpdateValue"
-            :gap="8"
+            block
           />
         </n-form-item>
 
@@ -210,16 +209,7 @@ onUnmounted(() => {
   line-height: 1.5;
 }
 
-.otp-input {
-  margin-bottom: 32px;
-}
 
-.otp-input :deep(.n-input__input-el) {
-  font-size: 24px;
-  font-weight: 600;
-  text-align: center;
-  letter-spacing: 0.1em;
-}
 
 @media (max-width: 480px) {
   .auth-card {

@@ -26,7 +26,12 @@
   margin-bottom: 12px;
   background: var(--bg-primary);
 }
-
+.n-list {
+  background: var(--bg-primary);
+}
+.n-table td {
+  background: var(--bg-primary) !important;
+}
 /* Text paragraph styling */
 .n-p {
   margin: 0;

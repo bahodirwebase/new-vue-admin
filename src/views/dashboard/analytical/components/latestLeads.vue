@@ -4,13 +4,6 @@
             <h3 class="card-title">Latest Leads</h3>
             <n-button text class="see-all-btn">
                 See All
-                <template #icon>
-                    <n-icon>
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                        </svg>
-                    </n-icon>
-                </template>
             </n-button>
         </div>
 
@@ -98,7 +91,6 @@ const leads = ref([
 }
 
 .see-all-btn {
-    color: var(--color-warning);
     font-weight: 600;
     font-size: 0.9375rem;
     padding: 0;
@@ -106,7 +98,6 @@ const leads = ref([
 }
 
 .see-all-btn:hover {
-    color: var(--color-warning);
     opacity: 0.8;
     transform: translateX(2px);
 }

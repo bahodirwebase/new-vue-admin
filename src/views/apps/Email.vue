@@ -479,6 +479,7 @@ const deleteMail = () => {
 </script>
 
 <style scoped>
+
 .email-app {
   height: 100vh;
   background: var(--bg-secondary);

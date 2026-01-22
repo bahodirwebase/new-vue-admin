@@ -596,7 +596,7 @@ document.addEventListener('click', handleClickOutside)
 }
 
 .message-bubble {
-  background: var(--message-bot-bg);
+  background: var(--bg-secondary);
   border-radius: 18px;
   padding: 10px 14px;
   position: relative;

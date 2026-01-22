@@ -7,15 +7,15 @@
         <p class="page-subtitle">Detailed analytics and insights</p>
       </div>
       <n-grid y-gap="18" x-gap="18" :cols="6">
-        <n-gi v-for="value in 6" :key="value">
-          <statistics />
+        <n-gi v-for="(item, index) in statisticsInfo" :key="index">
+          <statistics :value="item.value" :icon="item.icon" :label="item.label" />
         </n-gi>
       </n-grid>
       <n-grid x-gap="18" y-gap="18" cols="2">
         <n-gi>
           <n-grid y-gap="18" x-gap="18" :cols="2">
             <n-gi>
-              <n-card>
+              <n-card :key="isDark">
                 <div class="card-header">
                   <h3>Users</h3>
                   <div>
@@ -31,7 +31,7 @@
               </n-card>
             </n-gi>
             <n-gi>
-              <n-card>
+              <n-card :key="isDark">
                 <div class="card-header">
                   <h3>Sessions</h3>
                   <div>
@@ -47,7 +47,7 @@
               </n-card>
             </n-gi>
             <n-gi>
-              <n-card>
+              <n-card :key="isDark">
                 <div class="card-header">
                   <h3>Av. Visit Duration</h3>
                   <div>
@@ -63,7 +63,7 @@
               </n-card>
             </n-gi>
             <n-gi>
-              <n-card>
+              <n-card >
                 <div class="card-header">
                   <h3>Bounce rate</h3>
                   <div>
@@ -73,7 +73,7 @@
                 </div>
                 <h1>33.48%</h1>
                 <div class="chart-wrapper">
-                  <apexchart type="area" height="150" :options="(chartOptions as ApexOptions)" :series="series">
+                  <apexchart :key="(themeStore.isDark as any)" type="area" height="150" :options="(chartOptions as ApexOptions)" :series="series">
                   </apexchart>
                 </div>
               </n-card>
@@ -95,24 +95,29 @@
           <customerTransaction />
         </n-gi>
       </n-grid>
-
+      {{ themeStore.isDark }}
     </n-space>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch, toRef } from "vue";
 import VueApexCharts from "vue3-apexcharts";
 import type { ApexOptions } from "apexcharts";
 import statistics from "./components/statistics.vue";
 import latestLeads from "./components/latestLeads.vue";
 import lineChart from "./components/lineChart.vue";
-import { TrendingDownOutline, TrendingUpOutline } from "@vicons/ionicons5";
+import { ChatbubbleOutline, EyeOutline, HeartOutline, ShareSocialOutline, TrendingDownOutline, TrendingUpOutline, VideocamOutline } from "@vicons/ionicons5";
 import customerTransaction from "./components/customerTransaction.vue";
 import browserUsage from "./components/browserUsage.vue";
+import { useThemeStore } from "@/stores/theme";
+
 
 const apexchart = VueApexCharts;
+const themeStore = useThemeStore();
 
+// Create a proper ref for isDark
+const isDark = toRef(themeStore, 'isDark');
 
 const series = ref([
   {
@@ -127,7 +132,6 @@ const series3 = ref([
     data: [31, 0, 32, 90, 120, 51, 42, 109, 100, 40, 35],
   },
 ]);
-
 
 const chartOptions = ref<ApexOptions>({
   chart: {
@@ -159,6 +163,9 @@ const chartOptions = ref<ApexOptions>({
   grid: { show: false }, // Setka chiziqlarini o'chirish (toza ko'rinish uchun)
   xaxis: { labels: { show: false }, axisBorder: { show: false }, axisTicks: { show: false } },
   yaxis: { show: false },
+  tooltip : {
+    theme: isDark.value ? 'dark' : 'light',
+  }
 });
 const chartOptions3 = ref<ApexOptions>({
   chart: {
@@ -190,7 +197,53 @@ const chartOptions3 = ref<ApexOptions>({
   grid: { show: false }, // Setka chiziqlarini o'chirish (toza ko'rinish uchun)
   xaxis: { labels: { show: false }, axisBorder: { show: false }, axisTicks: { show: false } },
   yaxis: { show: false },
+  tooltip : {
+    theme: isDark.value ? 'dark' : 'light',
+  }
 });
+const statisticsInfo = ref([
+  {
+    value: "1m",
+    label: "Views",
+    icon: EyeOutline
+  },
+  {
+    value: "670k",
+    label: "Likes",
+    icon: HeartOutline
+  },
+  {
+    value: "100k",
+    label: "Shares",
+    icon: ShareSocialOutline
+  },
+  {
+    value: "54k",
+    label: "Comments",
+    icon: ChatbubbleOutline
+  },
+  {
+    value: "98",
+    label: "Videos",
+    icon: VideocamOutline
+  },
+  {
+    value: "7.6k",
+    label: "Profil Views",
+    icon: EyeOutline
+  },
+])
+watch(
+  isDark,
+  (newValue) => {
+    if(chartOptions.value.tooltip){
+      chartOptions.value.tooltip.theme = newValue ? 'dark' : 'light'
+    }
+    if(chartOptions3.value.tooltip){
+      chartOptions3.value.tooltip.theme = newValue ? 'dark' : 'light'
+    }
+  }
+)
 </script>
 
 <style scoped>
