@@ -3,41 +3,63 @@
     <!-- Header -->
     <header class="ecommerce-header">
       <div class="header-content">
-        <h2>E-commerce ( {{ currentView }} Product Management)</h2>
+        <h2>E-commerce ( {{ getCurrentViewLabel }} )</h2>
         <p>Manage your inventory, pricing, and product details</p>
       </div>
       <div class="header-actions">
         <n-space>
-          <n-button-group>
-            <n-button
-              :type="ecommerceStore.viewMode === 'grid' ? 'primary' : 'default'"
-              @click="ecommerceStore.viewMode = 'grid'"
-            >
-              <template #icon>
-                <n-icon><GridOutline /></n-icon>
-              </template>
-            </n-button>
-            <n-button
-              :type="ecommerceStore.viewMode === 'list' ? 'primary' : 'default'"
-              @click="ecommerceStore.viewMode = 'list'"
-            >
-              <template #icon>
-                <n-icon><ListOutline /></n-icon>
-              </template>
-            </n-button>
-          </n-button-group>
-          <n-button @click="ecommerceStore.exportProducts">
+          <n-button @click="ecommerceStore.goBack" v-if="currentView === 'checkout'">
             <template #icon>
-              <n-icon><DownloadOutline /></n-icon>
+              <n-icon>
+                <ArrowBackOutline />
+              </n-icon>
             </template>
-            Export
+            Back to Cart
           </n-button>
-          <n-button type="primary" @click="ecommerceStore.showAddProductModal = true">
+          <n-button @click="ecommerceStore.continueShopping" v-if="currentView == 'cart'">
             <template #icon>
-              <n-icon><AddOutline /></n-icon>
+              <n-icon>
+                <ArrowBackOutline />
+              </n-icon>
             </template>
-            Add Product
+            Continue Shopping
           </n-button>
+          <template v-if="currentView == 'products'">
+            <n-button-group>
+              <n-button :type="ecommerceStore.viewMode === 'grid' ? 'primary' : 'default'"
+                @click="ecommerceStore.viewMode = 'grid'">
+                <template #icon>
+                  <n-icon>
+                    <GridOutline />
+                  </n-icon>
+                </template>
+              </n-button>
+              <n-button :type="ecommerceStore.viewMode === 'list' ? 'primary' : 'default'"
+                @click="ecommerceStore.viewMode = 'list'">
+                <template #icon>
+                  <n-icon>
+                    <ListOutline />
+                  </n-icon>
+                </template>
+              </n-button>
+            </n-button-group>
+            <n-button @click="ecommerceStore.exportProducts">
+              <template #icon>
+                <n-icon>
+                  <DownloadOutline />
+                </n-icon>
+              </template>
+              Export
+            </n-button>
+            <n-button type="primary" @click="ecommerceStore.showAddProductModal = true">
+              <template #icon>
+                <n-icon>
+                  <AddOutline />
+                </n-icon>
+              </template>
+              Add Product
+            </n-button>
+          </template>
         </n-space>
       </div>
     </header>
@@ -52,13 +74,9 @@
             <div class="nav-section">
               <h4>Navigation</h4>
               <n-button-group vertical size="large" style="width: 100%">
-                <n-button
-                  v-for="nav in navigationOptions"
-                  :key="nav.value"
-                  :type="currentView === nav.value ? 'primary' : 'default'"
-                  @click="currentView = nav.value"
-                  style="width: 100%; justify-content: flex-start"
-                >
+                <n-button v-for="nav in navigationOptions" :key="nav.value"
+                  :type="currentView === nav.value ? 'primary' : 'default'" @click="currentView = nav.value"
+                  style="width: 100%; justify-content: flex-start">
                   <template #icon>
                     <n-icon :component="nav.icon" />
                   </template>
@@ -85,9 +103,7 @@
                 </div>
                 <div class="stat-item">
                   <span class="stat-label">Revenue Today</span>
-                  <n-tag type="warning" size="small"
-                    >${{ stats.revenueToday.toLocaleString() }}</n-tag
-                  >
+                  <n-tag type="warning" size="small">${{ stats.revenueToday.toLocaleString() }}</n-tag>
                 </div>
                 <div class="stat-item">
                   <span class="stat-label">New Customers</span>
@@ -102,24 +118,12 @@
             <div class="filters-section">
               <h4>Filters</h4>
               <n-space vertical size="medium">
-                <n-select
-                  v-model:value="filters.category"
-                  placeholder="Select Category"
-                  :options="categoryOptions"
-                  clearable
-                />
-                <n-select
-                  v-model:value="filters.status"
-                  placeholder="Select Status"
-                  :options="statusOptions"
-                  clearable
-                />
-                <n-select
-                  v-model:value="filters.priceRange"
-                  placeholder="Price Range"
-                  :options="priceRangeOptions"
-                  clearable
-                />
+                <n-select v-model:value="filters.category" placeholder="Select Category" :options="categoryOptions"
+                  clearable />
+                <n-select v-model:value="filters.status" placeholder="Select Status" :options="statusOptions"
+                  clearable />
+                <n-select v-model:value="filters.priceRange" placeholder="Price Range" :options="priceRangeOptions"
+                  clearable />
                 <n-button @click="applyFilters" type="primary" block>
                   Apply Filters
                 </n-button>
@@ -147,12 +151,13 @@ import {
   SettingsOutline,
   DownloadOutline,
   AddOutline,
-  ListOutline
+  ListOutline,
+  ArrowBackOutline
 } from "@vicons/ionicons5";
-import ProductList from "./components/ProductList.vue";
-import ProductDetail from "./components/ProductDetail.vue";
-import ShoppingCart from "./components/ShoppingCart.vue";
-import Checkout from "./components/Checkout.vue";
+import ProductList from "./widgets/ProductList.vue";
+import ProductDetail from "./widgets/ProductDetail.vue";
+import ShoppingCart from "./widgets/ShoppingCart.vue";
+import Checkout from "./widgets/Checkout.vue";
 import { useEcommerceStore } from "./store";
 
 const currentView = ref("products");
@@ -216,6 +221,21 @@ const currentComponent = computed(() => {
       return Checkout;
     default:
       return ProductList;
+  }
+});
+
+const getCurrentViewLabel = computed(() => {
+  switch (currentView.value) {
+    case "products":
+      return "Product Management";
+    case "product-detail":
+      return "Product Detail";
+    case "cart":
+      return "Shopping Cart";
+    case "checkout":
+      return "Checkout";
+    default:
+      return "Product Management";
   }
 });
 

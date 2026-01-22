@@ -194,8 +194,6 @@ watch(
 </script>
 
 <style scoped>
-
-
 .analytical-page {
   max-width: 100%;
 }

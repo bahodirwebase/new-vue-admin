@@ -54,7 +54,7 @@ const categories = ref<Category[]>([
   { name: 'Beauty & Personal Care', value: 500000 }
 ])
 
-const colors = ['#ff8c1a', '#ffb366', '#ffc999', '#ffe0c2']
+const colors = ['var(--primary-color)', 'var(--primary-color-800)', 'var(--primary-color-500)', 'var(--primary-color-300)']
 
 const series = computed(() => categories.value.map(cat => cat.value))
 
@@ -89,7 +89,7 @@ const chartOptions = computed(() => ({
             show: true,
             fontSize: '28px',
             fontWeight: 700,
-            color: '#1a1a1a',
+            color: 'var(--text-primary)',
             offsetY: 10,
             formatter: function (val: any) {
               return '$' + Number(val).toLocaleString()

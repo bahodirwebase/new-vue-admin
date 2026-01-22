@@ -1,26 +1,11 @@
 <template>
   <div class="shopping-cart">
-    <!-- Header -->
-    <div class="cart-header">
-      <div class="header-content">
-        <h2>Shopping Cart</h2>
-        <p>Review your items and proceed to checkout</p>
-      </div>
-      <div class="header-actions">
-        <n-button @click="continueShopping">
-          <template #icon>
-            <n-icon><ArrowBackOutline /></n-icon>
-          </template>
-          Continue Shopping
-        </n-button>
-      </div>
-    </div>
 
     <!-- Empty Cart -->
     <div v-if="cartItems.length === 0" class="empty-cart">
       <n-empty description="Your cart is empty">
         <template #extra>
-          <n-button type="primary" @click="continueShopping">
+          <n-button type="primary" @click="store.continueShopping">
             Start Shopping
           </n-button>
         </template>
@@ -208,10 +193,12 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import {
-  ArrowBackOutline,
   TrashOutline,
   CartOutline
 } from '@vicons/ionicons5'
+import { useEcommerceStore } from '../store'
+
+const store = useEcommerceStore()
 
 interface CartItem {
   id: number
@@ -348,9 +335,7 @@ const applyPromoCode = () => {
   }
 }
 
-const continueShopping = () => {
-  router.push('/apps/ecommerce')
-}
+
 
 const proceedToCheckout = () => {
   router.push('/apps/ecommerce/checkout')
@@ -368,20 +353,8 @@ const addToCart = (product: Product) => {
 </script>
 
 <style scoped>
-.shopping-cart {
-  padding: 24px;
-  background: var(--n-color);
-}
 
-.cart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 24px;
-  padding: 20px;
-  background: var(--n-card-color);
-  border-radius: 8px;
-}
+
 
 .header-content h2 {
   margin: 0 0 8px 0;
@@ -576,7 +549,10 @@ const addToCart = (product: Product) => {
   align-items: baseline;
   gap: 4px;
 }
-
+:deep(.n-card) {
+  height: 100% !important;
+  border: 1px solid var(--border-color);
+}
 @media (max-width: 1024px) {
   .cart-content :deep(.n-grid) {
     grid-template-columns: 1fr;

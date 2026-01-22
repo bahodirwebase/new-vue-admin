@@ -501,9 +501,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.product-list {
-  padding: 0 0 24px 24px;
-}
+
 
 .page-header {
   display: flex;

@@ -1,20 +1,5 @@
 <template>
   <div class="checkout">
-    <!-- Header -->
-    <div class="checkout-header">
-      <div class="header-content">
-        <h2>Checkout</h2>
-        <p>Complete your purchase securely</p>
-      </div>
-      <div class="header-actions">
-        <n-button @click="goBack">
-          <template #icon>
-            <n-icon><ArrowBackOutline /></n-icon>
-          </template>
-          Back to Cart
-        </n-button>
-      </div>
-    </div>
 
     <!-- Checkout Progress -->
     <div class="checkout-progress">
@@ -357,7 +342,6 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import {
-  ArrowBackOutline,
   CheckmarkOutline,
   ShieldCheckmarkOutline,
   CheckmarkCircleOutline
@@ -546,9 +530,7 @@ const placeOrder = async () => {
   }
 }
 
-const goBack = () => {
-  router.push('/apps/ecommerce/cart')
-}
+
 
 const continueShopping = () => {
   router.push('/apps/ecommerce')
@@ -561,11 +543,6 @@ const viewOrder = () => {
 </script>
 
 <style scoped>
-.checkout {
-  padding: 24px;
-  background: var(--n-color);
-}
-
 .checkout-header {
   display: flex;
   justify-content: space-between;

@@ -29,7 +29,7 @@
           
         </n-gi>
         <n-gi>
-          <ai4 />
+          <topCategories />
           <ai7 style="margin-top: 18px;" />
           <ai9 style="margin-top: 18px;" />
         </n-gi>
@@ -39,15 +39,15 @@
 </template>
 <script setup lang="ts">
 import { NGrid, NGi } from "naive-ui";
-import statisticsCard from "./components/statisticsCard.vue";
-import revenueAnalytics from "./components/revenueAnalytics.vue";
-import monthlyTarget from "./components/monthlyTarget.vue";
-import ai4 from "./components/ai4.vue";
-import ai5 from "./components/ai5.vue";
-import ai6 from "./components/ai6.vue";
-import ai7 from "./components/ai7.vue";
-import ai8 from "./components/ai8.vue";
-import ai9 from "./components/ai9.vue";
+import statisticsCard from "./widgets/statisticsCard.vue";
+import revenueAnalytics from "./widgets/revenueAnalytics.vue";
+import monthlyTarget from "./widgets/monthlyTarget.vue";
+import topCategories from "./widgets/topCategories.vue";
+import ai5 from "./widgets/ai5.vue";
+import ai6 from "./widgets/ai6.vue";
+import ai7 from "./widgets/ai7.vue";
+import ai8 from "./widgets/ai8.vue";
+import ai9 from "./widgets/ai9.vue";
 
 
 </script>

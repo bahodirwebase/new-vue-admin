@@ -7,16 +7,22 @@
 :root {
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-secondary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  
+
   /* Dynamic primary colors (set by theme store) */
   --primary-color: #6366f1;
-  --primary-color-100 : rgb(var(--primary-color) / 0.1);
-  --primary-color-200 : rgb(var(--primary-color) / 0.2);
-  --primary-color-300 : rgb(var(--primary-color) / 0.3);
-  --primary-color-400 : rgb(var(--primary-color) / 0.4);
+  --primary-color-100: color-mix(in srgb, var(--primary-color) 90%, transparent);
+  --primary-color-200: color-mix(in srgb, var(--primary-color) 80%, transparent);
+  --primary-color-300: color-mix(in srgb, var(--primary-color) 70%, transparent);
+  --primary-color-400: color-mix(in srgb, var(--primary-color) 60%, transparent);
+  --primary-color-500: color-mix(in srgb, var(--primary-color) 50%, transparent);
+  --primary-color-600: color-mix(in srgb, var(--primary-color) 40%, transparent);
+  --primary-color-700: color-mix(in srgb, var(--primary-color) 30%, transparent);
+  --primary-color-800: color-mix(in srgb, var(--primary-color) 20%, transparent);
+  --primary-color-900: color-mix(in srgb, var(--primary-color) 10%, transparent);
+  
   --primary-color-hover: #818cf8;
   --primary-color-pressed: #4f46e5;
-  
+
   /* Light theme colors */
   --color-primary: #6366f1;
   --color-primary-hover: #4f46e5;
@@ -24,19 +30,19 @@
   --color-warning: #f59e0b;
   --color-error: #ef4444;
   --color-info: #3b82f6;
-  
+
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
   --bg-tertiary: #f1f5f9;
-  
+
   --text-primary: #0f172a;
   --text-secondary: #475569;
   --text-tertiary: #94a3b8;
-  
+
   --border-color: #e2e8f0;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   /* --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); */
-  --shadow-md: 0 10px 30px rgba(0,0,0,0.05);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.05);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
@@ -45,11 +51,11 @@
   --bg-primary: #0f172a;
   --bg-secondary: #1e293b;
   --bg-tertiary: #334155;
-  
+
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
   --text-tertiary: #94a3b8;
-  
+
   --border-color: #334155;
 }
 
