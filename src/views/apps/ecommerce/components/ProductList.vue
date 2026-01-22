@@ -1,46 +1,5 @@
 <template>
   <div class="product-list">
-    <!-- Page Header -->
-    <div class="page-header">
-      <div class="header-content">
-        <h2>Product Management</h2>
-        <p>Manage your inventory, pricing, and product details</p>
-      </div>
-      <div class="header-actions">
-        <n-space>
-          <n-button-group>
-            <n-button 
-              :type="viewMode === 'grid' ? 'primary' : 'default'"
-              @click="viewMode = 'grid'"
-            >
-              <template #icon>
-                <n-icon><GridOutline /></n-icon>
-              </template>
-            </n-button>
-            <n-button 
-              :type="viewMode === 'list' ? 'primary' : 'default'"
-              @click="viewMode = 'list'"
-            >
-              <template #icon>
-                <n-icon><ListOutline /></n-icon>
-              </template>
-            </n-button>
-          </n-button-group>
-          <n-button @click="exportProducts">
-            <template #icon>
-              <n-icon><DownloadOutline /></n-icon>
-            </template>
-            Export
-          </n-button>
-          <n-button type="primary" @click="showAddProductModal = true">
-            <template #icon>
-              <n-icon><AddOutline /></n-icon>
-            </template>
-            Add Product
-          </n-button>
-        </n-space>
-      </div>
-    </div>
 
     <!-- Search and Filters -->
     <n-card class="filters-card">
@@ -95,7 +54,7 @@
     <!-- Products Display -->
     <div class="products-container">
       <!-- Grid View -->
-      <div v-if="viewMode === 'grid'" class="products-grid">
+      <div v-if="store.viewMode === 'grid'" class="products-grid">
         <n-card
           v-for="product in filteredProducts"
           :key="product.id"
@@ -157,7 +116,7 @@
 
     <!-- Add/Edit Product Modal -->
     <n-modal
-      v-model:show="showAddProductModal"
+      v-model:show="store.showAddProductModal"
       preset="card"
       title="Add New Product"
       style="width: 600px"
@@ -226,7 +185,7 @@
       
       <template #footer>
         <n-space justify="end">
-          <n-button @click="showAddProductModal = false">Cancel</n-button>
+          <n-button @click="store.showAddProductModal = false">Cancel</n-button>
           <n-button type="primary" @click="saveProduct">Save Product</n-button>
         </n-space>
       </template>
@@ -237,18 +196,17 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, h } from 'vue'
 import {
-  GridOutline,
-  DownloadOutline,
-  AddOutline,
+  
   SearchOutline,
   RefreshOutline,
   CreateOutline,
   TrashOutline,
-  EyeOutline,
-  ListOutline
+  EyeOutline
 } from '@vicons/ionicons5'
 import { NTag, NButton, NIcon } from 'naive-ui'
+import { useEcommerceStore } from '../store'
 
+const store = useEcommerceStore()
 interface Product {
   id: number
   name: string
@@ -264,13 +222,13 @@ interface Product {
   createdAt: string
 }
 
-const viewMode = ref<'grid' | 'list'>('grid')
+
 const searchQuery = ref('')
 const selectedCategory = ref(null)
 const selectedStatus = ref(null)
 const sortBy = ref('name')
 const loading = ref(false)
-const showAddProductModal = ref(false)
+
 
 const products = ref<Product[]>([
   {
@@ -534,12 +492,7 @@ const deleteProduct = (product: Product) => {
 const saveProduct = () => {
   // TODO: Implement save logic
   console.log('Save product:', newProduct.value)
-  showAddProductModal.value = false
-}
-
-const exportProducts = () => {
-  // TODO: Implement export functionality
-  console.log('Export products')
+  store.showAddProductModal = false
 }
 
 onMounted(() => {
@@ -549,8 +502,7 @@ onMounted(() => {
 
 <style scoped>
 .product-list {
-  padding: 24px;
-  background: var(--n-color);
+  padding: 0 0 24px 24px;
 }
 
 .page-header {
@@ -559,7 +511,7 @@ onMounted(() => {
   align-items: flex-start;
   margin-bottom: 24px;
   padding: 20px;
-  background: var(--n-card-color);
+  background: var(--bg-primary);
   border-radius: 8px;
 }
 
@@ -593,7 +545,7 @@ onMounted(() => {
 .product-card {
   cursor: pointer;
   transition: transform 0.2s;
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
 }
 
 .product-card:hover {

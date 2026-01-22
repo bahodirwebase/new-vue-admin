@@ -113,19 +113,19 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'apps/ecommerce',
         name: 'Ecommerce',
-        component: () => import('@/views/apps/ecommerce/Ecommerce.vue'),
+        component: () => import('@/views/apps/ecommerce/index.vue'),
         meta: { title: 'E-commerce', icon: 'storefront-outline', group: 'Apps' }
       },
       {
         path: 'apps/ecommerce/cart',
         name: 'ShoppingCart',
-        component: () => import('@/views/apps/ecommerce/ShoppingCart.vue'),
+        component: () => import('@/views/apps/ecommerce/components/ShoppingCart.vue'),
         meta: { title: 'Shopping Cart', icon: 'cart-outline', group: 'Apps' }
       },
       {
         path: 'apps/ecommerce/checkout',
         name: 'Checkout',
-        component: () => import('@/views/apps/ecommerce/Checkout.vue'),
+        component: () => import('@/views/apps/ecommerce/components/Checkout.vue'),
         meta: { title: 'Checkout', icon: 'checkmark-outline', group: 'Apps' }
       },
       {
