@@ -77,7 +77,6 @@
       </div>
 
       <!-- Form Fields Section -->
-      <n-divider />
       <div class="form-fields-section">
         <h3>Form Fields</h3>
         <n-space>
@@ -203,7 +202,7 @@ onBeforeUnmount(() => {
 
 .editor-content {
   min-height: 300px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 16px;
   background: var(--bg-primary);
@@ -215,12 +214,12 @@ onBeforeUnmount(() => {
 
 .form-fields-section h3 {
   margin-bottom: 12px;
-  color: #333;
+  color: var(--text-secondary);
 }
 
 .preview-content {
   padding: 16px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
   background: var(--bg-primary);
 }

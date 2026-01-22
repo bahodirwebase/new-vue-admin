@@ -67,6 +67,9 @@
 <script setup lang="ts">
 import { ref, h } from 'vue'
 import { NTag } from 'naive-ui'
+import { useMessage } from 'naive-ui'
+
+const message = useMessage()
 
 // Basic Dynamic Tags
 const basicValue = ref(['Vue.js', 'TypeScript'])
@@ -89,11 +92,13 @@ const validateTag = (value: string) => {
 // Dynamic Tags with Custom Render
 const customValue = ref(['JavaScript', 'Python', 'Docker'])
 
-const renderCustomTag = ({ value, handleClose }: any) => {
+const renderCustomTag = (value : any) => {
   return h(NTag, {
     type: 'info',
     closable: true,
-    onClose: handleClose
+    onClose: () => {
+      message.success(`Tag "${value}" removed`)
+    }
   }, { default: () => `💻 ${value}` })
 }
 
@@ -112,14 +117,16 @@ const projectName = ref('')
 const projectTags = ref(['frontend', 'vue'])
 const projectDescription = ref('')
 
-const renderProjectTag = ({ value, handleClose }: any) => {
+const renderProjectTag = (value: any) => {
   const colors: Array<'primary' | 'success' | 'warning' | 'error' | 'info'> = ['primary', 'success', 'warning', 'error', 'info']
   const color = colors[Math.floor(Math.random() * colors.length)]
 
   return h(NTag, {
     type: color,
     closable: true,
-    onClose: handleClose
+    onClose: () => {
+      message.success(`Tag "${value}" removed`)
+    }
   }, { default: () => `🏷️ ${value}` })
 }
 </script>

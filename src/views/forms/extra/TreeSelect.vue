@@ -53,11 +53,9 @@
 
           <n-card title="Tree Select Sizes">
             <n-space vertical :size="16">
-              <n-space>
-                <n-tree-select v-model:value="smallValue" size="small" placeholder="Small" />
-                <n-tree-select v-model:value="mediumValue" size="medium" placeholder="Medium" />
-                <n-tree-select v-model:value="largeValue" size="large" placeholder="Large" />
-              </n-space>
+              <n-tree-select v-model:value="smallValue" size="small" placeholder="Small" />
+              <n-tree-select v-model:value="mediumValue" size="medium" placeholder="Medium" />
+              <n-tree-select v-model:value="largeValue" size="large" placeholder="Large" />
             </n-space>
           </n-card>
 

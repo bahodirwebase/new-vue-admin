@@ -19,7 +19,7 @@
 
       <n-card title="Color Picker Modes">
         <n-space vertical :size="16">
-          <n-space>
+          <n-space vertical>
             <n-color-picker v-model:value="hexValue" mode="hex" />
             <n-color-picker v-model:value="rgbValue" mode="rgb" />
             <n-color-picker v-model:value="hslValue" mode="hsl" />
@@ -32,7 +32,7 @@
 
       <n-card title="Color Picker Sizes">
         <n-space vertical :size="16">
-          <n-space>
+          <n-space vertical>
             <n-color-picker v-model:value="smallValue" size="small" />
             <n-color-picker v-model:value="mediumValue" size="medium" />
             <n-color-picker v-model:value="largeValue" size="large" />
@@ -142,8 +142,8 @@ const swatches = [
 const theme = ref({
   primary: '#6366f1',
   secondary: '#64748b',
-  background: '#ffffff',
-  text: '#1f2937'
+  background: 'var(--bg-primary)',
+  text: 'var(--text-primary)'
 })
 
 const themePreviewStyle = computed(() => ({
