@@ -1,5 +1,5 @@
 <template>
-  <div class="top-categories">
+  <n-card>
     <div class="top-categories__header">
       <h2 class="top-categories__title">Top Categories</h2>
       <n-button text class="see-all-button" @click="handleSeeAll">
@@ -32,7 +32,7 @@
         <span class="category-item__value">{{ formatCurrency(category.value) }}</span>
       </div>
     </div>
-  </div>
+  </n-card>
 </template>
 
 <script setup lang="ts">
@@ -153,13 +153,7 @@ const handleSeeAll = () => {
 </script>
 
 <style scoped>
-.top-categories {
-  background: var(--bg-primary);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  max-width: 450px;
-}
+
 
 .top-categories__header {
   display: flex;

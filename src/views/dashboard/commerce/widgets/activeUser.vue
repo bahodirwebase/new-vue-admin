@@ -1,5 +1,5 @@
 <template>
-  <div class="active-user">
+  <n-card>
     <div class="active-user__header">
       <h2 class="active-user__title">Active User</h2>
       <n-dropdown
@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </n-card>
 </template>
 
 <script setup lang="ts">
@@ -88,13 +88,7 @@ const handleMenuSelect = (key: string) => {
 </script>
 
 <style scoped>
-.active-user {
-  background: var(--bg-primary);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  max-width: 420px;
-}
+
 
 .active-user__header {
   display: flex;
@@ -200,7 +194,7 @@ const handleMenuSelect = (key: string) => {
 .progress-bar {
   width: 100%;
   height: 8px;
-  background: #ffe8d1;
+  background: var(--primary-color-900);
   border-radius: 4px;
   overflow: hidden;
   position: relative;
@@ -243,26 +237,4 @@ const handleMenuSelect = (key: string) => {
   filter: brightness(1.1);
 }
 
-/* Responsive */
-@media (max-width: 480px) {
-  .active-user {
-    padding: 20px;
-  }
-
-  .active-user__title {
-    font-size: 18px;
-  }
-
-  .stats-main__value {
-    font-size: 32px;
-  }
-
-  .active-user__stats {
-    margin-bottom: 24px;
-  }
-
-  .country-list {
-    gap: 18px;
-  }
-}
 </style>

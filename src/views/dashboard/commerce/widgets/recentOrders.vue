@@ -1,5 +1,5 @@
 <template>
-  <div class="recent-orders">
+  <n-card>
     <div class="recent-orders__header">
       <h2 class="recent-orders__title">Recent Orders</h2>
       
@@ -36,9 +36,10 @@
         :pagination="false"
         :bordered="false"
         :single-line="false"
+        :scroll-x="700"
       />
     </div>
-  </div>
+  </n-card>
 </template>
 
 <script setup lang="ts">
@@ -208,12 +209,6 @@ const columns: DataTableColumns<Order> = [
 </script>
 
 <style scoped>
-.recent-orders {
-  background: var(--bg-primary);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
 
 .recent-orders__header {
   display: flex;
@@ -257,7 +252,7 @@ const columns: DataTableColumns<Order> = [
   padding: 0 16px;
   font-weight: 600;
   font-size: 14px;
-  background: linear-gradient(135deg, #ff9f43 0%, #ff8c1a 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-600) 100%);
   border: none;
   box-shadow: 0 2px 8px rgba(255, 140, 26, 0.25);
   transition: all 0.3s ease;
@@ -273,34 +268,10 @@ const columns: DataTableColumns<Order> = [
   overflow-x: auto;
 }
 
-/* Custom table styling */
-:deep(.n-data-table) {
-  font-size: 14px;
-}
 
-:deep(.n-data-table-th) {
-  background: #fafafa;
-  font-weight: 600;
-  color: #666666;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 16px 12px;
-}
 
-:deep(.n-data-table-td) {
-  padding: 16px 12px;
-  color: #333333;
-  border-bottom: 1px solid #f5f5f5;
-}
 
-:deep(.n-data-table-tr:hover .n-data-table-td) {
-  background: #fff5eb;
-}
 
-:deep(.n-data-table-tr:last-child .n-data-table-td) {
-  border-bottom: none;
-}
 
 .product-cell {
   display: flex;

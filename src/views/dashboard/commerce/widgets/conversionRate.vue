@@ -1,5 +1,5 @@
 <template>
-  <div class="conversion-rate">
+  <n-card>
     <div class="conversion-rate__header">
       <h2 class="conversion-rate__title">Convertion Rate</h2>
       <n-dropdown
@@ -43,7 +43,7 @@
         :series="series"
       />
     </div>
-  </div>
+  </n-card>
 </template>
 
 <script setup lang="ts">
@@ -163,12 +163,7 @@ const chartOptions = computed(() => ({
 </script>
 
 <style scoped>
-.conversion-rate {
-  background: var(--bg-primary);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
+
 
 .conversion-rate__header {
   display: flex;
@@ -189,7 +184,7 @@ const chartOptions = computed(() => ({
   padding: 0 16px;
   font-weight: 600;
   font-size: 14px;
-  background: linear-gradient(135deg, #ff9f43 0%, #ff8c1a 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-600) 100%);
   border: none;
   box-shadow: 0 2px 8px rgba(255, 140, 26, 0.25);
   transition: all 0.3s ease;
@@ -248,7 +243,6 @@ const chartOptions = computed(() => ({
 
 .conversion-rate__chart {
   margin: 0 -12px;
-  background: linear-gradient(to bottom, #fafafa 0%, #ffffff 100%);
   border-radius: 12px;
   padding: 16px 12px 8px 12px;
 }

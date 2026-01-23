@@ -1,5 +1,5 @@
 <template>
-  <div class="recent-activity">
+  <n-card>
     <div class="recent-activity__header">
       <h2 class="recent-activity__title">Recent Activity</h2>
       <n-dropdown
@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </n-card>
 </template>
 
 <script setup lang="ts">
@@ -102,13 +102,6 @@ const handleMenuSelect = (key: string) => {
 </script>
 
 <style scoped>
-.recent-activity {
-  background: linear-gradient(135deg, #fff5eb 0%, #fffbf7 100%);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  max-width: 450px;
-}
 
 .recent-activity__header {
   display: flex;
@@ -120,7 +113,6 @@ const handleMenuSelect = (key: string) => {
 .recent-activity__title {
   font-size: 20px;
   font-weight: 700;
-  color: #1a1a1a;
   margin: 0;
 }
 

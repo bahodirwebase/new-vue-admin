@@ -1,5 +1,5 @@
 <template>
-  <div class="traffic-sources">
+  <n-card>
     <div class="traffic-sources__header">
       <h2 class="traffic-sources__title">Traffic Sources</h2>
       <n-dropdown
@@ -38,7 +38,7 @@
         <span class="legend-item__percentage">{{ source.percentage }}%</span>
       </div>
     </div>
-  </div>
+  </n-card>
 </template>
 
 <script setup lang="ts">
@@ -130,13 +130,6 @@ const chartOptions = computed(() => ({
 </script>
 
 <style scoped>
-.traffic-sources {
-  background: var(--bg-primary);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  max-width: 520px;
-}
 
 .traffic-sources__header {
   display: flex;
@@ -163,7 +156,6 @@ const chartOptions = computed(() => ({
 
 .traffic-sources__chart {
   margin: 0 -8px 24px -8px;
-  background: #fafafa;
   border-radius: 12px;
   padding: 12px 8px;
 }
@@ -189,7 +181,7 @@ const chartOptions = computed(() => ({
 
 .legend-item:hover {
   padding-left: 8px;
-  background: linear-gradient(90deg, #fff5eb 0%, transparent 100%);
+  background: linear-gradient(90deg,#fff5eb 0%, transparent 100%);
   margin: 0 -8px;
   padding-left: 16px;
   padding-right: 8px;
