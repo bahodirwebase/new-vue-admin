@@ -1,33 +1,31 @@
 <template>
-  <div class="statistics-cards">
-    <div 
-      v-for="card in cards" 
-      :key="card.title"
-      class="stat-card"
-      :class="`stat-card--${card.color}`"
-    >
-      <div class="stat-card__header">
-        <span class="stat-card__title">{{ card.title }}</span>
-        <div class="stat-card__icon" :class="`stat-card__icon--${card.color}`">
-          <n-icon :size="24" :component="card.icon" />
+  <n-grid :x-gap="18" :y-gap="18"  responsive="screen" cols="1 xs:2 md:3">
+    <n-gi v-for="card in cards" :key="card.title">
+      <n-card class="stat-card" :class="`stat-card--${card.color}`">
+        <div>
+          <div class="stat-card__header">
+            <span class="stat-card__title">{{ card.title }}</span>
+            <div class="stat-card__icon" :class="`stat-card__icon--${card.color}`">
+              <n-icon :size="24" :component="card.icon" />
+            </div>
+          </div>
+
+          <div class="stat-card__content">
+            <div class="stat-card__value">{{ card.value }}</div>
+
+            <div class="stat-card__footer">
+              <span class="stat-card__trend"
+                :class="card.isPositive ? 'stat-card__trend--positive' : 'stat-card__trend--negative'">
+                {{ card.trend }}
+              </span>
+              <span class="stat-card__period">{{ card.period }}</span>
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <div class="stat-card__content">
-        <div class="stat-card__value">{{ card.value }}</div>
-        
-        <div class="stat-card__footer">
-          <span 
-            class="stat-card__trend"
-            :class="card.isPositive ? 'stat-card__trend--positive' : 'stat-card__trend--negative'"
-          >
-            {{ card.trend }}
-          </span>
-          <span class="stat-card__period">{{ card.period }}</span>
-        </div>
-      </div>
-    </div>
-  </div>
+      </n-card>
+    </n-gi>
+  </n-grid>
+
 </template>
 
 <script setup lang="ts">
@@ -76,17 +74,8 @@ const cards: StatCard[] = [
 </script>
 
 <style scoped>
-.statistics-cards {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
 
 .stat-card {
-  flex: 1;
-  min-width: 280px;
-  padding: 24px;
-  border-radius: 12px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
 }
@@ -96,17 +85,6 @@ const cards: StatCard[] = [
   transform: translateY(-2px);
 }
 
-.stat-card--orange {
-  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-primary) 100%);
-}
-
-.stat-card--gray {
-  background: var(--bg-primary);
-}
-
-.stat-card--blue {
-  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-primary) 100%);
-}
 
 .stat-card__header {
   display: flex;
@@ -185,24 +163,5 @@ const cards: StatCard[] = [
   font-weight: 400;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .statistics-cards {
-    gap: 16px;
-  }
-  
-  .stat-card {
-    min-width: 240px;
-  }
-}
 
-@media (max-width: 768px) {
-  .statistics-cards {
-    flex-direction: column;
-  }
-  
-  .stat-card {
-    min-width: 100%;
-  }
-}
 </style>

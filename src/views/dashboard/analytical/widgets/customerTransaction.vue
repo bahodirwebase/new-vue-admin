@@ -33,6 +33,7 @@
         :single-line="false"
         :row-key="(row) => row.id"
         @update:checked-row-keys="handleCheck"
+        scroll-x="600"
       />
     </div>
   </n-card>

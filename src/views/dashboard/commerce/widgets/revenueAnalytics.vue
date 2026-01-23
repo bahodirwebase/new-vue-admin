@@ -1,5 +1,5 @@
 <template>
-  <div class="revenue-analytics">
+  <n-card>
     <div class="revenue-analytics__header">
       <div class="revenue-analytics__title-section">
         <h2 class="revenue-analytics__title">Revenue Analytics</h2>
@@ -14,12 +14,8 @@
           </div>
         </div>
       </div>
-      
-      <n-dropdown
-        :options="periodOptions"
-        @select="handlePeriodSelect"
-        trigger="click"
-      >
+
+      <n-dropdown :options="periodOptions" @select="handlePeriodSelect" trigger="click">
         <n-button class="period-button" type="primary" strong>
           {{ selectedPeriod }}
           <template #icon>
@@ -28,16 +24,11 @@
         </n-button>
       </n-dropdown>
     </div>
-    
+
     <div class="revenue-analytics__chart">
-      <apexchart
-        type="line"
-        height="350"
-        :options="(chartOptions as any)"
-        :series="series"
-      />
+      <apexchart type="line" height="350" :options="(chartOptions as any)" :series="series" />
     </div>
-  </div>
+  </n-card>
 </template>
 
 <script setup lang="ts">
@@ -172,10 +163,10 @@ const chartOptions = computed(() => ({
     enabled: true,
     shared: false,
     followCursor: true,
-    custom: function({ series, seriesIndex, dataPointIndex, w }: any) {
+    custom: function ({ series, seriesIndex, dataPointIndex, w }: any) {
       const value = series[seriesIndex][dataPointIndex]
       const label = w.globals.seriesNames[seriesIndex]
-      
+
       return `
         <div class="custom-tooltip">
           <div class="custom-tooltip__label">${label}</div>
@@ -191,18 +182,11 @@ const chartOptions = computed(() => ({
 </script>
 
 <style scoped>
-.revenue-analytics {
-  background: var(--bg-primary);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
 
 .revenue-analytics__header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 24px;
 }
 
 .revenue-analytics__title-section {
@@ -240,13 +224,11 @@ const chartOptions = computed(() => ({
 
 .legend-item__line--order {
   background: #ffb366;
-  background-image: repeating-linear-gradient(
-    to right,
-    #ffb366,
-    #ffb366 4px,
-    transparent 4px,
-    transparent 8px
-  );
+  background-image: repeating-linear-gradient(to right,
+      #ffb366,
+      #ffb366 4px,
+      transparent 4px,
+      transparent 8px);
 }
 
 .legend-item__text {
@@ -308,16 +290,16 @@ const chartOptions = computed(() => ({
   .revenue-analytics {
     padding: 16px;
   }
-  
+
   .revenue-analytics__header {
     flex-direction: column;
     gap: 16px;
   }
-  
+
   .revenue-analytics__title {
     font-size: 18px;
   }
-  
+
   .period-button {
     width: 100%;
   }

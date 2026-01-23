@@ -12,9 +12,9 @@
           <statistics :value="item.value" :icon="item.icon" :label="item.label" />
         </n-gi>
       </n-grid>
-      <n-grid x-gap="18" y-gap="18" cols="2">
+      <n-grid x-gap="18" y-gap="18" cols="1 sm:1 md:2 " responsive="screen">
         <n-gi>
-          <n-grid y-gap="18" x-gap="18" :cols="2">
+          <n-grid y-gap="18" x-gap="18" cols="1 xs:2" responsive="screen">
             <n-gi>
               <statisticsByChart :key="(isDark as any)" :series="series" :chartOptions="chartOptionsSuccess"
                 :type="'success'" :label="'Users'" :value="'28.05k'" />
@@ -37,7 +37,7 @@
           <lineChart />
         </n-gi>
       </n-grid>
-      <n-grid y-gap="18" x-gap="18" :cols="4">
+      <n-grid y-gap="18" x-gap="18"  responsive="screen" cols="1 xs:2  xl:4">
         <n-gi>
           <latestLeads />
         </n-gi>

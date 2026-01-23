@@ -5,49 +5,57 @@
         <h1 class="page-title">Commerce Dashboard</h1>
         <p class="page-subtitle">Detailed analytics and insights</p>
       </div>
-      <n-grid :x-gap="18" :y-gap="18" :cols="4">
-        <n-gi :span="3">
+      <n-grid :x-gap="18" :y-gap="18" cols="xxs:1 md:3 lg:4" responsive="screen">
+
+        <n-gi span="xxs:1 md:2 lg:3">
           <statisticsCard />
-          <NGrid :x-gap="18" :y-gap="18" :cols="3">
-            <NGi :span="2">
-                <revenueAnalytics style="margin-top: 18px;" />
-            </NGi>
-            <NGi >
-                <monthlyTarget style="margin-top: 18px;" />
-            </NGi>
-            <NGi >
-                <ai5  />
-            </NGi>
-            <NGi :span="2">
-                <ai6  />
-            </NGi>
-            <NGi :span="3">
-                <ai8  />
-            </NGi>
-          </NGrid>
-          
-          
+
+          <n-grid :x-gap="18" :y-gap="18" cols="xxs:1 sm:2 md:2 lg:2 xl:3" responsive="screen" style="margin-top: 18px;">
+            <n-gi span="xxs:1 sm:2 lg:1 xl:2">
+              <revenueAnalytics />
+            </n-gi>
+
+            <n-gi span="xxs:1 sm:1 md:1 lg:1 xl:1">
+              <monthlyTarget />
+            </n-gi>
+
+            <n-gi span="xxs:1 md:1 sm:1 lg:2 xl:1">
+              <activeUser />
+            </n-gi>
+
+            <n-gi span="xxs:1 md:2 sm:2 xl:2">
+              <conversionRate />
+            </n-gi>
+
+            <n-gi span="xxs:1 sm:2 md:3 xl:3">
+              <recentOrders />
+            </n-gi>
+          </n-grid>
         </n-gi>
-        <n-gi>
-          <topCategories />
-          <ai7 style="margin-top: 18px;" />
-          <ai9 style="margin-top: 18px;" />
+
+        <n-gi span="xxs:1 md:1 lg:1">
+          <n-flex vertical :size="18">
+            <topCategories />
+            <trafficSources />
+            <recentActivity />
+          </n-flex>
         </n-gi>
+
       </n-grid>
     </n-space>
   </div>
 </template>
 <script setup lang="ts">
-import { NGrid, NGi } from "naive-ui";
+import { NGrid, NGi, NFlex } from "naive-ui";
 import statisticsCard from "./widgets/statisticsCard.vue";
 import revenueAnalytics from "./widgets/revenueAnalytics.vue";
 import monthlyTarget from "./widgets/monthlyTarget.vue";
 import topCategories from "./widgets/topCategories.vue";
-import ai5 from "./widgets/ai5.vue";
-import ai6 from "./widgets/ai6.vue";
-import ai7 from "./widgets/ai7.vue";
-import ai8 from "./widgets/ai8.vue";
-import ai9 from "./widgets/ai9.vue";
+import activeUser from "./widgets/activeUser.vue";
+import conversionRate from "./widgets/conversionRate.vue";
+import trafficSources from "./widgets/trafficSources.vue";
+import recentOrders from "./widgets/recentOrders.vue";
+import recentActivity from "./widgets/recentActivity.vue";
 
 
 </script>
@@ -69,4 +77,8 @@ import ai9 from "./widgets/ai9.vue";
   color: var(--text-secondary);
 }
 
+:deep(.n-card) {
+  height: 100% !important;
+  border: 1px solid var(--border-color);
+}
 </style>

@@ -208,7 +208,7 @@ const handleMenuSelect = (key: string) => {
 
 .progress-bar__fill {
   height: 100%;
-  background: linear-gradient(90deg, #ff8c1a 0%, #ff9f43 100%);
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-color-600) 100%);
   border-radius: 4px;
   transition: width 0.6s ease-out;
   position: relative;

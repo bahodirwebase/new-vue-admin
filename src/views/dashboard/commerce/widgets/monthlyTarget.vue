@@ -1,5 +1,5 @@
 <template>
-  <div class="monthly-target">
+  <n-card>
     <div class="monthly-target__header">
       <h2 class="monthly-target__title">Monthly Target</h2>
       <n-dropdown
@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </n-card>
 </template>
 
 <script setup lang="ts">
@@ -139,9 +139,7 @@ const chartOptions = computed(() => ({
 .monthly-target {
   background: var(--bg-primary);
   border-radius: 16px;
-  padding: 24px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  max-width: 450px;
 }
 
 .monthly-target__header {
@@ -175,7 +173,7 @@ const chartOptions = computed(() => ({
   display: flex;
   flex-direction: column;
   gap: 3px;
-  margin-top: -40px;
+  /* margin-top: -65px; */
 }
 
 .progress-info {
