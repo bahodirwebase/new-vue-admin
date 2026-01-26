@@ -38,7 +38,7 @@
         </n-button>
 
         <!-- Fullscreen Toggle -->
-        <n-button quaternary circle @click="toggleFullscreen" class="fullscreen-toggle">
+        <n-button v-if="!isMobile" quaternary circle @click="toggleFullscreen" class="fullscreen-toggle">
           <template #icon>
             <n-icon v-if="!isFullscreen" :component="ExpandOutline" :size="20" />
             <n-icon v-else :component="ContractOutline" :size="20" />
@@ -103,7 +103,7 @@
           </div>
         </n-popover>
 
-        <n-dropdown :options="userMenuOptions" placement="bottom-end">
+        <n-dropdown :options="userMenuOptions" @select="handleSelect" placement="bottom-end" :value="route.name">
           <n-avatar round :size="32" style="cursor: pointer">
             <n-icon :component="PersonCircleOutline" :size="24" />
           </n-avatar>
@@ -144,6 +144,10 @@ import { useBreakpoints } from '@/composables'
 import { useNotification } from '@/composables'
 import { useFullscreen } from '@/composables'
 import { NIcon } from 'naive-ui'
+import { useRouter, useRoute } from 'vue-router'
+
+const router = useRouter()
+const route = useRoute()
 
 const themeStore = useThemeStore()
 const { isMobile } = useBreakpoints()
@@ -217,27 +221,29 @@ const userMenuOptions: DropdownOption[] = [
   },
   {
     label: 'Profile',
-    key: 'profile',
-    icon: () => h(NIcon, { component: PersonCircleOutline })
+    key: 'UserProfile',
+    icon: () => h(NIcon, { component: PersonCircleOutline }),
+
   },
   {
     label: 'Messages',
-    key: 'messages',
+    key: 'Chat',
     icon: () => h(NIcon, { component: ChatbubbleOutline })
   },
   {
     label: 'Taskboard',
     key: 'taskboard',
+    disabled: true,
     icon: () => h(NIcon, { component: GridOutline })
   },
   {
     label: 'Help',
-    key: 'help',
+    key: 'Faq',
     icon: () => h(NIcon, { component: HelpCircleOutline })
   },
   {
     label: 'Balance : $5971.67',
-    key: 'balance',
+    key: 'Pricing',
     icon: () => h(NIcon, { component: WalletOutline, style: 'color: var(--color-success)' }),
     props: {
       style: {
@@ -251,12 +257,12 @@ const userMenuOptions: DropdownOption[] = [
   },
   {
     label: 'Settings',
-    key: 'new-settings',
+    key: 'AccountSettings',
     icon: () => h(NIcon, { component: CogOutline })
   },
   {
     label: 'Lock screen',
-    key: 'lock-screen',
+    key: 'LockScreen',
     icon: () => h(NIcon, { component: LockClosedOutline })
   },
   {
@@ -266,7 +272,15 @@ const userMenuOptions: DropdownOption[] = [
   }
 ]
 
-
+const handleSelect = (key: string) => {
+  if (key === 'logout') {
+    router.push({ name: 'LoginSimple' })
+    // logout logikasi
+  } else {
+    // Tanlangan key (path) ga yo'naltirish
+    router.push({ name: key })
+  }
+}
 const minimizeSidebar = () => {
   themeStore.setMiniSidebar(!themeStore.isMiniSidebar)
 }
