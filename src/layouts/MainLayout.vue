@@ -23,8 +23,8 @@
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { useThemeStore } from '@/stores/theme'
-import AppSidebar from '@/components/layout/AppSidebar.vue'
-import AppHeader from '@/components/layout/AppHeader.vue'
+import AppSidebar from '@/layouts/sidebar/index.vue'
+import AppHeader from '@/layouts/navbar/index.vue'
 import CustomizerButton from '@/components/CustomizerButton.vue'
 import CustomizerSidebar from '@/components/CustomizerSidebar.vue'
 
