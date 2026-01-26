@@ -1,157 +1,208 @@
 <script lang="ts" setup>
+import { useRouter } from 'vue-router'
 import { NotificationsOutline } from '@vicons/ionicons5'
-import { NIcon, NButton, NPopover, NBadge, NAvatar } from 'naive-ui'
+import { 
+  NIcon, NButton, NPopover, NBadge, NAvatar, 
+  NScrollbar, NEmpty, NText, NDivider 
+} from 'naive-ui'
 import { useNotification } from '@/composables'
 
-
+const router = useRouter()
 const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotification()
+
+const handleViewAll = () => {
+  router.push({ name: 'Notifications' }) // Sahifa nomi loyihangizga qarab o'zgarishi mumkin
+}
 </script>
+
 <template>
-    <n-popover trigger="hover" placement="bottom-end">
-        <template #trigger>
-            <n-button quaternary circle class="notification-button">
-                <template #icon>
-                    <n-icon :component="NotificationsOutline" :size="20" />
-                </template>
-                <n-badge :value="unreadCount" :max="99" class="notification-badge" />
-            </n-button>
+  <n-popover 
+    trigger="hover" 
+    placement="bottom-end" 
+    :raw="true" 
+    class="notification-popover"
+  >
+    <template #trigger>
+      <n-button quaternary circle class="notification-trigger">
+        <template #icon>
+          <n-icon :component="NotificationsOutline" :size="22" />
         </template>
-        <div class="notification-dropdown">
-            <div class="notification-header">
-                <span class="notification-title">Notifications</span>
-                <n-button text size="small" @click="markAllAsRead">Mark all as read</n-button>
+        <n-badge 
+          :value="unreadCount" 
+          :max="99" 
+          type="error" 
+          class="notification-badge" 
+        />
+      </n-button>
+    </template>
+
+    <div class="notification-card">
+      <div class="card-header">
+        <n-text strong depth="1" class="title">Notifications</n-text>
+        <n-button 
+          v-if="notifications.length > 0" 
+          text 
+          type="primary" 
+          size="tiny" 
+          @click="markAllAsRead"
+        >
+          Mark all as read
+        </n-button>
+      </div>
+
+      <n-divider style="margin: 0" />
+
+      <div class="card-body">
+        <n-scrollbar style="max-height: 350px;">
+          <template v-if="notifications.length > 0">
+            <div 
+              v-for="item in notifications" 
+              :key="item.id" 
+              class="notification-item"
+              :class="{ 'is-unread': !item.read }"
+              @click="markAsRead(item.id)"
+            >
+              <n-avatar 
+                round 
+                :size="40" 
+                :style="{ backgroundColor: item.color || 'var(--primary-color)' }"
+                class="item-avatar"
+              >
+                <n-icon :component="item.icon" :size="20" color="#fff" />
+              </n-avatar>
+
+              <div class="item-content">
+                <n-text class="item-message" :depth="item.read ? 3 : 1">
+                  {{ item.message }}
+                </n-text>
+                <n-text depth="3" class="item-time">
+                  {{ item.time }}
+                </n-text>
+              </div>
+
+              <div v-if="!item.read" class="unread-dot" />
             </div>
-            <div class="notification-list">
-                <div v-for="notification in notifications" :key="notification.id" class="notification-item"
-                    :class="{ 'unread': !notification.read }" @click="markAsRead(notification.id)">
-                    <div class="notification-avatar">
-                        <n-avatar round :size="40" :style="{ backgroundColor: notification.color }">
-                            <n-icon :component="notification.icon" :size="20" style="color: white;" />
-                        </n-avatar>
-                    </div>
-                    <div class="notification-content">
-                        <div class="notification-message">{{ notification.message }}</div>
-                        <div class="notification-time">{{ notification.time }}</div>
-                    </div>
-                    <div v-if="!notification.read" class="notification-dot"></div>
-                </div>
+          </template>
+
+          <template v-else>
+            <div class="empty-container">
+              <n-empty description="No new notifications" />
             </div>
-            <div class="notification-footer">
-                <n-button text block>View all notifications</n-button>
-            </div>
-        </div>
-    </n-popover>
+          </template>
+        </n-scrollbar>
+      </div>
+
+      <n-divider style="margin: 0" />
+
+      <div class="card-footer">
+        <n-button text block type="primary" @click="handleViewAll">
+          View all notifications
+        </n-button>
+      </div>
+    </div>
+  </n-popover>
 </template>
 
 <style scoped>
-.notification-button {
-    position: relative;
+.notification-trigger {
+  position: relative;
 }
 
 .notification-badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    z-index: 1;
+  position: absolute;
+  top: -2px;
+  right: -2px;
 }
 
-.notification-dropdown {
-    padding: 0;
-    min-width: 350px;
-    max-width: 90vw;
-    max-height: 400px;
-    overflow: hidden;
+/* Dropdown Card Structure */
+.notification-card {
+  width: 360px;
+  background-color: var(--n-color); /* Naive UI popover background */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--n-box-shadow);
 }
 
-.notification-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border-color);
-    background-color: var(--bg-secondary);
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  background-color: var(--bg-header); /* Loyihangizdagi o'zgaruvchi */
 }
 
-.notification-title {
-    font-weight: 600;
-    color: var(--text-primary);
+.title {
+  font-size: 16px;
 }
 
-.notification-list {
-    max-height: 300px;
-    overflow-y: auto;
+.card-body {
+  min-height: 100px;
 }
 
 .notification-item {
-    display: flex;
-    align-items: flex-start;
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: background-color 0.2s;
-    position: relative;
+  display: flex;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  border-bottom: 1px solid var(--n-border-color);
 }
 
 .notification-item:hover {
-    background-color: var(--bg-tertiary);
+  background-color: var(--n-code-color);
 }
 
-.notification-item.unread {
-    background-color: var(--bg-primary);
+.is-unread {
+  background-color: var(--n-hover-color);
 }
 
-.notification-avatar {
-    margin-right: 12px;
-    flex-shrink: 0;
+.item-avatar {
+  margin-right: 12px;
+  flex-shrink: 0;
 }
 
-.notification-content {
-    flex: 1;
-    min-width: 0;
+.item-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 10px;
 }
 
-.notification-message {
-    font-size: 14px;
-    color: var(--text-primary);
-    margin-bottom: 4px;
-    line-height: 1.4;
+.item-message {
+  font-size: 13.5px;
+  line-height: 1.4;
+  font-weight: 500;
 }
 
-.notification-time {
-    font-size: 12px;
-    color: var(--text-secondary);
+.item-time {
+  font-size: 11px;
 }
 
-.notification-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #3b82f6;
-    border-radius: 50%;
-    position: absolute;
-    top: 16px;
-    right: 12px;
+.unread-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--n-error-color);
+  border-radius: 50%;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.notification-footer {
-    padding: 8px 16px;
-    border-top: 1px solid var(--border-color);
-    background-color: var(--bg-secondary);
+.empty-container {
+  padding: 40px 0;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-
-
-    .notification-dropdown {
-        min-width: 300px;
-    }
+.card-footer {
+  padding: 8px;
+  text-align: center;
 }
 
+/* Mobile adjustments */
 @media (max-width: 480px) {
-
-
-    .notification-dropdown {
-        min-width: 280px;
-    }
+  .notification-card {
+    width: 300px;
+  }
 }
 </style>
