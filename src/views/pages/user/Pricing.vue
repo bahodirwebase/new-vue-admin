@@ -1,289 +1,434 @@
 <template>
   <div class="pricing">
-    <div class="pricing-header">
-      <h1>Choose Your Plan</h1>
-      <p>Select the perfect plan for your needs. All plans include our core features.</p>
-    </div>
-
-    <div class="pricing-toggle">
-      <label class="toggle-switch">
-        <input type="checkbox" v-model="isYearly" />
-        <span class="toggle-slider"></span>
-      </label>
-      <span class="toggle-label">Monthly</span>
-      <span class="toggle-label active">Yearly (Save 20%)</span>
-    </div>
-
-    <div class="pricing-cards">
-      <div class="pricing-card basic">
-        <div class="pricing-header-card">
-          <h3>Basic</h3>
-          <div class="price">
-            <span class="currency">$</span>
-            <span class="amount">{{ isYearly ? '9' : '12' }}</span>
-            <span class="period">/{{ isYearly ? 'month' : 'month' }}</span>
-          </div>
-          <p class="description">Perfect for individuals and small projects</p>
+    <!-- Hero Section -->
+    <div class="pricing-hero">
+      <div class="hero-content">
+        <div class="hero-info">
+          <h1 class="hero-title">Choose Your Perfect Plan</h1>
+          <p class="hero-description">
+            Select the ideal plan for your needs. All plans include our core features with 24/7 support.
+          </p>
         </div>
-        <ul class="features">
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Up to 5 projects
-          </li>
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Basic analytics
-          </li>
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Email support
-          </li>
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            1GB storage
-          </li>
-        </ul>
-        <button class="btn-outline">Get Started</button>
-      </div>
-
-      <div class="pricing-card pro featured">
-        <div class="popular-badge">Most Popular</div>
-        <div class="pricing-header-card">
-          <h3>Professional</h3>
-          <div class="price">
-            <span class="currency">$</span>
-            <span class="amount">{{ isYearly ? '24' : '29' }}</span>
-            <span class="period">/{{ isYearly ? 'month' : 'month' }}</span>
+        <div class="hero-toggle">
+          <div class="toggle-container">
+            <span class="toggle-label" :class="{ active: !isYearly }">Monthly</span>
+            <n-switch v-model:value="isYearly" size="large" />
+            <span class="toggle-label" :class="{ active: isYearly }">
+              Yearly
+              <n-tag type="success" size="small">Save 20%</n-tag>
+            </span>
           </div>
-          <p class="description">Great for growing teams and businesses</p>
         </div>
-        <ul class="features">
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Unlimited projects
-          </li>
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Advanced analytics
-          </li>
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Priority support
-          </li>
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            50GB storage
-          </li>
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Team collaboration
-          </li>
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Custom integrations
-          </li>
-        </ul>
-        <button class="btn-primary">Get Started</button>
-      </div>
-
-      <div class="pricing-card enterprise">
-        <div class="pricing-header-card">
-          <h3>Enterprise</h3>
-          <div class="price">
-            <span class="currency">$</span>
-            <span class="amount">{{ isYearly ? '79' : '99' }}</span>
-            <span class="period">/{{ isYearly ? 'month' : 'month' }}</span>
-          </div>
-          <p class="description">For large organizations with custom needs</p>
-        </div>
-        <ul class="features">
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Everything in Pro
-          </li>
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Unlimited storage
-          </li>
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Dedicated support
-          </li>
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            SLA guarantee
-          </li>
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Custom features
-          </li>
-          <li class="feature-item">
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            On-premise option
-          </li>
-        </ul>
-        <button class="btn-outline">Contact Sales</button>
       </div>
     </div>
 
-    <div class="pricing-faq">
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <h3>Can I change my plan anytime?</h3>
-        <p>Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.</p>
+    <!-- Pricing Cards -->
+    <div class="pricing-content">
+      <div class="pricing-grid">
+        <!-- Basic Plan -->
+        <n-card class="pricing-card basic-card" :bordered="false">
+          <div class="plan-header">
+            <div class="plan-icon">
+              <n-icon :component="RocketOutline" />
+            </div>
+            <h3 class="plan-name">Basic</h3>
+            <p class="plan-description">Perfect for individuals and small projects</p>
+          </div>
+          
+          <div class="plan-pricing">
+            <div class="price-display">
+              <span class="currency">$</span>
+              <span class="amount">{{ isYearly ? '9' : '12' }}</span>
+              <span class="period">/month</span>
+            </div>
+            <p v-if="isYearly" class="yearly-savings">Billed annually ($108/year)</p>
+          </div>
+
+          <div class="plan-features">
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Up to 5 projects</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Basic analytics dashboard</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Email support (48h response)</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>1GB cloud storage</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Mobile app access</span>
+            </div>
+          </div>
+
+          <n-button class="plan-button" size="large" @click="selectPlan('basic')">
+            Get Started
+          </n-button>
+        </n-card>
+
+        <!-- Professional Plan -->
+        <n-card class="pricing-card pro-card featured" :bordered="false">
+          <div class="popular-badge">
+            <n-icon :component="StarOutline" />
+            <span>Most Popular</span>
+          </div>
+          
+          <div class="plan-header">
+            <div class="plan-icon">
+              <n-icon :component="TrophyOutline" />
+            </div>
+            <h3 class="plan-name">Professional</h3>
+            <p class="plan-description">Great for growing teams and businesses</p>
+          </div>
+          
+          <div class="plan-pricing">
+            <div class="price-display">
+              <span class="currency">$</span>
+              <span class="amount">{{ isYearly ? '24' : '29' }}</span>
+              <span class="period">/month</span>
+            </div>
+            <p v-if="isYearly" class="yearly-savings">Billed annually ($288/year)</p>
+          </div>
+
+          <div class="plan-features">
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Unlimited projects</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Advanced analytics & reports</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Priority support (24h response)</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>50GB cloud storage</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Team collaboration tools</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Custom integrations</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>API access</span>
+            </div>
+          </div>
+
+          <n-button class="plan-button" type="primary" size="large" @click="selectPlan('pro')">
+            Get Started
+          </n-button>
+        </n-card>
+
+        <!-- Enterprise Plan -->
+        <n-card class="pricing-card enterprise-card" :bordered="false">
+          <div class="plan-header">
+            <div class="plan-icon">
+              <n-icon :component="BusinessOutline" />
+            </div>
+            <h3 class="plan-name">Enterprise</h3>
+            <p class="plan-description">For large organizations with custom needs</p>
+          </div>
+          
+          <div class="plan-pricing">
+            <div class="price-display">
+              <span class="currency">$</span>
+              <span class="amount">{{ isYearly ? '79' : '99' }}</span>
+              <span class="period">/month</span>
+            </div>
+            <p v-if="isYearly" class="yearly-savings">Billed annually ($948/year)</p>
+          </div>
+
+          <div class="plan-features">
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Everything in Professional</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Unlimited cloud storage</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Dedicated account manager</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>99.9% SLA guarantee</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Custom feature development</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>On-premise deployment</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Advanced security features</span>
+            </div>
+            <div class="feature-item">
+              <n-icon :component="CheckmarkOutline" />
+              <span>Custom training & onboarding</span>
+            </div>
+          </div>
+
+          <n-button class="plan-button" size="large" @click="selectPlan('enterprise')">
+            Contact Sales
+          </n-button>
+        </n-card>
       </div>
-      <div class="faq-item">
-        <h3>What happens if I exceed my limits?</h3>
-        <p>We'll notify you when you're approaching your limits. You can upgrade your plan or purchase add-ons for additional resources.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Do you offer refunds?</h3>
-        <p>We offer a 30-day money-back guarantee for all new subscriptions. No questions asked.</p>
+
+      <!-- Comparison Table -->
+      <n-card class="comparison-card" :bordered="false">
+        <template #header>
+          <div class="card-header">
+            <h3>Feature Comparison</h3>
+            <p>Detailed breakdown of what's included in each plan</p>
+          </div>
+        </template>
+        
+        <div class="comparison-table">
+          <div class="table-header">
+            <div class="feature-column">Feature</div>
+            <div class="plan-column">Basic</div>
+            <div class="plan-column">Professional</div>
+            <div class="plan-column">Enterprise</div>
+          </div>
+          
+          <div v-for="feature in comparisonFeatures" :key="feature.name" class="table-row">
+            <div class="feature-column">
+              <div class="feature-info">
+                <n-icon :component="feature.icon" />
+                <span>{{ feature.name }}</span>
+              </div>
+            </div>
+            <div class="plan-column">
+              <n-icon v-if="feature.basic" :component="CheckmarkOutline" class="included" />
+              <span v-else class="not-included">—</span>
+            </div>
+            <div class="plan-column">
+              <n-icon v-if="feature.pro" :component="CheckmarkOutline" class="included" />
+              <span v-else class="not-included">—</span>
+            </div>
+            <div class="plan-column">
+              <n-icon v-if="feature.enterprise" :component="CheckmarkOutline" class="included" />
+              <span v-else class="not-included">—</span>
+            </div>
+          </div>
+        </div>
+      </n-card>
+
+      <!-- FAQ Section -->
+      <n-card class="faq-card" :bordered="false">
+        <template #header>
+          <div class="card-header">
+            <h3>Frequently Asked Questions</h3>
+            <p>Got questions? We've got answers</p>
+          </div>
+        </template>
+        
+        <div class="faq-list">
+          <div v-for="(faq, index) in faqs" :key="index" class="faq-item">
+            <div class="faq-question" @click="toggleFaq(index)">
+              <h4>{{ faq.question }}</h4>
+              <n-icon :component="expandedFaq === index ? ChevronUpOutline : ChevronDownOutline" />
+            </div>
+            <div v-show="expandedFaq === index" class="faq-answer">
+              <p>{{ faq.answer }}</p>
+            </div>
+          </div>
+        </div>
+      </n-card>
+
+      <!-- CTA Section -->
+      <div class="cta-section">
+        <div class="cta-content">
+          <h2>Ready to get started?</h2>
+          <p>Join thousands of satisfied customers using our platform</p>
+          <div class="cta-buttons">
+            <n-button type="primary" size="large" @click="startFreeTrial">
+              Start Free Trial
+            </n-button>
+            <n-button size="large" @click="scheduleDemo">
+              Schedule Demo
+            </n-button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import { 
+  NCard, NButton, NIcon, NSwitch, NTag, useMessage
+} from 'naive-ui'
+import {
+  RocketOutline, TrophyOutline, BusinessOutline, StarOutline,
+  CheckmarkOutline, ChevronDownOutline, ChevronUpOutline,
+  PeopleOutline, ShieldCheckmarkOutline, CloudOutline,
+  StatsChartOutline, CodeOutline, SchoolOutline
+} from '@vicons/ionicons5'
 
+const message = useMessage()
+
+// State
 const isYearly = ref(false)
+const expandedFaq = ref<number | null>(null)
+
+// Comparison Features
+const comparisonFeatures = reactive([
+  { name: 'Projects', icon: RocketOutline, basic: true, pro: true, enterprise: true },
+  { name: 'Team Members', icon: PeopleOutline, basic: false, pro: true, enterprise: true },
+  { name: 'Advanced Security', icon: ShieldCheckmarkOutline, basic: false, pro: true, enterprise: true },
+  { name: 'Cloud Storage', icon: CloudOutline, basic: true, pro: true, enterprise: true },
+  { name: 'Analytics', icon: StatsChartOutline, basic: true, pro: true, enterprise: true },
+  { name: 'API Access', icon: CodeOutline, basic: false, pro: true, enterprise: true },
+  { name: 'Priority Support', icon: SchoolOutline, basic: false, pro: true, enterprise: true }
+])
+
+// FAQ Data
+const faqs = reactive([
+  {
+    question: 'Can I change my plan anytime?',
+    answer: 'Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle, and we\'ll prorate any differences.'
+  },
+  {
+    question: 'What happens if I exceed my limits?',
+    answer: 'We\'ll notify you when you\'re approaching your limits. You can upgrade your plan or purchase add-ons for additional resources. We never cut off your service unexpectedly.'
+  },
+  {
+    question: 'Do you offer refunds?',
+    answer: 'We offer a 30-day money-back guarantee for all new subscriptions. No questions asked. Just contact our support team within 30 days of your purchase.'
+  },
+  {
+    question: 'Is my data secure?',
+    answer: 'Absolutely! We use industry-standard encryption, regular security audits, and comply with GDPR, CCPA, and other major data protection regulations.'
+  },
+  {
+    question: 'Can I cancel my subscription?',
+    answer: 'Yes, you can cancel your subscription at any time. Your access will continue until the end of your current billing period.'
+  }
+])
+
+// Methods
+const selectPlan = (plan: string) => {
+  if (plan === 'enterprise') {
+    message.info('Our sales team will contact you soon!')
+  } else {
+    message.success(`Great choice! You've selected the ${plan} plan.`)
+  }
+}
+
+const toggleFaq = (index: number) => {
+  expandedFaq.value = expandedFaq.value === index ? null : index
+}
+
+const startFreeTrial = () => {
+  message.success('Your free trial has been activated!')
+}
+
+const scheduleDemo = () => {
+  message.info('Please select a time for your demo')
+}
 </script>
 
 <style scoped>
 .pricing {
+  min-height: 100vh;
+  background: var(--bg-secondary);
+}
+
+/* Hero Section */
+.pricing-hero {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-hover) 100%);
+  padding: 4rem 0;
+  margin-bottom: 3rem;
+}
+
+.hero-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
-}
-
-.pricing-header {
+  padding: 0 2rem;
   text-align: center;
-  margin-bottom: 3rem;
 }
 
-.pricing-header h1 {
-  font-size: 2.5rem;
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
   margin-bottom: 1rem;
-  color: var(--text-primary);
 }
 
-.pricing-header p {
+.hero-description {
   font-size: 1.2rem;
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.9);
   max-width: 600px;
-  margin: 0 auto;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
 }
 
-.pricing-toggle {
+.hero-toggle {
+  display: flex;
+  justify-content: center;
+}
+
+.toggle-container {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 1rem;
-  margin-bottom: 3rem;
-}
-
-.toggle-switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 28px;
-}
-
-.toggle-switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.toggle-slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 28px;
-}
-
-.toggle-slider:before {
-  position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-input:checked + .toggle-slider {
-  background-color: var(--primary-color);
-}
-
-input:checked + .toggle-slider:before {
-  transform: translateX(32px);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
 }
 
 .toggle-label {
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.8);
   font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .toggle-label.active {
-  color: var(--primary-color);
+  color: white;
   font-weight: 600;
 }
 
-.pricing-cards {
+/* Main Content */
+.pricing-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+}
+
+/* Pricing Grid */
+.pricing-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
 }
 
 .pricing-card {
-  background: var(--bg-secondary);
-  border-radius: 16px;
-  padding: 2rem;
-  border: 1px solid var(--border-color);
   position: relative;
   transition: all 0.3s ease;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .pricing-card:hover {
@@ -291,9 +436,13 @@ input:checked + .toggle-slider:before {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-.pricing-card.featured {
-  border-color: var(--primary-color);
+.pro-card.featured {
+  border: 2px solid var(--primary-color);
   transform: scale(1.05);
+}
+
+.pro-card.featured:hover {
+  transform: scale(1.05) translateY(-8px);
 }
 
 .popular-badge {
@@ -305,30 +454,69 @@ input:checked + .toggle-slider:before {
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 1;
 }
 
-.pricing-header-card {
+/* Plan Header */
+.plan-header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-.pricing-header-card h3 {
+.plan-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
   font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
+  margin: 0 auto 1rem;
 }
 
-.price {
+.pro-card .plan-icon {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-hover) 100%);
+}
+
+.enterprise-card .plan-icon {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+}
+
+.plan-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.plan-description {
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Pricing */
+.plan-pricing {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.price-display {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  margin-bottom: 1rem;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .currency {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: var(--primary-color);
   font-weight: 600;
 }
@@ -344,13 +532,13 @@ input:checked + .toggle-slider:before {
   font-weight: 500;
 }
 
-.description {
+.yearly-savings {
   color: var(--text-secondary);
+  font-size: 0.9rem;
 }
 
-.features {
-  list-style: none;
-  padding: 0;
+/* Features */
+.plan-features {
   margin-bottom: 2rem;
 }
 
@@ -367,91 +555,275 @@ input:checked + .toggle-slider:before {
   border-bottom: none;
 }
 
-.check-icon {
-  width: 20px;
-  height: 20px;
-  color: #10b981;
+.feature-item .n-icon {
+  color: #22c55e;
   flex-shrink: 0;
 }
 
-.btn-primary, .btn-outline {
+/* Plan Button */
+.plan-button {
   width: 100%;
-  padding: 1rem;
-  border-radius: 8px;
-  font-size: 1rem;
+  height: 48px;
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  border-radius: 8px;
 }
 
-.btn-primary {
+.pro-card .plan-button {
   background: var(--primary-color);
-  color: white;
-  border: none;
 }
 
-.btn-primary:hover {
-  background: var(--primary-hover);
-  transform: translateY(-2px);
+/* Comparison Table */
+.comparison-card {
+  margin-bottom: 3rem;
 }
 
-.btn-outline {
-  background: transparent;
-  color: var(--primary-color);
-  border: 2px solid var(--primary-color);
-}
-
-.btn-outline:hover {
-  background: var(--primary-color);
-  color: white;
-  transform: translateY(-2px);
-}
-
-.pricing-faq {
+.card-header {
   text-align: center;
 }
 
-.pricing-faq h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: var(--text-primary);
-}
-
-.faq-item {
-  max-width: 600px;
-  margin: 0 auto 2rem;
-  text-align: left;
-}
-
-.faq-item h3 {
+.card-header h3 {
+  font-size: 1.8rem;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
-.faq-item p {
+.card-header p {
+  color: var(--text-secondary);
+}
+
+.comparison-table {
+  margin-top: 2rem;
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  align-items: center;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.feature-column {
+  display: flex;
+  align-items: center;
+}
+
+.feature-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.plan-column {
+  text-align: center;
+}
+
+.included {
+  color: #22c55e;
+  font-size: 1.2rem;
+}
+
+.not-included {
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+/* FAQ Section */
+.faq-card {
+  margin-bottom: 3rem;
+}
+
+.faq-list {
+  margin-top: 2rem;
+}
+
+.faq-item {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  cursor: pointer;
+  background: var(--bg-primary);
+  transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+  background: var(--bg-secondary);
+}
+
+.faq-question h4 {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.faq-question .n-icon {
+  color: var(--primary-color);
+}
+
+.faq-answer {
+  padding: 0 1.5rem 1.5rem;
+  background: var(--bg-primary);
+}
+
+.faq-answer p {
+  margin: 0;
   color: var(--text-secondary);
   line-height: 1.6;
 }
 
-@media (max-width: 768px) {
-  .pricing {
-    padding: 1rem;
-  }
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-hover) 100%);
+  border-radius: 16px;
+  padding: 3rem;
+  text-align: center;
+  color: white;
+}
 
-  .pricing-header h1 {
-    font-size: 2rem;
-  }
+.cta-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
 
-  .pricing-cards {
+.cta-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.cta-buttons .n-button {
+  height: 48px;
+  padding: 0 2rem;
+  font-weight: 600;
+}
+
+.cta-buttons .n-button:first-child {
+  background: white;
+  color: var(--primary-color);
+}
+
+.cta-buttons .n-button:last-child {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .pricing-grid {
     grid-template-columns: 1fr;
   }
-
-  .pricing-card.featured {
+  
+  .pro-card.featured {
     transform: scale(1);
   }
+  
+  .pro-card.featured:hover {
+    transform: translateY(-8px);
+  }
+}
 
+@media (max-width: 768px) {
+  .pricing-content {
+    padding: 0 1rem 2rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .toggle-container {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .comparison-table,
+  .table-header,
+  .table-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .table-header {
+    display: none;
+  }
+  
+  .table-row {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+  
+  .feature-column {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .plan-column {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cta-buttons .n-button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  
   .amount {
     font-size: 2.5rem;
+  }
+  
+  .cta-section {
+    padding: 2rem 1rem;
   }
 }
 </style>
