@@ -172,7 +172,7 @@ const handleMenuSelect = (key: string) => {
 
 .activity-item__text {
   font-size: 14px;
-  color: #333333;
+  color: var(--text-primary);
   line-height: 1.6;
   margin: 0;
   font-weight: 400;
@@ -180,7 +180,6 @@ const handleMenuSelect = (key: string) => {
 
 .activity-item__text :deep(strong) {
   font-weight: 600;
-  color: #1a1a1a;
 }
 
 .activity-item__time {

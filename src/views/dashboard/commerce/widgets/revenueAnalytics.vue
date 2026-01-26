@@ -90,7 +90,7 @@ const chartOptions = computed(() => ({
     },
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
   },
-  colors: ['var(--primary-color)', 'var(--primary-color)'],
+  colors: ['var(--primary-color)', 'var(--text-secondary)'],
   stroke: {
     curve: 'smooth',
     width: [3, 3],
@@ -223,12 +223,7 @@ const chartOptions = computed(() => ({
 }
 
 .legend-item__line--order {
-  background: #ffb366;
-  background-image: repeating-linear-gradient(to right,
-      #ffb366,
-      #ffb366 4px,
-      transparent 4px,
-      transparent 8px);
+  background: var(--text-secondary);
 }
 
 .legend-item__text {
@@ -286,7 +281,7 @@ const chartOptions = computed(() => ({
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .revenue-analytics {
     padding: 16px;
   }

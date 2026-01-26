@@ -177,7 +177,7 @@ const handleSeeAll = () => {
 }
 
 .see-all-button:hover {
-  color: #ff8c1a;
+  color: var(--primary-color);
 }
 
 .top-categories__chart {
@@ -195,7 +195,7 @@ const handleSeeAll = () => {
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
@@ -205,11 +205,10 @@ const handleSeeAll = () => {
 
 .category-item:hover {
   padding-left: 8px;
-  background: linear-gradient(90deg, #fff5eb 0%, transparent 100%);
+  background: linear-gradient(90deg, var(--primary-color-900) 0%, transparent 100%);
   margin: 0 -8px;
   padding-left: 16px;
   padding-right: 8px;
-  border-radius: 8px;
 }
 
 .category-item__info {

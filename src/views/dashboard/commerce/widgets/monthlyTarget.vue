@@ -236,7 +236,7 @@ const chartOptions = computed(() => ({
 
 .stat-box:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 140, 26, 0.15);
+  box-shadow: 0 4px 12px var(--primary-color-800);
 }
 
 .stat-box__label {
@@ -249,7 +249,6 @@ const chartOptions = computed(() => ({
 .stat-box__value {
   font-size: 20px;
   font-weight: 700;
-  color: #1a1a1a;
   text-align: center;
 }
 

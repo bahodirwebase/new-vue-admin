@@ -320,7 +320,7 @@ const columns: DataTableColumns<Order> = [
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 450px) {
   .recent-orders {
     padding: 20px;
     overflow-x: auto;
