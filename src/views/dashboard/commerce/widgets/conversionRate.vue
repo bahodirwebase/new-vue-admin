@@ -7,7 +7,7 @@
         @select="handlePeriodSelect"
         trigger="click"
       >
-        <n-button class="period-button" type="warning" strong>
+        <n-button class="period-button" type="primary" strong>
           {{ selectedPeriod }}
           <template #icon>
             <n-icon :component="ChevronDownOutline" />
@@ -109,7 +109,7 @@ const chartOptions = computed(() => ({
       }
     }
   },
-  colors: ['#ffe8d1', '#ffd9b3', '#ffca99', '#ffb366', '#ff8c1a'],
+  colors: ['var(--primary-color-800)', 'var(--primary-color-600)', 'var(--primary-color-400)', 'var(--primary-color-200)', 'var(--primary-color)'],
   dataLabels: {
     enabled: false
   },
@@ -185,13 +185,13 @@ const chartOptions = computed(() => ({
   font-weight: 600;
   font-size: 14px;
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-600) 100%);
-  border: none;
-  box-shadow: 0 2px 8px rgba(255, 140, 26, 0.25);
+  border: none !important;
+  box-shadow: 0 2px 8px var(--primary-color-600);
   transition: all 0.3s ease;
 }
 
 .period-button:hover {
-  box-shadow: 0 4px 12px rgba(255, 140, 26, 0.35);
+  box-shadow: 0 4px 12px var(--primary-color-600);
   transform: translateY(-1px);
 }
 

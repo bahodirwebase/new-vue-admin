@@ -62,7 +62,7 @@ const trafficSources = ref<TrafficSource[]>([
   { name: 'Email Campaigns', percentage: 5 }
 ])
 
-const colors = ['#ffe0c2', '#ffd9b3', '#ffca99', '#ffb366', '#ff8c1a']
+const colors = ['var(--primary-color-800)', 'var(--primary-color-600)', 'var(--primary-color-400)', 'var(--primary-color-200)', 'var(--primary-color)']
 
 const menuOptions = [
   { label: 'View Details', key: 'details' },
@@ -171,7 +171,7 @@ const chartOptions = computed(() => ({
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid var(--border-color);
   transition: all 0.3s ease;
 }
 
@@ -181,11 +181,11 @@ const chartOptions = computed(() => ({
 
 .legend-item:hover {
   padding-left: 8px;
-  background: linear-gradient(90deg,#fff5eb 0%, transparent 100%);
+  /* background: linear-gradient(90deg,#fff5eb 0%, transparent 100%); */
   margin: 0 -8px;
   padding-left: 16px;
   padding-right: 8px;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 .legend-item__info {

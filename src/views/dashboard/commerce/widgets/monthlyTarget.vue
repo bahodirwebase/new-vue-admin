@@ -37,11 +37,11 @@
       </div>
 
       <div class="stats-grid">
-        <div class="stat-box stat-box--target">
+        <div class="stat-box">
           <span class="stat-box__label">Target</span>
           <span class="stat-box__value">$600,000</span>
         </div>
-        <div class="stat-box stat-box--revenue">
+        <div class="stat-box">
           <span class="stat-box__label">Revenue</span>
           <span class="stat-box__value">$510,000</span>
         </div>
@@ -90,7 +90,7 @@ const chartOptions = computed(() => ({
       startAngle: -90,
       endAngle: 90,
       track: {
-        background: '#ffe8d1',
+        background: 'var(--primary-color-900)',
         strokeWidth: '100%',
         margin: 5
       },
@@ -213,7 +213,7 @@ const chartOptions = computed(() => ({
 }
 
 .achievement__amount {
-  color: #ff8c1a;
+  color: var(--primary-color);
   font-weight: 600;
 }
 
@@ -230,15 +230,9 @@ const chartOptions = computed(() => ({
   padding: 20px 16px;
   border-radius: 12px;
   transition: all 0.3s ease;
+  background: linear-gradient(135deg, var(--primary-color-900) 0%, var(--primary-color-800) 100%);
 }
 
-.stat-box--target {
-  background: linear-gradient(135deg, #fff5eb 0%, #ffe8d1 100%);
-}
-
-.stat-box--revenue {
-  background: linear-gradient(135deg, #fff5eb 0%, #ffe8d1 100%);
-}
 
 .stat-box:hover {
   transform: translateY(-2px);

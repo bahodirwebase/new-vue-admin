@@ -56,35 +56,35 @@ const activities = ref<Activity[]>([
   {
     icon: CartOutline,
     iconColor: '#ffffff',
-    iconBg: '#ff8c1a',
+    iconBg: 'var(--primary-color)',
     text: '<strong>Maureen Steel</strong> purchased 2 items totaling <strong>$120</strong>.',
     time: '10:30 AM'
   },
   {
     icon: PricetagOutline,
     iconColor: '#ffffff',
-    iconBg: '#ff9f43',
+    iconBg: 'var(--primary-color-200)',
     text: 'The price of <strong>"Smart TV"</strong> was updated from <strong>$500</strong> to <strong>$450</strong>.',
     time: '9:45 AM'
   },
   {
     icon: StarOutline,
     iconColor: '#ffffff',
-    iconBg: '#ffb366',
+    iconBg: 'var(--primary-color-400)',
     text: '<strong>Vincent Laurent</strong> left a 5-star review for <strong>"Wireless Headphones."</strong>',
     time: '8:40 AM'
   },
   {
     icon: AlertCircleOutline,
     iconColor: '#ffffff',
-    iconBg: '#ffc999',
+    iconBg: 'var(--primary-color-600)',
     text: '<strong>"Running Shoes"</strong> stock is below 10 units.',
     time: '7:55 AM'
   },
   {
     icon: TimeOutline,
     iconColor: '#ffffff',
-    iconBg: '#ffd9b3',
+    iconBg: 'var(--primary-color-800)',
     text: '<strong>Damian Ugo\'s</strong> order status changed from <strong>"Pending"</strong> to <strong>"Processing."</strong>',
     time: '7:00 AM'
   }
@@ -137,7 +137,7 @@ const handleMenuSelect = (key: string) => {
   gap: 12px;
   align-items: flex-start;
   padding: 16px;
-  background: #ffffff;
+  background: var(--bg-secondary);
   border-radius: 12px;
   transition: all 0.3s ease;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);

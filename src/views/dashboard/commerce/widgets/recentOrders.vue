@@ -19,7 +19,7 @@
           @select="handleCategorySelect"
           trigger="click"
         >
-          <n-button class="category-button" type="warning" strong>
+          <n-button class="category-button" type="primary" strong>
             {{ selectedCategory }}
             <template #icon>
               <n-icon :component="ChevronDownOutline" />
@@ -254,13 +254,13 @@ const columns: DataTableColumns<Order> = [
   font-size: 14px;
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-600) 100%);
   border: none;
-  box-shadow: 0 2px 8px rgba(255, 140, 26, 0.25);
+  box-shadow: 0 2px 8px var(--primary-color-600);
   transition: all 0.3s ease;
   white-space: nowrap;
 }
 
 .category-button:hover {
-  box-shadow: 0 4px 12px rgba(255, 140, 26, 0.35);
+  box-shadow: 0 4px 12px var(--primary-color-600);
   transform: translateY(-1px);
 }
 
