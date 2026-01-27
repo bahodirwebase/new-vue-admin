@@ -1,49 +1,53 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router'
-import { NotificationsOutline } from '@vicons/ionicons5'
-import { 
-  NIcon, NButton, NPopover, NBadge, NAvatar, 
-  NScrollbar, NEmpty, NText, NDivider 
-} from 'naive-ui'
-import { useNotification } from '@/composables'
+import { useRouter } from "vue-router";
+import { NotificationsOutline } from "@vicons/ionicons5";
+import {
+  NIcon,
+  NButton,
+  NPopover,
+  NBadge,
+  NAvatar,
+  NScrollbar,
+  NEmpty,
+  NText,
+  NDivider,
+} from "naive-ui";
+import { useNotification } from "@/composables";
 
-const router = useRouter()
-const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotification()
+const router = useRouter();
+const { notifications, unreadCount, markAsRead, markAllAsRead } =
+  useNotification();
 
 const handleViewAll = () => {
-  router.push({ name: 'Notifications' }) // Sahifa nomi loyihangizga qarab o'zgarishi mumkin
-}
+  router.push({ name: "Notifications" }); // Sahifa nomi loyihangizga qarab o'zgarishi mumkin
+};
 </script>
 
 <template>
-  <n-popover 
-    trigger="hover" 
-    placement="bottom-end" 
-    :raw="true" 
+  <n-popover
+    trigger="hover"
+    placement="bottom-end"
+    :raw="true"
     class="notification-popover"
   >
     <template #trigger>
-      <n-button quaternary circle class="notification-trigger">
-        <template #icon>
-          <n-icon :component="NotificationsOutline" :size="22" />
-        </template>
-        <n-badge 
-          :value="unreadCount" 
-          :max="99" 
-          type="error" 
-          class="notification-badge" 
-        />
-      </n-button>
+      <n-badge :value="unreadCount" type="error" :max="100" :offset="[-5, 7]">
+        <n-button quaternary circle class="notification-trigger">
+          <template #icon>
+            <n-icon :component="NotificationsOutline" :size="22" />
+          </template>
+        </n-button>
+      </n-badge>
     </template>
 
     <div class="notification-card">
       <div class="card-header">
         <n-text strong depth="1" class="title">Notifications</n-text>
-        <n-button 
-          v-if="notifications.length > 0" 
-          text 
-          type="primary" 
-          size="tiny" 
+        <n-button
+          v-if="notifications.length > 0"
+          text
+          type="primary"
+          size="tiny"
           @click="markAllAsRead"
         >
           Mark all as read
@@ -53,19 +57,21 @@ const handleViewAll = () => {
       <n-divider style="margin: 0" />
 
       <div class="card-body">
-        <n-scrollbar style="max-height: 350px;">
+        <n-scrollbar style="max-height: 350px">
           <template v-if="notifications.length > 0">
-            <div 
-              v-for="item in notifications" 
-              :key="item.id" 
+            <div
+              v-for="item in notifications"
+              :key="item.id"
               class="notification-item"
               :class="{ 'is-unread': !item.read }"
               @click="markAsRead(item.id)"
             >
-              <n-avatar 
-                round 
-                :size="40" 
-                :style="{ backgroundColor: item.color || 'var(--primary-color)' }"
+              <n-avatar
+                round
+                :size="40"
+                :style="{
+                  backgroundColor: item.color || 'var(--primary-color)',
+                }"
                 class="item-avatar"
               >
                 <n-icon :component="item.icon" :size="20" color="#fff" />
@@ -108,13 +114,6 @@ const handleViewAll = () => {
   position: relative;
 }
 
-.notification-badge {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-}
-
-/* Dropdown Card Structure */
 .notification-card {
   width: 360px;
   background-color: var(--n-color); /* Naive UI popover background */
@@ -182,7 +181,7 @@ const handleViewAll = () => {
 .unread-dot {
   width: 8px;
   height: 8px;
-  background-color: var(--n-error-color);
+  background-color: var(--primary-color);
   border-radius: 50%;
   position: absolute;
   right: 16px;
