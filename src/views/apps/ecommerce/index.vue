@@ -1,95 +1,3 @@
-<template>
-  <div class="ecommerce-app">
-    <!-- Header -->
-    <header class="ecommerce-header">
-      <div class="header-content">
-        <h2>E-commerce ( {{ getCurrentViewLabel }} )</h2>
-        <p>Manage your inventory, pricing, and product details</p>
-      </div>
-      <div class="header-actions">
-        <n-space>
-          <n-button @click="ecommerceStore.goBack" v-if="ecommerceStore.currentView === 'checkout'">
-            <template #icon>
-              <n-icon>
-                <ArrowBackOutline />
-              </n-icon>
-            </template>
-            Back to Cart
-          </n-button>
-          <n-button @click="ecommerceStore.continueShopping" v-if="ecommerceStore.currentView == 'cart'">
-            <template #icon>
-              <n-icon>
-                <ArrowBackOutline />
-              </n-icon>
-            </template>
-            Continue Shopping
-          </n-button>
-          <template v-if="ecommerceStore.currentView == 'products'">
-            <n-button-group>
-              <n-button :type="ecommerceStore.viewMode === 'grid' ? 'primary' : 'default'"
-                @click="ecommerceStore.viewMode = 'grid'">
-                <template #icon>
-                  <n-icon>
-                    <GridOutline />
-                  </n-icon>
-                </template>
-              </n-button>
-              <n-button :type="ecommerceStore.viewMode === 'list' ? 'primary' : 'default'"
-                @click="ecommerceStore.viewMode = 'list'">
-                <template #icon>
-                  <n-icon>
-                    <ListOutline />
-                  </n-icon>
-                </template>
-              </n-button>
-            </n-button-group>
-            <n-button @click="ecommerceStore.exportProducts">
-              <template #icon>
-                <n-icon>
-                  <DownloadOutline />
-                </n-icon>
-              </template>
-              Export
-            </n-button>
-            <n-button type="primary" @click="ecommerceStore.showAddProductModal = true">
-              <template #icon>
-                <n-icon>
-                  <AddOutline />
-                </n-icon>
-              </template>
-              Add Product
-            </n-button>
-            <n-button type="primary" @click="ecommerceStore.showFilterModal = true" v-if="isMobile">
-              <template #icon>
-                <n-icon>
-                  <FilterOutline />
-                </n-icon>
-              </template>
-              Filter
-            </n-button>
-          </template>
-        </n-space>
-      </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="ecommerce-main">
-      <!-- Sidebar -->
-      <aside class="ecommerce-sidebar" v-if="!isMobile">
-        <EcommerceSidebar />
-      </aside>
-
-      <!-- Content Area -->
-      <div class="content-area">
-        <component :is="currentComponent" />
-      </div>
-    </main>
-    <n-modal v-model:show="ecommerceStore.showFilterModal">
-      <EcommerceSidebar />
-    </n-modal>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { computed } from "vue";
 import {
@@ -98,7 +6,7 @@ import {
   AddOutline,
   ListOutline,
   ArrowBackOutline,
-  FilterOutline
+  FilterOutline,
 } from "@vicons/ionicons5";
 
 import ProductList from "./widgets/ProductList/index.vue";
@@ -109,12 +17,8 @@ import EcommerceSidebar from "./components/EcommerceSidebar.vue";
 import { useBreakpoints } from "@/composables/useBreakpoints";
 import { useEcommerceStore } from "./store";
 
-
-
 const ecommerceStore = useEcommerceStore();
 const { isMobile } = useBreakpoints();
-
-
 
 const currentComponent = computed(() => {
   switch (ecommerceStore.currentView) {
@@ -145,8 +49,119 @@ const getCurrentViewLabel = computed(() => {
       return "Product Management";
   }
 });
-
 </script>
+<template>
+  <div class="ecommerce-app">
+    <!-- Header -->
+    <header class="ecommerce-header">
+      <div class="header-content">
+        <h2>E-commerce ( {{ getCurrentViewLabel }} )</h2>
+        <p>Manage your inventory, pricing, and product details</p>
+      </div>
+      <div class="header-actions">
+        <n-space>
+          <n-button
+            @click="ecommerceStore.goBack"
+            v-if="ecommerceStore.currentView === 'checkout'"
+          >
+            <template #icon>
+              <n-icon>
+                <ArrowBackOutline />
+              </n-icon>
+            </template>
+            Back to Cart
+          </n-button>
+          <n-button
+            @click="ecommerceStore.continueShopping"
+            v-if="ecommerceStore.currentView == 'cart'"
+          >
+            <template #icon>
+              <n-icon>
+                <ArrowBackOutline />
+              </n-icon>
+            </template>
+            Continue Shopping
+          </n-button>
+          <template v-if="ecommerceStore.currentView == 'products'">
+            <n-button-group>
+              <n-button
+                :type="
+                  ecommerceStore.viewMode === 'grid' ? 'primary' : 'default'
+                "
+                @click="ecommerceStore.viewMode = 'grid'"
+              >
+                <template #icon>
+                  <n-icon>
+                    <GridOutline />
+                  </n-icon>
+                </template>
+              </n-button>
+              <n-button
+                :type="
+                  ecommerceStore.viewMode === 'list' ? 'primary' : 'default'
+                "
+                @click="ecommerceStore.viewMode = 'list'"
+              >
+                <template #icon>
+                  <n-icon>
+                    <ListOutline />
+                  </n-icon>
+                </template>
+              </n-button>
+            </n-button-group>
+            <n-button @click="ecommerceStore.exportProducts">
+              <template #icon>
+                <n-icon>
+                  <DownloadOutline />
+                </n-icon>
+              </template>
+              Export
+            </n-button>
+            <n-button
+              type="primary"
+              @click="ecommerceStore.showAddProductModal = true"
+            >
+              <template #icon>
+                <n-icon>
+                  <AddOutline />
+                </n-icon>
+              </template>
+              Add Product
+            </n-button>
+            <n-button
+              type="primary"
+              @click="ecommerceStore.showFilterModal = true"
+              v-if="isMobile"
+            >
+              <template #icon>
+                <n-icon>
+                  <FilterOutline />
+                </n-icon>
+              </template>
+              Filter
+            </n-button>
+          </template>
+        </n-space>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="ecommerce-main">
+      <!-- Sidebar -->
+      <aside class="ecommerce-sidebar" v-if="!isMobile">
+        <EcommerceSidebar />
+      </aside>
+
+      <!-- Content Area -->
+      <div class="content-area">
+        <component :is="currentComponent" />
+      </div>
+    </main>
+    <n-modal v-model:show="ecommerceStore.showFilterModal">
+      <EcommerceSidebar />
+    </n-modal>
+  </div>
+</template>
 
 <style scoped>
 .ecommerce-app {
@@ -199,7 +214,7 @@ const getCurrentViewLabel = computed(() => {
     width: 100%;
     max-height: 300px;
   }
-  .content-area{
+  .content-area {
     margin-left: 0;
   }
 }

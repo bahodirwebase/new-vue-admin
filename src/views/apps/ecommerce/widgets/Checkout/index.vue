@@ -1,6 +1,161 @@
+<script setup lang="ts">
+import { ref, computed } from "vue";
+import { useRouter } from "vue-router";
+import {
+  CheckmarkOutline,
+  ShieldCheckmarkOutline,
+  CheckmarkCircleOutline,
+} from "@vicons/ionicons5";
+
+import ShippingInformation from "./components/ShippingInformation.vue";
+import PaymentMethod from "./components/PaymentMethod.vue";
+
+import { useCheckoutStore } from "./store";
+
+const checkoutStore = useCheckoutStore();
+
+interface OrderItem {
+  id: number;
+  name: string;
+  price: number;
+  salePrice?: number;
+  quantity: number;
+  image: string;
+}
+
+const router = useRouter();
+const currentStep = ref(1);
+const processing = ref(false);
+const showSuccessModal = ref(false);
+const orderNumber = ref("");
+
+const shippingFormRef = ref();
+const paymentFormRef = ref();
+
+const steps = [
+  { key: 1, title: "Shipping", description: "Enter shipping information" },
+  { key: 2, title: "Payment", description: "Select payment method" },
+  { key: 3, title: "Review", description: "Review and place order" },
+];
+
+const stepStatus = ref<"process" | "finish" | "error" | "wait">("process");
+
+const orderItems = ref<OrderItem[]>([
+  {
+    id: 1,
+    name: "Wireless Headphones Pro",
+    price: 299.99,
+    salePrice: 249.99,
+    quantity: 1,
+    image: "https://picsum.photos/seed/headphones/60/60.jpg",
+  },
+  {
+    id: 2,
+    name: "Smart Watch Ultra",
+    price: 499.99,
+    quantity: 2,
+    image: "https://picsum.photos/seed/smartwatch/60/60.jpg",
+  },
+]);
+
+const totalItems = computed(() => {
+  return orderItems.value.reduce((total, item) => total + item.quantity, 0);
+});
+
+const subtotal = computed(() => {
+  return orderItems.value.reduce((total, item) => {
+    return total + calculateItemTotal(item);
+  }, 0);
+});
+
+const shipping = computed(() => {
+  return subtotal.value > 100 ? 0 : 9.99;
+});
+
+const tax = computed(() => {
+  return subtotal.value * 0.08; // 8% tax
+});
+
+const discount = computed(() => {
+  return 0; // No discount in checkout
+});
+
+const total = computed(() => {
+  return subtotal.value + shipping.value + tax.value - discount.value;
+});
+
+const calculateItemTotal = (item: OrderItem) => {
+  return (item.salePrice || item.price) * item.quantity;
+};
+
+const getPaymentLabel = (type: string) => {
+  switch (type) {
+    case "paypal":
+      return "PayPal";
+    case "apple":
+      return "Apple Pay";
+    default:
+      return "Credit Card";
+  }
+};
+
+const nextStep = async () => {
+  processing.value = true;
+
+  try {
+    if (currentStep.value === 1) {
+      await shippingFormRef.value?.validate();
+    } else if (currentStep.value === 2) {
+      if (checkoutStore.paymentForm.type === "card") {
+        await paymentFormRef.value?.validate();
+      }
+    }
+
+    currentStep.value++;
+    stepStatus.value = "process";
+  } catch (error) {
+    console.error("Validation error:", error);
+  } finally {
+    processing.value = false;
+  }
+};
+
+const previousStep = () => {
+  currentStep.value--;
+};
+
+const placeOrder = async () => {
+  processing.value = true;
+
+  try {
+    // Simulate order processing
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    // Generate order number
+    orderNumber.value = "ORD-" + Date.now().toString().slice(-8);
+
+    // Show success modal
+    showSuccessModal.value = true;
+    stepStatus.value = "finish";
+  } catch (error) {
+    console.error("Order error:", error);
+    stepStatus.value = "error";
+  } finally {
+    processing.value = false;
+  }
+};
+
+const continueShopping = () => {
+  router.push("/apps/ecommerce");
+};
+
+const viewOrder = () => {
+  // TODO: Navigate to order details
+  console.log("View order:", orderNumber.value);
+};
+</script>
 <template>
   <div class="checkout">
-
     <!-- Checkout Progress -->
     <div class="checkout-progress">
       <n-steps :current="currentStep" :status="stepStatus">
@@ -19,176 +174,49 @@
         <!-- Main Form Area -->
         <n-gi :span="2">
           <!-- Step 1: Shipping Information -->
-          <n-card v-if="currentStep === 1" title="Shipping Information" class="step-card">
-            <n-form
-              ref="shippingFormRef"
-              :model="shippingForm"
-              :rules="shippingRules"
-              label-placement="left"
-              label-width="120px"
-            >
-              <n-grid :cols="2" :x-gap="16">
-                <n-gi>
-                  <n-form-item label="First Name" path="firstName">
-                    <n-input v-model:value="shippingForm.firstName" placeholder="John" />
-                  </n-form-item>
-                </n-gi>
-                <n-gi>
-                  <n-form-item label="Last Name" path="lastName">
-                    <n-input v-model:value="shippingForm.lastName" placeholder="Doe" />
-                  </n-form-item>
-                </n-gi>
-              </n-grid>
-              
-              <n-form-item label="Email" path="email">
-                <n-input v-model:value="shippingForm.email" placeholder="john.doe@example.com" />
-              </n-form-item>
-              
-              <n-form-item label="Phone" path="phone">
-                <n-input v-model:value="shippingForm.phone" placeholder="+1 (555) 123-4567" />
-              </n-form-item>
-              
-              <n-form-item label="Address" path="address">
-                <n-input v-model:value="shippingForm.address" placeholder="123 Main Street" />
-              </n-form-item>
-              
-              <n-grid :cols="2" :x-gap="16">
-                <n-gi>
-                  <n-form-item label="City" path="city">
-                    <n-input v-model:value="shippingForm.city" placeholder="New York" />
-                  </n-form-item>
-                </n-gi>
-                <n-gi>
-                  <n-form-item label="State" path="state">
-                    <n-select
-                      v-model:value="shippingForm.state"
-                      placeholder="Select State"
-                      :options="stateOptions"
-                    />
-                  </n-form-item>
-                </n-gi>
-              </n-grid>
-              
-              <n-grid :cols="2" :x-gap="16">
-                <n-gi>
-                  <n-form-item label="ZIP Code" path="zipCode">
-                    <n-input v-model:value="shippingForm.zipCode" placeholder="10001" />
-                  </n-form-item>
-                </n-gi>
-                <n-gi>
-                  <n-form-item label="Country" path="country">
-                    <n-select
-                      v-model:value="shippingForm.country"
-                      placeholder="Select Country"
-                      :options="countryOptions"
-                    />
-                  </n-form-item>
-                </n-gi>
-              </n-grid>
-              
-              <n-form-item>
-                <n-checkbox v-model:checked="shippingForm.saveAddress">
-                  Save this address for future purchases
-                </n-checkbox>
-              </n-form-item>
-            </n-form>
+          <n-card
+            v-if="currentStep === 1"
+            title="Shipping Information"
+            class="step-card"
+          >
+            <shipping-information />
           </n-card>
 
           <!-- Step 2: Payment Method -->
-          <n-card v-if="currentStep === 2" title="Payment Method" class="step-card">
-            <n-form
-              ref="paymentFormRef"
-              :model="paymentForm"
-              :rules="paymentRules"
-              label-placement="left"
-              label-width="120px"
-            >
-              <n-form-item label="Payment Type">
-                <n-radio-group v-model:value="paymentForm.type">
-                  <n-radio-button value="card">Credit Card</n-radio-button>
-                  <n-radio-button value="paypal">PayPal</n-radio-button>
-                  <n-radio-button value="apple">Apple Pay</n-radio-button>
-                </n-radio-group>
-              </n-form-item>
-
-              <!-- Credit Card Form -->
-              <div v-if="paymentForm.type === 'card'">
-                <n-form-item label="Card Number" path="cardNumber">
-                  <n-input
-                    v-model:value="paymentForm.cardNumber"
-                    placeholder="1234 5678 9012 3456"
-                    maxlength="19"
-                  />
-                </n-form-item>
-                
-                <n-grid :cols="2" :x-gap="16">
-                  <n-gi>
-                    <n-form-item label="Expiry Date" path="expiryDate">
-                      <n-input
-                        v-model:value="paymentForm.expiryDate"
-                        placeholder="MM/YY"
-                        maxlength="5"
-                      />
-                    </n-form-item>
-                  </n-gi>
-                  <n-gi>
-                    <n-form-item label="CVV" path="cvv">
-                      <n-input
-                        v-model:value="paymentForm.cvv"
-                        placeholder="123"
-                        maxlength="4"
-                        show-password-on="click"
-                      />
-                    </n-form-item>
-                  </n-gi>
-                </n-grid>
-                
-                <n-form-item label="Cardholder Name" path="cardholderName">
-                  <n-input
-                    v-model:value="paymentForm.cardholderName"
-                    placeholder="John Doe"
-                  />
-                </n-form-item>
-              </div>
-
-              <!-- PayPal Form -->
-              <div v-if="paymentForm.type === 'paypal'">
-                <n-alert type="info" title="PayPal Payment">
-                  You will be redirected to PayPal to complete your payment securely.
-                </n-alert>
-              </div>
-
-              <!-- Apple Pay Form -->
-              <div v-if="paymentForm.type === 'apple'">
-                <n-alert type="info" title="Apple Pay">
-                  Use Touch ID or Face ID to complete your purchase with Apple Pay.
-                </n-alert>
-              </div>
-
-              <n-form-item>
-                <n-checkbox v-model:checked="paymentForm.savePayment">
-                  Save payment method for future purchases
-                </n-checkbox>
-              </n-form-item>
-            </n-form>
+          <n-card
+            v-if="currentStep === 2"
+            title="Payment Method"
+            class="step-card"
+          >
+            <payment-method />
           </n-card>
 
           <!-- Step 3: Order Review -->
-          <n-card v-if="currentStep === 3" title="Order Review" class="step-card">
+          <n-card
+            v-if="currentStep === 3"
+            title="Order Review"
+            class="step-card"
+          >
             <div class="order-review">
               <!-- Shipping Address Review -->
               <div class="review-section">
                 <h4>Shipping Address</h4>
                 <div class="address-review">
                   <p>
-                    <strong>{{ shippingForm.firstName }} {{ shippingForm.lastName }}</strong><br>
-                    {{ shippingForm.address }}<br>
-                    {{ shippingForm.city }}, {{ shippingForm.state }} {{ shippingForm.zipCode }}<br>
-                    {{ shippingForm.country }}<br>
-                    {{ shippingForm.email }}<br>
-                    {{ shippingForm.phone }}
+                    <strong
+                      >{{ checkoutStore.shippingForm.firstName }}
+                      {{ checkoutStore.shippingForm.lastName }}</strong
+                    ><br />
+                    {{ checkoutStore.shippingForm.address }}<br />
+                    {{ checkoutStore.shippingForm.city }}, {{ checkoutStore.shippingForm.state }}
+                    {{ checkoutStore.shippingForm.zipCode }}<br />
+                    {{ checkoutStore.shippingForm.country }}<br />
+                    {{ checkoutStore.shippingForm.email }}<br />
+                    {{ checkoutStore.shippingForm.phone }}
                   </p>
-                  <n-button size="small" @click="currentStep = 1">Edit</n-button>
+                  <n-button size="small" @click="currentStep = 1"
+                    >Edit</n-button
+                  >
                 </div>
               </div>
 
@@ -196,17 +224,22 @@
               <div class="review-section">
                 <h4>Payment Method</h4>
                 <div class="payment-review">
-                  <div v-if="paymentForm.type === 'card'">
+                  <div v-if="checkoutStore.paymentForm.type === 'card'">
                     <p>
-                      <strong>Credit Card</strong><br>
-                      **** **** **** {{ paymentForm.cardNumber?.slice(-4) }}<br>
-                      {{ paymentForm.cardholderName }}
+                      <strong>Credit Card</strong><br />
+                      **** **** **** {{ checkoutStore.paymentForm.cardNumber?.slice(-4)
+                      }}<br />
+                      {{ checkoutStore.paymentForm.cardholderName }}
                     </p>
                   </div>
                   <div v-else>
-                    <p><strong>{{ getPaymentLabel(paymentForm.type) }}</strong></p>
+                    <p>
+                      <strong>{{ getPaymentLabel(checkoutStore.paymentForm.type) }}</strong>
+                    </p>
                   </div>
-                  <n-button size="small" @click="currentStep = 2">Edit</n-button>
+                  <n-button size="small" @click="currentStep = 2"
+                    >Edit</n-button
+                  >
                 </div>
               </div>
 
@@ -222,7 +255,9 @@
                     <img :src="item.image" :alt="item.name" />
                     <div class="item-info">
                       <span class="item-name">{{ item.name }}</span>
-                      <span class="item-quantity">Qty: {{ item.quantity }}</span>
+                      <span class="item-quantity"
+                        >Qty: {{ item.quantity }}</span
+                      >
                     </div>
                     <span class="item-price">
                       ${{ calculateItemTotal(item).toFixed(2) }}
@@ -275,24 +310,24 @@
                 <span>Subtotal ({{ totalItems }} items)</span>
                 <span>${{ subtotal.toFixed(2) }}</span>
               </div>
-              
+
               <div class="summary-row">
                 <span>Shipping</span>
                 <span>${{ shipping.toFixed(2) }}</span>
               </div>
-              
+
               <div class="summary-row">
                 <span>Tax</span>
                 <span>${{ tax.toFixed(2) }}</span>
               </div>
-              
+
               <div v-if="discount > 0" class="summary-row discount">
                 <span>Discount</span>
                 <span>-${{ discount.toFixed(2) }}</span>
               </div>
-              
+
               <n-divider />
-              
+
               <div class="summary-row total">
                 <span>Total</span>
                 <span>${{ total.toFixed(2) }}</span>
@@ -307,7 +342,10 @@
                 <ShieldCheckmarkOutline />
               </n-icon>
               <h4>Secure Checkout</h4>
-              <p>Your payment information is encrypted and secure. We never store your credit card details.</p>
+              <p>
+                Your payment information is encrypted and secure. We never store
+                your credit card details.
+              </p>
             </div>
           </n-card>
         </n-gi>
@@ -325,8 +363,14 @@
         </div>
       </template>
       <div class="success-content">
-        <p>Thank you for your order! Your order number is <strong>#{{ orderNumber }}</strong>.</p>
-        <p>You will receive a confirmation email shortly with your order details.</p>
+        <p>
+          Thank you for your order! Your order number is
+          <strong>#{{ orderNumber }}</strong
+          >.
+        </p>
+        <p>
+          You will receive a confirmation email shortly with your order details.
+        </p>
       </div>
       <template #action>
         <n-space>
@@ -337,210 +381,6 @@
     </n-modal>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import {
-  CheckmarkOutline,
-  ShieldCheckmarkOutline,
-  CheckmarkCircleOutline
-} from '@vicons/ionicons5'
-
-interface OrderItem {
-  id: number
-  name: string
-  price: number
-  salePrice?: number
-  quantity: number
-  image: string
-}
-
-const router = useRouter()
-const currentStep = ref(1)
-const processing = ref(false)
-const showSuccessModal = ref(false)
-const orderNumber = ref('')
-
-const shippingFormRef = ref()
-const paymentFormRef = ref()
-
-const shippingForm = ref({
-  firstName: '',
-  lastName: '',
-  email: '',
-  phone: '',
-  address: '',
-  city: '',
-  state: '',
-  zipCode: '',
-  country: 'United States',
-  saveAddress: false
-})
-
-const paymentForm = ref({
-  type: 'card',
-  cardNumber: '',
-  expiryDate: '',
-  cvv: '',
-  cardholderName: '',
-  savePayment: false
-})
-
-const steps = [
-  { key: 1, title: 'Shipping', description: 'Enter shipping information' },
-  { key: 2, title: 'Payment', description: 'Select payment method' },
-  { key: 3, title: 'Review', description: 'Review and place order' }
-]
-
-const stepStatus = ref<'process' | 'finish' | 'error' | 'wait'>('process')
-
-const orderItems = ref<OrderItem[]>([
-  {
-    id: 1,
-    name: 'Wireless Headphones Pro',
-    price: 299.99,
-    salePrice: 249.99,
-    quantity: 1,
-    image: 'https://picsum.photos/seed/headphones/60/60.jpg'
-  },
-  {
-    id: 2,
-    name: 'Smart Watch Ultra',
-    price: 499.99,
-    quantity: 2,
-    image: 'https://picsum.photos/seed/smartwatch/60/60.jpg'
-  }
-])
-
-const stateOptions = [
-  { label: 'Alabama', value: 'AL' },
-  { label: 'California', value: 'CA' },
-  { label: 'Florida', value: 'FL' },
-  { label: 'New York', value: 'NY' },
-  { label: 'Texas', value: 'TX' }
-]
-
-const countryOptions = [
-  { label: 'United States', value: 'United States' },
-  { label: 'Canada', value: 'Canada' },
-  { label: 'United Kingdom', value: 'United Kingdom' }
-]
-
-const shippingRules = {
-  firstName: { required: true, message: 'First name is required' },
-  lastName: { required: true, message: 'Last name is required' },
-  email: { required: true, type: 'email', message: 'Valid email is required' },
-  phone: { required: true, message: 'Phone number is required' },
-  address: { required: true, message: 'Address is required' },
-  city: { required: true, message: 'City is required' },
-  state: { required: true, message: 'State is required' },
-  zipCode: { required: true, message: 'ZIP code is required' },
-  country: { required: true, message: 'Country is required' }
-}
-
-const paymentRules = {
-  cardNumber: { required: true, message: 'Card number is required' },
-  expiryDate: { required: true, message: 'Expiry date is required' },
-  cvv: { required: true, message: 'CVV is required' },
-  cardholderName: { required: true, message: 'Cardholder name is required' }
-}
-
-const totalItems = computed(() => {
-  return orderItems.value.reduce((total, item) => total + item.quantity, 0)
-})
-
-const subtotal = computed(() => {
-  return orderItems.value.reduce((total, item) => {
-    return total + calculateItemTotal(item)
-  }, 0)
-})
-
-const shipping = computed(() => {
-  return subtotal.value > 100 ? 0 : 9.99
-})
-
-const tax = computed(() => {
-  return subtotal.value * 0.08 // 8% tax
-})
-
-const discount = computed(() => {
-  return 0 // No discount in checkout
-})
-
-const total = computed(() => {
-  return subtotal.value + shipping.value + tax.value - discount.value
-})
-
-const calculateItemTotal = (item: OrderItem) => {
-  return (item.salePrice || item.price) * item.quantity
-}
-
-const getPaymentLabel = (type: string) => {
-  switch (type) {
-    case 'paypal': return 'PayPal'
-    case 'apple': return 'Apple Pay'
-    default: return 'Credit Card'
-  }
-}
-
-const nextStep = async () => {
-  processing.value = true
-  
-  try {
-    if (currentStep.value === 1) {
-      await shippingFormRef.value?.validate()
-    } else if (currentStep.value === 2) {
-      if (paymentForm.value.type === 'card') {
-        await paymentFormRef.value?.validate()
-      }
-    }
-    
-    currentStep.value++
-    stepStatus.value = 'process'
-  } catch (error) {
-    console.error('Validation error:', error)
-  } finally {
-    processing.value = false
-  }
-}
-
-const previousStep = () => {
-  currentStep.value--
-}
-
-const placeOrder = async () => {
-  processing.value = true
-  
-  try {
-    // Simulate order processing
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    // Generate order number
-    orderNumber.value = 'ORD-' + Date.now().toString().slice(-8)
-    
-    // Show success modal
-    showSuccessModal.value = true
-    stepStatus.value = 'finish'
-  } catch (error) {
-    console.error('Order error:', error)
-    stepStatus.value = 'error'
-  } finally {
-    processing.value = false
-  }
-}
-
-
-
-const continueShopping = () => {
-  router.push('/apps/ecommerce')
-}
-
-const viewOrder = () => {
-  // TODO: Navigate to order details
-  console.log('View order:', orderNumber.value)
-}
-</script>
 
 <style scoped>
 .checkout-header {
@@ -736,7 +576,7 @@ const viewOrder = () => {
   .checkout-content :deep(.n-grid) {
     grid-template-columns: 1fr;
   }
-  
+
   .order-summary-card {
     position: static;
   }
@@ -746,34 +586,34 @@ const viewOrder = () => {
   .checkout {
     padding: 16px;
   }
-  
+
   .checkout-header {
     flex-direction: column;
     gap: 16px;
     align-items: stretch;
   }
-  
+
   .checkout-progress {
     padding: 16px;
   }
-  
+
   .checkout-content :deep(.n-form-item-label) {
     width: 100px !important;
   }
-  
+
   .address-review,
   .payment-review {
     flex-direction: column;
     gap: 12px;
     align-items: stretch;
   }
-  
+
   .review-item {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
   }
-  
+
   .review-item img {
     width: 100%;
     height: 120px;
