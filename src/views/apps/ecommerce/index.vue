@@ -154,10 +154,13 @@ import {
   ListOutline,
   ArrowBackOutline
 } from "@vicons/ionicons5";
-import ProductList from "./widgets/ProductList.vue";
-import ProductDetail from "./widgets/ProductDetail.vue";
-import ShoppingCart from "./widgets/ShoppingCart.vue";
-import Checkout from "./widgets/Checkout.vue";
+
+import { categoryOptions } from "./constants";
+
+import ProductList from "./widgets/ProductList/index.vue";
+import ProductDetail from "./widgets/ProductDetail/index.vue";
+import ShoppingCart from "./widgets/ShoppingCart/index.vue";
+import Checkout from "./widgets/Checkout/index.vue";
 import { useEcommerceStore } from "./store";
 
 const currentView = ref("products");
@@ -187,13 +190,7 @@ const filters = ref({
   priceRange: null,
 });
 
-const categoryOptions = [
-  { label: "Electronics", value: "electronics" },
-  { label: "Clothing", value: "clothing" },
-  { label: "Books", value: "books" },
-  { label: "Home & Garden", value: "home" },
-  { label: "Sports", value: "sports" },
-];
+
 
 const statusOptions = [
   { label: "Active", value: "active" },

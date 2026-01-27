@@ -196,7 +196,7 @@ import {
   TrashOutline,
   CartOutline
 } from '@vicons/ionicons5'
-import { useEcommerceStore } from '../store'
+import { useEcommerceStore } from '../../store'
 
 const store = useEcommerceStore()
 
