@@ -1,4 +1,4 @@
-export const products_list = [
+export const PRODUCTS_LIST = [
   {
     id: 1,
     name: "Wireless Headphones Pro",
@@ -68,7 +68,7 @@ export const products_list = [
   },
 ];
 
-export const formRules = {
+export const FORM_RULES = {
   name: { required: true, message: "Product name is required" },
   category: { required: true, message: "Category is required" },
   price: {

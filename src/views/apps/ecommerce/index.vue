@@ -118,11 +118,11 @@
             <div class="filters-section">
               <h4>Filters</h4>
               <n-space vertical size="medium">
-                <n-select v-model:value="filters.category" placeholder="Select Category" :options="categoryOptions"
+                <n-select v-model:value="filters.category" placeholder="Select Category" :options="CATEGORY_OPTIONS"
                   clearable />
-                <n-select v-model:value="filters.status" placeholder="Select Status" :options="statusOptions"
+                <n-select v-model:value="filters.status" placeholder="Select Status" :options="STATUS_OPTIONS"
                   clearable />
-                <n-select v-model:value="filters.priceRange" placeholder="Price Range" :options="priceRangeOptions"
+                <n-select v-model:value="filters.priceRange" placeholder="Price Range" :options="PRICE_RANGE_OPTIONS"
                   clearable />
                 <n-button @click="applyFilters" type="primary" block>
                   Apply Filters
@@ -155,7 +155,7 @@ import {
   ArrowBackOutline
 } from "@vicons/ionicons5";
 
-import { categoryOptions } from "./constants";
+import { CATEGORY_OPTIONS, STATUS_OPTIONS, PRICE_RANGE_OPTIONS } from "./constants";
 
 import ProductList from "./widgets/ProductList/index.vue";
 import ProductDetail from "./widgets/ProductDetail/index.vue";
@@ -190,21 +190,6 @@ const filters = ref({
   priceRange: null,
 });
 
-
-
-const statusOptions = [
-  { label: "Active", value: "active" },
-  { label: "Inactive", value: "inactive" },
-  { label: "Out of Stock", value: "out_of_stock" },
-  { label: "Discontinued", value: "discontinued" },
-];
-
-const priceRangeOptions = [
-  { label: "$0 - $50", value: "0-50" },
-  { label: "$50 - $100", value: "50-100" },
-  { label: "$100 - $500", value: "100-500" },
-  { label: "$500+", value: "500+" },
-];
 
 const currentComponent = computed(() => {
   switch (currentView.value) {

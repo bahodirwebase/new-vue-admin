@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import { categoryOptions } from "../../../constants";
-import { formRules } from "../constants";
+import { CATEGORY_OPTIONS } from "../../../constants";
+import { FORM_RULES } from "../constants";
 import { useEcommerceStore } from "@/views/apps/ecommerce/store";
 
 
@@ -37,7 +37,7 @@ const saveProduct = () => {
     <n-form
       ref="formRef"
       :model="newProduct"
-      :rules="formRules"
+      :rules="FORM_RULES"
       label-placement="left"
       label-width="120px"
     >
@@ -52,7 +52,7 @@ const saveProduct = () => {
         <n-select
           v-model:value="newProduct.category"
           placeholder="Select category"
-          :options="categoryOptions"
+          :options="CATEGORY_OPTIONS"
         />
       </n-form-item>
 

@@ -1,12 +1,12 @@
 import { computed, ref } from "vue";
 import { useEcommerceStore } from "../../../store"; // O'zingizning store manzilingiz
-import { products_list } from "../constants"; // Statik ma'lumotlar
+import { PRODUCTS_LIST } from "../constants"; // Statik ma'lumotlar
 import { Product } from "../../../types";
 
 export function useProductFilter() {
   const store = useEcommerceStore();
   const loading = ref(false);
-  const products = ref(products_list as Product[]);
+  const products = ref(PRODUCTS_LIST as Product[]);
 
   // 1. Asosiy Filtrlash Logikasi
   const filteredProducts = computed(() => {

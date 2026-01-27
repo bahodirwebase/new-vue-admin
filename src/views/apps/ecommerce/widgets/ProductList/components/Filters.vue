@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { SearchOutline, RefreshOutline } from "@vicons/ionicons5";
 import {
-  categoryOptions,
-  statusOptions,
-  sortOptions,
+  CATEGORY_OPTIONS,
+  STATUS_OPTIONS,
+  SORT_OPTIONS,
 } from "../../../constants";
 import { useEcommerceStore } from "../../../store";
 
@@ -48,7 +48,7 @@ const resetFilters = () => {
       <n-select
         v-model:value="store.selectedCategory"
         placeholder="Category"
-        :options="categoryOptions"
+        :options="CATEGORY_OPTIONS"
         style="width: 150px"
         clearable
         @update:value="handleFilterChange"
@@ -57,7 +57,7 @@ const resetFilters = () => {
       <n-select
         v-model:value="store.selectedStatus"
         placeholder="Status"
-        :options="statusOptions"
+        :options="STATUS_OPTIONS"
         style="width: 120px"
         clearable
         @update:value="handleFilterChange"
@@ -66,7 +66,7 @@ const resetFilters = () => {
       <n-select
         v-model:value="store.sortBy"
         placeholder="Sort by"
-        :options="sortOptions"
+        :options="SORT_OPTIONS"
         style="width: 150px"
         @update:value="handleSort"
       />
