@@ -8,7 +8,7 @@
       </div>
       <div class="header-actions">
         <n-space>
-          <n-button @click="ecommerceStore.goBack" v-if="currentView === 'checkout'">
+          <n-button @click="ecommerceStore.goBack" v-if="ecommerceStore.currentView === 'checkout'">
             <template #icon>
               <n-icon>
                 <ArrowBackOutline />
@@ -16,7 +16,7 @@
             </template>
             Back to Cart
           </n-button>
-          <n-button @click="ecommerceStore.continueShopping" v-if="currentView == 'cart'">
+          <n-button @click="ecommerceStore.continueShopping" v-if="ecommerceStore.currentView == 'cart'">
             <template #icon>
               <n-icon>
                 <ArrowBackOutline />
@@ -24,7 +24,7 @@
             </template>
             Continue Shopping
           </n-button>
-          <template v-if="currentView == 'products'">
+          <template v-if="ecommerceStore.currentView == 'products'">
             <n-button-group>
               <n-button :type="ecommerceStore.viewMode === 'grid' ? 'primary' : 'default'"
                 @click="ecommerceStore.viewMode = 'grid'">
@@ -59,6 +59,14 @@
               </template>
               Add Product
             </n-button>
+            <n-button type="primary" @click="ecommerceStore.showFilterModal = true" v-if="isMobile">
+              <template #icon>
+                <n-icon>
+                  <FilterOutline />
+                </n-icon>
+              </template>
+              Filter
+            </n-button>
           </template>
         </n-space>
       </div>
@@ -67,70 +75,8 @@
     <!-- Main Content -->
     <main class="ecommerce-main">
       <!-- Sidebar -->
-      <aside class="ecommerce-sidebar">
-        <n-card title="E-commerce Tools" class="sidebar-card">
-          <n-space vertical size="large">
-            <!-- Navigation -->
-            <div class="nav-section">
-              <h4>Navigation</h4>
-              <n-button-group vertical size="large" style="width: 100%">
-                <n-button v-for="nav in navigationOptions" :key="nav.value"
-                  :type="currentView === nav.value ? 'primary' : 'default'" @click="currentView = nav.value"
-                  style="width: 100%; justify-content: flex-start">
-                  <template #icon>
-                    <n-icon :component="nav.icon" />
-                  </template>
-                  {{ nav.label }}
-                </n-button>
-              </n-button-group>
-            </div>
-
-            <!-- Quick Stats -->
-            <div class="stats-section">
-              <h4>Quick Stats</h4>
-              <n-space vertical size="medium">
-                <div class="stat-item">
-                  <span class="stat-label">Total Products</span>
-                  <n-tag type="info" size="small">{{
-                    stats.totalProducts
-                  }}</n-tag>
-                </div>
-                <div class="stat-item">
-                  <span class="stat-label">Active Orders</span>
-                  <n-tag type="success" size="small">{{
-                    stats.activeOrders
-                  }}</n-tag>
-                </div>
-                <div class="stat-item">
-                  <span class="stat-label">Revenue Today</span>
-                  <n-tag type="warning" size="small">${{ stats.revenueToday.toLocaleString() }}</n-tag>
-                </div>
-                <div class="stat-item">
-                  <span class="stat-label">New Customers</span>
-                  <n-tag type="error" size="small">{{
-                    stats.newCustomers
-                  }}</n-tag>
-                </div>
-              </n-space>
-            </div>
-
-            <!-- Filters -->
-            <div class="filters-section">
-              <h4>Filters</h4>
-              <n-space vertical size="medium">
-                <n-select v-model:value="filters.category" placeholder="Select Category" :options="CATEGORY_OPTIONS"
-                  clearable />
-                <n-select v-model:value="filters.status" placeholder="Select Status" :options="STATUS_OPTIONS"
-                  clearable />
-                <n-select v-model:value="filters.priceRange" placeholder="Price Range" :options="PRICE_RANGE_OPTIONS"
-                  clearable />
-                <n-button @click="applyFilters" type="primary" block>
-                  Apply Filters
-                </n-button>
-              </n-space>
-            </div>
-          </n-space>
-        </n-card>
+      <aside class="ecommerce-sidebar" v-if="!isMobile">
+        <EcommerceSidebar />
       </aside>
 
       <!-- Content Area -->
@@ -138,61 +84,40 @@
         <component :is="currentComponent" />
       </div>
     </main>
+    <n-modal v-model:show="ecommerceStore.showFilterModal">
+      <EcommerceSidebar />
+    </n-modal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
+import { computed } from "vue";
 import {
   GridOutline,
-  CartOutline,
-  PeopleOutline,
-  BarChartOutline,
-  SettingsOutline,
   DownloadOutline,
   AddOutline,
   ListOutline,
-  ArrowBackOutline
+  ArrowBackOutline,
+  FilterOutline
 } from "@vicons/ionicons5";
-
-import { CATEGORY_OPTIONS, STATUS_OPTIONS, PRICE_RANGE_OPTIONS } from "./constants";
 
 import ProductList from "./widgets/ProductList/index.vue";
 import ProductDetail from "./widgets/ProductDetail/index.vue";
 import ShoppingCart from "./widgets/ShoppingCart/index.vue";
 import Checkout from "./widgets/Checkout/index.vue";
+import EcommerceSidebar from "./components/EcommerceSidebar.vue";
+import { useBreakpoints } from "@/composables/useBreakpoints";
 import { useEcommerceStore } from "./store";
 
-const currentView = ref("products");
+
 
 const ecommerceStore = useEcommerceStore();
+const { isMobile } = useBreakpoints();
 
-const navigationOptions = [
-  { label: "Products", value: "products", icon: GridOutline },
-  { label: "Shopping Cart", value: "cart", icon: CartOutline },
-  { label: "Checkout", value: "checkout", icon: SettingsOutline },
-  { label: "Orders", value: "orders", icon: CartOutline },
-  { label: "Customers", value: "customers", icon: PeopleOutline },
-  { label: "Analytics", value: "analytics", icon: BarChartOutline },
-  { label: "Settings", value: "settings", icon: SettingsOutline },
-];
-
-const stats = ref({
-  totalProducts: 1248,
-  activeOrders: 67,
-  revenueToday: 12458,
-  newCustomers: 23,
-});
-
-const filters = ref({
-  category: null,
-  status: null,
-  priceRange: null,
-});
 
 
 const currentComponent = computed(() => {
-  switch (currentView.value) {
+  switch (ecommerceStore.currentView) {
     case "products":
       return ProductList;
     case "product-detail":
@@ -207,7 +132,7 @@ const currentComponent = computed(() => {
 });
 
 const getCurrentViewLabel = computed(() => {
-  switch (currentView.value) {
+  switch (ecommerceStore.currentView) {
     case "products":
       return "Product Management";
     case "product-detail":
@@ -221,23 +146,6 @@ const getCurrentViewLabel = computed(() => {
   }
 });
 
-const refreshData = () => {
-  // Simulate data refresh
-  stats.value = {
-    totalProducts: Math.floor(Math.random() * 2000) + 1000,
-    activeOrders: Math.floor(Math.random() * 100) + 20,
-    revenueToday: Math.floor(Math.random() * 20000) + 5000,
-    newCustomers: Math.floor(Math.random() * 50) + 10,
-  };
-};
-
-const applyFilters = () => {
-  console.log("Applying filters:", filters.value);
-};
-
-onMounted(() => {
-  refreshData();
-});
 </script>
 
 <style scoped>
@@ -255,19 +163,6 @@ onMounted(() => {
   background: var(--n-card-color);
 }
 
-.header-left h1 {
-  margin: 0 0 4px 0;
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--n-text-color-1);
-}
-
-.header-left p {
-  margin: 0;
-  color: var(--n-text-color-3);
-  font-size: 14px;
-}
-
 .ecommerce-main {
   flex: 1;
   display: flex;
@@ -281,27 +176,6 @@ onMounted(() => {
   overflow-y: auto;
 }
 
-.nav-section h4,
-.stats-section h4,
-.filters-section h4 {
-  margin: 0 0 12px 0;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--n-text-color-2);
-}
-
-.stat-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-}
-
-.stat-label {
-  font-size: 13px;
-  color: var(--n-text-color-2);
-}
-
 .content-area {
   flex: 1;
   overflow-y: auto;
@@ -311,7 +185,7 @@ onMounted(() => {
 
 @media (max-width: 768px) {
   .ecommerce-header {
-    padding: 16px;
+    padding: 16px 8px;
     flex-direction: column;
     gap: 16px;
     align-items: flex-start;
@@ -324,6 +198,9 @@ onMounted(() => {
   .ecommerce-sidebar {
     width: 100%;
     max-height: 300px;
+  }
+  .content-area{
+    margin-left: 0;
   }
 }
 </style>

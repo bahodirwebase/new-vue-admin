@@ -5,28 +5,29 @@ import {
   STATUS_OPTIONS,
   SORT_OPTIONS,
 } from "../../../constants";
-import { useEcommerceStore } from "../../../store";
+import { useProductFilter } from "../composables/useProductFilter";
 
-const store = useEcommerceStore();
+const { pagination, searchQuery, selectedCategory, selectedStatus, sortBy } =
+  useProductFilter();
 
 const handleSearch = () => {
-  store.pagination.page = 1;
+  pagination.value.page = 1;
 };
 
 const handleFilterChange = () => {
-  store.pagination.page = 1;
+  pagination.value.page = 1;
 };
 
 const handleSort = () => {
-  store.pagination.page = 1;
+  pagination.value.page = 1;
 };
 
 const resetFilters = () => {
-  store.searchQuery = "";
-  store.selectedCategory = null;
-  store.selectedStatus = null;
-  store.sortBy = "name";
-  store.pagination.page = 1;
+  searchQuery.value = "";
+  selectedCategory.value = null;
+  selectedStatus.value = null;
+  sortBy.value = "name";
+  pagination.value.page = 1;
 };
 </script>
 
@@ -34,7 +35,7 @@ const resetFilters = () => {
   <n-card class="filters-card">
     <n-space align="center" wrap>
       <n-input
-        v-model:value="store.searchQuery"
+        v-model:value="searchQuery"
         placeholder="Search products..."
         style="width: 300px"
         clearable
@@ -46,7 +47,7 @@ const resetFilters = () => {
       </n-input>
 
       <n-select
-        v-model:value="store.selectedCategory"
+        v-model:value="selectedCategory"
         placeholder="Category"
         :options="CATEGORY_OPTIONS"
         style="width: 150px"
@@ -55,7 +56,7 @@ const resetFilters = () => {
       />
 
       <n-select
-        v-model:value="store.selectedStatus"
+        v-model:value="selectedStatus"
         placeholder="Status"
         :options="STATUS_OPTIONS"
         style="width: 120px"
@@ -64,7 +65,7 @@ const resetFilters = () => {
       />
 
       <n-select
-        v-model:value="store.sortBy"
+        v-model:value="sortBy"
         placeholder="Sort by"
         :options="SORT_OPTIONS"
         style="width: 150px"
@@ -87,8 +88,8 @@ const resetFilters = () => {
 }
 @media (max-width: 768px) {
   .filters-card :deep(.n-space) {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: column !important;
+    align-items: stretch !important;
   }
 
   .filters-card :deep(.n-input),

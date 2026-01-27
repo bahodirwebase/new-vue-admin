@@ -4,19 +4,11 @@ import { useRouter } from "vue-router";
 
 export const useEcommerceStore = defineStore("ecommerce", () => {
   const viewMode = ref<"grid" | "list">("grid");
-  const showAddProductModal = ref(false);
+  const currentView = ref("products");
 
-  const searchQuery = ref("");
-  const selectedCategory = ref(null);
-  const selectedStatus = ref(null);
-  const sortBy = ref("name");
-  const pagination = ref({
-    page: 1,
-    pageSize: 10,
-    itemCount: 0,
-    showSizePicker: true,
-    pageSizes: [10, 20, 50],
-  });
+
+  const showAddProductModal = ref(false);
+  const showFilterModal = ref(false);
 
   const router = useRouter();
 
@@ -33,22 +25,20 @@ export const useEcommerceStore = defineStore("ecommerce", () => {
   const goBack = () => {
     router.push("/apps/ecommerce/cart");
   };
-  const handlePageChange = (page: number) => {
-    pagination.value.page = page;
+  const toggleFilterModal = () => {
+    showFilterModal.value = !showFilterModal.value;
   };
 
+
   return {
-    sortBy,
-    selectedStatus,
-    selectedCategory,
-    searchQuery,
-    pagination,
+    currentView,
     viewMode,
     showAddProductModal,
+    showFilterModal,
     setViewMode,
     exportProducts,
     continueShopping,
     goBack,
-    handlePageChange,
+    toggleFilterModal
   };
 });

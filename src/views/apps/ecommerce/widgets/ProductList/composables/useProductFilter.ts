@@ -1,20 +1,30 @@
 import { computed, ref } from "vue";
-import { useEcommerceStore } from "../../../store"; // O'zingizning store manzilingiz
 import { PRODUCTS_LIST } from "../constants"; // Statik ma'lumotlar
 import { Product } from "../../../types";
 
 export function useProductFilter() {
-  const store = useEcommerceStore();
   const loading = ref(false);
   const products = ref(PRODUCTS_LIST as Product[]);
+
+  const searchQuery = ref("");
+  const selectedCategory = ref(null);
+  const selectedStatus = ref(null);
+  const sortBy = ref("name");
+  const pagination = ref({
+    page: 1,
+    pageSize: 10,
+    itemCount: 0,
+    showSizePicker: true,
+    pageSizes: [10, 20, 50],
+  });
 
   // 1. Asosiy Filtrlash Logikasi
   const filteredProducts = computed(() => {
     let result = [...products.value];
 
     // Qidiruv (Search)
-    if (store.searchQuery) {
-      const query = store.searchQuery.toLowerCase();
+    if (searchQuery.value) {
+      const query = searchQuery.value.toLowerCase();
       result = result.filter(
         (p) =>
           p.name.toLowerCase().includes(query) ||
@@ -23,13 +33,13 @@ export function useProductFilter() {
     }
 
     // Kategoriya bo'yicha filtr
-    if (store.selectedCategory) {
-      result = result.filter((p) => p.category === store.selectedCategory);
+    if (selectedCategory.value) {
+      result = result.filter((p) => p.category === selectedCategory.value);
     }
 
     // Status bo'yicha filtr
-    if (store.selectedStatus) {
-      result = result.filter((p) => p.status === store.selectedStatus);
+    if (selectedStatus.value) {
+      result = result.filter((p) => p.status === selectedStatus.value);
     }
 
     // 2. Saralash (Sorting)
@@ -37,7 +47,7 @@ export function useProductFilter() {
       const priceA = a.salePrice || a.price;
       const priceB = b.salePrice || b.price;
 
-      switch (store.sortBy) {
+      switch (sortBy.value) {
         case "name":
           return a.name.localeCompare(b.name);
         case "price_asc":
@@ -56,7 +66,7 @@ export function useProductFilter() {
     });
 
     // Store'dagi pagination'ni yangilash
-    store.pagination.itemCount = result.length;
+    pagination.value.itemCount = result.length;
 
     return result;
   });
@@ -73,11 +83,20 @@ export function useProductFilter() {
     if (stock < 10) return "stock-low";
     return "stock-good";
   };
+  const handlePageChange = (page: number) => {
+    pagination.value.page = page;
+  };
 
   return {
+    sortBy,
+    selectedStatus,
+    selectedCategory,
+    searchQuery,
+    pagination,
     filteredProducts,
     loading,
     getStockStatus,
     getStockClass,
+    handlePageChange,
   };
 }

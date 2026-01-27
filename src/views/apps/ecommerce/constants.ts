@@ -1,3 +1,11 @@
+import {
+  GridOutline,
+  CartOutline,
+  PeopleOutline,
+  BarChartOutline,
+  SettingsOutline,
+} from "@vicons/ionicons5";
+
 export const CATEGORY_OPTIONS = [
   { label: "Electronics", value: "electronics" },
   { label: "Clothing", value: "clothing" },
@@ -26,4 +34,14 @@ export const PRICE_RANGE_OPTIONS = [
   { label: "$50 - $100", value: "50-100" },
   { label: "$100 - $500", value: "100-500" },
   { label: "$500+", value: "500+" },
+];
+
+export const NAVIGATION_OPTIONS = [
+  { label: "Products", value: "products", icon: GridOutline },
+  { label: "Shopping Cart", value: "cart", icon: CartOutline },
+  { label: "Checkout", value: "checkout", icon: SettingsOutline },
+  { label: "Orders", value: "orders", icon: CartOutline },
+  { label: "Customers", value: "customers", icon: PeopleOutline },
+  { label: "Analytics", value: "analytics", icon: BarChartOutline },
+  { label: "Settings", value: "settings", icon: SettingsOutline },
 ];
