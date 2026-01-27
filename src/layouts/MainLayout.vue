@@ -1,7 +1,7 @@
 <template>
   <n-layout has-sider class="main-layout">
-    <AppSidebar 
-      :collapsed="isCollapsed" 
+    <AppSidebar
+      :collapsed="isCollapsed"
       :is-mobile="isMobile"
       @toggle-sidebar="toggleSidebar"
     />
@@ -21,59 +21,59 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, onUnmounted } from 'vue'
-import { useThemeStore } from '@/stores/theme'
-import AppSidebar from '@/layouts/sidebar/index.vue'
-import AppHeader from '@/layouts/navbar/index.vue'
-import CustomizerButton from '@/components/CustomizerButton.vue'
-import CustomizerSidebar from '@/components/CustomizerSidebar.vue'
+import { computed, ref, onMounted, onUnmounted } from "vue";
+import { useThemeStore } from "@/stores/theme";
+import AppSidebar from "@/layouts/sidebar/index.vue";
+import AppHeader from "@/layouts/navbar/index.vue";
+import CustomizerButton from "@/layouts/customizer/CustomizerButton.vue";
+import CustomizerSidebar from "@/layouts/customizer/CustomizerSidebar.vue";
 
-const themeStore = useThemeStore()
-const windowWidth = ref(window.innerWidth)
-const isCollapsed = ref(true)
-const isCustomizerOpen = ref(false)
+const themeStore = useThemeStore();
+const windowWidth = ref(window.innerWidth);
+const isCollapsed = ref(true);
+const isCustomizerOpen = ref(false);
 
-const isMobile = computed(() => windowWidth.value < 768)
+const isMobile = computed(() => windowWidth.value < 768);
 
 const toggleSidebar = () => {
-  isCollapsed.value = !isCollapsed.value
-}
+  isCollapsed.value = !isCollapsed.value;
+};
 
 const handleCustomizerToggle = () => {
-  isCustomizerOpen.value = !isCustomizerOpen.value
-}
+  isCustomizerOpen.value = !isCustomizerOpen.value;
+};
 
 const closeCustomizer = () => {
-  isCustomizerOpen.value = false
-}
+  isCustomizerOpen.value = false;
+};
 
 onMounted(() => {
   const handleResize = () => {
-    windowWidth.value = window.innerWidth
-  }
-  window.addEventListener('resize', handleResize)
-})
+    windowWidth.value = window.innerWidth;
+  };
+  window.addEventListener("resize", handleResize);
+});
 
 onUnmounted(() => {
-  window.removeEventListener('resize', () => {})
-})
+  window.removeEventListener("resize", () => {});
+});
 
 const contentClass = computed(() => {
-  return themeStore.isBoxed ? 'boxed-content' : 'full-content'
-})
+  return themeStore.isBoxed ? "boxed-content" : "full-content";
+});
 
 const contentStyle = computed(() => {
   return {
-    padding: isMobile.value ? '16px' : '24px',
-    height: 'calc(100vh - 64px)',
-    overflowY: 'auto',
-    overflowX: 'hidden',
-    boxSizing: 'border-box',
-    width: 'auto',
-    flex: '1 1 auto',
-    backgroundColor: 'var(--bg-secondary)'
-  }
-})
+    padding: isMobile.value ? "16px" : "24px",
+    height: "calc(100vh - 64px)",
+    overflowY: "auto",
+    overflowX: "hidden",
+    boxSizing: "border-box",
+    width: "auto",
+    flex: "1 1 auto",
+    backgroundColor: "var(--bg-secondary)",
+  };
+});
 </script>
 
 <style scoped>
@@ -100,7 +100,7 @@ const contentStyle = computed(() => {
   .main-layout {
     overflow-x: auto;
   }
-  
+
   .boxed-content {
     max-width: 100%;
     padding: 0 8px;
