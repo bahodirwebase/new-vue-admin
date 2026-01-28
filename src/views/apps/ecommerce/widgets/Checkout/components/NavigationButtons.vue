@@ -2,19 +2,18 @@
 import { inject } from 'vue';
 import { useCheckoutStore } from "../store";
 import { CheckmarkOutline } from "@vicons/ionicons5";
-import { CheckoutActionsKey } from "../types/keys";
 
 const checkoutStore = useCheckoutStore();
-const actions = inject(CheckoutActionsKey);
+const { validateShipping, validatePayment } = inject<any>('checkoutActions');
   const nextStep = async () => {
     checkoutStore.processing = true;
 
     try {
       if (checkoutStore.currentStep === 1) {
-        await actions!.validateShipping();
+        await validateShipping();
       } else if (checkoutStore.currentStep === 2) {
         if (checkoutStore.paymentForm.type === "card") {
-          await actions!.validatePayment();
+          await validatePayment();
         }
       }
 

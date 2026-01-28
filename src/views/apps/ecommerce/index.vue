@@ -18,7 +18,7 @@ import { useBreakpoints } from "@/composables/useBreakpoints";
 import { useEcommerceStore } from "./store";
 
 const ecommerceStore = useEcommerceStore();
-const { isTablet, isDesktop } = useBreakpoints();
+const { isDesktop } = useBreakpoints();
 
 const currentComponent = computed(() => {
   switch (ecommerceStore.currentView) {

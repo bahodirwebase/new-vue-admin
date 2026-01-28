@@ -37,7 +37,7 @@ const validatePayment = async () => {
 
 
 
-provide({ validateShipping, validatePayment });
+provide("checkoutActions", { validateShipping, validatePayment });
 const viewOrder = () => {
   // TODO: Navigate to order details
   console.log("View order:", checkoutStore.orderNumber);

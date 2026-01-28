@@ -1,5 +1,5 @@
 import { computed } from "vue";
-import { OrderItem } from "../types/types";
+import { OrderItem } from "../types";
 import { useCheckoutStore } from "../store";
 
 const checkoutStore = useCheckoutStore();

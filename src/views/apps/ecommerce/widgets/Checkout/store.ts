@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { OrderItem } from "./types/types";
+import { OrderItem } from "./types";
 import { ORDER_ITEMS_LIST } from "./constants";
 
 export const useCheckoutStore = defineStore("checkout", () => {
