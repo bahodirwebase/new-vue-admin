@@ -20,5 +20,5 @@ const { tableColumns } = useTableColumns();
   />
 </template>
 <style scoped>
-@import url("../styles/product-list.css");
+@import url("../styles/product-list.scss");
 </style>

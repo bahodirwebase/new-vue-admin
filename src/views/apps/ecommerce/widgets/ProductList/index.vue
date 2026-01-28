@@ -24,7 +24,7 @@ const store = useEcommerceStore();
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .products-container {
   min-height: 400px;

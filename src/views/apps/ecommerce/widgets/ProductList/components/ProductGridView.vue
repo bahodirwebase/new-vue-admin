@@ -70,5 +70,5 @@ const { viewProduct, editProduct, deleteProduct } = useActions();
 </template>
 
 <style scoped>
-@import url("../styles/product-list.css");
+@import url("../styles/product-list.scss");
 </style>

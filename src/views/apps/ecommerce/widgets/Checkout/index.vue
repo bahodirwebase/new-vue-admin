@@ -97,6 +97,6 @@ provide("checkoutActions", { validateShipping, validatePayment });
   </div>
 </template>
 
-<style scoped>
-@import "./styles/checkout.css";
+<style>
+@import "./styles/checkout.scss";
 </style>
