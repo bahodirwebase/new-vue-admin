@@ -137,21 +137,21 @@ export const useCalendarStore = defineStore("calendar", () => {
         closeModal();
     };
     return {
-        openEventModal,
         currentView,
         events,
+        activeDate,
+        showModal,
+        editingEvent,
+        eventForm,
+        openEventModal,
         exportEvents,
         clearAllEvents,
-        activeDate,
         previousWeek,
         nextWeek,
         previousDay,
         nextDay,
         editEvent,
         deleteEvent,
-        showModal,
-        editingEvent,
-        eventForm,
         closeModal,
         saveEvent
     }
