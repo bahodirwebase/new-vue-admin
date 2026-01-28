@@ -8,7 +8,7 @@ export default [
   {
     path: "apps/chat",
     name: "Chat",
-    component: () => import("@/views/apps/Chat.vue"),
+    component: () => import("@/views/apps/chat/index.vue"),
     meta: { title: "Chat", icon: "chatbubble-ellipses-outline", group: "Apps" },
   },
   {
