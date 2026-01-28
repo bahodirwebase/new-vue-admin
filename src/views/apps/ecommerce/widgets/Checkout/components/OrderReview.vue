@@ -14,7 +14,7 @@ const { getPaymentLabel, calculateItemTotal } = useCheckout();
 
 </script>
 <template>
-  <div class="order-review">
+  <div class="gap-6 d-flex flex-column">
     <!-- Shipping Address Review -->
     <div class="review-section">
       <h4>Shipping Address</h4>
@@ -61,15 +61,15 @@ const { getPaymentLabel, calculateItemTotal } = useCheckout();
 
     <!-- Order Items Review -->
     <div class="review-section">
-      <h4>Order Items</h4>
-      <div class="items-review">
-        <div v-for="item in checkoutStore.orderItems" :key="item.id" class="review-item">
+      <h4 class="font-weight-600 mb-3">Order Items</h4>
+      <div class="d-flex flex-column gap-3">
+        <div v-for="item in checkoutStore.orderItems" :key="item.id" class="review-item d-flex p-3">
           <img :src="item.image" :alt="item.name" />
-          <div class="item-info">
+          <div class="flex-1 d-flex flex-column gap-1">
             <span class="item-name">{{ item.name }}</span>
             <span class="item-quantity">Qty: {{ item.quantity }}</span>
           </div>
-          <span class="item-price">
+          <span class="item-price font-weight-600">
             ${{ calculateItemTotal(item).toFixed(2) }}
           </span>
         </div>

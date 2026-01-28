@@ -31,32 +31,6 @@ export const useCheckoutStore = defineStore("checkout", () => {
   const processing = ref(false);
   const showSuccessModal = ref(false);
 
-
-  const placeOrder = async () => {
-    processing.value = true;
-
-    try {
-      // Simulate order processing
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Generate order number
-      orderNumber.value = "ORD-" + Date.now().toString().slice(-8);
-
-      // Show success modal
-      showSuccessModal.value = true;
-      stepStatus.value = "finish";
-    } catch (error) {
-      console.error("Order error:", error);
-      stepStatus.value = "error";
-    } finally {
-      processing.value = false;
-    }
-  };
-  const previousStep = () => {
-    currentStep.value--;
-  };
-
-
   return {
     shippingForm,
     paymentForm,
@@ -65,11 +39,6 @@ export const useCheckoutStore = defineStore("checkout", () => {
     stepStatus,
     orderNumber,
     processing,
-    showSuccessModal,
-    // shippingFormRef,
-    // paymentFormRef,
-    placeOrder,
-    previousStep,
-    // nextStep,
+    showSuccessModal
   };
 });
