@@ -2,12 +2,11 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 import { useRouter } from "vue-router";
 import { Product } from "./types";
-import { useMessage } from 'naive-ui'
 import { PRODUCT } from './constants'
+import { message } from '@/utils/naive-discrete-api'
 
 export const useProductDetailStore = defineStore("product-detail", () => {
   const router = useRouter();
-  const message = useMessage()
 
   const currentImageIndex = ref(0);
   const selectedVariants = ref<Record<string, string>>({});

@@ -2,7 +2,7 @@ export default [
   {
     path: "apps/calendar",
     name: "Calendar",
-    component: () => import("@/views/apps/Calendar.vue"),
+    component: () => import("@/views/apps/calendar/index.vue"),
     meta: { title: "Calendar", icon: "calendar-outline", group: "Apps" },
   },
   {
