@@ -18,7 +18,7 @@ import { useBreakpoints } from "@/composables/useBreakpoints";
 import { useEcommerceStore } from "./store";
 
 const ecommerceStore = useEcommerceStore();
-const { isMobile } = useBreakpoints();
+const { isTablet, isDesktop } = useBreakpoints();
 
 const currentComponent = computed(() => {
   switch (ecommerceStore.currentView) {
@@ -128,19 +128,19 @@ const getCurrentViewLabel = computed(() => {
               </template>
               Add Product
             </n-button>
-            <n-button
-              type="primary"
-              @click="ecommerceStore.showFilterModal = true"
-              v-if="isMobile"
-            >
-              <template #icon>
-                <n-icon>
-                  <FilterOutline />
-                </n-icon>
-              </template>
-              Filter
-            </n-button>
           </template>
+          <n-button
+            type="primary"
+            @click="ecommerceStore.showFilterModal = true"
+            v-if="!isDesktop"
+          >
+            <template #icon>
+              <n-icon>
+                <FilterOutline />
+              </n-icon>
+            </template>
+            Filter
+          </n-button>
         </n-space>
       </div>
     </header>
@@ -148,7 +148,7 @@ const getCurrentViewLabel = computed(() => {
     <!-- Main Content -->
     <main class="ecommerce-main">
       <!-- Sidebar -->
-      <aside class="ecommerce-sidebar" v-if="!isMobile">
+      <aside class="ecommerce-sidebar" v-if="isDesktop">
         <EcommerceSidebar />
       </aside>
 

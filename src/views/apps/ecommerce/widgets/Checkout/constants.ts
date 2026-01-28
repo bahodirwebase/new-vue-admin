@@ -30,3 +30,27 @@ export const PAYMENT_RULES = {
   cvv: { required: true, message: "CVV is required" },
   cardholderName: { required: true, message: "Cardholder name is required" },
 };
+export const ORDER_ITEMS_LIST = [
+  {
+    id: 1,
+    name: "Wireless Headphones Pro",
+    price: 299.99,
+    salePrice: 249.99,
+    quantity: 1,
+    image: "https://picsum.photos/seed/headphones/60/60.jpg",
+  },
+  {
+    id: 2,
+    name: "Smart Watch Ultra",
+    price: 499.99,
+    quantity: 2,
+    image: "https://picsum.photos/seed/smartwatch/60/60.jpg",
+  },
+];
+
+
+export const STEPS = [
+  { key: 1, title: "Shipping", description: "Enter shipping information" },
+  { key: 2, title: "Payment", description: "Select payment method" },
+  { key: 3, title: "Review", description: "Review and place order" },
+];

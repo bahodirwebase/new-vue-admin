@@ -1,20 +1,25 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import { shippingRules, stateOptions, countryOptions } from '../constants'
 import { useCheckoutStore } from '../store'
 
 const checkoutStore = useCheckoutStore()
-
+const formRef = ref()
+const validate = () => {
+  return formRef.value?.validate();
+};
+defineExpose({ validate });
 </script>
 
 <template>
   <n-form
-    ref="shippingFormRef"
+    ref="formRef"
     :model="checkoutStore.shippingForm"
     :rules="shippingRules"
     label-placement="left"
     label-width="120px"
   >
-    <n-grid :cols="2" :x-gap="16">
+    <n-grid cols="1 lg:2" :x-gap="16" responsive="screen">
       <n-gi>
         <n-form-item label="First Name" path="firstName">
           <n-input v-model:value="checkoutStore.shippingForm.firstName" placeholder="John" />
@@ -48,7 +53,7 @@ const checkoutStore = useCheckoutStore()
       />
     </n-form-item>
 
-    <n-grid :cols="2" :x-gap="16">
+    <n-grid :x-gap="16" cols="1 lg:2" responsive="screen">
       <n-gi>
         <n-form-item label="City" path="city">
           <n-input v-model:value="checkoutStore.shippingForm.city" placeholder="New York" />
@@ -65,7 +70,7 @@ const checkoutStore = useCheckoutStore()
       </n-gi>
     </n-grid>
 
-    <n-grid :cols="2" :x-gap="16">
+    <n-grid  :x-gap="16" cols="1 lg:2" responsive="screen">
       <n-gi>
         <n-form-item label="ZIP Code" path="zipCode">
           <n-input v-model:value="checkoutStore.shippingForm.zipCode" placeholder="10001" />

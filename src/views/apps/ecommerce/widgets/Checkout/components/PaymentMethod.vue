@@ -1,13 +1,19 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
 import { PAYMENT_RULES } from "../constants";
 import { useCheckoutStore } from "../store";
 
 const checkoutStore = useCheckoutStore();
+const formRef = ref()
 
+const validate = () => {
+  return formRef.value?.validate();
+};
+defineExpose({ validate });
 </script>
 <template>
   <n-form
-    ref="paymentFormRef"
+    ref="formRef"
     :model="checkoutStore.paymentForm"
     :rules="PAYMENT_RULES"
     label-placement="left"

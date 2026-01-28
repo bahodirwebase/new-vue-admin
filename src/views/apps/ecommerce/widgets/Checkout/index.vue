@@ -1,166 +1,55 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { provide, ref } from "vue";
 import { useRouter } from "vue-router";
 import {
-  CheckmarkOutline,
   ShieldCheckmarkOutline,
   CheckmarkCircleOutline,
 } from "@vicons/ionicons5";
+import { type FormInst } from "naive-ui";
 
 import ShippingInformation from "./components/ShippingInformation.vue";
 import PaymentMethod from "./components/PaymentMethod.vue";
+import OrderReview from "./components/OrderReview.vue";
+import OrderSummary from "./components/OrderSummary.vue";
+import NavigationButtons from "./components/NavigationButtons.vue";
 
+import { STEPS } from "./constants";
 import { useCheckoutStore } from "./store";
 
-const checkoutStore = useCheckoutStore();
 
-interface OrderItem {
-  id: number;
-  name: string;
-  price: number;
-  salePrice?: number;
-  quantity: number;
-  image: string;
-}
+const shippingFormRef = ref<FormInst | null>(null);
+const paymentFormRef = ref<FormInst | null>(null);
 
 const router = useRouter();
-const currentStep = ref(1);
-const processing = ref(false);
-const showSuccessModal = ref(false);
-const orderNumber = ref("");
-
-const shippingFormRef = ref();
-const paymentFormRef = ref();
-
-const steps = [
-  { key: 1, title: "Shipping", description: "Enter shipping information" },
-  { key: 2, title: "Payment", description: "Select payment method" },
-  { key: 3, title: "Review", description: "Review and place order" },
-];
-
-const stepStatus = ref<"process" | "finish" | "error" | "wait">("process");
-
-const orderItems = ref<OrderItem[]>([
-  {
-    id: 1,
-    name: "Wireless Headphones Pro",
-    price: 299.99,
-    salePrice: 249.99,
-    quantity: 1,
-    image: "https://picsum.photos/seed/headphones/60/60.jpg",
-  },
-  {
-    id: 2,
-    name: "Smart Watch Ultra",
-    price: 499.99,
-    quantity: 2,
-    image: "https://picsum.photos/seed/smartwatch/60/60.jpg",
-  },
-]);
-
-const totalItems = computed(() => {
-  return orderItems.value.reduce((total, item) => total + item.quantity, 0);
-});
-
-const subtotal = computed(() => {
-  return orderItems.value.reduce((total, item) => {
-    return total + calculateItemTotal(item);
-  }, 0);
-});
-
-const shipping = computed(() => {
-  return subtotal.value > 100 ? 0 : 9.99;
-});
-
-const tax = computed(() => {
-  return subtotal.value * 0.08; // 8% tax
-});
-
-const discount = computed(() => {
-  return 0; // No discount in checkout
-});
-
-const total = computed(() => {
-  return subtotal.value + shipping.value + tax.value - discount.value;
-});
-
-const calculateItemTotal = (item: OrderItem) => {
-  return (item.salePrice || item.price) * item.quantity;
-};
-
-const getPaymentLabel = (type: string) => {
-  switch (type) {
-    case "paypal":
-      return "PayPal";
-    case "apple":
-      return "Apple Pay";
-    default:
-      return "Credit Card";
-  }
-};
-
-const nextStep = async () => {
-  processing.value = true;
-
-  try {
-    if (currentStep.value === 1) {
-      await shippingFormRef.value?.validate();
-    } else if (currentStep.value === 2) {
-      if (checkoutStore.paymentForm.type === "card") {
-        await paymentFormRef.value?.validate();
-      }
-    }
-
-    currentStep.value++;
-    stepStatus.value = "process";
-  } catch (error) {
-    console.error("Validation error:", error);
-  } finally {
-    processing.value = false;
-  }
-};
-
-const previousStep = () => {
-  currentStep.value--;
-};
-
-const placeOrder = async () => {
-  processing.value = true;
-
-  try {
-    // Simulate order processing
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    // Generate order number
-    orderNumber.value = "ORD-" + Date.now().toString().slice(-8);
-
-    // Show success modal
-    showSuccessModal.value = true;
-    stepStatus.value = "finish";
-  } catch (error) {
-    console.error("Order error:", error);
-    stepStatus.value = "error";
-  } finally {
-    processing.value = false;
-  }
-};
+const checkoutStore = useCheckoutStore();
 
 const continueShopping = () => {
   router.push("/apps/ecommerce");
 };
 
+const validateShipping = async () => {
+  return await shippingFormRef.value?.validate();
+};  
+
+const validatePayment = async () => {
+  return await paymentFormRef.value?.validate();
+};  
+
+
+
+provide({ validateShipping, validatePayment });
 const viewOrder = () => {
   // TODO: Navigate to order details
-  console.log("View order:", orderNumber.value);
+  console.log("View order:", checkoutStore.orderNumber);
 };
 </script>
 <template>
   <div class="checkout">
     <!-- Checkout Progress -->
     <div class="checkout-progress">
-      <n-steps :current="currentStep" :status="stepStatus">
+      <n-steps :current="checkoutStore.currentStep" :status="checkoutStore.stepStatus">
         <n-step
-          v-for="step in steps"
+          v-for="step in STEPS"
           :key="step.key"
           :title="step.title"
           :description="step.description"
@@ -170,21 +59,21 @@ const viewOrder = () => {
 
     <!-- Checkout Content -->
     <div class="checkout-content">
-      <n-grid :cols="3" :x-gap="24">
+      <n-grid cols="1 xs:2 sm:3" :x-gap="24" responsive="screen">
         <!-- Main Form Area -->
-        <n-gi :span="2">
+        <n-gi :span="2" >
           <!-- Step 1: Shipping Information -->
           <n-card
-            v-if="currentStep === 1"
+            v-if="checkoutStore.currentStep === 1"
             title="Shipping Information"
             class="step-card"
           >
-            <shipping-information />
+            <shipping-information ref="shippingFormRef" />
           </n-card>
 
           <!-- Step 2: Payment Method -->
           <n-card
-            v-if="currentStep === 2"
+            v-if="checkoutStore.currentStep === 2"
             title="Payment Method"
             class="step-card"
           >
@@ -193,148 +82,21 @@ const viewOrder = () => {
 
           <!-- Step 3: Order Review -->
           <n-card
-            v-if="currentStep === 3"
+            v-if="checkoutStore.currentStep === 3"
             title="Order Review"
             class="step-card"
           >
-            <div class="order-review">
-              <!-- Shipping Address Review -->
-              <div class="review-section">
-                <h4>Shipping Address</h4>
-                <div class="address-review">
-                  <p>
-                    <strong
-                      >{{ checkoutStore.shippingForm.firstName }}
-                      {{ checkoutStore.shippingForm.lastName }}</strong
-                    ><br />
-                    {{ checkoutStore.shippingForm.address }}<br />
-                    {{ checkoutStore.shippingForm.city }}, {{ checkoutStore.shippingForm.state }}
-                    {{ checkoutStore.shippingForm.zipCode }}<br />
-                    {{ checkoutStore.shippingForm.country }}<br />
-                    {{ checkoutStore.shippingForm.email }}<br />
-                    {{ checkoutStore.shippingForm.phone }}
-                  </p>
-                  <n-button size="small" @click="currentStep = 1"
-                    >Edit</n-button
-                  >
-                </div>
-              </div>
-
-              <!-- Payment Method Review -->
-              <div class="review-section">
-                <h4>Payment Method</h4>
-                <div class="payment-review">
-                  <div v-if="checkoutStore.paymentForm.type === 'card'">
-                    <p>
-                      <strong>Credit Card</strong><br />
-                      **** **** **** {{ checkoutStore.paymentForm.cardNumber?.slice(-4)
-                      }}<br />
-                      {{ checkoutStore.paymentForm.cardholderName }}
-                    </p>
-                  </div>
-                  <div v-else>
-                    <p>
-                      <strong>{{ getPaymentLabel(checkoutStore.paymentForm.type) }}</strong>
-                    </p>
-                  </div>
-                  <n-button size="small" @click="currentStep = 2"
-                    >Edit</n-button
-                  >
-                </div>
-              </div>
-
-              <!-- Order Items Review -->
-              <div class="review-section">
-                <h4>Order Items</h4>
-                <div class="items-review">
-                  <div
-                    v-for="item in orderItems"
-                    :key="item.id"
-                    class="review-item"
-                  >
-                    <img :src="item.image" :alt="item.name" />
-                    <div class="item-info">
-                      <span class="item-name">{{ item.name }}</span>
-                      <span class="item-quantity"
-                        >Qty: {{ item.quantity }}</span
-                      >
-                    </div>
-                    <span class="item-price">
-                      ${{ calculateItemTotal(item).toFixed(2) }}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <order-review :current-step="checkoutStore.currentStep" />
           </n-card>
 
           <!-- Navigation Buttons -->
-          <div class="step-navigation">
-            <n-space>
-              <n-button
-                v-if="currentStep > 1"
-                @click="previousStep"
-                :disabled="processing"
-              >
-                Previous
-              </n-button>
-              <n-button
-                v-if="currentStep < 3"
-                type="primary"
-                @click="nextStep"
-                :loading="processing"
-              >
-                Continue
-              </n-button>
-              <n-button
-                v-if="currentStep === 3"
-                type="primary"
-                size="large"
-                @click="placeOrder"
-                :loading="processing"
-              >
-                <template #icon>
-                  <n-icon><CheckmarkOutline /></n-icon>
-                </template>
-                Place Order
-              </n-button>
-            </n-space>
-          </div>
+          <navigation-buttons :current-step="checkoutStore.currentStep" :step-status="checkoutStore.stepStatus" />
         </n-gi>
 
         <!-- Order Summary Sidebar -->
         <n-gi>
-          <n-card title="Order Summary" class="order-summary-card">
-            <div class="summary-content">
-              <div class="summary-row">
-                <span>Subtotal ({{ totalItems }} items)</span>
-                <span>${{ subtotal.toFixed(2) }}</span>
-              </div>
-
-              <div class="summary-row">
-                <span>Shipping</span>
-                <span>${{ shipping.toFixed(2) }}</span>
-              </div>
-
-              <div class="summary-row">
-                <span>Tax</span>
-                <span>${{ tax.toFixed(2) }}</span>
-              </div>
-
-              <div v-if="discount > 0" class="summary-row discount">
-                <span>Discount</span>
-                <span>-${{ discount.toFixed(2) }}</span>
-              </div>
-
-              <n-divider />
-
-              <div class="summary-row total">
-                <span>Total</span>
-                <span>${{ total.toFixed(2) }}</span>
-              </div>
-            </div>
-          </n-card>
-
+          
+            <order-summary />
           <!-- Security Badge -->
           <n-card class="security-card">
             <div class="security-content">
@@ -353,7 +115,7 @@ const viewOrder = () => {
     </div>
 
     <!-- Order Success Modal -->
-    <n-modal v-model:show="showSuccessModal" preset="dialog">
+    <n-modal v-model:show="checkoutStore.showSuccessModal" preset="dialog">
       <template #header>
         <div class="success-header">
           <n-icon size="48" color="#18a058">
@@ -365,7 +127,7 @@ const viewOrder = () => {
       <div class="success-content">
         <p>
           Thank you for your order! Your order number is
-          <strong>#{{ orderNumber }}</strong
+          <strong>#{{ checkoutStore.orderNumber }}</strong
           >.
         </p>
         <p>
