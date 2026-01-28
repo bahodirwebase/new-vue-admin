@@ -3,8 +3,10 @@ import { CartOutline } from "@vicons/ionicons5";
 import { useProductDetail } from "../composables/useProductDetail";
 import { useProductDetailStore } from "../store";
 import { Product } from "../types";
+import { formatDate } from "@/utils"
 
-const { currentImage, getStatusType, formatStatus, getStockClass, getStockStatus, formatDate } = useProductDetail();
+const { currentImage, getStatusType, formatStatus, getStockClass, getStockStatus } = useProductDetail();
+
 const productDetailStore = useProductDetailStore();
 
 interface IProps {

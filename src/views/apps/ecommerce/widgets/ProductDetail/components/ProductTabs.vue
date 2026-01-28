@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { Product } from '../types';
 import { useProductDetail } from '../composables/useProductDetail';
+import { formatDate } from "@/utils"
 
-const { formatDate, getRatingPercentage,getRatingCount, getLogType } = useProductDetail();
+const { getRatingPercentage,getRatingCount, getLogType } = useProductDetail();
 
 defineProps<{
   product: Product;

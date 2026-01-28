@@ -36,13 +36,6 @@ export function useProductDetail() {
     if (stock < 50) return "Limited Stock";
     return "In Stock";
   };
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  };
   const getRatingPercentage = (rating: number) => {
     const reviews = productDetailStore.product.reviews || [];
     const count = reviews.filter((r) => Math.floor(r.rating) === rating).length;
@@ -61,7 +54,6 @@ export function useProductDetail() {
     formatStatus,
     getStockClass,
     getStockStatus,
-    formatDate,
     getRatingPercentage,
     getRatingCount,
     getLogType
