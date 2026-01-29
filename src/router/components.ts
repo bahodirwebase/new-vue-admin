@@ -156,7 +156,7 @@ export default [
   {
     path: "components/tables/basic-table",
     name: "Basic-Table",
-    component: () => import("@/views/components/tables/Basic-Table.vue"),
+    component: () => import("@/views/components/tables/basic-table/index.vue"),
     meta: {
       title: "Basic Table",
       icon: "grid-outline",
@@ -167,7 +167,7 @@ export default [
   {
     path: "components/tables/data-table",
     name: "Data-Table",
-    component: () => import("@/views/components/tables/Data-Table.vue"),
+    component: () => import("@/views/components/tables/data-table/index.vue"),
     meta: {
       title: "Data Table",
       icon: "list-outline",
