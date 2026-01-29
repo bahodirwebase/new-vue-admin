@@ -1,0 +1,109 @@
+.divider-page {
+    max-width: 100%;
+
+    .page-title {
+        font-family: var(--font-secondary);
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+    }
+
+    .page-subtitle {
+        font-size: 16px;
+        color: var(--text-secondary);
+    }
+
+    .chart-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .chart-title {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .period-button {
+        border-radius: 8px;
+        height: 36px;
+        padding: 0 16px;
+        font-weight: 600;
+        font-size: 14px;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color) 100%);
+        border: none;
+        box-shadow: 0 1px 8px var(--primary-color);
+        transition: all 0.3s ease;
+    }
+
+    .period-button:hover {
+        box-shadow: 0 2px 12px var(--primary-color);
+        transform: translateY(-1px);
+    }
+
+    /* Divider specific styles */
+    :deep(.n-divider) {
+        margin: 16px 0;
+    }
+
+    :deep(.n-divider__title) {
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    /* Custom divider colors */
+    .success-divider {
+        border-color: #18a058;
+    }
+
+    .warning-divider {
+        border-color: #f0a020;
+    }
+
+    .error-divider {
+        border-color: #d03050;
+    }
+
+    .info-divider {
+        border-color: #2080f0;
+    }
+
+    /* Rich content styles */
+    .rich-content-divider {
+        .n-divider__title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .chart-header {
+            flex-direction: column;
+            gap: 16px;
+            align-items: stretch;
+        }
+
+        .chart-title {
+            font-size: 18px;
+        }
+
+        .period-button {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .page-title {
+            font-size: 24px;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+        }
+    }
+}

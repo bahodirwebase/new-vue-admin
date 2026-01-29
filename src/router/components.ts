@@ -234,7 +234,7 @@ export default [
   {
     path: "components/ui-elements/extra/divider",
     name: "Divider",
-    component: () => import("@/views/components/extra/Divider.vue"),
+    component: () => import("@/views/components/extra/divider/index.vue"),
     meta: {
       title: "Divider",
       icon: "remove-outline",
@@ -245,7 +245,7 @@ export default [
   {
     path: "components/ui-elements/extra/ellipsis",
     name: "Ellipsis",
-    component: () => import("@/views/components/extra/Ellipsis.vue"),
+    component: () => import("@/views/components/extra/ellipsis/index.vue"),
     meta: {
       title: "Ellipsis",
       icon: "ellipsis-horizontal-outline",
@@ -256,7 +256,7 @@ export default [
   {
     path: "components/ui-elements/extra/gradient-text",
     name: "GradientText",
-    component: () => import("@/views/components/extra/GradientText.vue"),
+    component: () => import("@/views/components/extra/gradient-text/index.vue"),
     meta: {
       title: "Gradient Text",
       icon: "color-palette-outline",
@@ -267,7 +267,7 @@ export default [
   {
     path: "components/ui-elements/extra/page-header",
     name: "PageHeader",
-    component: () => import("@/views/components/extra/PageHeader.vue"),
+    component: () => import("@/views/components/extra/page-header/index.vue"),
     meta: {
       title: "Page Header",
       icon: "document-text-outline",
@@ -278,7 +278,7 @@ export default [
   {
     path: "components/ui-elements/extra/watermark",
     name: "Watermark",
-    component: () => import("@/views/components/extra/Watermark.vue"),
+    component: () => import("@/views/components/extra/watermark/index.vue"),
     meta: {
       title: "Watermark",
       icon: "water-outline",
@@ -289,7 +289,7 @@ export default [
   {
     path: "components/ui-elements/extra/countdown",
     name: "CountDown",
-    component: () => import("@/views/components/extra/CountDown.vue"),
+    component: () => import("@/views/components/extra/count-down/index.vue"),
     meta: {
       title: "Countdown",
       icon: "timer-outline",
