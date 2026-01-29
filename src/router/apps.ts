@@ -14,7 +14,7 @@ export default [
   {
     path: "apps/email",
     name: "Email",
-    component: () => import("@/views/apps/Email.vue"),
+    component: () => import("@/views/apps/email/index.vue"),
     meta: { title: "Email", icon: "mail-outline", group: "Apps" },
   },
   {
