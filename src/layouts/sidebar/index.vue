@@ -27,14 +27,21 @@ onMounted(() => window.addEventListener("resize", handleResize));
 onUnmounted(() => window.removeEventListener("resize", handleResize));
 
 // Prop o'zgarganda ichki holatni yangilash
-watch(() => props.collapsed, (val) => {
-  if (val !== undefined) isCollapsed.value = val;
-});
+watch(
+  () => props.collapsed,
+  (val) => {
+    if (val !== undefined) isCollapsed.value = val;
+  },
+);
 
 // Mini sidebar holati (Desktop uchun)
-watch(() => themeStore.isMiniSidebar, (val) => {
-  if (!props.isMobile) isCollapsed.value = val;
-}, { immediate: true });
+watch(
+  () => themeStore.isMiniSidebar,
+  (val) => {
+    if (!props.isMobile) isCollapsed.value = val;
+  },
+  { immediate: true },
+);
 
 // Mobile-da sidebar ochilganda z-index va transformatsiyani boshqarish uchun kenglik
 const sidebarWidth = computed(() => {
@@ -67,20 +74,38 @@ const handleMenuSelect = (key: string) => {
 
 <template>
   <transition name="fade">
-    <div v-if="props.isMobile && !isCollapsed" class="sidebar-overlay" @click="toggleSidebar" />
+    <div
+      v-if="props.isMobile && !isCollapsed"
+      class="sidebar-overlay"
+      @click="toggleSidebar"
+    />
   </transition>
 
-  <n-layout-sider :collapsed="isCollapsed" :collapsed-width="props.isMobile ? 0 : 80" :width="sidebarWidth"
-    collapse-mode="width" class="app-sidebar" :inverted="themeStore.isDark"
-    :position="props.isMobile ? 'fixed' : 'static'" :style="{
+  <n-layout-sider
+    :collapsed="isCollapsed"
+    :collapsed-width="props.isMobile ? 0 : 80"
+    :width="sidebarWidth"
+    collapse-mode="width"
+    class="app-sidebar"
+    :inverted="themeStore.isDark"
+    :position="props.isMobile ? 'fixed' : 'static'"
+    :style="{
       zIndex: props.isMobile ? 1000 : 10,
-      height: '100vh'
-    }">
+      height: '100vh',
+    }"
+  >
     <SidebarHeader :collapsed="isCollapsed" />
 
-    <n-scrollbar style="max-height: calc(100vh - 64px)">
-      <n-menu :collapsed="isCollapsed" :collapsed-width="props.isMobile ? 0 : 80" :options="menuOptions"
-        :value="activeKey" @update:value="handleMenuSelect" :inverted="themeStore.isDark" accordion />
+    <n-scrollbar style="max-height: calc(100vh - 64px)" :scrollbar-props="{ size: 0 }">
+      <n-menu
+        :collapsed="isCollapsed"
+        :collapsed-width="props.isMobile ? 0 : 80"
+        :options="menuOptions"
+        :value="activeKey"
+        @update:value="handleMenuSelect"
+        :inverted="themeStore.isDark"
+        accordion
+      />
     </n-scrollbar>
   </n-layout-sider>
 </template>
@@ -89,9 +114,7 @@ const handleMenuSelect = (key: string) => {
 .app-sidebar {
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
   transition:
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.3s ease !important;
+    all 0.3s var(--n-bezier) !important;
 }
 
 .sidebar-overlay {
@@ -124,6 +147,26 @@ const handleMenuSelect = (key: string) => {
 :deep(.n-layout-sider-content) {
   display: flex;
   flex-direction: column;
+}
+
+/* Scrollbar ni hide qilish */
+:deep(.n-scrollbar) {
+  --n-scrollbar-width: 0px !important;
+}
+
+:deep(.n-scrollbar-rail) {
+  display: none !important;
+}
+
+:deep(.n-scrollbar-container) {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+:deep(.n-scrollbar-container::-webkit-scrollbar) {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 :deep(.n-menu-item-group-title) {
