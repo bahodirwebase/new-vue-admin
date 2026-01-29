@@ -178,7 +178,7 @@ export default [
   {
     path: "components/charts/line-chart",
     name: "Line-Chart",
-    component: () => import("@/views/components/charts/Line-Chart.vue"),
+    component: () => import("@/views/components/charts/line-chart/index.vue"),
     meta: {
       title: "Line Chart",
       icon: "analytics-outline",
@@ -189,7 +189,7 @@ export default [
   {
     path: "components/charts/bar-chart",
     name: "Bar-Chart",
-    component: () => import("@/views/components/charts/Bar-Chart.vue"),
+    component: () => import("@/views/components/charts/bar-chart/index.vue"),
     meta: {
       title: "Bar Chart",
       icon: "bar-chart-outline",
@@ -200,7 +200,7 @@ export default [
   {
     path: "components/charts/pie-chart",
     name: "Pie-Chart",
-    component: () => import("@/views/components/charts/Pie-Chart.vue"),
+    component: () => import("@/views/components/charts/pie-chart/index.vue"),
     meta: {
       title: "Pie Chart",
       icon: "pie-chart-outline",
@@ -211,7 +211,7 @@ export default [
   {
     path: "components/charts/mixed-chart",
     name: "Mixed-Chart",
-    component: () => import("@/views/components/charts/Mixed-Chart.vue"),
+    component: () => import("@/views/components/charts/mixed-chart/index.vue"),
     meta: {
       title: "Mixed Chart",
       icon: "layers-outline",
