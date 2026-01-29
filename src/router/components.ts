@@ -222,13 +222,13 @@ export default [
   {
     path: "components/typography",
     name: "Typography",
-    component: () => import("@/views/components/Typography.vue"),
+    component: () => import("@/views/components/typography/index.vue"),
     meta: { title: "Typography", icon: "text-outline", group: "Components" },
   },
   {
     path: "components/icons",
     name: "Icons",
-    component: () => import("@/views/components/Icons.vue"),
+    component: () => import("@/views/components/icons/index.vue"),
     meta: { title: "Icons", icon: "apps-outline", group: "Components" },
   },
   {

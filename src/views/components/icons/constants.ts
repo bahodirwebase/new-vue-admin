@@ -1,0 +1,148 @@
+import { markRaw } from 'vue'
+import {
+  HomeOutline,
+  HeartOutline,
+  AddOutline,
+  CheckmarkOutline,
+  WarningOutline,
+  TrashOutline,
+  SearchOutline,
+  SettingsOutline,
+  NotificationsOutline,
+  CheckmarkCircleOutline,
+  AlertCircleOutline,
+  InformationCircleOutline,
+  CloseCircleOutline,
+  FolderOutline,
+  ImageOutline,
+  MusicalNotesOutline,
+  VideocamOutline,
+  RefreshOutline,
+  StarOutline,
+  GridOutline,
+  MenuOutline,
+  ListOutline,
+  EllipsisHorizontalOutline,
+  ChevronBackOutline,
+  ChevronForwardOutline,
+  ChevronUpOutline,
+  ChevronDownOutline,
+  CreateOutline,
+  PencilOutline,
+  SaveOutline,
+  CopyOutline,
+  ShareOutline,
+  PrintOutline,
+  Download,
+  CloudUploadOutline,
+  MailOutline,
+  CallOutline,
+  PersonOutline,
+  PeopleOutline,
+  TimeOutline,
+  CalendarOutline,
+  LocationOutline,
+  CameraOutline
+} from '@vicons/ionicons5'
+
+export const ICON_SIZES = [
+  { label: '12px', value: 12 },
+  { label: '16px', value: 16 },
+  { label: '20px', value: 20 },
+  { label: '24px', value: 24 },
+  { label: '32px', value: 32 },
+  { label: '48px', value: 48 }
+]
+
+export const ICON_COLORS = [
+  { label: 'Primary', value: 'var(--color-primary)' },
+  { label: 'Success', value: 'var(--color-success)' },
+  { label: 'Warning', value: 'var(--color-warning)' },
+  { label: 'Error', value: 'var(--color-error)' },
+  { label: 'Info', value: 'var(--color-info)' },
+  { label: 'Secondary', value: 'var(--text-secondary)' }
+]
+
+export const POPULAR_ICONS = [
+  { name: 'Home', component: markRaw(HomeOutline) },
+  { name: 'Heart', component: markRaw(HeartOutline) },
+  { name: 'Search', component: markRaw(SearchOutline) },
+  { name: 'Settings', component: markRaw(SettingsOutline) },
+  { name: 'Notifications', component: markRaw(NotificationsOutline) },
+  { name: 'Menu', component: markRaw(MenuOutline) },
+  { name: 'User', component: markRaw(PersonOutline) },
+  { name: 'Users', component: markRaw(PeopleOutline) },
+  { name: 'Star', component: markRaw(StarOutline) },
+  { name: 'Time', component: markRaw(TimeOutline) },
+  { name: 'Calendar', component: markRaw(CalendarOutline) },
+  { name: 'Location', component: markRaw(LocationOutline) },
+  { name: 'Camera', component: markRaw(CameraOutline) },
+  { name: 'Mail', component: markRaw(MailOutline) },
+  { name: 'Call', component: markRaw(CallOutline) },
+  { name: 'Grid', component: markRaw(GridOutline) },
+  { name: 'List', component: markRaw(ListOutline) },
+  { name: 'Folder', component: markRaw(FolderOutline) },
+  { name: 'Image', component: markRaw(ImageOutline) },
+  { name: 'Video', component: markRaw(VideocamOutline) },
+  { name: 'Music', component: markRaw(MusicalNotesOutline) },
+  { name: 'Document', component: markRaw(CreateOutline) },
+  { name: 'Download', component: markRaw(Download) },
+  { name: 'Upload', component: markRaw(CloudUploadOutline) },
+  { name: 'Share', component: markRaw(ShareOutline) },
+  { name: 'Print', component: markRaw(PrintOutline) },
+  { name: 'Copy', component: markRaw(CopyOutline) },
+  { name: 'Save', component: markRaw(SaveOutline) },
+  { name: 'Edit', component: markRaw(PencilOutline) },
+  { name: 'Delete', component: markRaw(TrashOutline) },
+  { name: 'Add', component: markRaw(AddOutline) },
+  { name: 'Check', component: markRaw(CheckmarkOutline) },
+  { name: 'Close', component: markRaw(CloseCircleOutline) },
+  { name: 'Warning', component: markRaw(WarningOutline) },
+  { name: 'Info', component: markRaw(InformationCircleOutline) },
+  { name: 'Success', component: markRaw(CheckmarkCircleOutline) },
+  { name: 'Error', component: markRaw(AlertCircleOutline) },
+  { name: 'Refresh', component: markRaw(RefreshOutline) },
+  { name: 'Back', component: markRaw(ChevronBackOutline) },
+  { name: 'Forward', component: markRaw(ChevronForwardOutline) },
+  { name: 'Up', component: markRaw(ChevronUpOutline) },
+  { name: 'Down', component: markRaw(ChevronDownOutline) }
+]
+
+export const NAVIGATION_ICONS = [
+  { name: 'Grid', component: markRaw(GridOutline) },
+  { name: 'List', component: markRaw(ListOutline) },
+  { name: 'Menu', component: markRaw(MenuOutline) },
+  { name: 'Ellipsis', component: markRaw(EllipsisHorizontalOutline) },
+  { name: 'ChevronBack', component: markRaw(ChevronBackOutline) },
+  { name: 'ChevronForward', component: markRaw(ChevronForwardOutline) },
+  { name: 'ChevronUp', component: markRaw(ChevronUpOutline) },
+  { name: 'ChevronDown', component: markRaw(ChevronDownOutline) },
+  { name: 'Time', component: markRaw(TimeOutline) },
+  { name: 'Calendar', component: markRaw(CalendarOutline) },
+  { name: 'Location', component: markRaw(LocationOutline) },
+  { name: 'Camera', component: markRaw(CameraOutline) }
+]
+
+export const ACTION_ICONS = [
+  { name: 'Create', component: markRaw(CreateOutline) },
+  { name: 'Edit', component: markRaw(PencilOutline) },
+  { name: 'Save', component: markRaw(SaveOutline) },
+  { name: 'Copy', component: markRaw(CopyOutline) },
+  { name: 'Share', component: markRaw(ShareOutline) },
+  { name: 'Print', component: markRaw(PrintOutline) },
+  { name: 'Download', component: markRaw(Download) },
+  { name: 'Upload', component: markRaw(CloudUploadOutline) },
+  { name: 'Add', component: markRaw(AddOutline) },
+  { name: 'Checkmark', component: markRaw(CheckmarkOutline) },
+  { name: 'Warning', component: markRaw(WarningOutline) },
+  { name: 'Trash', component: markRaw(TrashOutline) }
+]
+
+export const SOCIAL_ICONS = [
+  { name: 'Mail', component: markRaw(MailOutline) },
+  { name: 'Call', component: markRaw(CallOutline) },
+  { name: 'Person', component: markRaw(PersonOutline) },
+  { name: 'People', component: markRaw(PeopleOutline) },
+  { name: 'Heart', component: markRaw(HeartOutline) },
+  { name: 'Star', component: markRaw(StarOutline) }
+]

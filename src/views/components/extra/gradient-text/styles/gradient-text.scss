@@ -1,0 +1,92 @@
+.page-title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.example-section {
+  h3 {
+    margin-bottom: 12px;
+    color: var(--text-primary);
+  }
+}
+
+.gradient-text {
+  display: inline-block;
+  cursor: default;
+}
+
+.animated-gradient {
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(30deg);
+  }
+}
+
+.gradient-size-small {
+  font-size: 12px;
+}
+
+.gradient-size-regular {
+  font-size: 16px;
+}
+
+.gradient-size-large {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.gradient-size-extra-large {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.gradient-weight-light {
+  font-weight: 300;
+}
+
+.gradient-weight-regular {
+  font-weight: 400;
+}
+
+.gradient-weight-semi-bold {
+  font-weight: 600;
+}
+
+.gradient-weight-bold {
+  font-weight: 700;
+}
+
+.gradient-heading {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.gradient-subheading {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.gradient-cta {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.gradient-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
