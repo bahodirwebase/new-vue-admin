@@ -2,7 +2,7 @@ export default [
   {
     path: "components/ui-elements/alert",
     name: "Alert",
-    component: () => import("@/views/components/ui-elements/Alert.vue"),
+    component: () => import("@/views/components/ui-elements/alert/index.vue"),
     meta: {
       title: "Alert",
       icon: "alert-circle-outline",
@@ -13,7 +13,7 @@ export default [
   {
     path: "components/ui-elements/avatar",
     name: "Avatar",
-    component: () => import("@/views/components/ui-elements/Avatar.vue"),
+    component: () => import("@/views/components/ui-elements/avatar/index.vue"),
     meta: {
       title: "Avatar",
       icon: "person-circle-outline",
@@ -24,7 +24,7 @@ export default [
   {
     path: "components/ui-elements/badge",
     name: "Badge",
-    component: () => import("@/views/components/ui-elements/Badge.vue"),
+    component: () => import("@/views/components/ui-elements/badge/index.vue"),
     meta: {
       title: "Badge",
       icon: "ribbon-outline",
@@ -35,7 +35,7 @@ export default [
   {
     path: "components/ui-elements/button",
     name: "Button",
-    component: () => import("@/views/components/ui-elements/Button.vue"),
+    component: () => import("@/views/components/ui-elements/button/index.vue"),
     meta: {
       title: "Button",
       icon: "radio-button-on-outline",
@@ -46,7 +46,7 @@ export default [
   {
     path: "components/ui-elements/modal",
     name: "Modal",
-    component: () => import("@/views/components/ui-elements/Modal.vue"),
+    component: () => import("@/views/components/ui-elements/modal/index.vue"),
     meta: {
       title: "Modal",
       icon: "browsers-outline",
@@ -57,7 +57,7 @@ export default [
   {
     path: "components/ui-elements/list",
     name: "List",
-    component: () => import("@/views/components/ui-elements/List.vue"),
+    component: () => import("@/views/components/ui-elements/list/index.vue"),
     meta: {
       title: "List",
       icon: "list-outline",
@@ -68,7 +68,7 @@ export default [
   {
     path: "components/ui-elements/menu",
     name: "Menu",
-    component: () => import("@/views/components/ui-elements/Menu.vue"),
+    component: () => import("@/views/components/ui-elements/menu/index.vue"),
     meta: {
       title: "Menu",
       icon: "menu-outline",
@@ -79,7 +79,7 @@ export default [
   {
     path: "components/ui-elements/pagination",
     name: "Pagination",
-    component: () => import("@/views/components/ui-elements/Pagination.vue"),
+    component: () => import("@/views/components/ui-elements/pagination/index.vue"),
     meta: {
       title: "Pagination",
       icon: "ellipsis-horizontal-outline",
@@ -90,7 +90,7 @@ export default [
   {
     path: "components/ui-elements/tabs",
     name: "Tabs",
-    component: () => import("@/views/components/ui-elements/Tabs.vue"),
+    component: () => import("@/views/components/ui-elements/tabs/index.vue"),
     meta: {
       title: "Tabs",
       icon: "albums-outline",
@@ -101,7 +101,7 @@ export default [
   {
     path: "components/ui-elements/timeline",
     name: "Timeline",
-    component: () => import("@/views/components/ui-elements/Timeline.vue"),
+    component: () => import("@/views/components/ui-elements/timeline/index.vue"),
     meta: {
       title: "Timeline",
       icon: "time-outline",
@@ -112,7 +112,7 @@ export default [
   {
     path: "components/ui-elements/tooltip",
     name: "Tooltip",
-    component: () => import("@/views/components/ui-elements/Tooltip.vue"),
+    component: () => import("@/views/components/ui-elements/tooltip/index.vue"),
     meta: {
       title: "Tooltip",
       icon: "information-circle-outline",
@@ -123,7 +123,7 @@ export default [
   {
     path: "components/ui-elements/carousel",
     name: "Carousel",
-    component: () => import("@/views/components/ui-elements/Carousel.vue"),
+    component: () => import("@/views/components/ui-elements/carousel/index.vue"),
     meta: {
       title: "Carousel",
       icon: "albums-outline",
@@ -134,7 +134,7 @@ export default [
   {
     path: "components/ui-elements/collapse",
     name: "Collapse",
-    component: () => import("@/views/components/ui-elements/Collapse.vue"),
+    component: () => import("@/views/components/ui-elements/collapse/index.vue"),
     meta: {
       title: "Collapse",
       icon: "remove-outline",
@@ -145,7 +145,7 @@ export default [
   {
     path: "components/ui-elements/tag",
     name: "Tag",
-    component: () => import("@/views/components/ui-elements/Tag.vue"),
+    component: () => import("@/views/components/ui-elements/tag/index.vue"),
     meta: {
       title: "Tag",
       icon: "ribbon-outline",
