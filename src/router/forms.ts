@@ -101,7 +101,7 @@ export default [
   {
     path: "forms/extra/cascader",
     name: "Cascader",
-    component: () => import("@/views/forms/extra/Cascader.vue"),
+    component: () => import("@/views/forms/extra/cascader/index.vue"),
     meta: {
       title: "Cascader",
       icon: "radio-button-off-outline",
@@ -112,7 +112,7 @@ export default [
   {
     path: "forms/extra/color-picker",
     name: "ColorPicker",
-    component: () => import("@/views/forms/extra/ColorPicker.vue"),
+    component: () => import("@/views/forms/extra/color-picker/index.vue"),
     meta: {
       title: "Color Picker",
       icon: "checkbox-outline",
@@ -123,7 +123,7 @@ export default [
   {
     path: "forms/extra/dynamic-input",
     name: "DynamicInput",
-    component: () => import("@/views/forms/extra/DynamicInput.vue"),
+    component: () => import("@/views/forms/extra/dynamic-input/index.vue"),
     meta: {
       title: "Dynamic Input",
       icon: "radio-button-off-outline",
@@ -134,7 +134,7 @@ export default [
   {
     path: "forms/extra/dynamic-tags",
     name: "DynamicTags",
-    component: () => import("@/views/forms/extra/DynamicTags.vue"),
+    component: () => import("@/views/forms/extra/dynamic-tags/index.vue"),
     meta: {
       title: "Dynamic Tags",
       icon: "radio-button-off-outline",
@@ -145,7 +145,7 @@ export default [
   {
     path: "forms/extra/input-number",
     name: "InputNumber",
-    component: () => import("@/views/forms/extra/InputNumber.vue"),
+    component: () => import("@/views/forms/extra/input-number/index.vue"),
     meta: {
       title: "Input Number",
       icon: "checkbox-outline",
@@ -156,7 +156,7 @@ export default [
   {
     path: "forms/extra/input-otp",
     name: "InputOtp",
-    component: () => import("@/views/forms/extra/InputOtp.vue"),
+    component: () => import("@/views/forms/extra/input-otp/index.vue"),
     meta: {
       title: "Input OTP",
       icon: "radio-button-off-outline",
@@ -167,7 +167,7 @@ export default [
   {
     path: "forms/extra/mention",
     name: "Mention",
-    component: () => import("@/views/forms/extra/Mention.vue"),
+    component: () => import("@/views/forms/extra/mention/index.vue"),
     meta: {
       title: "Mention",
       icon: "checkbox-outline",
@@ -178,7 +178,7 @@ export default [
   {
     path: "forms/extra/rate",
     name: "Rate",
-    component: () => import("@/views/forms/extra/Rate.vue"),
+    component: () => import("@/views/forms/extra/rate/index.vue"),
     meta: {
       title: "Rate",
       icon: "radio-button-off-outline",
@@ -189,7 +189,7 @@ export default [
   {
     path: "forms/extra/transfer",
     name: "Transfer",
-    component: () => import("@/views/forms/extra/Transfer.vue"),
+    component: () => import("@/views/forms/extra/transfer/index.vue"),
     meta: {
       title: "Transfer",
       icon: "radio-button-off-outline",
@@ -200,7 +200,7 @@ export default [
   {
     path: "forms/extra/tree-select",
     name: "TreeSelect",
-    component: () => import("@/views/forms/extra/TreeSelect.vue"),
+    component: () => import("@/views/forms/extra/tree-select/index.vue"),
     meta: {
       title: "Tree Select",
       icon: "radio-button-off-outline",
