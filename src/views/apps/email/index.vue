@@ -282,6 +282,6 @@ onMounted(() => {
   </div>
 </template>
 
-<style>
-@import "./styles/email.scss";
+<style lang="scss">
+@use "./styles/email.scss";
 </style>

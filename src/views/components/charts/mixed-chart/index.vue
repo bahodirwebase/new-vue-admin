@@ -49,6 +49,6 @@ import CustomMixedChart from './widgets/CustomMixedChart.vue'
   </div>
 </template>
 
-<style>
-@import './styles/mixed-chart.scss';
+<style lang="scss">
+@use './styles/mixed-chart.scss';
 </style>

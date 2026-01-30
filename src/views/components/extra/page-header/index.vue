@@ -55,6 +55,6 @@ import RealWorldExamples from './widgets/RealWorldExamples.vue'
   </div>
 </template>
 
-<style>
-@import './styles/page-header.scss';
+<style lang="scss">
+@use './styles/page-header.scss';
 </style>

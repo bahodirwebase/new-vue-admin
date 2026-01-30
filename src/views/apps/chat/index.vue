@@ -24,6 +24,6 @@ import SettingsModal from "./widgets/SettingsModal.vue";
   </div>
 </template>
 
-<style>
-@import "./styles/chat.scss";
+<style lang="scss">
+@use "./styles/chat.scss";
 </style>

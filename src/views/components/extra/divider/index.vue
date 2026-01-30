@@ -31,6 +31,6 @@ import RichContentDivider from './widgets/RichContentDivider.vue'
   </div>
 </template>
 
-<style>
-@import './styles/divider.scss';
+<style lang="scss">
+@use './styles/divider.scss';
 </style>

@@ -54,6 +54,6 @@ import AnimatedIcons from './widgets/AnimatedIcons.vue'
   </div>
 </template>
 
-<style>
-@import './styles/icons.scss';
+<style lang="scss">
+@use './styles/icons.scss';
 </style>

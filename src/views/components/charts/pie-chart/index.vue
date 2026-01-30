@@ -48,6 +48,6 @@ import AdvancedPieChart from './widgets/AdvancedPieChart.vue'
   </div>
 </template>
 
-<style>
-@import './styles/pie-chart.scss';
+<style lang="scss">
+@use './styles/pie-chart.scss';
 </style>

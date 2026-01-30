@@ -45,6 +45,6 @@ import AdvancedUsage from './widgets/AdvancedUsage.vue'
   </div>
 </template>
 
-<style>
-@import './styles/watermark.scss';
+<style lang="scss">
+@use './styles/watermark.scss';
 </style>

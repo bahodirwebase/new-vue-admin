@@ -47,5 +47,5 @@ onMounted(() => {
   </div>
 </template>
 <style lang="scss">
-@import "./styles/product-detail.scss";
+@use "./styles/product-detail.scss";
 </style>

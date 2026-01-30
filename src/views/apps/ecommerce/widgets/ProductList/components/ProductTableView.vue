@@ -19,6 +19,6 @@ const { tableColumns } = useTableColumns();
     @update:page="handlePageChange"
   />
 </template>
-<style scoped>
-@import url("../styles/product-list.scss");
+<style scoped lang="scss">
+@use "../styles/product-list.scss";
 </style>

@@ -64,6 +64,6 @@ import Blockquote from './widgets/Blockquote.vue'
   </div>
 </template>
 
-<style>
-@import './styles/typography.scss';
+<style lang="scss">
+@use './styles/typography.scss';
 </style>

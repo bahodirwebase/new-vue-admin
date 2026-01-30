@@ -40,6 +40,6 @@ import RealWorldEllipsis from './widgets/RealWorldEllipsis.vue'
   </div>
 </template>
 
-<style>
-@import './styles/ellipsis.scss';
+<style lang="scss">
+@use './styles/ellipsis.scss';
 </style>

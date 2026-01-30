@@ -38,6 +38,6 @@ const refreshData = () => {
   </div>
 </template>
 
-<style>
-@import './styles/basic-table.scss';
+<style lang="scss">
+@use './styles/basic-table.scss';
 </style>

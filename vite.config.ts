@@ -1,40 +1,38 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import { resolve } from "path";
 
 export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src')
-    }
+      "@": resolve(__dirname, "src"),
+    },
   },
   server: {
     port: 3000,
-    open: true
+    open: true,
   },
   build: {
-    target: 'es2015',
-    minify: 'terser',
+    target: "es2015",
+    minify: "esbuild",
     sourcemap: false,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['vue', 'vue-router', 'pinia'],
-          ui: ['naive-ui'],
-          charts: ['chart.js', 'echarts', 'vue-chartjs'],
-          editor: ['@tiptap/starter-kit', '@tiptap/vue-3']
-        }
-      }
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        },
+      },
     },
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    }
+    chunkSizeWarningLimit: 500,
+  },
+  esbuild: {
+    // Console va debuggerlarni o'chirishning zamonaviy usuli
+    drop: ["console", "debugger"],
   },
   optimizeDeps: {
-    include: ['vue', 'vue-router', 'pinia', 'naive-ui']
-  }
-})
+    include: ["vue", "vue-router", "pinia", "naive-ui"],
+  },
+});

@@ -36,5 +36,5 @@ const shoppingCartStore = useShoppingCartStore();
   </div>
 </template>
 <style lang="scss">
-@import "./styles/shopping-cart.scss";
+@use "./styles/shopping-cart.scss";
 </style>

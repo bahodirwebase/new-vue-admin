@@ -35,6 +35,6 @@ onMounted(() => {
 
 
 
-<style>
-@import "./styles/calendar.scss";
+<style lang="scss">
+@use "./styles/calendar.scss";
 </style>

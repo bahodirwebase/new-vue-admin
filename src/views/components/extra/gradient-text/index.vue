@@ -50,6 +50,6 @@ import UsageExamples from './widgets/UsageExamples.vue'
   </div>
 </template>
 
-<style>
-@import './styles/gradient-text.scss';
+<style lang="scss">
+@use './styles/gradient-text.scss';
 </style>

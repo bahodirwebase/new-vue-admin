@@ -44,6 +44,6 @@ import RealWorldCountdown from './widgets/RealWorldCountdown.vue'
   </div>
 </template>
 
-<style>
-@import './styles/count-down.scss';
+<style lang="scss">
+@use './styles/count-down.scss';
 </style>

@@ -156,6 +156,6 @@ const exportData = () => {
   </div>
 </template>
 
-<style>
-@import './styles/data-table.scss';
+<style lang="scss">
+@use './styles/data-table.scss';
 </style>

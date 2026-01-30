@@ -51,6 +51,6 @@ import RealTimeLineChart from './widgets/RealTimeLineChart.vue'
 
 
 
-<style>
-@import './styles/line-chart.scss';
+<style lang="scss">
+@use './styles/line-chart.scss';
 </style>

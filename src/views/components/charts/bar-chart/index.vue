@@ -52,6 +52,6 @@ import RealTimeBarChart from './widgets/RealTimeBarChart.vue'
 
 
 
-<style>
-@import './styles/bar-chart.scss';
+<style lang="scss">
+@use './styles/bar-chart.scss';
 </style>

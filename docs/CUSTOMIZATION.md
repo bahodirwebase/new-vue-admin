@@ -333,7 +333,7 @@ export const getChartTheme = (isDark: boolean) => ({
 
 ```css
 /* Import custom fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@use url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
   /* Font Families */
