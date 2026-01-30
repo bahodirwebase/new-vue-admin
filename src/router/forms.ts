@@ -2,7 +2,7 @@ export default [
   {
     path: "forms/form-elements/select",
     name: "Select",
-    component: () => import("@/views/forms/form-elements/Select.vue"),
+    component: () => import("@/views/forms/form-elements/select/index.vue"),
     meta: {
       title: "Select",
       icon: "checkbox-outline",
@@ -13,7 +13,7 @@ export default [
   {
     path: "forms/form-elements/input",
     name: "Input",
-    component: () => import("@/views/forms/form-elements/Input.vue"),
+    component: () => import("@/views/forms/form-elements/input/index.vue"),
     meta: {
       title: "Input",
       icon: "radio-button-off-outline",
@@ -24,7 +24,7 @@ export default [
   {
     path: "forms/form-elements/radio",
     name: "Radio",
-    component: () => import("@/views/forms/form-elements/Radio.vue"),
+    component: () => import("@/views/forms/form-elements/radio/index.vue"),
     meta: {
       title: "Radio",
       icon: "radio-button-off-outline",
@@ -35,7 +35,7 @@ export default [
   {
     path: "forms/form-elements/switch",
     name: "Switch",
-    component: () => import("@/views/forms/form-elements/Switch.vue"),
+    component: () => import("@/views/forms/form-elements/switch/index.vue"),
     meta: {
       title: "Switch",
       icon: "toggle-outline",
@@ -46,7 +46,7 @@ export default [
   {
     path: "forms/form-elements/slider",
     name: "Slider",
-    component: () => import("@/views/forms/form-elements/Slider.vue"),
+    component: () => import("@/views/forms/form-elements/slider/index.vue"),
     meta: {
       title: "Slider",
       icon: "remove-outline",
@@ -57,7 +57,7 @@ export default [
   {
     path: "forms/form-elements/autocomplete",
     name: "AutoComplete",
-    component: () => import("@/views/forms/form-elements/AutoComplete.vue"),
+    component: () => import("@/views/forms/form-elements/auto-complete/index.vue"),
     meta: {
       title: "AutoComplete",
       icon: "radio-button-off-outline",
@@ -68,7 +68,7 @@ export default [
   {
     path: "forms/form-elements/checkbox",
     name: "Checkbox",
-    component: () => import("@/views/forms/form-elements/Checkbox.vue"),
+    component: () => import("@/views/forms/form-elements/checkbox/index.vue"),
     meta: {
       title: "Checkbox",
       icon: "checkbox-outline",
@@ -79,7 +79,7 @@ export default [
   {
     path: "forms/form-elements/datepicker",
     name: "DatePicker",
-    component: () => import("@/views/forms/form-elements/DatePicker.vue"),
+    component: () => import("@/views/forms/form-elements/date-picker/index.vue"),
     meta: {
       title: "DatePicker",
       icon: "radio-button-off-outline",
@@ -90,7 +90,7 @@ export default [
   {
     path: "forms/form-elements/upload",
     name: "Upload",
-    component: () => import("@/views/forms/form-elements/Upload.vue"),
+    component: () => import("@/views/forms/form-elements/upload/index.vue"),
     meta: {
       title: "Upload",
       icon: "radio-button-off-outline",
