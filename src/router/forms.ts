@@ -211,7 +211,7 @@ export default [
   {
     path: "forms/form-validation",
     name: "Form-Validation",
-    component: () => import("@/views/forms/Form-Validation.vue"),
+    component: () => import("@/views/forms/form-validation/index.vue"),
     meta: {
       title: "Form Validation",
       icon: "checkmark-outline",
@@ -221,7 +221,7 @@ export default [
   {
     path: "forms/form-wizard",
     name: "Form-Wizard",
-    component: () => import("@/views/forms/Form-Wizard.vue"),
+    component: () => import("@/views/forms/form-wizard/index.vue"),
     meta: {
       title: "Form Wizard",
       icon: "chevron-forward-outline",
@@ -231,7 +231,7 @@ export default [
   {
     path: "forms/form-editor",
     name: "Form-Editor",
-    component: () => import("@/views/forms/Form-Editor.vue"),
+    component: () => import("@/views/forms/form-editor/index.vue"),
     meta: { title: "Form Editor", icon: "create-outline", group: "Components" },
   },
 ];
