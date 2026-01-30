@@ -1,0 +1,118 @@
+.cascader-demo {
+  max-width: 100%;
+
+  .page-title {
+    font-family: var(--font-secondary);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .page-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+  }
+
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .chart-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .period-button {
+    border-radius: 8px;
+    height: 36px;
+    padding: 0 16px;
+    font-weight: 600;
+    font-size: 14px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color) 100%);
+    border: none;
+    box-shadow: 0 1px 8px var(--primary-color);
+    transition: all 0.3s ease;
+  }
+
+  .period-button:hover {
+    box-shadow: 0 2px 12px var(--primary-color);
+    transform: translateY(-1px);
+  }
+
+  .chart-container {
+    margin: 0 -8px;
+  }
+
+  .cascader-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+    
+    .stat-item {
+      text-align: center;
+      padding: 8px;
+      background: var(--bg-primary);
+      border-radius: 6px;
+      
+      .stat-value {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+      
+      .stat-label {
+        font-size: 12px;
+        color: var(--text-secondary);
+        margin-top: 4px;
+      }
+    }
+  }
+
+  /* ApexCharts customization */
+  :deep(.apexcharts-tooltip) {
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  :deep(.apexcharts-legend-text) {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .chart-header {
+      flex-direction: column;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .chart-title {
+      font-size: 18px;
+    }
+
+    .period-button {
+      width: 100%;
+    }
+
+    .cascader-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .page-title {
+      font-size: 24px;
+    }
+
+    .page-subtitle {
+      font-size: 14px;
+    }
+  }
+}
