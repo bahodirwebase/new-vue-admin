@@ -28,7 +28,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'pages/user/account-settings',
         name: 'AccountSettings',
-        component: () => import('@/views/pages/user/AccountSettings.vue'),
+        component: () => import('@/views/pages/user/account-settings/index.vue'),
         meta: { title: 'Account Settings', icon: 'settings-outline', group: 'Pages', subgroup: 'User' }
       },
       {
