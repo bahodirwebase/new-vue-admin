@@ -82,4 +82,34 @@ import EditProfileModal from './widgets/EditProfileModal.vue'
     gap: 1rem;
   }
 }
+
+@media (max-width: 480px) {
+  .profile-content {
+    padding: 0 0.75rem 1.5rem;
+  }
+  
+  .content-grid {
+    gap: 0.75rem;
+  }
+  
+  .left-column,
+  .right-column {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .profile-content {
+    padding: 0 0.5rem 1rem;
+  }
+  
+  .content-grid {
+    gap: 0.5rem;
+  }
+  
+  .left-column,
+  .right-column {
+    gap: 0.5rem;
+  }
+}
 </style>

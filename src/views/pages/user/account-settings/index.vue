@@ -132,6 +132,11 @@ const handleSaveAllSettings = async () => {
   
   .header-actions {
     margin-left: 0;
+    width: 100%;
+  }
+  
+  .header-actions .n-button {
+    width: 100%;
   }
 }
 
@@ -144,6 +149,10 @@ const handleSaveAllSettings = async () => {
     font-size: 1.5rem;
   }
   
+  .page-description {
+    font-size: 0.9rem;
+  }
+  
   .content-grid {
     gap: 1rem;
   }
@@ -151,6 +160,49 @@ const handleSaveAllSettings = async () => {
   .left-column,
   .right-column {
     gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    padding: 0.75rem 0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .page-title {
+    font-size: 1.25rem;
+  }
+  
+  .page-description {
+    font-size: 0.85rem;
+  }
+  
+  .content-grid {
+    gap: 0.75rem;
+  }
+  
+  .left-column,
+  .right-column {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .page-header {
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+  }
+  
+  .page-title {
+    font-size: 1.1rem;
+  }
+  
+  .page-description {
+    font-size: 0.8rem;
+  }
+  
+  .content-grid {
+    gap: 0.5rem;
   }
 }
 </style>

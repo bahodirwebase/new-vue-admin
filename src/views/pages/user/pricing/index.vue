@@ -48,9 +48,45 @@ import CtaSection from './widgets/CtaSection.vue'
   gap: 2rem;
 }
 
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .pricing-content {
+    max-width: 100%;
+    padding: 0 1.5rem 3rem;
+  }
+  
+  .content-container {
+    gap: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .pricing-content {
     padding: 0 1rem 2rem;
+  }
+  
+  .content-container {
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-content {
+    padding: 0 0.75rem 1.5rem;
+  }
+  
+  .content-container {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .pricing-content {
+    padding: 0 0.5rem 1rem;
+  }
+  
+  .content-container {
+    gap: 0.75rem;
   }
 }
 </style>

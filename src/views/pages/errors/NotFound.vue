@@ -36,11 +36,14 @@ const goBack = () => {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  padding: 1rem;
 }
 
 .error-container {
   text-align: center;
   padding: 2rem;
+  max-width: 600px;
+  width: 100%;
 }
 
 .error-code {
@@ -48,11 +51,13 @@ const goBack = () => {
   font-weight: bold;
   margin-bottom: 1rem;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  line-height: 1;
 }
 
 .error-title {
   font-size: 2rem;
   margin-bottom: 1rem;
+  font-weight: 600;
 }
 
 .error-description {
@@ -60,12 +65,15 @@ const goBack = () => {
   margin-bottom: 2rem;
   max-width: 500px;
   line-height: 1.6;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .error-actions {
   display: flex;
   gap: 1rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .btn-primary, .btn-secondary {
@@ -75,6 +83,8 @@ const goBack = () => {
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-weight: 500;
+  min-width: 140px;
 }
 
 .btn-primary {
@@ -85,6 +95,7 @@ const goBack = () => {
 .btn-primary:hover {
   background: #f8f9fa;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .btn-secondary {
@@ -96,5 +107,86 @@ const goBack = () => {
 .btn-secondary:hover {
   background: white;
   color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .error-container {
+    padding: 1.5rem;
+  }
+  
+  .error-code {
+    font-size: 6rem;
+  }
+  
+  .error-title {
+    font-size: 1.5rem;
+  }
+  
+  .error-description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .error-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-container {
+    padding: 1rem;
+  }
+  
+  .error-code {
+    font-size: 4rem;
+  }
+  
+  .error-title {
+    font-size: 1.25rem;
+  }
+  
+  .error-description {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .btn-primary, .btn-secondary {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.9rem;
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 360px) {
+  .error-container {
+    padding: 0.75rem;
+  }
+  
+  .error-code {
+    font-size: 3rem;
+  }
+  
+  .error-title {
+    font-size: 1.1rem;
+  }
+  
+  .error-description {
+    font-size: 0.85rem;
+  }
+  
+  .btn-primary, .btn-secondary {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
 }
 </style>

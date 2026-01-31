@@ -52,9 +52,45 @@ import ContactSection from './widgets/ContactSection.vue'
   gap: 3rem;
 }
 
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .faq-content {
+    max-width: 100%;
+    padding: 0 1.5rem 3rem;
+  }
+  
+  .content-container {
+    gap: 2.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .faq-content {
     padding: 0 1rem 2rem;
+  }
+  
+  .content-container {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .faq-content {
+    padding: 0 0.75rem 1.5rem;
+  }
+  
+  .content-container {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .faq-content {
+    padding: 0 0.5rem 1rem;
+  }
+  
+  .content-container {
+    gap: 1rem;
   }
 }
 </style>
