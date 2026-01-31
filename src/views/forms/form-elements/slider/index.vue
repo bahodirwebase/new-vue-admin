@@ -45,16 +45,4 @@ import InteractiveSlider from './widgets/InteractiveSlider.vue'
   max-width: 100%;
 }
 
-.page-title {
-  font-family: var(--font-secondary);
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.page-subtitle {
-  font-size: 16px;
-  color: var(--text-secondary);
-}
 </style>

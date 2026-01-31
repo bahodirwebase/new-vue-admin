@@ -10,7 +10,7 @@ import ProductInputNumber from './widgets/ProductInputNumber.vue'
 </script>
 
 <template>
-  <div class="input-number-demo">
+  <div class="input-number-demo p-0">
     <n-space vertical :size="18">
       <div class="page-header">
         <h1 class="page-title">Input Number</h1>
@@ -37,20 +37,5 @@ import ProductInputNumber from './widgets/ProductInputNumber.vue'
 </template>
 
 <style scoped>
-.input-number-demo {
-  padding: 0;
-}
 
-.page-title {
-  font-family: var(--font-secondary);
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.page-subtitle {
-  font-size: 16px;
-  color: var(--text-secondary);
-}
 </style>

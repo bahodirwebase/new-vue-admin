@@ -9,7 +9,7 @@ import SizesRadio from './widgets/SizesRadio.vue'
 </script>
 
 <template>
-  <div class="radio-demo">
+  <div class="radio-demo p-0">
     <n-space vertical :size="18">
       <div class="page-header">
         <h1 class="page-title">Radio</h1>
@@ -34,20 +34,4 @@ import SizesRadio from './widgets/SizesRadio.vue'
 </template>
 
 <style scoped>
-.radio-demo {
-  padding: 0;
-}
-
-.page-title {
-  font-family: var(--font-secondary);
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.page-subtitle {
-  font-size: 16px;
-  color: var(--text-secondary);
-}
 </style>

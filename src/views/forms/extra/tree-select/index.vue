@@ -10,7 +10,7 @@ import FileExplorerTreeSelect from './widgets/FileExplorerTreeSelect.vue'
 </script>
 
 <template>
-  <div class="tree-select-demo">
+  <div class="tree-select-demo p-0">
     <n-space vertical :size="18">
       <div class="page-header">
         <h1 class="page-title">Tree Select</h1>
@@ -37,20 +37,4 @@ import FileExplorerTreeSelect from './widgets/FileExplorerTreeSelect.vue'
 </template>
 
 <style scoped>
-.tree-select-demo {
-  padding: 0;
-}
-
-.page-title {
-  font-family: var(--font-secondary);
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.page-subtitle {
-  font-size: 16px;
-  color: var(--text-secondary);
-}
 </style>

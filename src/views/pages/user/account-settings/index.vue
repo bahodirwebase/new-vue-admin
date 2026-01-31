@@ -19,7 +19,7 @@ const handleSaveAllSettings = async () => {
 </script>
 
 <template>
-  <div class="account-settings">
+  <div class="account-settings p-0">
     <!-- Page Header -->
     <div class="page-header">
       <div class="header-content">
@@ -60,9 +60,6 @@ const handleSaveAllSettings = async () => {
 </template>
 
 <style scoped lang="scss">
-.account-settings {
-  padding: 0;
-}
 
 .page-header {
   margin-bottom: 2rem;
@@ -82,18 +79,6 @@ const handleSaveAllSettings = async () => {
   flex: 1;
 }
 
-.page-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin: 0 0 0.5rem 0;
-}
-
-.page-description {
-  color: var(--text-secondary);
-  font-size: 1rem;
-  margin: 0;
-}
 
 .header-actions {
   margin-left: 2rem;

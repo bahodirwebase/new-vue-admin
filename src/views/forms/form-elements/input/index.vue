@@ -8,7 +8,7 @@ import ValidationInput from './widgets/ValidationInput.vue'
 </script>
 
 <template>
-  <div class="input-demo">
+  <div class="input-demo p-0">
     <n-space vertical :size="18">
       <div class="page-header">
         <h1 class="page-title">Input</h1>
@@ -32,20 +32,4 @@ import ValidationInput from './widgets/ValidationInput.vue'
 </template>
 
 <style scoped>
-.input-demo {
-  padding: 0;
-}
-
-.page-title {
-  font-family: var(--font-secondary);
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.page-subtitle {
-  font-size: 16px;
-  color: var(--text-secondary);
-}
 </style>

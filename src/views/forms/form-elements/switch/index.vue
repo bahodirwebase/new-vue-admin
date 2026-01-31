@@ -10,7 +10,7 @@ import FormSwitch from './widgets/FormSwitch.vue'
 </script>
 
 <template>
-  <div class="switch-demo">
+  <div class="switch-demo p-0">
     <n-space vertical :size="18">
       <div class="page-header">
         <h1 class="page-title">Switch</h1>
@@ -36,20 +36,4 @@ import FormSwitch from './widgets/FormSwitch.vue'
 </template>
 
 <style scoped>
-.switch-demo {
-  padding: 0;
-}
-
-.page-title {
-  font-family: var(--font-secondary);
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.page-subtitle {
-  font-size: 16px;
-  color: var(--text-secondary);
-}
 </style>

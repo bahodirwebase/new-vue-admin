@@ -305,6 +305,9 @@
 .ml-8 {
   margin-left: 32px;
 }
+.p-0{
+  padding : 0;
+}
 
 .p-1 {
   padding: 4px;
@@ -498,4 +501,14 @@
 .page-subtitle {
   font-size: 16px;
   color: var(--text-secondary);
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 24px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+  }
 }

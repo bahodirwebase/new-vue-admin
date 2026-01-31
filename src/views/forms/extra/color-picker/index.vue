@@ -9,7 +9,7 @@ import ThemeColorPicker from './widgets/ThemeColorPicker.vue'
 </script>
 
 <template>
-  <div class="color-picker-demo">
+  <div class="color-picker-demo p-0">
     <n-space vertical :size="18">
       <div class="page-header">
         <h1 class="page-title">Color Picker</h1>
@@ -35,20 +35,4 @@ import ThemeColorPicker from './widgets/ThemeColorPicker.vue'
 </template>
 
 <style scoped>
-.color-picker-demo {
-  padding: 0;
-}
-
-.page-title {
-  font-family: var(--font-secondary);
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.page-subtitle {
-  font-size: 16px;
-  color: var(--text-secondary);
-}
 </style>

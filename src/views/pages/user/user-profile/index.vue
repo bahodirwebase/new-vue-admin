@@ -9,7 +9,7 @@ import EditProfileModal from './widgets/EditProfileModal.vue'
 </script>
 
 <template>
-  <div class="user-profile">
+  <div class="user-profile p-0">
     <!-- Profile Header -->
     <ProfileHeader />
 
@@ -37,10 +37,6 @@ import EditProfileModal from './widgets/EditProfileModal.vue'
 </template>
 
 <style scoped lang="scss">
-.user-profile {
-  padding: 0;
-}
-
 .profile-content {
   max-width: 1200px;
   margin: 0 auto;

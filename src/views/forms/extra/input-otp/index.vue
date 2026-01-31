@@ -9,7 +9,7 @@ import TwoFactorInputOtp from './widgets/TwoFactorInputOtp.vue'
 </script>
 
 <template>
-  <div class="input-otp-demo">
+  <div class="input-otp-demo p-0">
     <n-space vertical :size="18">
       <div class="page-header">
         <h1 class="page-title">Input OTP</h1>
@@ -34,20 +34,4 @@ import TwoFactorInputOtp from './widgets/TwoFactorInputOtp.vue'
 </template>
 
 <style scoped>
-.input-otp-demo {
-  padding: 0;
-}
-
-.page-title {
-  font-family: var(--font-secondary);
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.page-subtitle {
-  font-size: 16px;
-  color: var(--text-secondary);
-}
 </style>

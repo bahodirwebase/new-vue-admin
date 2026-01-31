@@ -11,7 +11,7 @@ import EventDatePicker from './widgets/EventDatePicker.vue'
 </script>
 
 <template>
-  <div class="datepicker-demo">
+  <div class="datepicker-demo p-0">
     <n-space vertical :size="18">
       <div class="page-header">
         <h1 class="page-title">Date Picker</h1>
@@ -38,20 +38,4 @@ import EventDatePicker from './widgets/EventDatePicker.vue'
 </template>
 
 <style scoped>
-.datepicker-demo {
-  padding: 0;
-}
-
-.page-title {
-  font-family: var(--font-secondary);
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-}
-
-.page-subtitle {
-  font-size: 16px;
-  color: var(--text-secondary);
-}
 </style>
