@@ -40,7 +40,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'pages/user/faq',
         name: 'Faq',
-        component: () => import('@/views/pages/user/Faq.vue'),
+        component: () => import('@/views/pages/user/faq/index.vue'),
         meta: { title: 'FAQ', icon: 'help-circle-outline', group: 'Pages', subgroup: 'User' }
       }
     ]
