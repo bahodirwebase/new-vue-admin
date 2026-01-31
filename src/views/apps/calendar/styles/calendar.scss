@@ -129,9 +129,21 @@
         color: var(--text-primary);
     }
 
+    .month-view {
+        width: 100%;
+    }
+
+    .month-view-wrapper {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
     /* Calendar Styles */
     .custom-calendar {
         padding: 16px;
+        min-width: 100%;
+        flex-shrink: 0;   
     }
 
     .calendar-day-content {

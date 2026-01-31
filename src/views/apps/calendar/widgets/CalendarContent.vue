@@ -18,22 +18,24 @@ const { getEventsForDate, weekRange, weekDays, getEventsForDay, selectedDayForma
         <!-- Month View -->
         <div v-if="calendarStore.currentView === 'month'" class="month-view">
 
-            <n-calendar  v-model:value="calendarStore.activeDate" #default="{ year, month, date }"
-                class="custom-calendar">
-                <div class="calendar-day-content">
-                    <div class="day-number">{{ date }}</div>
-                    <div v-if="getEventsForDate(year, month, date).length > 0" class="event-indicators">
-                        <div v-for="event in getEventsForDate(year, month, date).slice(
-                            0,
-                            3
-                        )" :key="event.id" class="event-dot" :style="{ backgroundColor: event.color }"
-                            :title="event.title"></div>
-                        <div v-if="getEventsForDate(year, month, date).length > 3" class="more-events">
-                            +{{ getEventsForDate(year, month, date).length - 3 }}
+            <div class="month-view-wrapper">
+                <n-calendar v-model:value="calendarStore.activeDate" #default="{ year, month, date }"
+                    class="custom-calendar">
+                    <div class="calendar-day-content">
+                        <div class="day-number">{{ date }}</div>
+                        <div v-if="getEventsForDate(year, month, date).length > 0" class="event-indicators">
+                            <div v-for="event in getEventsForDate(year, month, date).slice(
+                                0,
+                                3
+                            )" :key="event.id" class="event-dot" :style="{ backgroundColor: event.color }"
+                                :title="event.title"></div>
+                            <div v-if="getEventsForDate(year, month, date).length > 3" class="more-events">
+                                +{{ getEventsForDate(year, month, date).length - 3 }}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </n-calendar>
+                </n-calendar>
+            </div>
         </div>
 
         <!-- Week View -->
