@@ -22,7 +22,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'pages/user/user-profile',
         name: 'UserProfile',
-        component: () => import('@/views/pages/user/UserProfile.vue'),
+        component: () => import('@/views/pages/user/user-profile/index.vue'),
         meta: { title: 'User Profile', icon: 'person-circle-outline', group: 'Pages', subgroup: 'User' }
       },
       {
@@ -34,7 +34,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'pages/user/pricing',
         name: 'Pricing',
-        component: () => import('@/views/pages/user/Pricing.vue'),
+        component: () => import('@/views/pages/user/pricing/index.vue'),
         meta: { title: 'Pricing', icon: 'card-outline', group: 'Pages', subgroup: 'User' }
       },
       {
