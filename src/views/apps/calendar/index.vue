@@ -14,7 +14,7 @@ onMounted(() => {
 });
 </script>
 <template>
-  <div class="calendar-app">
+  <div class="calendar-app p-0">
     <n-space vertical :size="18">
       <div class="page-header">
         <h1 class="page-title">Calendar</h1>

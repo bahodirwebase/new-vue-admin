@@ -18,7 +18,7 @@ const { getEventsForDate, weekRange, weekDays, getEventsForDay, selectedDayForma
         <!-- Month View -->
         <div v-if="calendarStore.currentView === 'month'" class="month-view">
 
-            <n-calendar v-model:value="calendarStore.activeDate" #default="{ year, month, date }"
+            <n-calendar  v-model:value="calendarStore.activeDate" #default="{ year, month, date }"
                 class="custom-calendar">
                 <div class="calendar-day-content">
                     <div class="day-number">{{ date }}</div>

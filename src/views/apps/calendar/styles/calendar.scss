@@ -102,6 +102,12 @@
     /* Calendar Content */
     .calendar-content {
         height: fit-content;
+        width: 100%;
+        // overflow-x: auto;
+    }
+
+    .calendar-content :deep(.n-calendar) {
+        min-width: 600px;
     }
 
     .calendar-card {
@@ -474,71 +480,7 @@
         .stats-grid {
             grid-template-columns: 1fr;
         }
+
     }
 
-    /* Calendar Active Day - Light primary background */
-    :deep(.n-calendar-cell--current) {
-        background-color: rgba(102, 126, 234, 0.1) !important;
-    }
-
-    :deep(.n-calendar-cell--selected) {
-        background-color: rgba(102, 126, 234, 0.2) !important;
-    }
-
-    /* Dark mode specific styles */
-    [data-theme="dark"] .calendar-header {
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    [data-theme="dark"] .sidebar-card {
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    [data-theme="dark"] .calendar-card {
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    }
-
-    [data-theme="dark"] .event-modal {
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Enhanced hover effects for dark mode */
-    [data-theme="dark"] .stat-card:hover {
-        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
-    }
-
-    [data-theme="dark"] .event-item:hover {
-        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
-    }
-
-    /* Dark theme for calendar cells - enhanced */
-    @media (prefers-color-scheme: dark) {
-        :deep(.n-calendar) {
-            background-color: var(--bg-secondary) !important;
-            border: 1px solid var(--border-color) !important;
-        }
-
-        :deep(.n-calendar .n-calendar-day) {
-            color: var(--text-primary) !important;
-            border-color: var(--border-color) !important;
-        }
-
-        :deep(.n-calendar .n-calendar-day:hover) {
-            background-color: var(--bg-tertiary) !important;
-        }
-
-        :deep(.n-calendar .n-calendar-day.n-calendar-cell--today) {
-            background-color: rgba(99, 102, 241, 0.15) !important;
-        }
-
-        :deep(.n-calendar .n-calendar-weekdays) {
-            color: var(--text-secondary) !important;
-            border-color: var(--border-color) !important;
-        }
-
-        :deep(.n-calendar .n-calendar-month) {
-            color: var(--text-secondary) !important;
-            border-color: var(--border-color) !important;
-        }
-    }
 }

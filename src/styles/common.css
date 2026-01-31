@@ -306,7 +306,7 @@
   margin-left: 32px;
 }
 .p-0{
-  padding : 0;
+  padding : 0 !important;
 }
 
 .p-1 {
