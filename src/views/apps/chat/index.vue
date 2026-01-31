@@ -7,23 +7,43 @@ import SettingsModal from "./widgets/SettingsModal.vue";
 </script>
 <template>
   <div class="chat-app">
-    <div class="chat-layout">
-      <!-- Sidebar -->
-      <ChatSidebar />
+    <n-space vertical :size="18">
+      <div class="page-header">
+        <h1 class="page-title">Chat</h1>
+        <p class="page-subtitle">Real-time messaging application with chat rooms, file sharing, and user management</p>
+      </div>
+      
+      <div class="chat-layout">
+        <!-- Sidebar -->
+        <ChatSidebar />
 
-      <!-- Main Chat Area -->
-      <ChatMain />
+        <!-- Main Chat Area -->
+        <ChatMain />
 
-      <!-- Chat Info Sidebar -->
-      <ChatInfoSidebar />
-    </div>
+        <!-- Chat Info Sidebar -->
+        <ChatInfoSidebar />
+      </div>
 
-    <!-- Modals -->
-    <EditProfilModal />
-    <SettingsModal />
+      <!-- Modals -->
+      <EditProfilModal />
+      <SettingsModal />
+    </n-space>
   </div>
 </template>
 
 <style lang="scss">
 @use "./styles/chat.scss";
+
+.page-title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
 </style>

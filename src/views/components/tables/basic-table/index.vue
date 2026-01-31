@@ -17,27 +17,47 @@ const refreshData = () => {
 
 <template>
   <div class="basic-table">
-    <n-card title="Basic Table" class="table-card">
-      <template #header-extra>
-        <n-space>
-          <n-button @click="refreshData" type="primary" size="small">
-            <n-icon :component="RefreshOutline" />
-            Refresh
-          </n-button>
-        </n-space>
-      </template>
+    <n-space vertical :size="18">
+      <div class="page-header">
+        <h1 class="page-title">Basic Table</h1>
+        <p class="page-subtitle">Simple and styled table components with various layout options</p>
+      </div>
+      
+      <n-card class="table-card">
+        <template #header-extra>
+          <n-space>
+            <n-button @click="refreshData" type="primary" size="small">
+              <n-icon :component="RefreshOutline" />
+              Refresh
+            </n-button>
+          </n-space>
+        </template>
 
-      <n-space vertical :size="24">
-        <SimpleTable />
-        <BorderedTable />
-        <StripedTable />
-        <SmallTable />
-        <StyledTable />
-      </n-space>
-    </n-card>
+        <n-space vertical :size="24">
+          <SimpleTable />
+          <BorderedTable />
+          <StripedTable />
+          <SmallTable />
+          <StyledTable />
+        </n-space>
+      </n-card>
+    </n-space>
   </div>
 </template>
 
 <style lang="scss">
 @use './styles/basic-table.scss';
+
+.page-title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
 </style>

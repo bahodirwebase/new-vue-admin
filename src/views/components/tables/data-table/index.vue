@@ -107,34 +107,40 @@ const exportData = () => {
 
 <template>
   <div class="data-table">
-    <n-card title="Data Table" class="table-card">
-      <template #header-extra>
-        <n-space>
-          <n-button @click="showAddModal = true" type="primary" size="small">
-            <n-icon :component="AddOutline" />
-            Add User
-          </n-button>
-          <n-button @click="exportData" type="info" size="small">
-            <n-icon :component="DownloadOutline" />
-            Export
-          </n-button>
-          <n-button @click="refreshData" type="default" size="small">
-            <n-icon :component="RefreshOutline" />
-            Refresh
-          </n-button>
-        </n-space>
-      </template>
+    <n-space vertical :size="18">
+      <div class="page-header">
+        <h1 class="page-title">Data Table</h1>
+        <p class="page-subtitle">Advanced data table with search, filtering, pagination, and user management features</p>
+      </div>
+      
+      <n-card class="table-card">
+        <template #header-extra>
+          <n-space>
+            <n-button @click="showAddModal = true" type="primary" size="small">
+              <n-icon :component="AddOutline" />
+              Add User
+            </n-button>
+            <n-button @click="exportData" type="info" size="small">
+              <n-icon :component="DownloadOutline" />
+              Export
+            </n-button>
+            <n-button @click="refreshData" type="default" size="small">
+              <n-icon :component="RefreshOutline" />
+              Refresh
+            </n-button>
+          </n-space>
+        </template>
 
-      <SearchFilters 
-        v-model:search-text="searchText"
-        v-model:status-filter="statusFilter"
-        v-model:role-filter="roleFilter"
-        @search="handleSearch"
-        @filter="handleFilter"
-      />
+        <SearchFilters 
+          v-model:search-text="searchText"
+          v-model:status-filter="statusFilter"
+          v-model:role-filter="roleFilter"
+          @search="handleSearch"
+          @filter="handleFilter"
+        />
 
-      <AdvancedTable 
-        :data="filteredData"
+        <AdvancedTable 
+          :data="filteredData"
         :loading="loading"
         :pagination="pagination"
         @update:page="handlePageChange"
@@ -147,15 +153,29 @@ const exportData = () => {
         :pending-users="pendingUsers"
         :inactive-users="inactiveUsers"
       />
-    </n-card>
+      </n-card>
 
-    <AddUserModal 
-      v-model:show="showAddModal"
-      @add="handleAddUser"
-    />
+      <AddUserModal 
+        v-model:show="showAddModal"
+        @add="handleAddUser"
+      />
+    </n-space>
   </div>
 </template>
 
 <style lang="scss">
 @use './styles/data-table.scss';
+
+.page-title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
 </style>

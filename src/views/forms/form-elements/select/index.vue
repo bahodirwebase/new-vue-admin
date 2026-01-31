@@ -9,7 +9,12 @@ import GroupedSelect from './widgets/GroupedSelect.vue'
 
 <template>
   <div class="select-demo">
-    <n-space vertical :size="24">
+    <n-space vertical :size="18">
+      <div class="page-header">
+        <h1 class="page-title">Select</h1>
+        <p class="page-subtitle">Advanced select components with multiple selection, search, and grouped options</p>
+      </div>
+      
       <n-grid :cols="2" :x-gap="12">
         <n-gi>
           <BasicSelect />
@@ -29,5 +34,18 @@ import GroupedSelect from './widgets/GroupedSelect.vue'
 <style scoped>
 .select-demo {
   padding: 0;
+}
+
+.page-title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
 }
 </style>

@@ -10,7 +10,12 @@ import EmailAutoComplete from './widgets/EmailAutoComplete.vue'
 
 <template>
   <div class="autocomplete-demo">
-    <n-space vertical :size="24">
+    <n-space vertical :size="18">
+      <div class="page-header">
+        <h1 class="page-title">Auto Complete</h1>
+        <p class="page-subtitle">Smart autocomplete components with filtering, async loading, and custom suggestions</p>
+      </div>
+      
       <n-grid x-gap="12" :cols="2">
         <n-gi>
           <BasicAutoComplete />
@@ -31,5 +36,18 @@ import EmailAutoComplete from './widgets/EmailAutoComplete.vue'
 <style scoped>
 .autocomplete-demo {
   padding: 0;
+}
+
+.page-title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
 }
 </style>

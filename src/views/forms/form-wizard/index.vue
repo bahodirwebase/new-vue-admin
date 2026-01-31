@@ -1,6 +1,11 @@
 <template>
   <div class="form-wizard-demo">
-    <n-space vertical :size="24">
+    <n-space vertical :size="18">
+      <div class="page-header">
+        <h1 class="page-title">Form Wizard</h1>
+        <p class="page-subtitle">Multi-step form wizards with validation and progress tracking</p>
+      </div>
+      
       <!-- Simple Wizard Selection -->
       <SimpleWizardSelection />
 
@@ -12,8 +17,6 @@
 
       <!-- Comprehensive Wizard -->
       <ComprehensiveWizard />
-
-
     </n-space>
   </div>
 </template>
@@ -30,30 +33,43 @@ import ComprehensiveWizard from './widgets/ComprehensiveWizard.vue'
 <style lang="scss">
 .form-wizard-demo {
   padding: 0;
+}
 
-  .wizard-content {
-    margin: 24px 0;
-    min-height: 400px;
-  }
+.page-title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
 
-  .step-content h3 {
-    margin-bottom: 20px;
-    color: var(--text-primary);
-  }
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
 
-  .wizard-navigation {
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-color);
-  }
+.wizard-content {
+  margin: 24px 0;
+  min-height: 400px;
+}
 
-  .n-code {
-    max-height: 400px;
-    overflow-y: auto;
-  }
+.step-content h3 {
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
 
-  .n-p {
-    margin: 0;
-  }
+.wizard-navigation {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.n-code {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.n-p {
+  margin: 0;
 }
 </style>

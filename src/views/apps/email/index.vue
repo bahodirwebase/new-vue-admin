@@ -115,28 +115,34 @@ onMounted(() => {
 
 <template>
   <div class="email-app">
-    <div class="email-layout">
-      <!-- Sidebar -->
-      <aside class="email-sidebar" v-if="isDesktop">
-        <EmailSidebar @compose="openCompose" />
-      </aside>
+    <n-space vertical :size="18">
+      <div class="page-header">
+        <h1 class="page-title">Email</h1>
+        <p class="page-subtitle">Advanced email client with inbox management, compose, and organizational features</p>
+      </div>
+      
+      <div class="email-layout">
+        <!-- Sidebar -->
+        <aside class="email-sidebar" v-if="isDesktop">
+          <EmailSidebar @compose="openCompose" />
+        </aside>
 
-      <!-- Main Email Area -->
-      <main class="email-main">
-        <!-- Header -->
-        <header class="email-header">
-          <div class="header-left d-flex align-center gap-3">
-            <n-button
-              v-if="!isDesktop || selectedEmail"
-              quaternary
-              @click="goBack"
-            >
-              <template #icon>
-                <n-icon>
-                  <ArrowBackOutline />
-                </n-icon>
-              </template>
-            </n-button>
+        <!-- Main Email Area -->
+        <main class="email-main">
+          <!-- Header -->
+          <header class="email-header">
+            <div class="header-left d-flex align-center gap-3">
+              <n-button
+                v-if="!isDesktop || selectedEmail"
+                quaternary
+                @click="goBack"
+              >
+                <template #icon>
+                  <n-icon>
+                    <ArrowBackOutline />
+                  </n-icon>
+                </template>
+              </n-button>
             
             <h2 class="header-title m-0">
               {{ emailStore.isStarredView ? 'Starred' : (currentFolder === 'inbox' ? 'Inbox' : currentFolder.charAt(0).toUpperCase() + currentFolder.slice(1)) }}
@@ -279,9 +285,23 @@ onMounted(() => {
     <!-- Modals -->
     <ComposeModal v-model:show="showCompose" />
     <EmailSettings v-model:show="showSettings" />
-  </div>
+  </n-space>
+</div>
 </template>
 
 <style lang="scss">
 @use "./styles/email.scss";
+
+.page-title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
 </style>

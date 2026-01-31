@@ -15,21 +15,28 @@ onMounted(() => {
 </script>
 <template>
   <div class="calendar-app">
-    <!-- Main Content -->
-    <main class="calendar-main">
-      <!-- Sidebar -->
-      <aside class="calendar-sidebar">
-          <calendar-sidebar></calendar-sidebar>
-      </aside>
+    <n-space vertical :size="18">
+      <div class="page-header">
+        <h1 class="page-title">Calendar</h1>
+        <p class="page-subtitle">Interactive calendar with event management, scheduling, and organization features</p>
+      </div>
+      
+      <!-- Main Content -->
+      <main class="calendar-main">
+        <!-- Sidebar -->
+        <aside class="calendar-sidebar">
+            <calendar-sidebar></calendar-sidebar>
+        </aside>
 
-      <!-- Calendar Content -->
-      <section class="calendar-content">
-        <calendar-content></calendar-content>
-      </section>
-    </main>
+        <!-- Calendar Content -->
+        <section class="calendar-content">
+          <calendar-content></calendar-content>
+        </section>
+      </main>
 
-    <!-- Event Modal -->
-    <event-modal></event-modal>
+      <!-- Event Modal -->
+      <event-modal></event-modal>
+    </n-space>
   </div>
 </template>
 
@@ -37,4 +44,17 @@ onMounted(() => {
 
 <style lang="scss">
 @use "./styles/calendar.scss";
+
+.page-title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
 </style>

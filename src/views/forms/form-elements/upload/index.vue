@@ -12,7 +12,12 @@ import ProfileUpload from './widgets/ProfileUpload.vue'
 
 <template>
   <div class="upload-demo">
-    <n-space vertical :size="24">
+    <n-space vertical :size="18">
+      <div class="page-header">
+        <h1 class="page-title">Upload</h1>
+        <p class="page-subtitle">File upload components with drag-drop, progress tracking, and validation features</p>
+      </div>
+      
       <n-grid :cols="2" :x-gap="12">
         <n-gi>
           <BasicUpload />
@@ -28,8 +33,6 @@ import ProfileUpload from './widgets/ProfileUpload.vue'
           <ProfileUpload />
         </n-gi>
       </n-grid>
-      
-      
     </n-space>
   </div>
 </template>
@@ -37,5 +40,18 @@ import ProfileUpload from './widgets/ProfileUpload.vue'
 <style scoped>
 .upload-demo {
   padding: 0;
+}
+
+.page-title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
 }
 </style>

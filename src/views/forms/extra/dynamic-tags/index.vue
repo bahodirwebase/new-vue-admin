@@ -10,7 +10,12 @@ import ProjectDynamicTags from './widgets/ProjectDynamicTags.vue'
 
 <template>
   <div class="dynamic-tags-demo">
-    <n-space vertical :size="24">
+    <n-space vertical :size="18">
+      <div class="page-header">
+        <h1 class="page-title">Dynamic Tags</h1>
+        <p class="page-subtitle">Flexible tag management components with validation, presets, and custom styling options</p>
+      </div>
+      
       <n-grid :x-gap="12" :cols="2">
         <n-gi>
           <BasicDynamicTags />
@@ -31,5 +36,18 @@ import ProjectDynamicTags from './widgets/ProjectDynamicTags.vue'
 <style scoped>
 .dynamic-tags-demo {
   padding: 0;
+}
+
+.page-title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
 }
 </style>

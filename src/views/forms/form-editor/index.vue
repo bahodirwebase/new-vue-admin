@@ -1,16 +1,22 @@
 <template>
   <div class="form-editor">
-    <n-card title="Form Editor" >
-      <template #header-extra>
-        <n-space>
-          <n-button @click="clearEditor" type="warning" size="small">
-            Clear
-          </n-button>
-          <n-button @click="saveContent" type="primary" size="small">
-            Save
-          </n-button>
-        </n-space>
-      </template>
+    <n-space vertical :size="18">
+      <div class="page-header">
+        <h1 class="page-title">Form Editor</h1>
+        <p class="page-subtitle">Advanced rich text editor with formatting tools and content management</p>
+      </div>
+      
+      <n-card title="Editor" >
+        <template #header-extra>
+          <n-space>
+            <n-button @click="clearEditor" type="warning" size="small">
+              Clear
+            </n-button>
+            <n-button @click="saveContent" type="primary" size="small">
+              Save
+            </n-button>
+          </n-space>
+        </template>
 
       <!-- Editor Toolbar -->
       <div class="editor-toolbar">
@@ -106,6 +112,7 @@
     <n-card title="Preview" class="preview-card" v-if="content">
       <div v-html="content" class="preview-content"></div>
     </n-card>
+    </n-space>
   </div>
 </template>
 
@@ -192,6 +199,18 @@ onBeforeUnmount(() => {
   gap: 16px;
 }
 
+.page-title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
 
 .editor-toolbar {
   padding: 12px;

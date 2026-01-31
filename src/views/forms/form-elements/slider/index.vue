@@ -13,7 +13,12 @@ import InteractiveSlider from './widgets/InteractiveSlider.vue'
 
 <template>
   <div class="slider-demo">
-    <n-space vertical :size="24">
+    <n-space vertical :size="18">
+      <div class="page-header">
+        <h1 class="page-title">Slider</h1>
+        <p class="page-subtitle">Interactive slider components with ranges, steps, marks, and custom styling options</p>
+      </div>
+      
       <n-grid :cols="2" :x-gap="12">
         <n-gi>
           <BasicSlider />
@@ -38,5 +43,18 @@ import InteractiveSlider from './widgets/InteractiveSlider.vue'
 <style scoped>
 .slider-demo {
   max-width: 100%;
+}
+
+.page-title {
+  font-family: var(--font-secondary);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
 }
 </style>
