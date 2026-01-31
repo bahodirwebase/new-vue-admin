@@ -15,7 +15,7 @@ import AdvancedTooltips from './widgets/AdvancedTooltips.vue'
         <p class="page-subtitle">Contextual hints and additional information on hover or focus</p>
       </div>
 
-      <n-grid x-gap="12" :cols="2" >
+      <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>
           <BasicTooltips />
           <TooltipTriggers />

@@ -16,7 +16,7 @@ import TeamDynamicInput from './widgets/TeamDynamicInput.vue'
         <p class="page-subtitle">Flexible dynamic input components with validation, presets, and custom configurations</p>
       </div>
       
-      <n-grid :x-gap="12" :cols="2">
+      <n-grid :x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>
           <BasicDynamicInput />
           <PresetsDynamicInput />

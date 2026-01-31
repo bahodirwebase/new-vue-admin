@@ -15,7 +15,7 @@ import ValidationInput from './widgets/ValidationInput.vue'
         <p class="page-subtitle">Comprehensive input components with validation, states, and custom styling options</p>
       </div>
       
-      <n-grid :cols="2" :x-gap="12">
+      <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>
           <BasicInput />
           <TypesInput />

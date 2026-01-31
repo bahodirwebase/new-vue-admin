@@ -16,7 +16,7 @@ import EmailAutoComplete from './widgets/EmailAutoComplete.vue'
         <p class="page-subtitle">Smart autocomplete components with filtering, async loading, and custom suggestions</p>
       </div>
       
-      <n-grid x-gap="12" :cols="2">
+      <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>
           <BasicAutoComplete />
           <FilterAutoComplete />

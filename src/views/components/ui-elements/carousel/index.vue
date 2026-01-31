@@ -15,7 +15,7 @@ import CarouselDirections from './widgets/CarouselDirections.vue'
         <p class="page-subtitle">A slideshow component for cycling through elements—images or slides of text</p>
       </div>
 
-      <n-grid x-gap="12" :cols="2">
+      <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>
           <BasicCarousel />
           <CarouselControls />

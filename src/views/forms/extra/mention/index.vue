@@ -16,7 +16,7 @@ import CommentMention from './widgets/CommentMention.vue'
         <p class="page-subtitle">Advanced mention components with async loading, validation, and custom styling options</p>
       </div>
       
-      <n-grid :cols="2" :x-gap="12">
+      <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>
           <BasicMention />
           <PrefixMention />

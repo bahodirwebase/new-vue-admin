@@ -18,7 +18,7 @@ import RealWorldExamples from './widgets/RealWorldExamples.vue'
         <p class="page-subtitle">Comprehensive page headers with navigation, breadcrumbs, and actions</p>
       </div>
       
-      <n-grid x-gap="12" :cols="2">
+      <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>
           <n-card title="Basic Headers">
             <BasicHeaders />

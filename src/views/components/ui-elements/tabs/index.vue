@@ -15,7 +15,7 @@ import TabFeatures from './widgets/TabFeatures.vue'
         <p class="page-subtitle">Organized content sections with tabbed navigation</p>
       </div>
 
-      <n-grid x-gap="12" :cols="2" >
+      <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>
           <BasicTabs />
           <TabTypes />

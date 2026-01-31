@@ -17,7 +17,7 @@ import FormSwitch from './widgets/FormSwitch.vue'
         <p class="page-subtitle">Toggle switch components with labels, custom values, events, and form integration</p>
       </div>
       
-      <n-grid cols="2" :x-gap="12">
+      <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>
           <BasicSwitch />
           <LabelsSwitch />

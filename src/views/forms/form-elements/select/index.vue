@@ -15,7 +15,7 @@ import GroupedSelect from './widgets/GroupedSelect.vue'
         <p class="page-subtitle">Advanced select components with multiple selection, search, and grouped options</p>
       </div>
       
-      <n-grid :cols="2" :x-gap="12">
+      <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>
           <BasicSelect />
           <MultipleSelect />

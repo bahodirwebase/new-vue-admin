@@ -17,7 +17,7 @@ import IconButtons from './widgets/IconButtons.vue'
         <p class="page-subtitle">Interactive buttons for actions, forms, and navigation</p>
       </div>
 
-      <n-grid x-gap="12" :cols="2" >
+      <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>
           <ButtonTypes />
           <ButtonSizes />

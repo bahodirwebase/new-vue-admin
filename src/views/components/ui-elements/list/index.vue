@@ -18,7 +18,7 @@ import ComplexList from './widgets/ComplexList.vue'
         <p class="page-subtitle">Organized lists for displaying data, menus, and content</p>
       </div>
 
-      <n-grid x-gap="12" :cols="2" >
+      <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>
           <BasicList />
           <ListWithIcons />

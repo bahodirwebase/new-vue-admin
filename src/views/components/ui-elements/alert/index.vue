@@ -16,7 +16,7 @@ import AlertTypes from './widgets/AlertTypes.vue'
                 <p class="page-subtitle">Contextual feedback messages for user notifications and system status</p>
             </div>
 
-            <n-grid x-gap="12" :cols="2">
+            <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
                 <n-gi>
                     <AlertTypes />
                     <ClosablesAlerts />

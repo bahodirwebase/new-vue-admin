@@ -16,7 +16,7 @@ import ThemeColorPicker from './widgets/ThemeColorPicker.vue'
         <p class="page-subtitle">Advanced color selection components with various modes and customization options</p>
       </div>
       
-      <n-grid :cols="2" :x-gap="12">
+      <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>
           <BasicColorPicker />
           <AlphaColorPicker />

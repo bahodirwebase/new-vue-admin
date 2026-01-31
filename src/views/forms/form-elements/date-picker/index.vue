@@ -18,7 +18,7 @@ import EventDatePicker from './widgets/EventDatePicker.vue'
         <p class="page-subtitle">Advanced date selection components with ranges, shortcuts, and custom formatting</p>
       </div>
       
-      <n-grid x-gap="12" :cols="2">
+      <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>
           <BasicDatePicker />
           <RangeDatePicker />

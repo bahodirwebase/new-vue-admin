@@ -17,7 +17,7 @@ import UsageExamples from './widgets/UsageExamples.vue'
         <p class="page-subtitle">Beautiful gradient text effects with customizable colors and animations</p>
       </div>
 
-      <n-grid x-gap="12" :cols="2">
+      <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>
           <n-card title="Basic Gradients">
             <BasicGradients />

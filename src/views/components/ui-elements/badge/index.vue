@@ -16,7 +16,7 @@ import BadgeOnAvatars from './widgets/BadgeOnAvatars.vue'
         <p class="page-subtitle">Status indicators, notifications, and count badges</p>
       </div>
 
-      <n-grid x-gap="12" :cols="2" >
+      <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>
           <BadgeTypes />
           <BadgePositions />

@@ -16,7 +16,7 @@ import SizesRadio from './widgets/SizesRadio.vue'
         <p class="page-subtitle">Interactive radio button components with custom styling, icons, and various layout options</p>
       </div>
       
-      <n-grid :cols="2" :x-gap="12">
+      <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>
           <BasicRadio />
           <ButtonRadio />

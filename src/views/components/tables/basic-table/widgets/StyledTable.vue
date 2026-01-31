@@ -17,6 +17,7 @@ const rowClassName = (row: any) => {
       :data="STYLED_SAMPLE_DATA"
       :pagination="false"
       :row-class-name="rowClassName"
+      scroll-x="600"
     />
   </div>
 </template>

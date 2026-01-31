@@ -18,7 +18,7 @@ import ProfileUpload from './widgets/ProfileUpload.vue'
         <p class="page-subtitle">File upload components with drag-drop, progress tracking, and validation features</p>
       </div>
       
-      <n-grid :cols="2" :x-gap="12">
+      <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>
           <BasicUpload />
           <MultipleUpload />

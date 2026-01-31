@@ -11,6 +11,7 @@ import { SIMPLE_COLUMNS, SAMPLE_DATA } from '../constants'
       :data="SAMPLE_DATA"
       :pagination="false"
       size="small"
+      scroll-x="600"
     />
   </div>
 </template>

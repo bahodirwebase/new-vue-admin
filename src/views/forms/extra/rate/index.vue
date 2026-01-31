@@ -18,7 +18,7 @@ import ReviewRate from './widgets/ReviewRate.vue'
         <p class="page-subtitle">Interactive rating components with customization options, tooltips, and review features</p>
       </div>
       
-      <n-grid :cols="2" :x-gap="12">
+      <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>
           <BasicRate />
           <CountRate />

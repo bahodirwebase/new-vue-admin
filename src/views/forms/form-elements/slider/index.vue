@@ -19,7 +19,7 @@ import InteractiveSlider from './widgets/InteractiveSlider.vue'
         <p class="page-subtitle">Interactive slider components with ranges, steps, marks, and custom styling options</p>
       </div>
       
-      <n-grid :cols="2" :x-gap="12">
+      <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>
           <BasicSlider />
           <RangeSlider />

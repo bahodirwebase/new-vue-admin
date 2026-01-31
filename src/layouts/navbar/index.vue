@@ -22,7 +22,7 @@
                 <ThemeSwitcher class="nav-item" />
                 <FullScreen v-if="!isMobile" class="nav-item" />
                 <Language class="nav-item" />
-                <Apps class="nav-item" />
+                <Apps v-if="!isMobile" class="nav-item" />
                 <Notification class="nav-item" />
                 <Account class="nav-item" />
             </n-space>

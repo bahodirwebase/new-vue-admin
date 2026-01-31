@@ -16,7 +16,7 @@ import TwoFactorInputOtp from './widgets/TwoFactorInputOtp.vue'
         <p class="page-subtitle">One-time password input components with validation, auto-focus, and two-factor authentication</p>
       </div>
       
-      <n-grid :cols="2" :x-gap="12">
+      <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>
           <BasicInputOtp />
           <LengthsInputOtp />

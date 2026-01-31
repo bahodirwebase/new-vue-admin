@@ -16,7 +16,7 @@ import ProjectDynamicTags from './widgets/ProjectDynamicTags.vue'
         <p class="page-subtitle">Flexible tag management components with validation, presets, and custom styling options</p>
       </div>
       
-      <n-grid :x-gap="12" :cols="2">
+      <n-grid :x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>
           <BasicDynamicTags />
           <ClosableDynamicTags />

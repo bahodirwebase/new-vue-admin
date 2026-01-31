@@ -17,7 +17,7 @@ import ProductInputNumber from './widgets/ProductInputNumber.vue'
         <p class="page-subtitle">Advanced number input components with validation, precision control, and interactive features</p>
       </div>
       
-      <n-grid :cols="2" :x-gap="12">
+      <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>
           <BasicInputNumber />
           <MinMaxInputNumber />

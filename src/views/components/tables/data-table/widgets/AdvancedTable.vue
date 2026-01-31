@@ -35,5 +35,6 @@ const handlePageSizeChange = (pageSize: number) => {
     :row-key="(row: any) => row.id"
     @update:page="handlePageChange"
     @update:page-size="handlePageSizeChange"
+    scroll-x="800"
   />
 </template>
