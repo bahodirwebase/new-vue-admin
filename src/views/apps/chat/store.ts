@@ -13,6 +13,7 @@ export const useChatStore = defineStore("chat", () => {
   const showEmojiPicker = ref(false);
   const showVoiceRecord = ref(false);
   const showChatInfo = ref(false);
+  const mobileMenuOpen = ref(false);
   const searchInChatQuery = ref("");
   const searchQuery = ref("");
   const activeChatId = ref("");
@@ -193,5 +194,7 @@ export const useChatStore = defineStore("chat", () => {
     handleShiftEnter,
     saveProfile,
     saveSettings,
+    mobileMenuOpen,
+    toggleMobileMenu: () => (mobileMenuOpen.value = !mobileMenuOpen.value),
   };
 });

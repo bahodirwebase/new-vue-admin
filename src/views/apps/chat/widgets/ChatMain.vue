@@ -10,6 +10,7 @@ import {
   SendOutline,
   CheckmarkOutline,
   CheckmarkDoneOutline,
+  MenuOutline,
 } from "@vicons/ionicons5";
 import { useChatStore } from "../store";
 import { useChat } from "../composables/useChat";
@@ -22,11 +23,7 @@ const chatStore = useChatStore();
   <div class="chat-main">
     <div v-if="!chatStore.activeChatId" class="chat-welcome">
       <div class="welcome-content">
-        <n-icon
-          :component="ChatbubbleEllipsesOutline"
-          :size="80"
-          class="welcome-icon"
-        />
+        <n-icon :component="ChatbubbleEllipsesOutline" :size="80" class="welcome-icon" />
         <h2>Welcome to Chat</h2>
         <p>Select a conversation to start messaging</p>
       </div>
@@ -35,12 +32,14 @@ const chatStore = useChatStore();
     <div v-else class="chat-conversation">
       <!-- Chat Header -->
       <div class="chat-header">
+
         <div class="chat-info">
-          <n-avatar
-            round
-            :size="40"
-            :style="{ backgroundColor: activeChat.color }"
-          >
+          <n-button quaternary circle size="small" class="mobile-menu-btn" @click="chatStore.toggleMobileMenu">
+            <template #icon>
+              <n-icon :component="MenuOutline" />
+            </template>
+          </n-button>
+          <n-avatar round :size="40" :style="{ backgroundColor: activeChat.color }">
             {{ activeChat.initials }}
           </n-avatar>
           <div class="chat-details">
@@ -72,36 +71,22 @@ const chatStore = useChatStore();
       <!-- Messages Area -->
       <div class="chat-messages" ref="messagesContainer">
         <div v-if="chatStore.showSearchInChat" class="chat-search">
-          <n-input
-            v-model:value="chatStore.searchInChatQuery"
-            placeholder="Search in this conversation..."
-            clearable
-            @keyup.enter="chatStore.searchInChat"
-          >
+          <n-input v-model:value="chatStore.searchInChatQuery" placeholder="Search in this conversation..." clearable
+            @keyup.enter="chatStore.searchInChat">
             <template #prefix>
               <n-icon :component="SearchOutline" />
             </template>
             <template #suffix>
-              <n-button text size="small" @click="chatStore.searchInChat"
-                >Search</n-button
-              >
+              <n-button text size="small" @click="chatStore.searchInChat">Search</n-button>
             </template>
           </n-input>
         </div>
 
         <div class="messages-container">
-          <div
-            v-for="message in filteredMessages"
-            :key="message.id"
-            class="message-item"
-            :class="{ 'message-own': message.isOwn }"
-          >
+          <div v-for="message in filteredMessages" :key="message.id" class="message-item"
+            :class="{ 'message-own': message.isOwn }">
             <div class="message-avatar" v-if="!message.isOwn">
-              <n-avatar
-                round
-                :size="32"
-                :style="{ backgroundColor: activeChat.color }"
-              >
+              <n-avatar round :size="32" :style="{ backgroundColor: activeChat.color }">
                 {{ activeChat.initials }}
               </n-avatar>
             </div>
@@ -113,13 +98,8 @@ const chatStore = useChatStore();
                 </div>
               </div>
               <div class="message-status" v-if="message.isOwn">
-                <n-icon
-                  :component="
-                    message.read ? CheckmarkDoneOutline : CheckmarkOutline
-                  "
-                  :size="16"
-                  :color="message.read ? '#3b82f6' : '#6b7280'"
-                />
+                <n-icon :component="message.read ? CheckmarkDoneOutline : CheckmarkOutline
+                  " :size="16" :color="message.read ? '#3b82f6' : '#6b7280'" />
               </div>
             </div>
           </div>
@@ -130,12 +110,7 @@ const chatStore = useChatStore();
       <div class="chat-input">
         <div class="input-toolbar">
           <n-space :size="8">
-            <n-button
-              quaternary
-              circle
-              size="small"
-              @click="chatStore.showEmojiPicker = !chatStore.showEmojiPicker"
-            >
+            <n-button quaternary circle size="small" @click="chatStore.showEmojiPicker = !chatStore.showEmojiPicker">
               <template #icon>
                 <n-icon :component="HappyOutline" />
               </template>
@@ -145,12 +120,7 @@ const chatStore = useChatStore();
                 <n-icon :component="AttachOutline" />
               </template>
             </n-button>
-            <n-button
-              quaternary
-              circle
-              size="small"
-              @click="chatStore.showVoiceRecord = !chatStore.showVoiceRecord"
-            >
+            <n-button quaternary circle size="small" @click="chatStore.showVoiceRecord = !chatStore.showVoiceRecord">
               <template #icon>
                 <n-icon :component="MicOutline" />
               </template>
@@ -158,22 +128,11 @@ const chatStore = useChatStore();
           </n-space>
         </div>
         <div class="input-area">
-          <n-input
-            v-model:value="chatStore.messageInput"
-            placeholder="Type a message..."
-            type="textarea"
-            :autosize="{ minRows: 1, maxRows: 4 }"
-            @keydown.enter.prevent="chatStore.sendMessage"
-            @keydown.shift.enter="chatStore.handleShiftEnter"
-            class="message-input"
-          />
-          <n-button
-            type="primary"
-            circle
-            :disabled="!chatStore.messageInput.trim()"
-            @click="chatStore.sendMessage"
-            class="send-button"
-          >
+          <n-input v-model:value="chatStore.messageInput" placeholder="Type a message..." type="textarea"
+            :autosize="{ minRows: 1, maxRows: 4 }" @keydown.enter.prevent="chatStore.sendMessage"
+            @keydown.shift.enter="chatStore.handleShiftEnter" class="message-input" />
+          <n-button type="primary" circle :disabled="!chatStore.messageInput.trim()" @click="chatStore.sendMessage"
+            class="send-button">
             <template #icon>
               <n-icon :component="SendOutline" />
             </template>
