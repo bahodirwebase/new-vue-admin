@@ -3,7 +3,7 @@
     <div class="stats-grid">
       <div class="stat-item">
         <div class="stat-icon">
-          <n-icon :component="HelpCircleOutline" />
+          <n-icon :component="HelpCircleOutline" size="24" />
         </div>
         <div class="stat-info">
           <span class="stat-value">{{ filteredFaqs.length }}</span>
@@ -12,7 +12,7 @@
       </div>
       <div class="stat-item">
         <div class="stat-icon">
-          <n-icon :component="ThumbsUpOutline" />
+          <n-icon :component="ThumbsUpOutline" size="24" />
         </div>
         <div class="stat-info">
           <span class="stat-value">{{ helpfulCount }}</span>
@@ -21,7 +21,7 @@
       </div>
       <div class="stat-item">
         <div class="stat-icon">
-          <n-icon :component="TimeOutline" />
+          <n-icon :component="TimeOutline" size="24" />
         </div>
         <div class="stat-info">
           <span class="stat-value">{{ supportAvailable }}</span>

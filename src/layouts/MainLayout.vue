@@ -64,7 +64,7 @@ const contentClass = computed(() => {
 
 const contentStyle = computed(() => {
   return {
-    padding: isMobile.value ? "16px" : "24px",
+    padding: isMobile.value ? "16px 8px 16px 16px" : "24px 16px 24px 24px",
     height: "calc(100vh - 64px)",
     overflowY: "auto",
     overflowX: "hidden",

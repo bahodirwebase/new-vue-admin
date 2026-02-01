@@ -4,7 +4,7 @@
       <div class="contact-content">
         <div class="contact-info">
           <div class="contact-icon">
-            <n-icon :component="HeadsetOutline" />
+            <n-icon :component="HeadsetOutline" size="24" />
           </div>
           <h2>Still have questions?</h2>
           <p>Can't find the answer you're looking for? Our support team is here to help you 24/7.</p>
