@@ -1,7 +1,7 @@
 <template>
   <n-card title="Transfer with Disabled Items">
     <n-space vertical :size="16">
-      <n-transfer v-model:value="disabledValue" :options="disabledOptions" />
+      <n-transfer size="small" v-model:value="disabledValue" :options="disabledOptions" />
       <n-p>Selected: {{ JSON.stringify(disabledValue) }}</n-p>
     </n-space>
   </n-card>

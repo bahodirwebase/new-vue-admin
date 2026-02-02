@@ -1,7 +1,7 @@
 <template>
   <n-card title="Transfer with Pagination">
     <n-space vertical :size="16">
-      <n-transfer v-model:value="paginationValue" :options="largeOptions" :pagination="{ pageSize: 10 }"
+      <n-transfer size="small" v-model:value="paginationValue" :options="largeOptions" :pagination="{ pageSize: 10 }"
         source-filterable />
       <n-p>Selected: {{ JSON.stringify(paginationValue) }}</n-p>
     </n-space>

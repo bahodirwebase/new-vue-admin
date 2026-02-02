@@ -1,7 +1,7 @@
 <template>
   <n-card title="Basic Transfer">
     <n-space vertical :size="16">
-      <n-transfer v-model:value="basicValue" :options="basicOptions" />
+      <n-transfer v-model:value="basicValue" :options="basicOptions" size="small" />
       <n-p>Selected: {{ JSON.stringify(basicValue) }}</n-p>
     </n-space>
   </n-card>

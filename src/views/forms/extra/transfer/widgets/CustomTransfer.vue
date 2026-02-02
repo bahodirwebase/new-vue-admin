@@ -1,7 +1,7 @@
 <template>
   <n-card title="Transfer with Custom Render">
     <n-space vertical :size="16">
-      <n-transfer v-model:value="customValue" :options="customOptions" :render-source-label="renderSourceLabel"
+      <n-transfer size="small" v-model:value="customValue" :options="customOptions" :render-source-label="renderSourceLabel"
         :render-target-label="renderTargetLabel" />
       <n-p>Selected: {{ JSON.stringify(customValue) }}</n-p>
     </n-space>

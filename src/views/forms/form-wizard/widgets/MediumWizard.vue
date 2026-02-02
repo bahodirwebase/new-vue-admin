@@ -5,8 +5,12 @@ import { useMessage } from 'naive-ui';
 import { CheckmarkOutline, ChevronBackOutline, ChevronForwardOutline } from '@vicons/ionicons5';
 import { MEDIUM_EXPERIENCE_RULES, MEDIUM_PERSONAL_RULES, MEDIUM_SKILLS_RULES } from '../rules/medium';
 import { EDUCATION_OPTIONS, EXPERIENCE_OPTIONS, MEDIUM_SALARY_MARKS } from '../constants';
+import { useBreakpoints } from '@/composables/useBreakpoints'
+
+
 const wizardStore = useWizardStore();
 const message = useMessage();
+const { isMobile } = useBreakpoints();
 
 const mediumPersonalFormRef = ref()
 const mediumExperienceFormRef = ref()
@@ -125,7 +129,7 @@ const resetMediumWizard = () => {
 </script>
 <template>
     <n-card v-if="wizardStore.selectedWizard === 'medium'" title="Job Application Wizard">
-        <n-steps :current="mediumCurrentStep" :status="mediumStepStatus" size="medium">
+        <n-steps :current="mediumCurrentStep" :status="mediumStepStatus" size="medium" :vertical="isMobile">
             <n-step title="Personal" description="Basic information" />
             <n-step title="Experience" description="Work background" />
             <n-step title="Skills" description="Technical skills" />
@@ -138,7 +142,7 @@ const resetMediumWizard = () => {
                 <h3>Personal Information</h3>
                 <n-form ref="mediumPersonalFormRef" :model="mediumWizardData.personal" :rules="MEDIUM_PERSONAL_RULES"
                     label-placement="left" label-width="120">
-                    <n-grid :cols="2" :x-gap="16">
+                    <n-grid cols="1 md:2" :x-gap="16" responsive="screen">
                         <n-grid-item>
                             <n-form-item label="First Name" path="firstName">
                                 <n-input v-model:value="mediumWizardData.personal.firstName" placeholder="First name" />

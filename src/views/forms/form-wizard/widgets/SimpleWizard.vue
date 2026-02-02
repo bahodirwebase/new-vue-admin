@@ -5,7 +5,9 @@ import { useMessage } from 'naive-ui';
 import { CheckmarkOutline, ChevronBackOutline, ChevronForwardOutline } from '@vicons/ionicons5';
 import { SIMPLE_ACCOUNT_RULES, SIMPLE_PREFERENCES_RULES, SIMPLE_PROFILE_RULES } from '../rules/simple';
 import { SIMPLE_COUNTRY_OPTIONS } from '../constants';
+import { useBreakpoints } from '@/composables/useBreakpoints'
 
+const { isMobile } = useBreakpoints()
 const wizardStore = useWizardStore()
 const message = useMessage()
 
@@ -118,7 +120,7 @@ const validateSimpleStep = () => {
 </script>
 <template>
     <n-card v-if="wizardStore.selectedWizard === 'simple'" title="Simple Registration Wizard">
-        <n-steps :current="simpleCurrentStep" :status="simpleStepStatus" size="small">
+        <n-steps :current="simpleCurrentStep" :status="simpleStepStatus" size="small" :vertical="isMobile">
             <n-step title="Account" description="Basic info" />
             <n-step title="Profile" description="Personal details" />
             <n-step title="Preferences" description="Settings" />

@@ -9,9 +9,11 @@ import { useWizardStore } from '../store';
 import { useMessage } from 'naive-ui'
 import { COUNTRY_OPTIONS, DEPARTMENT_OPTIONS, EXPERIENCE_OPTIONS, SALARY_MARKS, STEPS } from '../constants';
 import { ADDITIONAL_RULES, ADDRESS_RULES, PERSONAL_RULES, PROFESSIONAL_RULES } from '../rules/comprehensive';
+import { useBreakpoints } from '@/composables/useBreakpoints'
 
 const wizardStore = useWizardStore();
 const message = useMessage()
+const { isMobile } = useBreakpoints()
 
 // Form refs
 const personalFormRef = ref()
@@ -176,7 +178,7 @@ const getCountryName = (countryCode: string) => {
 </script>
 <template>
     <n-card v-if="wizardStore.selectedWizard === 'comprehensive'" title="Comprehensive Application Wizard">
-        <n-steps :current="currentStep" :status="stepStatus" size="medium">
+        <n-steps :current="currentStep" :status="stepStatus" size="medium" :vertical="isMobile">
             <n-step v-for="(step, index) in STEPS" :key="index" :title="step.title" :description="step.description" />
         </n-steps>
 
@@ -185,7 +187,7 @@ const getCountryName = (countryCode: string) => {
                 <h3>Personal Information</h3>
                 <n-form ref="personalFormRef" :model="wizardData.personal" :rules="PERSONAL_RULES"
                     label-placement="left" label-width="120">
-                    <n-grid :cols="2" :x-gap="16">
+                    <n-grid cols="1 md:2" :x-gap="16" responsive="screen">
                         <n-grid-item>
                             <n-form-item label="First Name" path="firstName">
                                 <n-input v-model:value="wizardData.personal.firstName" placeholder="Enter first name" />

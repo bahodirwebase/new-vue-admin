@@ -1,7 +1,7 @@
 <template>
   <n-card title="Transfer with Multiple Selection">
     <n-space vertical :size="16">
-      <n-transfer v-model:value="multipleValue" :options="basicOptions" source-filterable target-filterable />
+      <n-transfer size="small" v-model:value="multipleValue" :options="basicOptions" source-filterable target-filterable />
       <n-p>Selected: {{ JSON.stringify(multipleValue) }}</n-p>
     </n-space>
   </n-card>
