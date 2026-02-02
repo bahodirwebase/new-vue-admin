@@ -102,6 +102,26 @@
         <n-divider />
 
         <div class="setting-group">
+          <h4>Page Animation {{ selectedAnimation }}</h4>
+          <div class="animation-options">
+            <div 
+              v-for="animation in animations" 
+              :key="animation.class"
+              class="animation-card"
+              :class="{ 'active': selectedAnimation === animation.class }"
+              @click="selectAnimation(animation)"
+            >
+              <div class="animation-preview">
+                <div :class="`preview-${animation.class}`"></div>
+              </div>
+              <span class="animation-name">{{ animation.name }}</span>
+            </div>
+          </div>
+        </div>
+
+        <n-divider />
+
+        <div class="setting-group">
           <h4>Primary Colors</h4>
           <div class="color-cards">
             <div 
@@ -148,10 +168,15 @@ const emit = defineEmits<{
 }>()
 
 const themeStore = useThemeStore()
-const selectedColor = computed(() => {
-  const color = primaryColors.find(c => c.value === themeStore.primaryColor)
-  return color ? color.name : 'Default'
-})
+
+const animations = [
+  { name: 'Fade', class: 'fade' },
+  { name: 'Slide Left', class: 'slide-left' },
+  { name: 'Slide Right', class: 'slide-right' },
+  { name: 'Slide Up', class: 'slide-up' },
+  { name: 'Slide Down', class: 'slide-down' },
+  { name: 'Zoom', class: 'zoom' }
+]
 
 const primaryColors = [
   { name: 'Default', value: '#6366f1' },
@@ -164,12 +189,28 @@ const primaryColors = [
   { name: 'Teal', value: '#14b8a6' }
 ]
 
+const selectedColor = computed(() => {
+  const color = primaryColors.find(c => c.value === themeStore.primaryColor)
+  return color ? color.name : 'Default'
+})
+
+const selectedAnimation = computed(() => {
+  const animation = animations.find(a => a.class === themeStore.pageAnimation)
+  const result = animation ? animation.class : 'fade'
+  return result
+})
+
 const closeSidebar = () => {
   emit('close')
 }
 
 const selectColor = (color: any) => {
   themeStore.setPrimaryColor(color.value)
+}
+
+const selectAnimation = (animation: any) => {
+  console.log('Selected animation:', animation.class)
+  themeStore.setPageAnimation(animation.class)
 }
 </script>
 
@@ -334,6 +375,122 @@ const selectColor = (color: any) => {
   line-height: 1.2;
 }
 
+.animation-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.animation-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--bg-secondary);
+  gap: 8px;
+}
+
+.animation-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);
+}
+
+.animation-card.active {
+  border-color: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color) 100%);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.animation-card.active .animation-name {
+  color: white;
+  font-weight: 500;
+}
+
+.animation-preview {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background: var(--bg-primary);
+}
+
+.animation-preview div {
+  width: 20px;
+  height: 20px;
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+.animation-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Animation previews */
+.preview-fade {
+  animation: previewFade 2s infinite;
+}
+
+.preview-slide-left {
+  animation: previewSlideLeft 2s infinite;
+}
+
+.preview-slide-right {
+  animation: previewSlideRight 2s infinite;
+}
+
+.preview-slide-up {
+  animation: previewSlideUp 2s infinite;
+}
+
+.preview-slide-down {
+  animation: previewSlideDown 2s infinite;
+}
+
+.preview-zoom {
+  animation: previewZoom 2s infinite;
+}
+
+@keyframes previewFade {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes previewSlideLeft {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-10px); }
+}
+
+@keyframes previewSlideRight {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(10px); }
+}
+
+@keyframes previewSlideUp {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes previewSlideDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes previewZoom {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.8); }
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .customizer-sidebar {
@@ -346,6 +503,10 @@ const selectColor = (color: any) => {
   }
   
   .color-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .animation-options {
     grid-template-columns: 1fr;
   }
   

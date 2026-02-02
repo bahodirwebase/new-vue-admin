@@ -9,6 +9,7 @@ export const useThemeStore = defineStore('theme', () => {
   const isMiniSidebar = useLocalStorage('manga-theme-isMiniSidebar', false)
   const isBordered = useLocalStorage('manga-theme-isBordered', false)
   const primaryColor = useLocalStorage('manga-theme-primaryColor', THEME_CONSTANTS.DEFAULT_PRIMARY_COLOR as string)
+  const pageAnimation = useLocalStorage('manga-theme-pageAnimation', 'fade')
 
   // Setters to keep switches in sync without double toggling
   const setDark = (value: boolean) => {
@@ -29,6 +30,10 @@ export const useThemeStore = defineStore('theme', () => {
 
   const setPrimaryColor = (color: string) => {
     primaryColor.value = color
+  }
+
+  const setPageAnimation = (animation: string) => {
+    pageAnimation.value = animation
   }
 
   // Helper function to adjust color brightness
@@ -61,10 +66,12 @@ export const useThemeStore = defineStore('theme', () => {
     isMiniSidebar,
     isBordered,
     primaryColor,
+    pageAnimation,
     setDark,
     setBoxed,
     setMiniSidebar,
     setBordered,
-    setPrimaryColor
+    setPrimaryColor,
+    setPageAnimation
   }
 })
