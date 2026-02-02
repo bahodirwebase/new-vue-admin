@@ -294,9 +294,5 @@ const chartOptions = computed(() => ({
   .revenue-analytics__title {
     font-size: 18px;
   }
-
-  .period-button {
-    width: 100%;
-  }
 }
 </style>

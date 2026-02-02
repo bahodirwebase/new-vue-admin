@@ -72,9 +72,6 @@ const pie3DChartOptions = computed(() => ({
         {
             breakpoint: 480,
             options: {
-                chart: {
-                    width: 200
-                },
                 legend: {
                     position: 'bottom'
                 }

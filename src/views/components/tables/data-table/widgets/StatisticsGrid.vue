@@ -12,7 +12,7 @@ defineProps<Props>()
 </script>
 
 <template>
-  <n-grid :cols="4" :x-gap="16" class="statistics-grid mt-6">
+  <n-grid cols="1 sm:2 md:4" responsive="screen" :x-gap="16" class="statistics-grid mt-6">
     <n-gi>
       <n-statistic label="Total Users" :value="totalUsers" />
     </n-gi>

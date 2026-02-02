@@ -12,6 +12,7 @@ const emit = defineEmits<{
   filter: []
 }>()
 
+
 const handleSearch = () => {
   emit('search')
 }
@@ -19,38 +20,56 @@ const handleSearch = () => {
 const handleFilter = () => {
   emit('filter')
 }
+
 </script>
 
 <template>
-  <n-space class="search-filter-section mb-4">
-    <n-input
-      v-model:value="searchText"
-      placeholder="Search users..."
-      clearable
-      class="search-input"
-      @input="handleSearch"
-    >
-      <template #prefix>
-        <n-icon :component="SearchOutline" />
-      </template>
-    </n-input>
-    
-    <n-select
-      v-model:value="statusFilter"
-      placeholder="Filter by status"
-      :options="STATUS_OPTIONS"
-      clearable
-      class="filter-select"
-      @update:value="handleFilter"
-    />
-    
-    <n-select
-      v-model:value="roleFilter"
-      placeholder="Filter by role"
-      :options="ROLE_OPTIONS"
-      clearable
-      class="filter-select"
-      @update:value="handleFilter"
-    />
-  </n-space>
+  <div class="search-filter-container mb-4">
+    <!-- Desktop Layout -->
+    <n-space class="search-filter-section desktop-filters">
+      <n-input
+        v-model:value="searchText"
+        placeholder="Search users..."
+        clearable
+        class="search-input"
+        @input="handleSearch"
+      >
+        <template #prefix>
+          <n-icon :component="SearchOutline" />
+        </template>
+      </n-input>
+      
+      <n-select
+        v-model:value="statusFilter"
+        placeholder="Filter by status"
+        :options="STATUS_OPTIONS"
+        clearable
+        class="filter-select"
+        @update:value="handleFilter"
+      />
+      
+      <n-select
+        v-model:value="roleFilter"
+        placeholder="Filter by role"
+        :options="ROLE_OPTIONS"
+        clearable
+        class="filter-select"
+        @update:value="handleFilter"
+      />
+    </n-space>
+  </div>
 </template>
+
+<style lang="scss" scoped>
+.search-filter-container {
+
+  .search-input {
+    min-width: 200px;
+  }
+
+  .filter-select {
+    min-width: 150px;
+  }
+
+}
+</style>

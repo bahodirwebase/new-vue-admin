@@ -275,10 +275,6 @@ const chartOptions = computed(() => ({
     font-size: 18px;
   }
 
-  .period-button {
-    width: 100%;
-  }
-
   .conversion-rate__stats {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;

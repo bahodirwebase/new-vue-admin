@@ -59,17 +59,11 @@
     /* Responsive */
     @media (max-width: 768px) {
         .chart-header {
-            flex-direction: column;
             gap: 16px;
-            align-items: stretch;
         }
 
         .chart-title {
             font-size: 18px;
-        }
-
-        .period-button {
-            width: 100%;
         }
     }
 
