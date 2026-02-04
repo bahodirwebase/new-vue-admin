@@ -1,4 +1,4 @@
-# Manga - Vue 3 Admin Dashboard
+# Byxora - Vue 3 Admin Dashboard
 
 A premium, feature-rich Vue 3 + TypeScript admin dashboard template built with modern technologies and best practices. Perfect for building sophisticated web applications and admin panels.
 
@@ -231,7 +231,7 @@ For support and questions:
 - 📖 Documentation: [Link to docs]
 - 🐛 Issues: [GitHub Issues]
 
-## 🎯 Why Choose Manga?
+## 🎯 Why Choose Byxora?
 
 - **Production Ready**: Built with enterprise-grade standards
 - **Modern Stack**: Latest Vue 3 with Composition API

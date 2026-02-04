@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2024-01-15
 
 ### Added
-- 🎯 Initial release of Manga Admin Dashboard
+- 🎯 Initial release of Byxora Admin Dashboard
 - ✨ Vue 3 with Composition API integration
 - 📘 Full TypeScript support
 - 🎨 Naive UI component library integration
@@ -116,4 +116,4 @@ For questions, support, or feature requests, please:
 
 ---
 
-**Thank you for choosing Manga Admin Dashboard!**
+**Thank you for choosing Byxora Admin Dashboard!**

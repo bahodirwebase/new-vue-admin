@@ -1,6 +1,6 @@
 # Customization Guide
 
-This comprehensive guide will help you customize Manga Admin Dashboard to match your brand and requirements.
+This comprehensive guide will help you customize Byxora Admin Dashboard to match your brand and requirements.
 
 ## 🎨 Theme Customization
 

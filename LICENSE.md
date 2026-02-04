@@ -1,6 +1,6 @@
 # License Agreement
 
-## Manga - Vue 3 Admin Dashboard
+## Byxora - Vue 3 Admin Dashboard
 
 This license grants you the right to use this product in accordance with the terms and conditions outlined below.
 
@@ -51,7 +51,7 @@ This license grants you the right to use this product in accordance with the ter
 ## 📜 Terms and Conditions
 
 ### 1. License Grant
-This license grants you a non-exclusive, non-transferable right to use the Manga Admin Dashboard in accordance with these terms.
+This license grants you a non-exclusive, non-transferable right to use the Byxora Admin Dashboard in accordance with these terms.
 
 ### 2. Usage Rights
 You may use this product to create unlimited websites and applications for yourself or your clients.
@@ -115,7 +115,7 @@ With your license purchase, you get:
 
 ## 📄 Legal Information
 
-**Product Name**: Manga - Vue 3 Admin Dashboard  
+**Product Name**: Byxora - Vue 3 Admin Dashboard  
 **Version**: 1.0.0  
 **Release Date**: January 15, 2024  
 **Copyright**: © 2024 [Your Company Name]  
@@ -143,6 +143,6 @@ If you have any questions about this license:
 
 ---
 
-**Thank you for choosing Manga Admin Dashboard!**
+**Thank you for choosing Byxora Admin Dashboard!**
 
 *This license is a legal agreement between you and [Your Company Name]. By using this product, you agree to be bound by these terms and conditions.*

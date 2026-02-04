@@ -1,6 +1,6 @@
 # Installation Guide
 
-This guide will help you set up Manga Admin Dashboard on your local machine and prepare it for deployment.
+This guide will help you set up Byxora Admin Dashboard on your local machine and prepare it for deployment.
 
 ## 📋 Prerequisites
 
@@ -74,13 +74,13 @@ cp .env.example .env.production
 
 ```env
 # .env.development
-VITE_APP_TITLE=Manga Admin Dashboard
+VITE_APP_TITLE=Byxora Admin Dashboard
 VITE_APP_VERSION=1.0.0
 VITE_API_BASE_URL=http://localhost:3001/api
 VITE_APP_ENV=development
 
 # .env.production
-VITE_APP_TITLE=Manga Admin Dashboard
+VITE_APP_TITLE=Byxora Admin Dashboard
 VITE_APP_VERSION=1.0.0
 VITE_API_BASE_URL=https://your-api-domain.com/api
 VITE_APP_ENV=production
@@ -329,4 +329,4 @@ If you encounter any issues during installation:
 
 ---
 
-**Happy coding with Manga Admin Dashboard! 🎉**
+**Happy coding with Byxora Admin Dashboard! 🎉**
