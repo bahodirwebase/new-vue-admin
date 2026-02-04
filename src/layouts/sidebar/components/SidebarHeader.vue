@@ -1,30 +1,39 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useThemeStore } from '@/stores/theme'
+
 const isCollapsed = defineModel<boolean>("collapsed", {
   default: false,
-});
+})
+
+const themeStore = useThemeStore()
+const logoColor = computed(() => themeStore.primaryColor)
 </script>
 <template>
   <div class="sidebar-header">
     <div class="logo-container">
-      <div class="logo-icon">
+      <div class="logo-icon" :style="{ color: logoColor }">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Top diamond shape -->
           <path
             d="M12 2L2 7L12 12L22 7L12 2Z"
-            stroke="currentColor"
+            :stroke="logoColor"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
           />
-          <path
-            d="M2 17L12 22L22 17"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+          <!-- Middle diamond shape -->
           <path
             d="M2 12L12 17L22 12"
-            stroke="currentColor"
+            :stroke="logoColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <!-- Bottom diamond shape -->
+          <path
+            d="M2 17L12 22L22 17"
+            :stroke="logoColor"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -32,7 +41,7 @@ const isCollapsed = defineModel<boolean>("collapsed", {
         </svg>
       </div>
       <transition name="fade">
-        <span v-if="!isCollapsed" class="logo-text">Manga</span>
+        <span v-if="!isCollapsed" class="logo-text">Byxora</span>
       </transition>
     </div>
   </div>
@@ -63,8 +72,11 @@ const isCollapsed = defineModel<boolean>("collapsed", {
 .logo-icon {
   width: 32px;
   height: 32px;
-  color: #6366f1;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
 }
 .logo-text {
   font-family: var(--font-secondary);

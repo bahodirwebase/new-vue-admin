@@ -8,7 +8,35 @@
     <div v-if="isInitialLoading" class="initial-loading">
       <div class="loading-content">
         <div class="loading-logo">
-          <h1 class="logo-text">Vue Admin</h1>
+          <div class="logo-icon" :style="{ color: logoColor }">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Top diamond shape -->
+              <path
+                d="M12 2L2 7L12 12L22 7L12 2Z"
+                :stroke="logoColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <!-- Middle diamond shape -->
+              <path
+                d="M2 12L12 17L22 12"
+                :stroke="logoColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <!-- Bottom diamond shape -->
+              <path
+                d="M2 17L12 22L22 17"
+                :stroke="logoColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <h1 class="logo-text">Byxora</h1>
         </div>
         <n-spin size="large" />
         <p class="loading-text">Loading application...</p>
@@ -45,6 +73,8 @@ const appClasses = computed(() => {
 const themeOverrides = computed<GlobalThemeOverrides>(() => {
   return createThemeOverrides(themeStore.primaryColor, themeStore.isDark)
 })
+
+const logoColor = computed(() => themeStore.primaryColor)
 
 onMounted(() => {
   // Simulate initial loading
@@ -83,6 +113,19 @@ onMounted(() => {
 
 .loading-logo {
   margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
 }
 
 .logo-text {
@@ -115,6 +158,11 @@ onMounted(() => {
   .loading-text {
     font-size: 1rem;
   }
+
+  .logo-icon {
+    width: 56px;
+    height: 56px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -124,6 +172,11 @@ onMounted(() => {
   
   .loading-content {
     gap: 20px;
+  }
+
+  .logo-icon {
+    width: 48px;
+    height: 48px;
   }
 }
 </style>
