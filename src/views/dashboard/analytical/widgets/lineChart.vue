@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, toRef } from 'vue';
+import { ref, watch, toRef, onMounted } from 'vue';
 import { NCard, NButton, NIcon, NDropdown } from 'naive-ui';
 import VueApexCharts from 'vue3-apexcharts';
 import { useThemeStore } from '@/stores/theme';
@@ -153,14 +153,20 @@ const chartOptions = ref({
     }
   },
 });
+const setThemeChart = (newValue: boolean) => {
+  if(chartOptions.value.tooltip){
+      chartOptions.value.tooltip.theme = newValue ? 'dark' : 'light'
+    }
+}
 watch(
   isDark,
   (newValue) => {
-    if(chartOptions.value.tooltip){
-      chartOptions.value.tooltip.theme = newValue ? 'dark' : 'light'
-    }
+    setThemeChart(newValue)
   }
 )
+onMounted(() => {
+  setThemeChart(isDark.value)
+})
 </script>
 
 <style scoped>

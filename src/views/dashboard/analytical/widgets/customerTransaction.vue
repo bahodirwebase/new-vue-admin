@@ -1,44 +1,3 @@
-<template>
-  <n-card
-    :bordered="false"
-    class="transactions-card"
-    content-style="padding: 0;"
-  >
-    <template #header>
-      <div class="card-header">
-        <span class="card-title">Customer Transaction</span>
-      </div>
-    </template>
-
-    <template #header-extra>
-      <n-input
-        v-model:value="searchQuery"
-        placeholder="Search customer..."
-        clearable
-        size="small"
-        style="width: 200px"
-      >
-        <template #prefix>
-          <n-icon :component="SearchIcon" />
-        </template>
-      </n-input>
-    </template>
-
-    <div class="table-wrapper">
-      <n-data-table
-        :columns="columns"
-        :data="filteredData"
-        :pagination="pagination"
-        :bordered="false"
-        :single-line="false"
-        :row-key="(row) => row.id"
-        @update:checked-row-keys="handleCheck"
-        scroll-x="600"
-      />
-    </div>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, computed, h } from "vue";
 import {
@@ -51,16 +10,7 @@ import {
   NCard,
 } from "naive-ui";
 import type { DataTableColumns } from "naive-ui";
-
-// Define interface for transaction data
-interface Transaction {
-  id: number;
-  customer: string;
-  avatar: string;
-  item: string;
-  date: string;
-  status: "pending" | "completed";
-}
+import type { Transaction } from "../types";
 
 // Icons
 const SearchIcon = {
@@ -203,7 +153,7 @@ const transactionsData = ref([
     status: "completed",
   },
   {
-    id : 7,
+    id: 7,
     customer: "John Cooper",
     avatar: "https://i.pravatar.cc/150?img=12",
     item: "AirPods Pro",
@@ -211,12 +161,12 @@ const transactionsData = ref([
     status: "pending",
   },
   {
-    id : 8,
+    id: 8,
     customer: "John Cooper",
     avatar: "https://i.pravatar.cc/150?img=12",
     item: "AirPods Pro",
     date: "23 June 2024",
-    status: "pending",   
+    status: "pending",
   },
   {
     id: 9,
@@ -234,7 +184,7 @@ const transactionsData = ref([
     date: "23 June 2024",
     status: "pending",
   },
-      
+
 ]);
 
 // Table columns
@@ -380,6 +330,27 @@ const handleMore = (row: Transaction) => {
   console.log("More:", row);
 };
 </script>
+<template>
+  <n-card :bordered="false" class="transactions-card" content-style="padding: 0;">
+    <template #header>
+      <div class="card-header">
+        <span class="card-title">Customer Transaction</span>
+        <n-input v-model:value="searchQuery" placeholder="Search customer..." clearable size="small" style="width: 200px">
+        <template #prefix>
+          <n-icon :component="SearchIcon" />
+        </template>
+      </n-input>
+      </div>
+    </template>
+
+    <div class="table-wrapper">
+      <n-data-table :columns="columns" :data="filteredData" :pagination="pagination" :bordered="false"
+        :single-line="false" :row-key="(row) => row.id" @update:checked-row-keys="handleCheck" scroll-x="600" />
+    </div>
+  </n-card>
+</template>
+
+
 
 <style scoped>
 /* CSS Variables for theming */
@@ -399,6 +370,7 @@ const handleMore = (row: Transaction) => {
 .card-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .card-title {
@@ -515,31 +487,6 @@ const handleMore = (row: Transaction) => {
   color: white;
 }
 
-/* Input styling */
-:deep(.n-input) {
-  --n-border: 1px solid var(--border-color);
-  --n-border-hover: 1px solid var(--color-primary);
-  --n-border-focus: 1px solid var(--color-primary);
-  --n-color: var(--bg-primary);
-  --n-text-color: var(--text-primary);
-  --n-placeholder-color: var(--text-tertiary);
-}
 
-/* Dark mode specific styles */
-[data-theme="dark"] :deep(.n-data-table-tr:hover) {
-  background: var(--bg-tertiary) !important;
-}
 
-[data-theme="dark"] :deep(.n-data-table-th) {
-  background: var(--bg-tertiary);
-}
-
-[data-theme="dark"] :deep(.n-card) {
-  background: var(--bg-primary);
-  border-color: var(--border-color);
-}
-
-[data-theme="dark"] :deep(.n-input) {
-  --n-color: var(--bg-secondary);
-}
 </style>

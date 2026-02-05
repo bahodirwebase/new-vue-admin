@@ -106,10 +106,6 @@
         // overflow-x: auto;
     }
 
-    .calendar-content :deep(.n-calendar) {
-        min-width: 600px;
-    }
-
     .calendar-card {
         border-radius: 16px;
         box-shadow: var(--shadow-md);
