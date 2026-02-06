@@ -2,6 +2,13 @@
 <template>
   <div class="email-app">
     <div class="app-container">
+      <!-- Backdrop Overlay -->
+      <div
+        v-if="sidebarOpen && isMobile"
+        class="sidebar-backdrop"
+        @click="sidebarOpen = false"
+      ></div>
+      
       <!-- Sidebar -->
       <div
         class="sidebar-wrapper"
@@ -131,7 +138,7 @@
           </div>
 
           <!-- Email Detail -->
-          <div class="email-detail-container">
+          <div class="email-detail-container" :class="{ active: selectedEmail }">
             <EmailDetail
               :email="selectedEmail"
               @back="selectedEmail = undefined"
@@ -333,13 +340,23 @@ onMounted(() => {
     width: 100%;
     display: flex;
     overflow: hidden;
+    position: relative;
+  }
+
+  .sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    backdrop-filter: blur(2px);
   }
 
   .sidebar-wrapper {
     width: 280px;
     background: var(--bg-primary);
-    border-right: 1px solid var(--border-color);
-    overflow-y: auto;
 
     @media (max-width: 768px) {
       position: fixed;
@@ -422,7 +439,9 @@ onMounted(() => {
       }
 
       @media (max-width: 768px) {
-        flex-basis: 50%;
+        width: 100%;
+        flex-basis: auto;
+        border-bottom: 1px solid var(--border-color);
       }
 
       .list-header {
@@ -494,6 +513,17 @@ onMounted(() => {
 
       @media (max-width: 768px) {
         display: none;
+        
+        &.active {
+          display: flex;
+          width: 100%;
+          height: 100%;
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 1000;
+          background: var(--bg-primary);
+        }
       }
     }
   }

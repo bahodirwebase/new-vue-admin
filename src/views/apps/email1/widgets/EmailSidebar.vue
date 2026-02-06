@@ -196,7 +196,6 @@ if (typeof window !== 'undefined') {
   background: var(--bg-primary);
   border-right: 1px solid var(--border-color);
   padding: 12px;
-  overflow-y: auto;
 
   .sidebar-header {
     display: flex;
@@ -208,7 +207,7 @@ if (typeof window !== 'undefined') {
       margin: 0;
       font-size: 20px;
       font-weight: 700;
-      color: #1890ff;
+      color: var(--text-color-1);
     }
   }
 
@@ -225,7 +224,7 @@ if (typeof window !== 'undefined') {
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
-    color: #999;
+    color: var(--text-color-3);
     padding: 0 8px;
   }
 
@@ -255,11 +254,12 @@ if (typeof window !== 'undefined') {
     transition: all 0.2s;
 
     &:hover {
-      background-color: #f5f5f5;
+      background-color: var(--bg-tertiary);
     }
 
     &.active {
-      background-color: #e6f7ff;
+      background-color: var(--primary-color);
+      color: white;
     }
 
     .label-color {
@@ -307,11 +307,11 @@ if (typeof window !== 'undefined') {
 
         .account-name {
           font-weight: 600;
-          color: #000;
+          color: var(--text-color-1);
         }
 
         .account-email {
-          color: #999;
+          color: var(--text-color-3);
           font-size: 12px;
         }
       }

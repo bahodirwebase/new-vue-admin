@@ -325,7 +325,7 @@ const handleSaveDraft = async () => {
     .field-label {
       font-size: 13px;
       font-weight: 600;
-      color: #333;
+      color: var(--text-color-1);
     }
 
     .recipient-input {
@@ -335,23 +335,23 @@ const handleSaveDraft = async () => {
     .toggle-cc-bcc {
       background: none;
       border: none;
-      color: #1890ff;
+      color: var(--primary-color);
       cursor: pointer;
       font-size: 13px;
       padding: 0;
       text-decoration: underline;
 
       &:hover {
-        color: #40a9ff;
+        color: var(--primary-color-light);
       }
     }
   }
 
   .attachments-section {
-    border: 1px dashed #d9d9d9;
+    border: 1px dashed var(--border-color);
     border-radius: 4px;
     padding: 12px;
-    background-color: #fafafa;
+    background-color: var(--bg-tertiary);
 
     .attachment-list {
       margin-top: 12px;
@@ -371,11 +371,11 @@ const handleSaveDraft = async () => {
 
       .attachment-name {
         font-weight: 500;
-        color: #000;
+        color: var(--text-color-1);
       }
 
       .attachment-size {
-        color: #999;
+        color: var(--text-color-3);
       }
     }
   }

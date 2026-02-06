@@ -241,7 +241,7 @@ const handleMoreAction = (key: string | number) => {
         background: none;
         border: none;
         font-size: 14px;
-        color: #1890ff;
+        color: var(--primary-color);
         cursor: pointer;
         padding: 0;
 
@@ -271,19 +271,19 @@ const handleMoreAction = (key: string | number) => {
         h3 {
           margin: 0 0 4px;
           font-size: 16px;
-          color: #000;
+          color: var(--text-color-1);
         }
 
         .sender-email {
           margin: 0;
           font-size: 13px;
-          color: #999;
+          color: var(--text-color-3);
         }
 
         .send-time {
           margin: 4px 0 0;
           font-size: 12px;
-          color: #bbb;
+          color: var(--text-color-3);
         }
       }
     }
@@ -296,11 +296,11 @@ const handleMoreAction = (key: string | number) => {
 
         summary {
           font-size: 13px;
-          color: #666;
+          color: var(--text-color-2);
           padding: 8px 0;
 
           &:hover {
-            background-color: #f5f5f5;
+            background-color: var(--bg-tertiary);
           }
         }
 
@@ -310,8 +310,8 @@ const handleMoreAction = (key: string | number) => {
       }
 
       .recipients-expanded {
-        background-color: #f9f9f9;
-        border-left: 2px solid #1890ff;
+        background-color: var(--bg-tertiary);
+        border-left: 2px solid var(--primary-color);
         padding: 8px 12px;
         border-radius: 4px;
       }
@@ -327,11 +327,11 @@ const handleMoreAction = (key: string | number) => {
         }
 
         strong {
-          color: #666;
+          color: var(--text-color-2);
         }
 
         span {
-          color: #999;
+          color: var(--text-color-3);
           flex: 1;
           word-break: break-all;
         }
@@ -347,7 +347,7 @@ const handleMoreAction = (key: string | number) => {
     h2 {
       margin: 0;
       font-size: 24px;
-      color: #000;
+      color: var(--text-color-1);
     }
   }
 
@@ -355,10 +355,10 @@ const handleMoreAction = (key: string | number) => {
     margin-bottom: 24px;
     font-size: 14px;
     line-height: 1.6;
-    color: #333;
+    color: var(--text-color-1);
 
     :deep(a) {
-      color: #1890ff;
+      color: var(--primary-color);
       text-decoration: none;
 
       &:hover {
@@ -374,14 +374,14 @@ const handleMoreAction = (key: string | number) => {
   .detail-attachments {
     margin-bottom: 24px;
     padding: 16px;
-    background-color: #f9f9f9;
+    background-color: var(--bg-tertiary);
     border-radius: 8px;
 
     h4 {
       margin: 0 0 12px;
       font-size: 14px;
       font-weight: 600;
-      color: #000;
+      color: var(--text-color-1);
     }
 
     .attachment-list {
@@ -397,11 +397,11 @@ const handleMoreAction = (key: string | number) => {
       padding: 8px;
       background: var(--bg-primary);
       border-radius: 4px;
-      border: 1px solid #eee;
+      border: 1px solid var(--border-color);
 
       .attachment-icon {
         flex-shrink: 0;
-        color: #1890ff;
+        color: var(--primary-color);
         font-size: 20px;
       }
 
@@ -413,7 +413,7 @@ const handleMoreAction = (key: string | number) => {
           display: block;
           font-size: 13px;
           font-weight: 500;
-          color: #000;
+          color: var(--text-color-1);
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -422,7 +422,7 @@ const handleMoreAction = (key: string | number) => {
         .attachment-size {
           display: block;
           font-size: 12px;
-          color: #999;
+          color: var(--text-color-3);
           margin-top: 2px;
         }
       }
@@ -447,13 +447,13 @@ const handleMoreAction = (key: string | number) => {
 
       .empty-icon {
         font-size: 64px;
-        color: #ccc;
+        color: var(--text-color-3);
         margin-bottom: 16px;
       }
 
       p {
         margin: 0;
-        color: #999;
+        color: var(--text-color-3);
         font-size: 16px;
       }
     }

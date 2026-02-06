@@ -167,7 +167,7 @@ const getLabelType = (label: string) => {
 
     .sender-name {
       font-weight: 600;
-      color: #000;
+      color: var(--text-color-1);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -175,7 +175,7 @@ const getLabelType = (label: string) => {
 
     .timestamp {
       font-size: 12px;
-      color: #999;
+      color: var(--text-color-3);
       flex-shrink: 0;
       margin-left: 8px;
     }
@@ -187,10 +187,10 @@ const getLabelType = (label: string) => {
     gap: 6px;
     margin-bottom: 6px;
     font-size: 13px;
-    color: #666;
+    color: var(--text-color-1);
 
     .unread-indicator {
-      color: #1890ff;
+      color: var(--primary-color);
       font-size: 8px;
     }
 
