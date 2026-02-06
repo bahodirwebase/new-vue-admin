@@ -1,0 +1,172 @@
+/* styles/main.scss */
+@import 'variables.scss';
+@import 'reset.scss';
+@import 'utilities.scss';
+
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: darken($primary-color, 10%);
+  }
+}
+
+button {
+  font-family: $font-family;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input,
+textarea,
+select {
+  font-family: $font-family;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+
+  &:hover {
+    background: #999;
+  }
+}
+
+/* Selection Styles */
+::selection {
+  background-color: rgba(24, 144, 255, 0.2);
+  color: inherit;
+}
+
+::-moz-selection {
+  background-color: rgba(24, 144, 255, 0.2);
+  color: inherit;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Utility Classes */
+.fade-in {
+  animation: fadeIn 0.3s ease;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.3s ease;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.3s ease;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.3s ease;
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Naive UI Customizations */
+:deep(.n-button) {
+  font-weight: 500;
+}
+
+:deep(.n-input__input-el) {
+  font-size: 14px;
+}
+
+:deep(.n-modal__mask) {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+:deep(.n-modal) {
+  border-radius: 8px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+:deep(.n-popover__body) {
+  padding: 8px;
+}
+
+:deep(.n-menu-item) {
+  border-radius: 4px;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
