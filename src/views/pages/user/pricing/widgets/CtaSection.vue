@@ -34,7 +34,7 @@ const handleScheduleDemo = () => {
 
 <style scoped>
 .cta-section {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-hover) 100%);
+  background: var(--bg-primary);
   border-radius: 16px;
   padding: 4rem 2rem;
   text-align: center;
@@ -65,19 +65,11 @@ const handleScheduleDemo = () => {
 }
 
 .cta-buttons .n-button:first-child {
-  background: white;
-  color: var(--primary-color);
   border: none;
-}
-
-.cta-buttons .n-button:first-child:hover {
-  background: rgba(255, 255, 255, 0.9);
 }
 
 .cta-buttons .n-button:last-child {
   background: transparent;
-  color: white;
-  border: 2px solid white;
 }
 
 .cta-buttons .n-button:last-child:hover {

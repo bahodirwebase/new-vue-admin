@@ -40,55 +40,33 @@ import ContactSection from './widgets/ContactSection.vue'
   background: var(--bg-secondary);
 }
 
-.faq-content {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 2rem 4rem;
-}
 
 .content-container {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .faq-content {
-    max-width: 100%;
-    padding: 0 1.5rem 3rem;
-  }
-  
-  .content-container {
-    gap: 2.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .faq-content {
-    padding: 0 1rem 2rem;
-  }
-  
-  .content-container {
-    gap: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .faq-content {
-    padding: 0 0.75rem 1.5rem;
-  }
-  
   .content-container {
     gap: 1.5rem;
   }
 }
 
-@media (max-width: 360px) {
-  .faq-content {
-    padding: 0 0.5rem 1rem;
+@media (max-width: 768px) {
+  .content-container {
+    gap: 1.5rem;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .content-container {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
   .content-container {
     gap: 1rem;
   }

@@ -133,6 +133,7 @@ const { editProfile, viewSettings } = useProfileActions()
   border: 2px solid white;
   cursor: pointer;
   transition: all 0.2s ease;
+  z-index: 10;
 }
 
 .avatar-badge:hover {
@@ -180,17 +181,41 @@ const { editProfile, viewSettings } = useProfileActions()
 }
 
 @media (max-width: 768px) {
+  .cover-image {
+    height: 200px;
+  }
+
   .profile-info {
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 1rem;
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
+    position: relative;
+    bottom: auto;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.8) 100%);
   }
 
   .profile-avatar img {
     width: 100px;
     height: 100px;
+    margin-top: -50px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .avatar-badge {
+    bottom: 5px;
+    right: 5px;
+    width: 28px;
+    height: 28px;
+    z-index: 10;
+  }
+
+  .profile-details {
+    color: white;
+    margin-bottom: 1rem;
+    margin-top: -30px;
   }
 
   .profile-name {
@@ -199,15 +224,59 @@ const { editProfile, viewSettings } = useProfileActions()
 
   .profile-meta {
     justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   .profile-actions {
     flex-direction: column;
     width: 100%;
+    margin-top: 1rem;
   }
 
   .profile-actions .n-button {
     width: 100%;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .cover-image {
+    height: 250px;
+  }
+
+  .profile-info {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .profile-avatar img {
+    width: 110px;
+    height: 110px;
+  }
+
+  .avatar-badge {
+    bottom: 6px;
+    right: 6px;
+    width: 30px;
+    height: 30px;
+    z-index: 10;
+  }
+
+  .profile-name {
+    font-size: 1.75rem;
+  }
+
+  .profile-meta {
+    gap: 1rem;
+  }
+
+  .profile-actions {
+    gap: 0.75rem;
+  }
+
+  .profile-actions .n-button {
+    font-size: 0.9rem;
+    padding: 0 1rem;
   }
 }
 </style>

@@ -43,15 +43,11 @@ const {
 </script>
 
 <style scoped>
-.contact-section {
-  margin-top: 3rem;
-}
 
 .contact-card {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-hover) 100%);
+  background: var(--bg-primary);
   border-radius: 16px;
   padding: 3rem;
-  color: white;
 }
 
 .contact-content {
@@ -93,16 +89,7 @@ const {
   flex-shrink: 0;
 }
 
-.contact-buttons .n-button:first-child {
-  background: white;
-  color: var(--primary-color);
-}
 
-.contact-buttons .n-button:last-child {
-  background: transparent;
-  color: white;
-  border: 2px solid white;
-}
 
 @media (max-width: 768px) {
   .contact-content {

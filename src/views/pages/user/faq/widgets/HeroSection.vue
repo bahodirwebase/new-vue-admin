@@ -1,25 +1,28 @@
 <template>
   <div class="faq-hero">
-    <div class="hero-content">
-      <div class="hero-info">
-        <h1 class="hero-title">Frequently Asked Questions</h1>
-        <p class="hero-description">
-          Find answers to common questions about our service and get the help you need quickly.
-        </p>
-      </div>
-      <div class="hero-search">
-        <div class="search-container">
-          <n-input 
-            v-model:value="searchQuery" 
-            placeholder="Search for answers..."
-            size="large"
-            clearable
-            @clear="clearSearch"
-          >
-            <template #prefix>
-              <n-icon :component="SearchOutline" />
-            </template>
-          </n-input>
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="header-content">
+        <div class="header-info">
+          <h1 class="page-title">Frequently Asked Questions</h1>
+          <p class="page-description">
+            Find answers to common questions about our service and get the help you need quickly.
+          </p>
+        </div>
+        <div class="header-actions">
+          <div class="search-container">
+            <n-input 
+              v-model:value="searchQuery" 
+              placeholder="Search for answers..."
+              size="large"
+              clearable
+              @clear="clearSearch"
+            >
+              <template #prefix>
+                <n-icon :component="SearchOutline" />
+              </template>
+            </n-input>
+          </div>
         </div>
       </div>
     </div>
@@ -36,53 +39,107 @@ const {
 } = useFaqFilters()
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .faq-hero {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-hover) 100%);
-  padding: 4rem 0;
   margin-bottom: 3rem;
 }
 
-.hero-content {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  text-align: center;
+.page-header {
+  margin-bottom: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.hero-title {
-  font-size: 3rem;
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-info {
+  flex: 1;
+}
+
+.page-title {
   font-weight: 700;
-  color: white;
+  color: var(--text-color);
   margin-bottom: 1rem;
 }
 
-.hero-description {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
+.page-description {
+  color: var(--text-color-secondary);
   max-width: 600px;
-  margin: 0 auto 2rem;
   line-height: 1.6;
+  margin: 0;
 }
 
-.hero-search {
-  max-width: 500px;
-  margin: 0 auto;
+.header-actions {
+  margin-left: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.search-container {
+  max-width: 400px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .header-actions {
+    margin-left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search-container {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
-  .hero-title {
+  .page-header {
+    padding: 1rem 0;
+  }
+  
+  .page-title {
     font-size: 2rem;
   }
-
-  .hero-description {
+  
+  .page-description {
     font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .hero-title {
+  .page-header {
+    padding: 0.75rem 0;
+  }
+  
+  .page-title {
     font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .page-header {
+    padding: 0.5rem 0;
+  }
+  
+  .page-title {
+    font-size: 1.25rem;
+  }
+  
+  .page-description {
+    font-size: 0.9rem;
   }
 }
 </style>

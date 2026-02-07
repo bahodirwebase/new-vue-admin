@@ -1,20 +1,23 @@
 <template>
   <div class="pricing-hero">
-    <div class="hero-content">
-      <div class="hero-info">
-        <h1 class="hero-title">Choose Your Perfect Plan</h1>
-        <p class="hero-description">
-          Select the ideal plan for your needs. All plans include our core features with 24/7 support.
-        </p>
-      </div>
-      <div class="hero-toggle">
-        <div class="toggle-container">
-          <span class="toggle-label" :class="{ active: !isYearly }">Monthly</span>
-          <n-switch v-model:value="isYearly" size="large" @update:value="toggleBilling" />
-          <span class="toggle-label" :class="{ active: isYearly }">
-            Yearly
-            <n-tag type="success" size="small">Save {{ getDiscountPercentage() }}%</n-tag>
-          </span>
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="header-content">
+        <div class="header-info">
+          <h1 class="page-title">Choose Your Perfect Plan</h1>
+          <p class="page-description">
+            Select the ideal plan for your needs. All plans include our core features with 24/7 support.
+          </p>
+        </div>
+        <div class="header-actions">
+          <div class="toggle-container">
+            <span class="toggle-label" :class="{ active: !isYearly }">Monthly</span>
+            <n-switch v-model="isYearly" size="large" />
+            <span class="toggle-label" :class="{ active: isYearly }">
+              Yearly
+              <n-tag type="success" size="small">Save {{ getDiscountPercentage() }}%</n-tag>
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -26,41 +29,48 @@ import { usePricingToggle } from '../composables/usePricingToggle'
 
 const {
   isYearly,
-  toggleBilling,
   getDiscountPercentage
 } = usePricingToggle()
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .pricing-hero {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-hover) 100%);
-  padding: 4rem 0;
   margin-bottom: 3rem;
 }
 
-.hero-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  text-align: center;
+.page-header {
+  margin-bottom: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.hero-title {
-  font-size: 3rem;
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header-info {
+  flex: 1;
+}
+
+.page-title {
   font-weight: 700;
-  color: white;
+  color: var(--text-color);
   margin-bottom: 1rem;
 }
 
-.hero-description {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
+.page-description {
+  color: var(--text-color-secondary);
   max-width: 600px;
-  margin: 0 auto 2rem;
   line-height: 1.6;
+  margin: 0;
 }
 
-.hero-toggle {
+.header-actions {
+  margin-left: 2rem;
   display: flex;
   justify-content: center;
 }
@@ -69,32 +79,56 @@ const {
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--card-background);
   padding: 1rem 2rem;
   border-radius: 50px;
-  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
 }
 
 .toggle-label {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-color-secondary);
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .toggle-label.active {
-  color: white;
+  color: var(--text-color);
   font-weight: 600;
 }
 
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .header-actions {
+    margin-left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .toggle-container {
+    justify-content: center;
+  }
+}
+
 @media (max-width: 768px) {
-  .hero-title {
+  .page-header {
+    padding: 1rem 0;
+  }
+  
+  .page-title {
     font-size: 2rem;
   }
-
-  .hero-description {
+  
+  .page-description {
     font-size: 1rem;
   }
-
+  
   .toggle-container {
     padding: 0.75rem 1.5rem;
     gap: 0.75rem;
@@ -102,14 +136,48 @@ const {
 }
 
 @media (max-width: 480px) {
-  .hero-title {
-    font-size: 1.5rem;
+  .page-header {
+    padding: 0.75rem 0;
   }
-
+  
   .toggle-container {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
+    padding: 0.75rem 1rem;
+    gap: 0.75rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: center;
+  }
+  
+  .toggle-label {
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 360px) {
+  .page-header {
+    padding: 0.5rem 0;
+  }
+  
+  .page-title {
+    font-size: 1.25rem;
+  }
+  
+  .page-description {
+    font-size: 0.9rem;
+  }
+  
+  .toggle-container {
+    padding: 0.4rem 0.6rem;
+    gap: 0.4rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: center;
+  }
+  
+  .toggle-label {
+    font-size: 0.8rem;
+    white-space: nowrap;
   }
 }
 </style>

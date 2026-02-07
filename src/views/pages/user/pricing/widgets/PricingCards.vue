@@ -97,7 +97,6 @@ const handleSelectPlan = (planId: string) => {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
-  margin-bottom: 4rem;
 }
 
 .pricing-card {

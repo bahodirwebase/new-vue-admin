@@ -87,9 +87,7 @@ const comparisonFeatures = COMPARISON_FEATURES
 </script>
 
 <style scoped>
-.comparison-section {
-  margin-bottom: 4rem;
-}
+
 
 .card-header {
   display: flex;

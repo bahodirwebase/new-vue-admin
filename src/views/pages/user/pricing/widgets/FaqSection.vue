@@ -46,10 +46,6 @@ const {
 </script>
 
 <style scoped>
-.faq-section {
-  margin-bottom: 4rem;
-}
-
 .card-header {
   display: flex;
   align-items: center;
