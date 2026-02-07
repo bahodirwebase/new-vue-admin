@@ -38,11 +38,12 @@ export function useConnectedAccounts() {
       
       message.success(successMessage)
       
-      // Here you would typically make an API call
-      console.log(`Account ${account.platform} ${account.connected ? 'connected' : 'disconnected'}`)
+      // TODO: Make API call to connect/disconnect account
+      // await toggleAccountConnection(account.platform, account.connected)
     } catch (error) {
       message.error(`Failed to ${account.connected ? 'connect' : 'disconnect'} ${account.platform}`)
-      console.error('Error toggling account:', error)
+      // TODO: Implement proper error logging service
+      // logError('Account toggle failed', error)
     }
   }
   

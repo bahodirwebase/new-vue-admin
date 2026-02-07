@@ -18,12 +18,6 @@ export default [
     meta: { title: "Email", icon: "mail-outline", group: "Apps" },
   },
   {
-    path: "apps/email1",
-    name: "Email1",
-    component: () => import("@/views/apps/email1/index.vue"),
-    meta: { title: "Email", icon: "mail-outline", group: "Apps" },
-  },
-  {
     path: "apps/ecommerce",
     name: "Ecommerce",
     component: () => import("@/views/apps/ecommerce/index.vue"),

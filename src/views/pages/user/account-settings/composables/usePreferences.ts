@@ -21,11 +21,12 @@ export function usePreferences() {
       
       message.success(MESSAGES.PREFERENCES_UPDATED)
       
-      // Here you would typically make an API call to save preferences
-      console.log('Preferences saved:', preferences)
+      // TODO: Make API call to save preferences
+      // await saveUserPreferences(preferences)
     } catch (error) {
       message.error('Failed to save preferences')
-      console.error('Error saving preferences:', error)
+      // TODO: Implement proper error logging service
+      // logError('Preferences save failed', error)
     }
   }
   

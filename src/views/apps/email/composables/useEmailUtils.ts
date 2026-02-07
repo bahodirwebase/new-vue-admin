@@ -1,7 +1,5 @@
 // composables/useEmailUtils.ts
-import { computed } from 'vue';
-import type { Email, Attachment } from '../types';
-import { DATE_FORMAT, TIME_FORMAT, DATETIME_FORMAT } from '../constants';
+import type { Attachment } from '../types';
 
 export function useEmailUtils() {
   /**

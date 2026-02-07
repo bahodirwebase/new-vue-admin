@@ -1,7 +1,6 @@
 // composables/useEmailComposer.ts
 import { ref, computed } from 'vue';
 import type { EmailComposerState, Contact, Attachment } from '../types';
-import { SAVE_DRAFT_DEBOUNCE_DELAY } from '../constants';
 
 export function useEmailComposer() {
   const composerState = ref<EmailComposerState>({

@@ -75,7 +75,7 @@ export function useEmailFetch() {
     },
   ];
 
-  const fetchEmails = async (folderId?: string) => {
+  const fetchEmails = async () => {
     loading.value = true;
     error.value = null;
     try {

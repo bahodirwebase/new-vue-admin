@@ -102,21 +102,21 @@ const countdown = ref(60)
 const resendDisabled = ref(true)
 let countdownTimer: number | null = null
 
-const onFocus = (event: FocusEvent) => {
-  console.log('OTP focused:', event)
+const onFocus = (_event: FocusEvent) => {
+  // OTP input focused - can be used for analytics or UX tracking
 }
 
-const onBlur = (event: FocusEvent) => {
-  console.log('OTP blurred:', event)
+const onBlur = (_event: FocusEvent) => {
+  // OTP input blurred - can be used for analytics or UX tracking
 }
 
-const onFinish = (value: string) => {
-  console.log('OTP finished:', value)
+const onFinish = (_value: string) => {
   message.success('Code completed successfully!')
+  // Proceed with verification logic
 }
 
-const onUpdateValue = (value: string) => {
-  console.log('OTP updated:', value)
+const onUpdateValue = (_value: string) => {
+  // OTP value updated - can be used for real-time validation
 }
 
 const startCountdown = () => {

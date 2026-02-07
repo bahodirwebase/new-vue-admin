@@ -16,10 +16,12 @@ export function useAccountStats() {
       // Simulate API call to fetch fresh stats
       await new Promise(resolve => setTimeout(resolve, 1000))
       
-      // Here you would typically fetch from an API
-      console.log('Account stats refreshed')
+      // TODO: Fetch fresh stats from API
+      // const freshStats = await fetchAccountStats()
+      // updateStats(freshStats)
     } catch (error) {
-      console.error('Error refreshing stats:', error)
+      // TODO: Implement proper error logging service
+      // logError('Stats refresh failed', error)
     }
   }
   

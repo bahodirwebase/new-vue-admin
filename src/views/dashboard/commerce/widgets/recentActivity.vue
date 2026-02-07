@@ -97,7 +97,18 @@ const menuOptions = [
 ]
 
 const handleMenuSelect = (key: string) => {
-  console.log('Menu selected:', key)
+  // TODO: Implement menu actions based on selected key
+  switch (key) {
+    case 'markallread':
+      // Mark all activities as read
+      break
+    case 'markread':
+      // Mark specific activity as read
+      break
+    case 'settings':
+      // Open activity settings
+      break
+  }
 }
 </script>
 

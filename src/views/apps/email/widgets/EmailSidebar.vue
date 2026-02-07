@@ -1,154 +1,329 @@
+<!-- widgets/EmailSidebar.vue -->
+<template>
+  <div class="email-sidebar">
+    <!-- Logo -->
+    <div class="sidebar-header">
+      <n-button
+        v-if="isMobile"
+        text
+        type="primary"
+        :icon-placement="'left'"
+        @click="toggleSidebar"
+      >
+        <template #icon>
+          <n-icon :component="MenuOutline" />
+        </template>
+      </n-button>
+      <h2>MailBox</h2>
+    </div>
+
+    <!-- Compose Button -->
+    <n-button
+      block
+      type="primary"
+      size="large"
+      class="compose-button"
+      @click="handleCompose"
+    >
+      <template #icon>
+        <n-icon :component="CreateOutline" />
+      </template>
+      Compose
+    </n-button>
+
+    <!-- Folders -->
+    <div class="folders-section">
+      <h3 class="section-title">Folders</h3>
+      <n-menu
+        :value="selectedFolder"
+        :options="folderOptions"
+        :collapsed="false"
+        @update:value="handleFolderSelect"
+      />
+    </div>
+
+    <!-- Labels -->
+    <div class="labels-section">
+      <div class="labels-header">
+        <h3 class="section-title">Labels</h3>
+        <n-button text type="primary" size="small">
+          <template #icon>
+            <n-icon :component="AddOutline" />
+          </template>
+        </n-button>
+      </div>
+      <div class="labels-list">
+        <div
+          v-for="label in labels"
+          :key="label.id"
+          class="label-item"
+          :class="{ 'active': selectedLabel === label.id }"
+          @click="handleLabelSelect(label.id)"
+        >
+          <div class="label-color" :style="{ backgroundColor: label.color }"></div>
+          <span class="label-name">{{ label.name }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account Settings -->
+    <div class="sidebar-footer">
+      <n-dropdown
+        :options="accountOptions"
+        placement="top-start"
+        @select="handleAccountAction"
+      >
+        <div class="account-info">
+          <n-avatar
+            round
+            src="https://api.dicebear.com/7.x/avataaars/svg?seed=user"
+          />
+          <div class="account-details">
+            <p class="account-name">Your Name</p>
+            <p class="account-email">user@example.com</p>
+          </div>
+        </div>
+      </n-dropdown>
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
-import { computed } from 'vue'
-import {
-  MailOutline,
-  SendOutline,
+import { ref, computed, h } from 'vue';
+import { NButton, NIcon, NMenu, NDropdown, NAvatar } from 'naive-ui';
+import { 
+  MailOutline, 
+  StarOutline, 
+  SendOutline, 
+  DocumentTextOutline, 
+  WarningOutline, 
   TrashOutline,
-  StarOutline,
+  MenuOutline,
   CreateOutline,
-} from '@vicons/ionicons5'
+  AddOutline
+} from '@vicons/ionicons5';
+import { DEFAULT_FOLDERS, EMAIL_LABELS } from '../constants';
 
-import { useEmailStore } from '../store'
-
-const emailStore = useEmailStore()
-
-const folders = [
-  { key: 'inbox', label: 'Inbox', icon: MailOutline },
-  { key: 'sent', label: 'Sent', icon: SendOutline },
-  { key: 'drafts', label: 'Drafts', icon: CreateOutline },
-  { key: 'trash', label: 'Trash', icon: TrashOutline },
-]
-
-const labels = [
-  { key: 'important', label: 'Important', color: '#f5222d' },
-  { key: 'work', label: 'Work', color: '#1890ff' },
-  { key: 'personal', label: 'Personal', color: '#52c41a' },
-  { key: 'marketing', label: 'Marketing', color: '#722ed1' },
-  { key: 'urgent', label: 'Urgent', color: '#fa8c16' },
-]
-
-const folderCounts = computed(() => {
-  const counts: Record<string, number> = {
-    inbox: emailStore.unreadCount,
-    sent: 0,
-    drafts: 0,
-    trash: 0,
-  }
-  
-  emailStore.emails.forEach(email => {
-    if (email.folder === 'sent') counts.sent++
-    if (email.folder === 'drafts') counts.drafts++
-    if (email.folder === 'trash') counts.trash++
-  })
-  
-  return counts
-})
-
-const starredCount = computed(() => emailStore.starredEmails.length)
-
-const selectFolder = (folderKey: string) => {
-  emailStore.setCurrentFolder(folderKey)
+interface Emits {
+  (e: 'compose-click'): void;
+  (e: 'folder-select', value: string): void;
+  (e: 'label-select', value: string): void;
+  (e: 'account-action', value: string): void;
+  (e: 'toggle-sidebar'): void;
 }
 
-const selectStarred = () => {
-  emailStore.showStarred()
+const emits = defineEmits<Emits>();
+
+const selectedFolder = ref('inbox');
+const selectedLabel = ref<string | null>(null);
+const isMobile = ref(window.innerWidth < 768);
+const sidebarOpen = ref(true);
+
+const labels = EMAIL_LABELS;
+
+const iconMap: Record<string, any> = {
+  inbox: MailOutline,
+  starred: StarOutline,
+  sent: SendOutline,
+  drafts: DocumentTextOutline,
+  spam: WarningOutline,
+  trash: TrashOutline,
+};
+
+const folderOptions = computed(() => {
+  return DEFAULT_FOLDERS.map((folder) => ({
+    label: () => {
+      return `${folder.name} ${folder.unreadCount > 0 ? `(${folder.unreadCount})` : ''}`;
+    },
+    key: folder.id,
+    icon: () => h(NIcon, { component: iconMap[folder.id] || MailOutline }),
+  }));
+});
+
+const accountOptions = [
+  { label: 'Profile', key: 'profile' },
+  { label: 'Settings', key: 'settings' },
+  { label: 'Help', key: 'help' },
+  { type: 'divider', key: 'd1' },
+  { label: 'Logout', key: 'logout' },
+];
+
+const handleCompose = () => {
+  emits('compose-click');
+};
+
+const handleFolderSelect = (key: string | number) => {
+  selectedFolder.value = key as string;
+  selectedLabel.value = null;
+  emits('folder-select', key as string);
+};
+
+const handleLabelSelect = (labelId: string) => {
+  if (selectedLabel.value === labelId) {
+    selectedLabel.value = null;
+  } else {
+    selectedLabel.value = labelId;
+    emits('label-select', labelId);
+  }
+};
+
+const handleAccountAction = (key: string | number) => {
+  emits('account-action', key as string);
+};
+
+const toggleSidebar = () => {
+  sidebarOpen.value = !sidebarOpen.value;
+  emits('toggle-sidebar');
+};
+
+// Responsive handling
+if (typeof window !== 'undefined') {
+  window.addEventListener('resize', () => {
+    isMobile.value = window.innerWidth < 768;
+  });
 }
 </script>
 
-<template>
-  <n-card class="email-sidebar-card" >
-    <!-- Compose Button -->
-    <div class="compose-section">
-      <n-button type="primary" size="large" block @click="$emit('compose')">
-        <template #icon>
-          <n-icon>
-            <CreateOutline />
-          </n-icon>
-        </template>
-        Compose
-      </n-button>
-    </div>
+<style scoped lang="scss">
+.email-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-primary);
+  border-right: 1px solid var(--border-color);
+  padding: 12px;
 
-    <!-- Scrollable Content -->
-    <div class="sidebar-content">
-      <!-- Folders -->
-      <div class="folders-section">
-        <div class="section-content">
-          <h4 class="section-title">Folders</h4>
-          <div class="folder-list">
-            <div
-              v-for="folder in folders"
-              :key="folder.key"
-              class="folder-item"
-              :class="{ active: emailStore.currentFolder === folder.key }"
-              @click="selectFolder(folder.key)"
-            >
-              <n-icon :component="folder.icon" />
-              <span class="folder-label">{{ folder.label }}</span>
-              <n-badge
-                v-if="folderCounts[folder.key] > 0"
-                :value="folderCounts[folder.key]"
-                :max="99"
-                class="folder-badge"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
 
-      <!-- Starred -->
-      <div class="starred-section">
-        <div class="section-content">
-          <div class="folder-item" @click="selectStarred">
-            <n-icon>
-              <StarOutline />
-            </n-icon>
-            <span class="folder-label">Starred</span>
-            <n-badge
-              v-if="starredCount > 0"
-              :value="starredCount"
-              :max="99"
-              class="folder-badge"
-            />
-          </div>
-        </div>
-      </div>
+    h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-color-1);
+    }
+  }
 
-      <!-- Labels -->
-      <div class="labels-section">
-        <div class="section-content">
-          <h4 class="section-title">Labels</h4>
-          <div class="label-list">
-            <div
-              v-for="label in labels"
-              :key="label.key"
-              class="label-item"
-            >
-              <span class="label-dot" :style="{ backgroundColor: label.color }"></span>
-              <span class="label-name">{{ label.label }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  .compose-button {
+    margin-bottom: 16px;
+  }
 
-      <!-- Storage Info -->
-      <div class="storage-section">
-        <div class="section-content">
-          <h4 class="section-title">Storage</h4>
-          <div class="storage-info">
-            <div class="storage-bar">
-              <div class="storage-used" style="width: 35%"></div>
-            </div>
-            <div class="storage-text">
-              <span>3.5 GB of 10 GB used</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </n-card>
-</template>
+  .folders-section {
+    margin-bottom: 16px;
+  }
 
-<style scoped>
-/* Using external SCSS file */
+  .section-title {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-color-3);
+    padding: 0 8px;
+  }
+
+  .labels-section {
+    margin-bottom: 16px;
+
+    .labels-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .labels-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+
+  .label-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background-color: var(--bg-tertiary);
+    }
+
+    &.active {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .label-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .label-name {
+      font-size: 13px;
+      flex: 1;
+    }
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+
+    .account-info {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+
+      .account-details {
+        flex: 1;
+        min-width: 0;
+
+        p {
+          margin: 0;
+          font-size: 13px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .account-name {
+          font-weight: 600;
+          color: var(--text-color-1);
+        }
+
+        .account-email {
+          color: var(--text-color-3);
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .email-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    width: 280px;
+    height: 100vh;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+}
 </style>

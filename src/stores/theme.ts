@@ -4,12 +4,12 @@ import { useLocalStorage } from '@/composables/useLocalStorage'
 import { THEME_CONSTANTS } from '@/constants'
 
 export const useThemeStore = defineStore('theme', () => {
-  const isDark = useLocalStorage('manga-theme-isDark', false)
-  const isBoxed = useLocalStorage('manga-theme-isBoxed', false)
-  const isMiniSidebar = useLocalStorage('manga-theme-isMiniSidebar', false)
-  const isBordered = useLocalStorage('manga-theme-isBordered', false)
-  const primaryColor = useLocalStorage('manga-theme-primaryColor', THEME_CONSTANTS.DEFAULT_PRIMARY_COLOR as string)
-  const pageAnimation = useLocalStorage('manga-theme-pageAnimation', 'fade')
+  const isDark = useLocalStorage('byxora-theme-isDark', false)
+  const isBoxed = useLocalStorage('byxora-theme-isBoxed', false)
+  const isMiniSidebar = useLocalStorage('byxora-theme-isMiniSidebar', false)
+  const isBordered = useLocalStorage('byxora-theme-isBordered', false)
+  const primaryColor = useLocalStorage('byxora-theme-primaryColor', THEME_CONSTANTS.DEFAULT_PRIMARY_COLOR as string)
+  const pageAnimation = useLocalStorage('byxora-theme-pageAnimation', 'fade')
 
   // Setters to keep switches in sync without double toggling
   const setDark = (value: boolean) => {

@@ -74,7 +74,17 @@ const menuOptions = [
 ]
 
 const handleMenuSelect = (key: string) => {
-  console.log('Menu selected:', key)
+  switch (key) {
+    case 'viewdetails':
+      // Navigate to target details page
+      break
+    case 'export':
+      // Open target edit modal
+      break
+    case 'settings':
+      // Open target settings
+      break
+  }
 }
 
 const chartOptions = computed(() => ({

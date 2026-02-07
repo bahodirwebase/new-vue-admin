@@ -34,7 +34,7 @@ const goBack = () => {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  background: linear-gradient(135deg, var(--color-warning) 0%, var(--color-success) 100%);
   color: white;
 }
 
@@ -51,14 +51,15 @@ const goBack = () => {
 }
 
 .error-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  font-weight: 600;
   margin-bottom: 1rem;
 }
 
 .error-description {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   margin-bottom: 2rem;
-  max-width: 500px;
+  opacity: 0.9;
   line-height: 1.6;
 }
 
@@ -66,6 +67,7 @@ const goBack = () => {
   display: flex;
   gap: 1rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .btn-primary, .btn-secondary {
@@ -79,11 +81,11 @@ const goBack = () => {
 
 .btn-primary {
   background: white;
-  color: #fa709a;
+  color: var(--color-warning);
 }
 
 .btn-primary:hover {
-  background: #f8f9fa;
+  background: var(--bg-secondary);
   transform: translateY(-2px);
 }
 
@@ -95,6 +97,30 @@ const goBack = () => {
 
 .btn-secondary:hover {
   background: white;
-  color: #fa709a;
+  color: var(--color-warning);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .error-page {
+  background: linear-gradient(135deg, var(--color-warning) 0%, var(--color-success) 100%);
+}
+
+[data-theme="dark"] .btn-primary {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .btn-secondary {
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
 }
 </style>

@@ -28,11 +28,7 @@
             />
             <n-button text @click.stop="() => {}">
               <template #icon>
-                <n-icon>
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
-                  </svg>
-                </n-icon>
+                <n-icon :component="CloseOutline" />
               </template>
             </n-button>
           </template>
@@ -104,11 +100,7 @@
           >
             <n-button text>
               <template #icon>
-                <n-icon>
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM11 14h2v3h3v-3h2l-4-5-3 5z"/>
-                  </svg>
-                </n-icon>
+                <n-icon :component="CloudUploadOutline" />
               </template>
               Click to upload or drag files
             </n-button>
@@ -127,9 +119,11 @@
                 text
                 type="error"
                 size="small"
-                @click="removeAttachment(attachment.id)"
+                @click="handleRemoveAttachment(attachment.id)"
               >
-                ✕
+                <template #icon>
+                <n-icon :component="CloseOutline" />
+              </template>
               </n-button>
             </div>
           </div>
@@ -151,13 +145,9 @@
     <template #footer>
       <div class="composer-footer">
         <div class="left-actions">
-          <n-button text @click="saveDraft">
+          <n-button text @click="handleSaveDraft">
             <template #icon>
-              <n-icon>
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/>
-                </svg>
-              </n-icon>
+              <n-icon :component="SaveOutline" />
             </template>
             Save Draft
           </n-button>
@@ -191,7 +181,11 @@ import {
   NSelect,
   useMessage,
 } from 'naive-ui';
-import type { EmailComposerState, Attachment, Contact } from '../types';
+import { 
+  CloseOutline, 
+  SaveOutline,
+  CloudUploadOutline
+} from '@vicons/ionicons5';
 import { useEmailComposer } from '../composables/useEmailComposer';
 import { useEmailUtils } from '../composables/useEmailUtils';
 import { COMPOSER_WIDTH, EMAIL_PRIORITIES } from '../constants';
@@ -208,7 +202,7 @@ interface Emits {
 const props = defineProps<Props>();
 const emits = defineEmits<Emits>();
 
-const { composerState: state, isValid, sendEmail, saveDraft } = useEmailComposer();
+const { composerState: state, isValid, sendEmail, saveDraft, addAttachment, removeAttachment } = useEmailComposer();
 const { formatFileSize, isValidEmail, parseEmailAddresses } = useEmailUtils();
 const message = useMessage();
 
@@ -239,18 +233,12 @@ const priorityOptions = EMAIL_PRIORITIES.map((p) => ({
 const handleFileUpload = (options: any) => {
   const file = options.file.file as File;
   if (file) {
-    state.attachments.push({
-      id: `attach-${Date.now()}`,
-      name: file.name,
-      size: file.size,
-      type: file.type,
-      url: URL.createObjectURL(file),
-    });
+    addAttachment(file);
   }
 };
 
-const removeAttachment = (attachmentId: string) => {
-  state.attachments = state.attachments.filter((a) => a.id !== attachmentId);
+const handleRemoveAttachment = (attachmentId: string) => {
+  removeAttachment(attachmentId);
 };
 
 const validateEmail = (email: string) => {
@@ -263,7 +251,8 @@ const handleSend = async () => {
   // Parse CC va BCC emails
   if (ccInput.value) {
     const ccEmails = parseEmailAddresses(ccInput.value);
-    state.cc = ccEmails.map((email) => ({
+    state.value.cc = ccEmails.map((email) => ({
+      id: `cc-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       name: email.split('@')[0],
       email,
     }));
@@ -271,7 +260,8 @@ const handleSend = async () => {
 
   if (bccInput.value) {
     const bccEmails = parseEmailAddresses(bccInput.value);
-    state.bcc = bccEmails.map((email) => ({
+    state.value.bcc = bccEmails.map((email) => ({
+      id: `bcc-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
       name: email.split('@')[0],
       email,
     }));

@@ -19,11 +19,12 @@ export function useAccountActions() {
       
       message.success(MESSAGES.SAVE_SUCCESS)
       
-      // Here you would typically save all settings
-      console.log('All settings saved')
+      // TODO: Make API call to save all settings
+      // await saveAllAccountSettings()
     } catch (error) {
       message.error('Failed to save settings')
-      console.error('Error saving settings:', error)
+      // TODO: Implement proper error logging service
+      // logError('Settings save failed', error)
     } finally {
       isLoading.value = false
     }
@@ -52,11 +53,12 @@ export function useAccountActions() {
       message.success(MESSAGES.ACCOUNT_DELETED)
       closeDeleteModal()
       
-      // Here you would typically redirect to login or home page
-      console.log('Account deleted')
+      // TODO: Redirect to login or home page after deletion
+      // router.push('/login')
     } catch (error) {
       message.error('Failed to delete account')
-      console.error('Error deleting account:', error)
+      // TODO: Implement proper error logging service
+      // logError('Account deletion failed', error)
     } finally {
       isLoading.value = false
     }

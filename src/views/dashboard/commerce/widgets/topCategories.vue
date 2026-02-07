@@ -148,12 +148,12 @@ const formatCurrency = (value: number) => {
 }
 
 const handleSeeAll = () => {
-  console.log('See all categories clicked')
+  // TODO: Navigate to categories page
+  // router.push('/categories')
 }
 </script>
 
 <style scoped>
-
 
 .top-categories__header {
   display: flex;

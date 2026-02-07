@@ -83,12 +83,22 @@ const menuOptions = [
 ]
 
 const handleMenuSelect = (key: string) => {
-  console.log('Menu selected:', key)
+  // TODO: Implement menu actions based on selected key
+  switch (key) {
+    case 'viewall':
+      // Navigate to all users page
+      break
+    case 'export':
+      // Export user data
+      break
+    case 'settings':
+      // Open user settings
+      break
+  }
 }
 </script>
 
 <style scoped>
-
 
 .active-user__header {
   display: flex;

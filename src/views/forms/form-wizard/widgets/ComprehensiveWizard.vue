@@ -110,7 +110,8 @@ const submitWizard = async () => {
         await new Promise(resolve => setTimeout(resolve, 2000))
 
         message.success('Application submitted successfully!')
-        console.log('Wizard data:', wizardData)
+        // TODO: Make API call to submit wizard data
+        // await submitApplication(wizardData)
 
         // Reset wizard after successful submission
         setTimeout(() => {

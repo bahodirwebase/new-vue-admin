@@ -80,7 +80,7 @@
             v-if="email.priority !== 'normal'"
             :type="email.priority === 'high' ? 'error' : 'success'"
           >
-            {{ email.priority | capitalize }} Priority
+            {{ email.priority.charAt(0).toUpperCase() + email.priority.slice(1) }} Priority
           </n-tag>
         </div>
 
@@ -223,6 +223,8 @@ const handleMoreAction = (key: string | number) => {
   background: var(--bg-primary);
   border-radius: 8px;
   overflow-y: auto;
+  margin: 8px;
+  border: 1px solid var(--border-color);
 
   .detail-container {
     width: 100%;
@@ -462,6 +464,8 @@ const handleMoreAction = (key: string | number) => {
 
 @media (max-width: 768px) {
   .email-detail {
+    margin: 4px;
+
     .detail-container {
       padding: 16px;
     }

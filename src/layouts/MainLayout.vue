@@ -33,6 +33,9 @@ const windowWidth = ref(window.innerWidth);
 const isCollapsed = ref(true);
 const isCustomizerOpen = ref(false);
 
+// Store resize handler reference to prevent memory leak
+let resizeHandler: (() => void) | null = null;
+
 const isMobile = computed(() => windowWidth.value < 768);
 
 const toggleSidebar = () => {
@@ -48,14 +51,17 @@ const closeCustomizer = () => {
 };
 
 onMounted(() => {
-  const handleResize = () => {
+  resizeHandler = () => {
     windowWidth.value = window.innerWidth;
   };
-  window.addEventListener("resize", handleResize);
+  window.addEventListener("resize", resizeHandler);
 });
 
 onUnmounted(() => {
-  window.removeEventListener("resize", () => {});
+  if (resizeHandler) {
+    window.removeEventListener("resize", resizeHandler);
+    resizeHandler = null;
+  }
 });
 
 const contentClass = computed(() => {

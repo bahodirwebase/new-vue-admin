@@ -57,11 +57,12 @@ export function useSecurity() {
       isEditing.value = false
       message.success(MESSAGES.SECURITY_UPDATED)
       
-      // Here you would typically make an API call to update password
-      console.log('Security settings saved')
+      // TODO: Make API call to update password
+      // await updatePassword(securityData)
     } catch (error) {
       message.error('Failed to update security settings')
-      console.error('Error updating security:', error)
+      // TODO: Implement proper error logging service
+      // logError('Security update failed', error)
     }
   }
   

@@ -65,7 +65,8 @@ const submitSimpleWizard = async () => {
     try {
         await new Promise(resolve => setTimeout(resolve, 1500))
         message.success('Registration completed successfully!')
-        console.log('Simple wizard data:', simpleWizardData)
+        // TODO: Make API call to submit registration
+        // await submitRegistration(simpleWizardData)
 
         setTimeout(() => {
             resetSimpleWizard()

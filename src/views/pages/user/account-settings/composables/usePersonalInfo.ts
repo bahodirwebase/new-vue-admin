@@ -23,11 +23,12 @@ export function usePersonalInfo() {
       isEditing.value = false
       message.success(MESSAGES.PERSONAL_INFO_SAVED)
       
-      // Here you would typically make an API call to save the data
-      console.log('Personal info saved:', personalInfo)
+      // TODO: Make API call to save personal info
+      // await updatePersonalInfo(personalInfo)
     } catch (error) {
       message.error('Failed to save personal information')
-      console.error('Error saving personal info:', error)
+      // TODO: Implement proper error logging service
+      // logError('Personal info save failed', error)
     }
   }
   

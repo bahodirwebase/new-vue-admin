@@ -71,7 +71,17 @@ const menuOptions = [
 ]
 
 const handleMenuSelect = (key: string) => {
-  console.log('Menu selected:', key)
+  switch (key) {
+    case 'viewall':
+      // Navigate to traffic sources page
+      break
+    case 'export':
+      // Export traffic data
+      break
+    case 'settings':
+      // Open traffic settings
+      break
+  }
 }
 
 const series = computed(() => [{

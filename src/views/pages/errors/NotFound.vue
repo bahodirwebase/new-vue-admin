@@ -34,7 +34,7 @@ const goBack = () => {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-600) 100%);
   color: white;
   padding: 1rem;
 }
@@ -48,25 +48,26 @@ const goBack = () => {
 
 .error-code {
   font-size: 8rem;
-  font-weight: bold;
+  font-weight: 700;
   margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-  line-height: 1;
+  background: linear-gradient(45deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .error-title {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
   font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 .error-description {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   margin-bottom: 2rem;
-  max-width: 500px;
+  opacity: 0.9;
   line-height: 1.6;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .error-actions {
@@ -76,7 +77,8 @@ const goBack = () => {
   flex-wrap: wrap;
 }
 
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 6px;
@@ -89,11 +91,11 @@ const goBack = () => {
 
 .btn-primary {
   background: white;
-  color: #667eea;
+  color: var(--primary-color);
 }
 
 .btn-primary:hover {
-  background: #f8f9fa;
+  background: var(--bg-secondary);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
@@ -106,9 +108,33 @@ const goBack = () => {
 
 .btn-secondary:hover {
   background: white;
-  color: #667eea;
+  color: var(--primary-color);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .error-page {
+  background: linear-gradient(135deg, var(--primary-color-800) 0%, var(--primary-color-600) 100%);
+}
+
+[data-theme="dark"] .btn-primary {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .btn-secondary {
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
 }
 
 /* Responsive Design */

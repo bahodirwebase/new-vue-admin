@@ -1,3 +1,4 @@
+import { COLOR_PALETTE } from '@/constants/theme';
 // Email papkalarining default ro'yxati
 export const DEFAULT_FOLDERS = [
   {
@@ -44,20 +45,22 @@ export const DEFAULT_FOLDERS = [
   },
 ];
 
+
+
 // Email labellar
 export const EMAIL_LABELS = [
-  { id: 'work', name: 'Work', color: '#1890ff' },
-  { id: 'personal', name: 'Personal', color: '#52c41a' },
-  { id: 'urgent', name: 'Urgent', color: '#ff4d4f' },
-  { id: 'follow-up', name: 'Follow up', color: '#faad14' },
+  { id: 'work', name: 'Work', color: COLOR_PALETTE.PRIMARY[600] },
+  { id: 'personal', name: 'Personal', color: COLOR_PALETTE.SUCCESS[500] },
+  { id: 'urgent', name: 'Urgent', color: COLOR_PALETTE.ERROR[500] },
+  { id: 'follow-up', name: 'Follow up', color: COLOR_PALETTE.WARNING[500] },
   { id: 'archive', name: 'Archive', color: '#8c8c8c' },
 ];
 
 // Email priority darajalari
 export const EMAIL_PRIORITIES = [
-  { value: 'low', label: 'Low Priority', color: '#52c41a' },
-  { value: 'normal', label: 'Normal Priority', color: '#1890ff' },
-  { value: 'high', label: 'High Priority', color: '#ff4d4f' },
+  { value: 'low', label: 'Low Priority', color: COLOR_PALETTE.SUCCESS[500] },
+  { value: 'normal', label: 'Normal Priority', color: COLOR_PALETTE.PRIMARY[500] },
+  { value: 'high', label: 'High Priority', color: COLOR_PALETTE.ERROR[500] },
 ];
 
 // Regex patternlar

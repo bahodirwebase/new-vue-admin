@@ -1,4 +1,4 @@
-# Byxora - Vue 3 Admin Dashboard
+# Byxora Admin Dashboard
 
 A premium, feature-rich Vue 3 + TypeScript admin dashboard template built with modern technologies and best practices. Perfect for building sophisticated web applications and admin panels.
 
@@ -54,8 +54,8 @@ A premium, feature-rich Vue 3 + TypeScript admin dashboard template built with m
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/manga-admin.git
-cd manga-admin
+git clone https://github.com/yourusername/byxora-admin.git
+cd byxora-admin
 
 # Install dependencies
 npm install
@@ -78,23 +78,25 @@ npm run preview
 
 ```
 src/
-├── components/          # Reusable components
-│   ├── charts/        # Chart components
-│   ├── layout/        # Layout components
-│   └── ui/           # UI elements
-├── composables/       # Vue composables
-├── constants/         # Application constants
-├── layouts/           # Page layouts
-├── router/           # Vue Router configuration
-├── stores/           # Pinia stores
-├── types/            # TypeScript type definitions
-├── utils/            # Utility functions
-├── views/            # Page components
-│   ├── apps/         # Application pages
-│   ├── components/   # Component showcases
-│   ├── forms/        # Form examples
-│   └── pages/        # Static pages
-└── styles/           # Global styles
+├── components/          # Reusable UI components
+├── composables/       # Vue composables for shared logic
+├── constants/         # Application constants and configuration
+├── layouts/           # Page layout components
+│   ├── customizer/    # Theme customizer components
+│   ├── navbar/        # Header navigation
+│   └── sidebar/       # Sidebar navigation
+├── plugins/           # Vue plugins
+├── router/            # Vue Router configuration
+├── stores/            # Pinia state management
+├── styles/            # Global styles and themes
+├── types/             # TypeScript type definitions
+├── utils/             # Utility functions
+└── views/             # Page components
+    ├── apps/          # Application pages (calendar, chat, ecommerce)
+    ├── components/    # Component showcase pages
+    ├── forms/         # Form examples and validation
+    ├── pages/         # Static pages (auth, errors, user)
+    └── dashboard/     # Dashboard analytics pages
 ```
 
 ## 🎨 Customization
@@ -141,15 +143,16 @@ Customize colors using CSS variables:
 
 ```typescript
 // Built-in breakpoint system
-const { isMobile, isTablet, isDesktop } = useBreakpoints()
+const { isMobile, isTablet, isDesktop, isLargeDesktop } = useBreakpoints()
 
 // Available breakpoints:
-// xs: <576px
-// sm: 576px - 768px  
-// md: 768px - 992px
-// lg: 992px - 1200px
-// xl: 1200px - 1400px
-// xxl: ≥1400px
+// xxs: <576px   (Extra small mobile)
+// xs: 576px - 768px   (Mobile)
+// sm: 768px - 992px   (Tablet)
+// md: 992px - 1200px  (Small desktop)
+// lg: 1200px - 1400px (Desktop)
+// xl: 1400px - 1600px (Large desktop)
+// xxl: ≥1600px        (Ultra-wide desktop)
 ```
 
 ## 🛠️ Available Composables

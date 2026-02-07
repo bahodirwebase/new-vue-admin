@@ -73,7 +73,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
 import { NCheckbox, NAvatar, NTag, NButton, NIcon } from 'naive-ui';
 import type { Email } from '../types';
 import { useEmailUtils } from '../composables/useEmailUtils';
@@ -129,9 +128,11 @@ const getLabelType = (label: string) => {
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transition: all 0.2s ease;
+  border-radius: 8px;
+  margin: 4px 8px;
+  border: 1px solid var(--border-color);
 
   &:hover {
     background-color: var(--bg-secondary);
@@ -226,6 +227,7 @@ const getLabelType = (label: string) => {
   .email-list-item {
     gap: 8px;
     padding: 8px 12px;
+    margin: 2px 4px;
 
     .email-item-actions {
       opacity: 1;

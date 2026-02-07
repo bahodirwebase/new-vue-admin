@@ -71,7 +71,8 @@ const submitMediumWizard = async () => {
     try {
         await new Promise(resolve => setTimeout(resolve, 1500))
         message.success('Job application submitted successfully!')
-        console.log('Medium wizard data:', mediumWizardData)
+        // TODO: Make API call to submit job application
+        // await submitJobApplication(mediumWizardData)
 
         setTimeout(() => {
             resetMediumWizard()

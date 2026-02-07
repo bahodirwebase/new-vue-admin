@@ -42,7 +42,8 @@ export function useProfileActions() {
   }
   
   const viewSettings = () => {
-    console.log(PROFILE_MESSAGES.NAVIGATE_SETTINGS)
+    // TODO: Navigate to settings page
+    // Router navigation to be implemented
   }
   
   const editAbout = () => {
@@ -50,11 +51,13 @@ export function useProfileActions() {
   }
   
   const editSkills = () => {
-    console.log('Edit skills functionality')
+    // TODO: Implement skills editing functionality
+    // Will open skills modal or navigate to skills section
   }
   
   const editSocial = () => {
-    console.log('Edit social links functionality')
+    // TODO: Implement social links editing functionality
+    // Will open social links modal
   }
   
   return {

@@ -24,12 +24,12 @@ Before you begin, ensure you have the following installed:
 
 ```bash
 # Using HTTPS
-git clone https://github.com/yourusername/manga-admin.git
-cd manga-admin
+git clone https://github.com/yourusername/byxora-admin.git
+cd byxora-admin
 
 # Using SSH (if you have SSH keys set up)
-git clone git@github.com:yourusername/manga-admin.git
-cd manga-admin
+git clone git@github.com:yourusername/byxora-admin.git
+cd byxora-admin
 ```
 
 ### 2. Install Dependencies
@@ -244,10 +244,10 @@ Build and run:
 
 ```bash
 # Build Docker image
-docker build -t manga-admin .
+docker build -t byxora-admin .
 
 # Run container
-docker run -p 80:80 manga-admin
+docker run -p 80:80 byxora-admin
 ```
 
 ---
@@ -323,7 +323,7 @@ After successful installation:
 If you encounter any issues during installation:
 
 - 📖 Check the [Documentation](./README.md)
-- 🐛 [Report an Issue](https://github.com/yourusername/manga-admin/issues)
+- 🐛 [Report an Issue](https://github.com/yourusername/byxora-admin/issues)
 - 💬 [Join our Community](https://discord.gg/your-server)
 - 📧 Email: support@example.com
 
