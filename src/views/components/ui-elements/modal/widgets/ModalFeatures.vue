@@ -6,7 +6,7 @@
           Closable Modal
         </h3>
         <n-button @click="showClosable = true">Show Closable</n-button>
-        <n-modal v-model:show="showClosable" preset="card" title="Closable Modal" :closable="true">
+        <n-modal v-model:show="showClosable" preset="dialog" title="Closable Modal" :closable="true">
           <p>This modal can be closed using the X button or ESC key.</p>
         </n-modal>
       </div>
@@ -16,7 +16,7 @@
           Mask Closable
         </h3>
         <n-button @click="showMaskClosable = true">Show Mask Closable</n-button>
-        <n-modal v-model:show="showMaskClosable" preset="card" title="Mask Closable" :mask-closable="true">
+        <n-modal v-model:show="showMaskClosable" preset="dialog" title="Mask Closable" :mask-closable="false">
           <p>This modal can be closed by clicking the mask/overlay.</p>
         </n-modal>
       </div>

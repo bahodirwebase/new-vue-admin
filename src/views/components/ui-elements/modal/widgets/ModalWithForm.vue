@@ -4,7 +4,7 @@
 
     <n-modal
       v-model:show="showForm"
-      preset="card"
+      preset="dialog"
       title="User Form"
       style="width: 500px"
     >

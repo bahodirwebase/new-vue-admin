@@ -19,7 +19,7 @@ const saveEvent = async () => {
 };
 </script>
 <template>
-    <n-modal v-model:show="calendarStore.showModal" :mask-closable="false" preset="card"
+    <n-modal v-model:show="calendarStore.showModal" :mask-closable="false" preset="dialog"
         :title="calendarStore.editingEvent ? 'Edit Event' : 'Create New Event'" style="width: 600px"
         class="event-modal">
         <n-form ref="formRef" :model="calendarStore.eventForm" :rules="FORM_RULES">

@@ -8,7 +8,7 @@
 
     <n-modal
       v-model:show="showSmall"
-      preset="card"
+      preset="dialog"
       title="Small Modal"
       style="width: 400px"
     >
@@ -17,7 +17,7 @@
 
     <n-modal
       v-model:show="showMedium"
-      preset="card"
+      preset="dialog"
       title="Medium Modal"
       style="width: 600px"
     >
@@ -26,7 +26,7 @@
 
     <n-modal
       v-model:show="showLarge"
-      preset="card"
+      preset="dialog"
       title="Large Modal"
       style="width: 900px"
     >

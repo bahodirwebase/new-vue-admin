@@ -5,7 +5,7 @@ const chatStore = useChatStore();
 <template>
   <n-modal
     v-model:show="chatStore.showSettings"
-    preset="card"
+    preset="dialog"
     title="Settings"
     class="settings-modal"
     style="max-width: 400px"

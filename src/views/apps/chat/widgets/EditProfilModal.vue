@@ -6,7 +6,7 @@ const chatStore = useChatStore();
 <template>
   <n-modal
     v-model:show="chatStore.showEditProfile"
-    preset="card"
+    preset="dialog"
     title="Edit Profile"
     class="profile-modal"
     style="max-width: 400px"

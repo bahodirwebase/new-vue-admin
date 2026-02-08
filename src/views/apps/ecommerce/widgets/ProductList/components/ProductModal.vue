@@ -30,7 +30,7 @@ const saveProduct = () => {
 <template>
   <n-modal
     v-model:show="store.showAddProductModal"
-    preset="card"
+    preset="dialog"
     title="Add New Product"
     style="width: 600px"
   >
