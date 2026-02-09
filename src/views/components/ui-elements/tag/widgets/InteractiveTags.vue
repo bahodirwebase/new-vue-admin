@@ -6,9 +6,9 @@
           Clickable Tags
         </h3>
         <n-space>
-          <n-tag checkable>Toggle Tag</n-tag>
-          <n-tag checkable type="success">Success Toggle</n-tag>
-          <n-tag checkable type="warning">Warning Toggle</n-tag>
+          <CustomTag clickable type="default">Toggle Tag</CustomTag>
+          <CustomTag clickable type="success">Success Toggle</CustomTag>
+          <CustomTag clickable type="warning">Warning Toggle</CustomTag>
         </n-space>
       </div>
 
@@ -17,16 +17,20 @@
           Tag with Badge
         </h3>
         <n-space>
-          <n-tag>
+          <CustomTag type="default">
             Messages
             <n-badge value="5" style="margin-left: 8px" />
-          </n-tag>
-          <n-tag type="success">
+          </CustomTag>
+          <CustomTag type="success">
             Completed
             <n-badge value="12" style="margin-left: 8px" />
-          </n-tag>
+          </CustomTag>
         </n-space>
       </div>
     </n-space>
   </n-card>
 </template>
+
+<script setup lang="ts">
+import CustomTag from '@/components/CustomTag.vue'
+</script>

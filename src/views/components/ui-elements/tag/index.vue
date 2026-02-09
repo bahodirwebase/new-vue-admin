@@ -5,7 +5,6 @@ import TagStyles from './widgets/TagStyles.vue'
 import TagFeatures from './widgets/TagFeatures.vue'
 import InteractiveTags from './widgets/InteractiveTags.vue'
 
-
 </script>
 <template>
   <div class="ui-page">

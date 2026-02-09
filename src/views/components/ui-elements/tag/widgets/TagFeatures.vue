@@ -6,24 +6,15 @@
           Tag with Icon
         </h3>
         <n-space>
-          <n-tag>
-            <template #icon>
-              <n-icon :component="CheckmarkCircleOutline" />
-            </template>
+          <CustomTag :icon="CheckmarkCircleOutline" type="default">
             Completed
-          </n-tag>
-          <n-tag type="warning">
-            <template #icon>
-              <n-icon :component="WarningOutline" />
-            </template>
+          </CustomTag>
+          <CustomTag type="warning" :icon="WarningOutline">
             Pending
-          </n-tag>
-          <n-tag type="error">
-            <template #icon>
-              <n-icon :component="AlertCircleOutline" />
-            </template>
+          </CustomTag>
+          <CustomTag type="error" :icon="AlertCircleOutline">
             Failed
-          </n-tag>
+          </CustomTag>
         </n-space>
       </div>
 
@@ -32,9 +23,9 @@
           Tag Sizes
         </h3>
         <n-space vertical :size="8">
-          <n-tag size="small">Small Tag</n-tag>
-          <n-tag size="medium">Medium Tag</n-tag>
-          <n-tag size="large">Large Tag</n-tag>
+          <CustomTag size="small">Small Tag</CustomTag>
+          <CustomTag size="medium">Medium Tag</CustomTag>
+          <CustomTag size="large">Large Tag</CustomTag>
         </n-space>
       </div>
     </n-space>
@@ -47,4 +38,5 @@ import {
   WarningOutline,
   AlertCircleOutline
 } from '@vicons/ionicons5'
+import CustomTag from '@/components/CustomTag.vue'
 </script>

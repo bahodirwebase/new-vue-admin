@@ -6,11 +6,11 @@
           Rounded Tags
         </h3>
         <n-space>
-          <n-tag round>Default</n-tag>
-          <n-tag type="success" round>Success</n-tag>
-          <n-tag type="info" round>Info</n-tag>
-          <n-tag type="warning" round>Warning</n-tag>
-          <n-tag type="error" round>Error</n-tag>
+          <CustomTag round type="default">Default</CustomTag>
+          <CustomTag type="success" round>Success</CustomTag>
+          <CustomTag type="info" round>Info</CustomTag>
+          <CustomTag type="warning" round>Warning</CustomTag>
+          <CustomTag type="error" round>Error</CustomTag>
         </n-space>
       </div>
 
@@ -19,12 +19,16 @@
           Custom Colors
         </h3>
         <n-space>
-          <n-tag color="#ff6b6b">Custom Red</n-tag>
-          <n-tag color="#4ecdc4">Custom Teal</n-tag>
-          <n-tag color="#45b7d1">Custom Blue</n-tag>
-          <n-tag color="#96ceb4">Custom Green</n-tag>
+          <CustomTag color="#ff6b6b" variant="filled" text-color="#fff">Custom Red</CustomTag>
+          <CustomTag color="#4ecdc4" variant="filled" text-color="#fff">Custom Teal</CustomTag>
+          <CustomTag color="#45b7d1" variant="filled" text-color="#fff">Custom Blue</CustomTag>
+          <CustomTag color="#96ceb4" variant="filled" text-color="#fff">Custom Green</CustomTag>
         </n-space>
       </div>
     </n-space>
   </n-card>
 </template>
+
+<script setup lang="ts">
+import CustomTag from '@/components/CustomTag.vue'
+</script>

@@ -6,11 +6,11 @@
           Tag Types
         </h3>
         <n-space>
-          <n-tag>Default</n-tag>
-          <n-tag type="success">Success</n-tag>
-          <n-tag type="info">Info</n-tag>
-          <n-tag type="warning">Warning</n-tag>
-          <n-tag type="error">Error</n-tag>
+          <CustomTag type="default">Default</CustomTag>
+          <CustomTag type="success">Success</CustomTag>
+          <CustomTag type="info">Info</CustomTag>
+          <CustomTag type="warning">Warning</CustomTag>
+          <CustomTag type="error">Error</CustomTag>
         </n-space>
       </div>
 
@@ -19,9 +19,9 @@
           Closable Tags
         </h3>
         <n-space>
-          <n-tag closable @close="handleClose('tag1')">Closable</n-tag>
-          <n-tag type="success" closable @close="handleClose('tag2')">Success</n-tag>
-          <n-tag type="error" closable @close="handleClose('tag3')">Error</n-tag>
+          <CustomTag closable @close="handleClose('tag1')">Closable</CustomTag>
+          <CustomTag type="success" closable @close="handleClose('tag2')">Success</CustomTag>
+          <CustomTag type="error" closable @close="handleClose('tag3')">Error</CustomTag>
         </n-space>
       </div>
     </n-space>
@@ -30,6 +30,7 @@
 
 <script setup lang="ts">
 import { useMessage } from 'naive-ui'
+import CustomTag from '@/components/CustomTag.vue'
 
 const message = useMessage()
 
