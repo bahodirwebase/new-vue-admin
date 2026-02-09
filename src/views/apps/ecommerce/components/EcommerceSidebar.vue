@@ -7,6 +7,7 @@ import {
   NAVIGATION_OPTIONS,
 } from "../constants";
 import { useEcommerceStore } from "../store";
+import CustomTag from "@/components/CustomTag.vue";
 
 const ecommerceStore = useEcommerceStore();
 
@@ -72,21 +73,21 @@ onMounted(() => {
         <n-space vertical size="medium">
           <div class="stat-item">
             <span class="stat-label">Total Products</span>
-            <n-tag type="info" size="small">{{ stats.totalProducts }}</n-tag>
+            <CustomTag type="info" size="small">{{ stats.totalProducts }}</CustomTag>
           </div>
           <div class="stat-item">
             <span class="stat-label">Active Orders</span>
-            <n-tag type="success" size="small">{{ stats.activeOrders }}</n-tag>
+            <CustomTag type="success" size="small">{{ stats.activeOrders }}</CustomTag>
           </div>
           <div class="stat-item">
             <span class="stat-label">Revenue Today</span>
-            <n-tag type="warning" size="small"
-              >${{ stats.revenueToday.toLocaleString() }}</n-tag
+            <CustomTag type="warning" size="small"
+              >${{ stats.revenueToday.toLocaleString() }}</CustomTag
             >
           </div>
           <div class="stat-item">
             <span class="stat-label">New Customers</span>
-            <n-tag type="error" size="small">{{ stats.newCustomers }}</n-tag>
+            <CustomTag type="error" size="small">{{ stats.newCustomers }}</CustomTag>
           </div>
         </n-space>
       </div>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { NPageHeader, NSpace, NButton, NTag } from 'naive-ui'
+import { NPageHeader, NSpace, NButton } from 'naive-ui'
 import { BREADCRUMB_EXAMPLES, AVATAR_EXAMPLES } from '../constants'
+import CustomTag from '@/components/CustomTag.vue'
 
 const handleBack = () => {
   console.log('Back button clicked')
@@ -19,7 +20,7 @@ const handleBack = () => {
       >
         <template #extra>
           <n-space>
-            <n-tag type="success">In Stock</n-tag>
+            <CustomTag type="success">In Stock</CustomTag>
             <n-button secondary>Add to Wishlist</n-button>
             <n-button type="primary">Add to Cart</n-button>
           </n-space>

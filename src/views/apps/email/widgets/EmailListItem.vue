@@ -36,7 +36,7 @@
         <span v-if="email.attachments.length" class="attachment-indicator">📎</span>
       </div>
       <div class="email-item-labels">
-        <n-tag
+        <CustomTag
           v-for="label in email.labels"
           :key="label"
           :type="getLabelType(label)"
@@ -44,7 +44,7 @@
           round
         >
           {{ label }}
-        </n-tag>
+        </CustomTag>
       </div>
     </div>
 
@@ -73,9 +73,10 @@
 </template>
 
 <script setup lang="ts">
-import { NCheckbox, NAvatar, NTag, NButton, NIcon } from 'naive-ui';
+import { NCheckbox, NAvatar, NButton, NIcon } from 'naive-ui';
 import type { Email } from '../types';
 import { useEmailUtils } from '../composables/useEmailUtils';
+import CustomTag from '@/components/CustomTag.vue';
 
 interface Props {
   email: Email;

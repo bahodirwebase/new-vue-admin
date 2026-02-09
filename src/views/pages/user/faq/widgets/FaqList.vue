@@ -21,9 +21,9 @@
           <div class="faq-question" @click="toggleFaq(faq.id)">
             <div class="question-content">
               <div class="question-header">
-                <n-tag :type="getCategoryColor(faq.category)" size="small">
+                <CustomTag :type="getCategoryColor(faq.category)" size="small">
                   {{ faq.category }}
-                </n-tag>
+                </CustomTag>
                 <h3>{{ faq.question }}</h3>
               </div>
             </div>
@@ -96,6 +96,7 @@ import {
 } from '@vicons/ionicons5'
 import { useFaqFilters } from '../composables/useFaqFilters'
 import { useFaqInteractions } from '../composables/useFaqInteractions'
+import CustomTag from '@/components/CustomTag.vue'
 
 const {
   filteredFaqs,

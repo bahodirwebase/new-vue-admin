@@ -4,6 +4,7 @@ import { useProductDetail } from "../composables/useProductDetail";
 import { useProductDetailStore } from "../store";
 import { Product } from "../types";
 import { formatDate } from "@/utils"
+import CustomTag from "@/components/CustomTag.vue"
 
 const { currentImage, getStatusType, formatStatus, getStockClass, getStockStatus } = useProductDetail();
 
@@ -23,14 +24,14 @@ defineProps<IProps>();
           <div class="main-image">
             <img :src="currentImage" :alt="product.name" />
             <div class="image-badges">
-              <n-tag v-if="product.isNew" type="success" size="large"
-                >New</n-tag
+              <CustomTag v-if="product.isNew" type="success" size="large"
+                >New</CustomTag
               >
-              <n-tag v-if="product.isOnSale" type="warning" size="large"
-                >Sale</n-tag
+              <CustomTag v-if="product.isOnSale" type="warning" size="large"
+                >Sale</CustomTag
               >
-              <n-tag v-if="product.stock === 0" type="error" size="large"
-                >Out of Stock</n-tag
+              <CustomTag v-if="product.stock === 0" type="error" size="large"
+                >Out of Stock</CustomTag
               >
             </div>
           </div>
@@ -54,9 +55,9 @@ defineProps<IProps>();
           <div class="product-header">
             <h1>{{ product.name }}</h1>
             <div class="product-meta">
-              <n-tag :type="getStatusType(product.status)" size="medium">
+              <CustomTag :type="getStatusType(product.status)" size="medium">
                 {{ formatStatus(product.status) }}
-              </n-tag>
+              </CustomTag>
               <span class="sku">SKU: {{ product.sku }}</span>
             </div>
           </div>
@@ -79,10 +80,10 @@ defineProps<IProps>();
             </div>
             <div v-if="product.isOnSale">
               <div class="discount-info">
-                <n-tag type="success"
+                <CustomTag type="success"
                   >Save ${{
                     (product.price - (product.salePrice || 0)).toFixed(2)
-                  }}</n-tag
+                  }}</CustomTag
                 >
               </div>
             </div>

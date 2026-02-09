@@ -1,13 +1,13 @@
 import type { DataTableColumns, FormRules } from 'naive-ui'
 import { h } from 'vue'
-import { 
-  NTag, 
-  NButton, 
-  NIcon, 
+import CustomTag from '@/components/CustomTag.vue'
+import {
+  NButton,
+  NIcon,
   NAvatar,
   NDropdown
 } from 'naive-ui'
-import { 
+import {
   EyeOutline,
   CreateOutline,
   TrashOutline,
@@ -100,7 +100,7 @@ export const TABLE_COLUMNS: DataTableColumns<User> = [
     sorter: 'default',
     render(row) {
       const roleType = ROLE_OPTIONS.find(r => r.value === row.role)?.type || 'default'
-      return h(NTag, {
+      return h(CustomTag, {
         type: roleType,
         size: 'small'
       }, { default: () => row.role })
@@ -113,7 +113,7 @@ export const TABLE_COLUMNS: DataTableColumns<User> = [
     sorter: 'default',
     render(row) {
       const statusType = STATUS_OPTIONS.find(s => s.value === row.status)?.type || 'default'
-      return h(NTag, {
+      return h(CustomTag, {
         type: statusType,
         size: 'small'
       }, { default: () => row.status })
@@ -168,7 +168,7 @@ export const TABLE_COLUMNS: DataTableColumns<User> = [
           icon: () => h(NIcon, { component: TrashOutline })
         }
       ]
-      
+
       return h(NDropdown, {
         options: dropdownOptions,
         onSelect: (key: string) => handleAction(key, row)

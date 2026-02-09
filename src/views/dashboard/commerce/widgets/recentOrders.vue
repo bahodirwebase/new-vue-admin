@@ -44,9 +44,10 @@
 
 <script setup lang="ts">
 import { ref, computed, h } from 'vue'
-import { NButton, NInput, NDropdown, NIcon, NDataTable, NTag } from 'naive-ui'
+import { NButton, NInput, NDropdown, NIcon, NDataTable } from 'naive-ui'
 import { SearchOutline, ChevronDownOutline } from '@vicons/ionicons5'
 import type { DataTableColumns } from 'naive-ui'
+import CustomTag from '@/components/CustomTag.vue'
 
 interface Order {
   no: number
@@ -195,7 +196,7 @@ const columns: DataTableColumns<Order> = [
     width: 120,
     render: (row) => {
       return h(
-        NTag,
+        CustomTag,
         {
           type: getStatusType(row.status),
           round: true,
@@ -296,14 +297,6 @@ const columns: DataTableColumns<Order> = [
   color: #333333;
   font-weight: 400;
 }
-
-/* Tag styling */
-:deep(.n-tag) {
-  font-weight: 500;
-  padding: 4px 12px;
-  font-size: 12px;
-}
-
 /* Responsive */
 @media (max-width: 1024px) {
   .recent-orders__header {

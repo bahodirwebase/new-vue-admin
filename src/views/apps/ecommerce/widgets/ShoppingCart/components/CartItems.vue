@@ -2,6 +2,7 @@
 import { TrashOutline } from "@vicons/ionicons5";
 import { useShoppingCartStore } from "../store";
 import { useShoppingCart } from "../composables/useShoppingCart";
+import CustomTag from "@/components/CustomTag.vue";
 
 const shoppingCartStore = useShoppingCartStore();
 const { calculateItemTotal } = useShoppingCart();
@@ -30,14 +31,14 @@ const { calculateItemTotal } = useShoppingCart();
           </div>
 
           <div class="item-variants" v-if="item.variants">
-            <n-tag
+            <CustomTag
               v-for="(variant, key) in item.variants"
               :key="key"
               size="small"
               type="info"
             >
               {{ variant }}
-            </n-tag>
+            </CustomTag>
           </div>
 
           <div class="item-price">

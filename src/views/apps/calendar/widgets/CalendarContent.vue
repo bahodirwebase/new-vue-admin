@@ -8,6 +8,7 @@ import {
 import { useCalendarStore } from "../store";
 import { useCalendar } from "../composables/useCalendar";
 import { formatDate } from "@/utils"
+import CustomTag from "@/components/CustomTag.vue";
 
 const calendarStore = useCalendarStore();
 const { getEventsForDate, weekRange, weekDays, getEventsForDay, selectedDayFormatted, getEventsForHour } = useCalendar();
@@ -112,9 +113,9 @@ const { getEventsForDate, weekRange, weekDays, getEventsForDay, selectedDayForma
                     <div class="hour-content">
                         <div v-for="event in getEventsForHour(calendarStore.activeDate, hour - 1)" :key="event.id"
                             class="day-event">
-                            <n-tag :color="{ color: event.color, textColor: '#fff' }">
+                            <CustomTag :color="event.color" text-color="#fff">
                                 {{ event.title }}
-                            </n-tag>
+                            </CustomTag>
                         </div>
                     </div>
                 </div>
@@ -132,9 +133,9 @@ const { getEventsForDate, weekRange, weekDays, getEventsForDay, selectedDayForma
                     <div class="event-content">
                         <div class="event-header">
                             <h4 class="event-title">{{ event.title }}</h4>
-                            <n-tag :color="{ color: event.color, textColor: '#fff' }" size="small">
+                            <CustomTag :color="event.color" text-color="#fff" size="small">
                                 {{ event.category }}
-                            </n-tag>
+                            </CustomTag>
                         </div>
                         <div class="event-details">
                             <p class="event-date">{{ formatDate(event.date) }}</p>

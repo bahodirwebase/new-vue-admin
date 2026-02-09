@@ -7,6 +7,7 @@ import {
 import { useCalendarStore } from "../store";
 import { VIEW_OPTIONS } from "../constants";
 import { useCalendar } from "../composables/useCalendar";
+import CustomTag from "@/components/CustomTag.vue";
 
 const calendarStore = useCalendarStore();
 const { todayEvents, thisWeekEvents, upcomingEvents, currentPeriodInfo } = useCalendar();
@@ -65,9 +66,9 @@ const { todayEvents, thisWeekEvents, upcomingEvents, currentPeriodInfo } = useCa
             <div class="period-section">
                 <h4>Current Period</h4>
                 <div class="period-info">
-                    <n-tag type="info" size="large">
+                    <CustomTag type="info" size="large">
                         {{ currentPeriodInfo }}
-                    </n-tag>
+                    </CustomTag>
                 </div>
             </div>
 

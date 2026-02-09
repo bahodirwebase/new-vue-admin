@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { NCard, NDivider, NSpace, NIcon, NTag, NButton } from 'naive-ui'
+import { NCard, NDivider, NSpace, NIcon, NButton } from 'naive-ui'
 import { ChevronDownOutline, CheckmarkCircle } from '@vicons/ionicons5'
+import CustomTag from '@/components/CustomTag.vue'
 
 const selectedContentType = ref('icon')
 
@@ -44,7 +45,7 @@ const getContentTypeLabel = () => {
           </n-divider>
           
           <n-divider>
-            <n-tag type="info" size="small">Important</n-tag>
+            <CustomTag type="info" size="small">Important</CustomTag>
           </n-divider>
           
           <n-divider>
@@ -56,7 +57,7 @@ const getContentTypeLabel = () => {
               <n-icon color="#f0a020">
                 <CheckmarkCircle />
               </n-icon>
-              <n-tag type="warning" size="small">In Progress</n-tag>
+              <CustomTag type="warning" size="small">In Progress</CustomTag>
               <n-button size="tiny" secondary>View</n-button>
             </n-space>
           </n-divider>
@@ -80,7 +81,7 @@ const getContentTypeLabel = () => {
               <n-icon color="#2080f0">
                 <CheckmarkCircle />
               </n-icon>
-              <n-tag type="info" size="small">Center Aligned</n-tag>
+              <CustomTag type="info" size="small">Center Aligned</CustomTag>
             </n-space>
           </n-divider>
           

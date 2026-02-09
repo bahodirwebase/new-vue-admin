@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { ref, h } from 'vue'
-import { NTag } from 'naive-ui'
+import CustomTag from '@/components/CustomTag.vue'
 
 const customValue = ref(['vue', 'react'])
 const customOptions = [
@@ -23,7 +23,7 @@ const customOptions = [
 
 const renderSourceLabel = ({ option }: any) => {
   return h('div', { style: 'display: flex; align-items: center; gap: 8px;' }, [
-    h(NTag, {
+    h(CustomTag, {
       type: option.type === 'framework' ? 'info' : 'success',
       size: 'small'
     }, { default: () => option.type }),

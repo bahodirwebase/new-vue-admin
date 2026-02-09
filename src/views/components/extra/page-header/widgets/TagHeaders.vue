@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { NPageHeader, NSpace, NButton, NTag } from 'naive-ui'
+import { NPageHeader, NSpace, NButton } from 'naive-ui'
 import { TAG_EXAMPLES } from '../constants'
+import CustomTag from '@/components/CustomTag.vue'
 </script>
 
 <template>
@@ -26,8 +27,8 @@ import { TAG_EXAMPLES } from '../constants'
       <n-page-header title="Documentation Site" subtitle="Comprehensive documentation platform">
         <template #extra>
           <n-space>
-            <n-tag type="success" size="small">Live</n-tag>
-            <n-tag type="info" size="small">v2.0</n-tag>
+            <CustomTag type="success" size="small">Live</CustomTag>
+            <CustomTag type="info" size="small">v2.0</CustomTag>
             <n-button type="primary">Manage</n-button>
           </n-space>
         </template>

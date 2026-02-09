@@ -1,5 +1,6 @@
 import { h } from "vue";
-import { NTag, NButton, NIcon } from "naive-ui";
+import { NButton, NIcon } from "naive-ui";
+import CustomTag from "@/components/CustomTag.vue";
 import { CreateOutline, TrashOutline, EyeOutline } from "@vicons/ionicons5";
 import { Product } from "../../../types";
 import { useActions } from "../composables/useActions";
@@ -60,7 +61,7 @@ export function useTableColumns() {
             : row.status === "inactive"
               ? "warning"
               : "error";
-        return h(NTag, { type, size: "small" }, () =>
+        return h(CustomTag, { type, size: "small" }, () =>
           row.status.replace("_", " ").toUpperCase(),
         );
       },

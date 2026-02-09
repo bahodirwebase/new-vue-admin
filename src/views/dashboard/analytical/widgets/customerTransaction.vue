@@ -4,13 +4,13 @@ import {
   NDataTable,
   NInput,
   NIcon,
-  NTag,
   NButton,
   NAvatar,
   NCard,
 } from "naive-ui";
 import type { DataTableColumns } from "naive-ui";
 import type { Transaction } from "../types";
+import CustomTag from '@/components/CustomTag.vue';
 
 // Icons
 const SearchIcon = {
@@ -240,10 +240,9 @@ const columns: DataTableColumns<Transaction> = [
       };
       const config = statusConfig[row.status];
       return h(
-        NTag,
+        CustomTag,
         {
           round: true,
-          bordered: false,
           style: {
             backgroundColor: config.color,
             color: config.textColor,

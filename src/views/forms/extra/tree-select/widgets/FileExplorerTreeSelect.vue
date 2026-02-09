@@ -26,8 +26,8 @@
 
 <script setup lang="ts">
 import { ref, h } from 'vue'
-import { NTag } from 'naive-ui'
 import { useMessage } from 'naive-ui'
+import CustomTag from '@/components/CustomTag.vue'
 
 const message = useMessage()
 const selectedFiles = ref([])
@@ -75,7 +75,7 @@ const renderFileOption = ({ option }: any) => {
   return h('div', { style: 'display: flex; align-items: center; gap: 8px;' }, [
     h('span', { style: 'font-size: 16px;' }, option.label.split(' ')[0]),
     h('span', option.label.split(' ')[1]),
-    option.size && h(NTag, {
+    option.size && h(CustomTag, {
       type: 'info',
       size: 'small'
     }, { default: () => option.size })

@@ -1,6 +1,7 @@
 import type { DataTableColumns } from 'naive-ui'
 import { h } from 'vue'
-import { NTag, NButton, NIcon } from 'naive-ui'
+import { NButton, NIcon } from 'naive-ui'
+import CustomTag from '@/components/CustomTag.vue'
 import { EyeOutline, CreateOutline, TrashOutline } from '@vicons/ionicons5'
 
 export type RowData = {
@@ -67,7 +68,7 @@ export const SIMPLE_COLUMNS: DataTableColumns<RowData> = [
     key: 'status',
     render(row) {
       const statusType = STATUS_OPTIONS.find(s => s.value === row.status)?.type || 'default'
-      return h(NTag, {
+      return h(CustomTag, {
         type: statusType,
         size: 'small'
       }, { default: () => row.status })
@@ -106,7 +107,7 @@ export const STYLED_COLUMNS: DataTableColumns<RowData> = [
     key: 'role',
     render(row) {
       const roleType = ROLE_OPTIONS.find(r => r.value === row.role)?.type || 'default'
-      return h(NTag, {
+      return h(CustomTag, {
         type: roleType,
         size: 'small'
       }, { default: () => row.role })

@@ -15,7 +15,7 @@
             <n-switch v-model="isYearly" size="large" />
             <span class="toggle-label" :class="{ active: isYearly }">
               Yearly
-              <n-tag type="success" size="small">Save {{ getDiscountPercentage() }}%</n-tag>
+              <CustomTag type="success" size="small">Save {{ getDiscountPercentage() }}%</CustomTag>
             </span>
           </div>
         </div>
@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
 import { usePricingToggle } from '../composables/usePricingToggle'
+import CustomTag from '@/components/CustomTag.vue'
 
 const {
   isYearly,

@@ -9,7 +9,7 @@
       </div>
     </template>
     <div class="skills-list">
-      <n-tag 
+      <CustomTag 
         v-for="skill in skills" 
         :key="skill.name"
         :type="getSkillColor(skill.level)"
@@ -19,7 +19,7 @@
       >
         {{ skill.name }}
         <span class="skill-level">{{ skill.level }}</span>
-      </n-tag>
+      </CustomTag>
     </div>
   </n-card>
 </template>
@@ -29,6 +29,7 @@ import { AddOutline } from '@vicons/ionicons5'
 import { useUserProfile } from '../composables/useUserProfile'
 import { useProfileActions } from '../composables/useProfileActions'
 import { SKILL_LEVEL_COLORS } from '../constants'
+import CustomTag from '@/components/CustomTag.vue'
 
 const { skills } = useUserProfile()
 const { editSkills } = useProfileActions()

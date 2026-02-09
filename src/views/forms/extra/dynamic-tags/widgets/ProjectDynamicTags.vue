@@ -14,8 +14,8 @@
 
 <script setup lang="ts">
 import { ref, h } from 'vue'
-import { NTag } from 'naive-ui'
 import { useMessage } from 'naive-ui'
+import CustomTag from '@/components/CustomTag.vue'
 
 const message = useMessage()
 const projectName = ref('')
@@ -26,7 +26,7 @@ const renderProjectTag = (value: any) => {
   const colors: Array<'primary' | 'success' | 'warning' | 'error' | 'info'> = ['primary', 'success', 'warning', 'error', 'info']
   const color = colors[Math.floor(Math.random() * colors.length)]
 
-  return h(NTag, {
+  return h(CustomTag, {
     type: color,
     closable: true,
     onClose: () => {

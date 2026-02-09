@@ -2,6 +2,7 @@
 import { CreateOutline, TrashOutline } from "@vicons/ionicons5";
 import { useProductFilter } from "../composables/useProductFilter";
 import { useActions } from "../composables/useActions";
+import CustomTag from "@/components/CustomTag.vue";
 
 const { filteredProducts, getStockClass } = useProductFilter();
 const { viewProduct, editProduct, deleteProduct } = useActions();
@@ -19,12 +20,12 @@ const { viewProduct, editProduct, deleteProduct } = useActions();
       <div class="product-image">
         <img :src="product.image" :alt="product.name" />
         <div class="product-badges">
-          <n-tag v-if="product.isNew" type="success" size="small">New</n-tag>
-          <n-tag v-if="product.isOnSale" type="warning" size="small"
-            >Sale</n-tag
+          <CustomTag v-if="product.isNew" type="success" size="small">New</CustomTag>
+          <CustomTag v-if="product.isOnSale" type="warning" size="small"
+            >Sale</CustomTag
           >
-          <n-tag v-if="product.stock === 0" type="error" size="small"
-            >Out of Stock</n-tag
+          <CustomTag v-if="product.stock === 0" type="error" size="small"
+            >Out of Stock</CustomTag
           >
         </div>
       </div>

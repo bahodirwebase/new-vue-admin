@@ -76,12 +76,12 @@
             <p class="sender-email">{{ email.from.email }}</p>
             <p class="send-time">{{ formatDateTime(email.timestamp) }}</p>
           </div>
-          <n-tag
+          <CustomTag
             v-if="email.priority !== 'normal'"
             :type="email.priority === 'high' ? 'error' : 'success'"
           >
             {{ email.priority.charAt(0).toUpperCase() + email.priority.slice(1) }} Priority
-          </n-tag>
+          </CustomTag>
         </div>
 
         <!-- Recipients -->
@@ -140,14 +140,14 @@
 
       <!-- Labels -->
       <div v-if="email.labels.length" class="detail-labels">
-        <n-tag
+        <CustomTag
           v-for="label in email.labels"
           :key="label"
           type="info"
           round
         >
           {{ label }}
-        </n-tag>
+        </CustomTag>
       </div>
     </div>
 
@@ -166,9 +166,10 @@
 </template>
 
 <script setup lang="ts">
-import { NButton, NIcon, NDropdown, NAvatar, NTag } from 'naive-ui';
+import { NButton, NIcon, NDropdown, NAvatar } from 'naive-ui';
 import type { Email } from '../types';
 import { useEmailUtils } from '../composables/useEmailUtils';
+import CustomTag from '@/components/CustomTag.vue';
 
 interface Props {
   email?: Email;

@@ -9,14 +9,14 @@
 
 <script setup lang="ts">
 import { ref, h } from 'vue'
-import { NTag } from 'naive-ui'
 import { useMessage } from 'naive-ui'
+import CustomTag from '@/components/CustomTag.vue'
 
 const message = useMessage()
 const customValue = ref(['JavaScript', 'Python', 'Docker'])
 
 const renderCustomTag = (value: any) => {
-  return h(NTag, {
+  return h(CustomTag, {
     type: 'info',
     closable: true,
     onClose: () => {
