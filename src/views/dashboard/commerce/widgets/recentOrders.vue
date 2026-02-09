@@ -269,11 +269,6 @@ const columns: DataTableColumns<Order> = [
   overflow-x: auto;
 }
 
-
-
-
-
-
 .product-cell {
   display: flex;
   align-items: center;

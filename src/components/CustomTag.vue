@@ -46,7 +46,12 @@ interface Props {
   /**
    * Custom text color
    */
-  textColor?: string
+  textColor?: string,
+
+  /**
+   * Icon component
+   */
+  icon?: any
 }
 
 const props = withDefaults(defineProps<Props>(), {
