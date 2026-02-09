@@ -19,7 +19,7 @@
           <n-input
             v-model:value="formData.message"
             type="textarea"
-            placeholder="Enter message"
+            placeholder="Enter message" 
           />
         </n-form-item>
       </n-form>

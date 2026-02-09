@@ -6,7 +6,7 @@
           Default Pagination
         </h3>
         <n-space align="center">
-          <n-pagination v-model:page="page1" :page-count="12" />
+          <n-pagination v-model:page="page1" :page-count="12" :page-slot="7" />
           <span class="page-indicator">Page {{ page1 }} of 12</span>
         </n-space>
       </div>
@@ -20,6 +20,7 @@
             v-model:page="page2"
             :page-count="20"
             :page-size="10"
+            :page-slot="7"
           />
           <span class="page-indicator">Page {{ page2 }} of 20</span>
         </n-space>

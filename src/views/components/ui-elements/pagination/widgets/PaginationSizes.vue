@@ -9,6 +9,7 @@
           v-model:page="pageSmall"
           :page-count="10"
           size="small"
+          :page-slot="6"
         />
       </div>
 
@@ -20,6 +21,7 @@
           v-model:page="pageMedium"
           :page-count="10"
           size="medium"
+          :page-slot="6"
         />
       </div>
 
@@ -31,6 +33,7 @@
           v-model:page="pageLarge"
           :page-count="10"
           size="large"
+          :page-slot="6"
         />
       </div>
     </n-space>
