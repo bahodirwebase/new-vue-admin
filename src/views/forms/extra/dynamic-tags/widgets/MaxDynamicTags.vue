@@ -1,14 +1,15 @@
 <template>
-  <n-card title="Dynamic Tags with Max">
+  <n-card title="Max Tags Limit (3)">
     <n-space vertical :size="16">
-      <n-dynamic-tags v-model:value="maxValue" placeholder="Add tag" :max="5" />
-      <n-p>Tags (max 5): {{ JSON.stringify(maxValue) }}</n-p>
+      <CustomDynamicTags v-model:value="tags" :max="3" variant="ghost" placeholder="Max 3 tags" />
+      <n-p>Tags: {{ JSON.stringify(tags) }}</n-p>
     </n-space>
   </n-card>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
 
-const maxValue = ref(['Tag 1', 'Tag 2', 'Tag 3'])
+const tags = ref(['Tag 1', 'Tag 2', 'Tag 3'])
 </script>

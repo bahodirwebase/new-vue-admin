@@ -1,21 +1,17 @@
 <template>
-  <n-card title="Dynamic Tags with Presets">
+  <n-card title="Tags with Presets">
     <n-space vertical :size="16">
-      <n-dynamic-tags v-model:value="presetValue" placeholder="Add option" :options="presetOptions" />
-      <n-p>Options: {{ JSON.stringify(presetValue) }}</n-p>
+      <CustomDynamicTags v-model:value="tags" :suggestions="suggestions" variant="subtle"
+        placeholder="Type to see suggestions..." />
+      <n-p>Selected: {{ JSON.stringify(tags) }}</n-p>
     </n-space>
   </n-card>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
 
-const presetValue = ref(['Feature'])
-const presetOptions = [
-  { label: 'Feature', value: 'feature' },
-  { label: 'Bug', value: 'bug' },
-  { label: 'Enhancement', value: 'enhancement' },
-  { label: 'Documentation', value: 'documentation' },
-  { label: 'Testing', value: 'testing' }
-]
+const tags = ref(['Feature'])
+const suggestions = ['Feature', 'Bug', 'Enhancement', 'Documentation', 'Testing', 'Refactor']
 </script>

@@ -1,14 +1,15 @@
 <template>
-  <n-card title="Dynamic Tags with Closable">
+  <n-card title="Closable Tags">
     <n-space vertical :size="16">
-      <n-dynamic-tags v-model:value="closableValue" placeholder="Add tag" :closable="true" />
-      <n-p>Tags: {{ JSON.stringify(closableValue) }}</n-p>
+      <CustomDynamicTags v-model:value="tags" :closable="true" variant="filled" placeholder="Add tag" />
+      <n-p>Tags: {{ JSON.stringify(tags) }}</n-p>
     </n-space>
   </n-card>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
 
-const closableValue = ref(['Frontend', 'Backend', 'DevOps'])
+const tags = ref(['Frontend', 'Backend', 'DevOps'])
 </script>

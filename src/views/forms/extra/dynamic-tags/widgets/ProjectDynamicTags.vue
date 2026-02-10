@@ -1,46 +1,39 @@
 <template>
-  <n-card title="Real World Example - Project Tags">
+  <n-card title="Real World Example - Project">
     <n-space vertical :size="16">
-      <div class="project-tags">
-        <n-input v-model:value="projectName" placeholder="Project name" style="margin-bottom: 12px;" />
-        <n-dynamic-tags v-model:value="projectTags" placeholder="Add project tag" :render-tag="renderProjectTag"
-          :max="8" />
-        <n-input v-model:value="projectDescription" type="textarea" placeholder="Project description" :rows="3"
-          style="margin-top: 12px;" />
+      <div class="project-form">
+        <n-form-item label="Project Name" :show-feedback="false">
+          <n-input v-model:value="projectName" placeholder="Enter project name" />
+        </n-form-item>
+
+        <n-form-item label="Technologies" :show-feedback="false" style="margin-top: 16px;">
+          <CustomDynamicTags v-model:value="projectTags" :max="8" variant="filled"
+            :suggestions="['Vue', 'React', 'Angular', 'Node', 'Python', 'Go', 'Java', 'Docker', 'K8s']"
+            placeholder="Add technology stack..." />
+        </n-form-item>
+
+        <n-form-item label="Description" :show-feedback="false" style="margin-top: 16px;">
+          <n-input v-model:value="projectDescription" type="textarea" placeholder="Project details..." :rows="3" />
+        </n-form-item>
       </div>
     </n-space>
   </n-card>
 </template>
 
 <script setup lang="ts">
-import { ref, h } from 'vue'
-import { useMessage } from 'naive-ui'
-import CustomTag from '@/components/CustomTag.vue'
+import { ref } from 'vue'
+import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
 
-const message = useMessage()
 const projectName = ref('')
-const projectTags = ref(['frontend', 'vue'])
+const projectTags = ref(['Frontend', 'Vue.js'])
 const projectDescription = ref('')
-
-const renderProjectTag = (value: any) => {
-  const colors: Array<'primary' | 'success' | 'warning' | 'error' | 'info'> = ['primary', 'success', 'warning', 'error', 'info']
-  const color = colors[Math.floor(Math.random() * colors.length)]
-
-  return h(CustomTag, {
-    type: color,
-    closable: true,
-    onClose: () => {
-      message.success(`Tag "${value}" removed`)
-    }
-  }, { default: () => `🏷️ ${value}` })
-}
 </script>
 
 <style scoped>
-.project-tags {
+.project-form {
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  padding: 16px;
+  padding: 20px;
   background: var(--bg-secondary);
 }
 </style>

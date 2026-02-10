@@ -1,20 +1,16 @@
 <template>
-  <n-card title="Dynamic Tags with Validation">
+  <n-card title="Validation Tags (Max 5)">
     <n-space vertical :size="16">
-      <n-dynamic-tags v-model:value="validatedValue" placeholder="Add valid tag" :on-create="validateTag" />
-      <n-p>Valid tags: {{ JSON.stringify(validatedValue) }}</n-p>
+      <CustomDynamicTags v-model:value="tags" :max="5" variant="subtle" placeholder="Add up to 5 tags" />
+      <n-text depth="3">Try adding more than 5 tags to see validation.</n-text>
     </n-space>
   </n-card>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { NText } from 'naive-ui'
+import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
 
-const validatedValue = ref(['valid-tag'])
-
-const validateTag = (value: string) => {
-  if (!value || value.length < 2) return null
-  if (!/^[a-zA-Z0-9-]+$/.test(value)) return null
-  return value.toLowerCase()
-}
+const tags = ref(['Design', 'Development', 'Product'])
 </script>
