@@ -8,6 +8,7 @@ export const useThemeStore = defineStore('theme', () => {
   const isBoxed = useLocalStorage('byxora-theme-isBoxed', false)
   const isMiniSidebar = useLocalStorage('byxora-theme-isMiniSidebar', false)
   const isBordered = useLocalStorage('byxora-theme-isBordered', false)
+  const isWinterMode = useLocalStorage('byxora-theme-isWinterMode', false)
   const primaryColor = useLocalStorage('byxora-theme-primaryColor', THEME_CONSTANTS.DEFAULT_PRIMARY_COLOR as string)
   const pageAnimation = useLocalStorage('byxora-theme-pageAnimation', 'fade')
 
@@ -26,6 +27,12 @@ export const useThemeStore = defineStore('theme', () => {
 
   const setBordered = (value: boolean) => {
     isBordered.value = value
+  }
+
+  const setWinterMode = (value: boolean) => {
+    console.log('setWinterMode called with:', value)
+    isWinterMode.value = value
+    console.log('isWinterMode after set:', isWinterMode.value)
   }
 
   const setPrimaryColor = (color: string) => {
@@ -50,6 +57,11 @@ export const useThemeStore = defineStore('theme', () => {
     document.documentElement.setAttribute('data-theme', value ? 'dark' : 'light')
   }, { immediate: true })
 
+  // Keep winter mode attribute in sync
+  watch(isWinterMode, (value) => {
+    document.documentElement.setAttribute('data-winter', value ? 'true' : 'false')
+  }, { immediate: true })
+
   // Update CSS variables when primary color changes
   watch(primaryColor, (color) => {
     document.documentElement.style.setProperty('--primary-color', color)
@@ -65,12 +77,14 @@ export const useThemeStore = defineStore('theme', () => {
     isBoxed,
     isMiniSidebar,
     isBordered,
+    isWinterMode,
     primaryColor,
     pageAnimation,
     setDark,
     setBoxed,
     setMiniSidebar,
     setBordered,
+    setWinterMode,
     setPrimaryColor,
     setPageAnimation
   }

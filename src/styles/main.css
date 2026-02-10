@@ -118,3 +118,64 @@ body {
   box-shadow: var(--shadow-md) !important;
   border: none !important;
 }
+
+/* Winter Mode Styles */
+[data-winter="true"] {
+  --winter-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Snow effect container */
+.winter-snow-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* Snowflake styles */
+.snowflake {
+  position: absolute;
+  top: -10px;
+  color: #fff;
+  user-select: none;
+  pointer-events: none;
+  animation: snowfall linear infinite;
+  font-size: 14px;
+  opacity: 0.8;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(25vh) translateX(var(--drift, 0px)) rotate(90deg);
+  }
+  50% {
+    transform: translateY(50vh) translateX(calc(var(--drift, 0px) * 0.5)) rotate(180deg);
+  }
+  75% {
+    transform: translateY(75vh) translateX(calc(var(--drift, 0px) * 1.5)) rotate(270deg);
+  }
+  100% {
+    transform: translateY(100vh) translateX(var(--drift, 0px)) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+/* Winter mode body background */
+[data-winter="true"] body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+}
+
+[data-winter="true"] #app {
+  position: relative;
+  z-index: 1;
+}

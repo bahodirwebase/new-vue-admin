@@ -99,6 +99,28 @@
           </div>
         </div>
 
+        <div class="setting-group">
+          <h4>Winter Mode ({{ themeStore.isWinterMode }})</h4>
+          <div class="card-options">
+            <div 
+              class="option-card"
+              :class="{ 'active': themeStore.isWinterMode }"
+              @click="toggleWinterMode(true)"
+            >
+              <n-icon :component="SnowOutline" :size="20" />
+              <span>❄️ Winter</span>
+            </div>
+            <div 
+              class="option-card"
+              :class="{ 'active': !themeStore.isWinterMode }"
+              @click="toggleWinterMode(false)"
+            >
+              <n-icon :component="SunnyOutline" :size="20" />
+              <span>🌞 Normal</span>
+            </div>
+          </div>
+        </div>
+
         <n-divider />
 
         <div class="setting-group">
@@ -154,7 +176,8 @@ import {
   ExpandOutline, 
   ContractOutline,
   SquareOutline,
-  EllipseOutline
+  EllipseOutline,
+  SnowOutline
 } from '@vicons/ionicons5'
 import { useThemeStore } from '@/stores/theme'
 
@@ -168,6 +191,9 @@ const emit = defineEmits<{
 }>()
 
 const themeStore = useThemeStore()
+
+// Debug winter mode state
+console.log('Winter mode state:', themeStore.isWinterMode)
 
 const animations = [
   { name: 'Fade', class: 'fade' },
@@ -211,6 +237,12 @@ const selectColor = (color: any) => {
 const selectAnimation = (animation: any) => {
   console.log('Selected animation:', animation.class)
   themeStore.setPageAnimation(animation.class)
+}
+
+// Debug winter mode
+const toggleWinterMode = (value: boolean) => {
+  console.log('Toggle winter mode:', value)
+  themeStore.setWinterMode(value)
 }
 </script>
 
