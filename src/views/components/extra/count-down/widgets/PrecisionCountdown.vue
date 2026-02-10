@@ -9,12 +9,12 @@ const active = ref(true)
 const selectedPreset = ref('30 seconds')
 const selectedPrecision = ref(0)
 
-const handlePresetSelect = (key: string) => {
-  const preset = COUNTDOWN_PRESETS.find(p => p.label === key)
-  if (preset) {
-    selectedPreset.value = preset.label
-  }
-}
+// const handlePresetSelect = (key: string) => {
+//   const preset = COUNTDOWN_PRESETS.find(p => p.label === key)
+//   if (preset) {
+//     selectedPreset.value = preset.label
+//   }
+// }
 
 const handlePrecisionSelect = (key: string) => {
   const precision = PRECISION_OPTIONS.find(p => p.label === key)
@@ -45,14 +45,14 @@ const restartCountdown = () => {
     <div class="chart-header">
       <h2 class="chart-title">Precision Control</h2>
       <n-space :size="8">
-        <n-dropdown :options="COUNTDOWN_PRESETS.map(p => ({ label: p.label, key: p.label }))" @select="handlePresetSelect" trigger="click">
+        <!-- <n-dropdown :options="COUNTDOWN_PRESETS.map(p => ({ label: p.label, key: p.label }))" @select="handlePresetSelect" trigger="click">
           <n-button class="period-button" type="primary" strong size="small">
             {{ selectedPreset }}
             <template #icon>
               <n-icon :component="ChevronDownOutline" />
             </template>
           </n-button>
-        </n-dropdown>
+        </n-dropdown> -->
         <n-dropdown :options="PRECISION_OPTIONS.map(p => ({ label: p.label, key: p.label }))" @select="handlePrecisionSelect" trigger="click">
           <n-button class="period-button" type="info" strong size="small">
             {{ getPrecisionLabel() }}

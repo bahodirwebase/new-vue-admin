@@ -67,9 +67,7 @@
     /* Responsive */
     @media (max-width: 768px) {
         .chart-header {
-            flex-direction: column;
             gap: 16px;
-            align-items: stretch;
         }
 
         .chart-title {
