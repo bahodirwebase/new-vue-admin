@@ -1,11 +1,14 @@
 <script lang="ts" setup>
-import { computed, ref, onMounted, onUnmounted } from 'vue';
+import { computed, ref, onMounted, onUnmounted, toRef } from 'vue';
 import { NCard, NButton, NSpace, NDropdown, NIcon } from 'naive-ui';
 import { ChevronDownOutline } from '@vicons/ionicons5';
 import { DATASET_OPTIONS } from '../constants';
-
 import VueApexCharts from 'vue3-apexcharts'
+import { useThemeStore } from '@/stores/theme'
 const apexchart = VueApexCharts
+
+const themeStore = useThemeStore()
+const isDark = toRef(themeStore, 'isDark')
 
 // Real-time states
 const realtimePeriod = ref('Revenue & Sales')
@@ -183,6 +186,7 @@ const realtimeMixedOptions = computed(() => ({
     }
   ],
   tooltip: {
+    theme: isDark.value ? 'dark' : 'light',
     y: {
       formatter: function (value: number, opts: any) {
         if (opts.seriesIndex === 0 && realtimePeriod.value.includes('Revenue')) {

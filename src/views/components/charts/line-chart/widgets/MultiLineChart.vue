@@ -1,10 +1,13 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, toRef, watch } from 'vue';
 import { PERIOD_OPTIONS } from '../constants';
 import { ChevronDownOutline } from '@vicons/ionicons5';
-
 import VueApexCharts from 'vue3-apexcharts'
+import { useThemeStore } from '@/stores/theme'
 const apexchart = VueApexCharts
+
+const themeStore = useThemeStore()
+const isDark = toRef(themeStore, 'isDark')
 
 // Period states
 const multiPeriod = ref('Last 7 Days')
@@ -76,6 +79,7 @@ const multiChartOptions = computed(() => ({
         }
     },
     tooltip: {
+        theme: isDark.value ? 'dark' : 'light',
         y: {
             formatter: function (value: number) {
                 return '$' + value.toLocaleString()
@@ -120,6 +124,11 @@ const updateMultiData = (period: string) => {
   multiSeries.value[1].data = data[1]
   multiSeries.value[2].data = data[2]
 }
+
+// Watch theme changes for tooltip
+watch(isDark, () => {
+    // Tooltip theme computed option orqali avtomatik yangilanadi
+})
 </script>
 <template>
     <n-card>

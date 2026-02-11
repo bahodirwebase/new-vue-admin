@@ -1,10 +1,15 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
-import { PERIOD_OPTIONS } from '../constants';
-import { ChevronDownOutline } from '@vicons/ionicons5';
+import { computed, ref, toRef, watch } from 'vue'
+import { NCard, NButton, NDropdown, NIcon } from 'naive-ui'
+import { ChevronDownOutline } from '@vicons/ionicons5'
 
+import { PERIOD_OPTIONS } from '../constants'
 import VueApexCharts from 'vue3-apexcharts'
+import { useThemeStore } from '@/stores/theme'
 const apexchart = VueApexCharts
+
+const themeStore = useThemeStore()
+const isDark = toRef(themeStore, 'isDark')
 
 // Period states
 const horizontalPeriod = ref('Last 7 Days')
@@ -74,6 +79,7 @@ const horizontalChartOptions = computed(() => ({
         }
     },
     tooltip: {
+        theme: isDark.value ? 'dark' : 'light',
         y: {
             formatter: function (value: number) {
                 return value + '%'
@@ -100,6 +106,11 @@ const updateHorizontalData = (period: string) => {
   
   horizontalSeries.value[0].data = dataMap[period as keyof typeof dataMap] || dataMap.last7days
 }
+
+// Watch theme changes for tooltip
+watch(isDark, () => {
+    // Tooltip theme computed option orqali avtomatik yangilanadi
+})
 </script>
 <template>
     <n-card>

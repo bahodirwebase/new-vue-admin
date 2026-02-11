@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, toRef, watch } from 'vue'
 import { NCard, NButton, NSpace } from 'naive-ui'
-
 import VueApexCharts from 'vue3-apexcharts'
+import { useThemeStore } from '@/stores/theme'
 const apexchart = VueApexCharts
+
+const themeStore = useThemeStore()
+const isDark = toRef(themeStore, 'isDark')
 
 // Real-time states
 const isRealTimeActive = ref(false)
 let realTimeInterval: ReturnType<typeof setInterval> | null = null
-    
+
 // Real-time Bar Chart
 const realTimeSeries = ref([
     {
@@ -71,6 +74,7 @@ const realTimeChartOptions = computed(() => ({
         }
     },
     tooltip: {
+        theme: isDark.value ? 'dark' : 'light',
         x: {
             format: 'HH:mm:ss'
         },
@@ -131,6 +135,11 @@ onUnmounted(() => {
     if (realTimeInterval) {
         clearInterval(realTimeInterval)
     }
+})
+
+// Watch theme changes for tooltip
+watch(isDark, () => {
+    // Tooltip theme computed option orqali avtomatik yangilanadi
 })
 </script>
 <template>

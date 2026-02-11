@@ -1,10 +1,13 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, toRef } from 'vue';
 import { PERIOD_OPTIONS } from '../constants';
 import { ChevronDownOutline } from '@vicons/ionicons5';
-
 import VueApexCharts from 'vue3-apexcharts'
+import { useThemeStore } from '@/stores/theme'
 const apexchart = VueApexCharts
+
+const themeStore = useThemeStore()
+const isDark = toRef(themeStore, 'isDark')
 
 // Period states
 const barLinePeriod = ref('Last 7 Days')
@@ -106,6 +109,7 @@ const barLineOptions = computed(() => ({
         }
     ],
     tooltip: {
+        theme: isDark.value ? 'dark' : 'light',
         y: {
             formatter: function (value: number, opts: any) {
                 if (opts.seriesIndex === 0) return value.toLocaleString()

@@ -1,10 +1,13 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, toRef, watch } from 'vue';
 import { DATASET_OPTIONS } from '../constants';
 import { ChevronDownOutline } from '@vicons/ionicons5';
-
 import VueApexCharts from 'vue3-apexcharts'
+import { useThemeStore } from '@/stores/theme'
 const apexchart = VueApexCharts
+
+const themeStore = useThemeStore()
+const isDark = toRef(themeStore, 'isDark')
 
 // Period states
 const selectedDataset = ref('Revenue & Profit')
@@ -129,6 +132,7 @@ const interactiveChartOptions = computed(() => ({
     }
   },
   tooltip: {
+    theme: isDark.value ? 'dark' : 'light',
     shared: true,
     intersect: false,
     y: {
@@ -156,6 +160,11 @@ const interactiveChartOptions = computed(() => ({
     }
   }
 }))
+
+// Watch theme changes for tooltip
+watch(isDark, () => {
+    // Tooltip theme computed option orqali avtomatik yangilanadi
+})
 </script>
 <template>
     <n-card>

@@ -1,14 +1,16 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, toRef, watch } from 'vue';
 import { PERIOD_OPTIONS } from '../constants';
 import { ChevronDownOutline } from '@vicons/ionicons5';
-
 import VueApexCharts from 'vue3-apexcharts'
+import { useThemeStore } from '@/stores/theme'
 const apexchart = VueApexCharts
+
+const themeStore = useThemeStore()
+const isDark = toRef(themeStore, 'isDark')
 
 // Period states
 const groupedPeriod = ref('Last 7 Days')
-
 const handleGroupedPeriodSelect = (key: string) => {
     const option = PERIOD_OPTIONS.find(opt => opt.key === key)
     if (option) {
@@ -92,6 +94,7 @@ const groupedChartOptions = computed(() => ({
         }
     },
     tooltip: {
+        theme: isDark.value ? 'dark' : 'light',
         y: {
             formatter: function (value: number) {
                 return '$' + value.toLocaleString()
@@ -128,6 +131,11 @@ const updateGroupedData = (period: string) => {
     groupedSeries.value[1].data = data[1]
     groupedSeries.value[2].data = data[2]
 }
+
+// Watch theme changes for tooltip
+watch(isDark, () => {
+    // Tooltip theme computed option orqali avtomatik yangilanadi
+})
 </script>
 <template>
     <n-card>

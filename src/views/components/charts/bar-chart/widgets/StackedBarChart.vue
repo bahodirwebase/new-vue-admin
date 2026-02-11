@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import { ChevronDownOutline } from '@vicons/ionicons5';
-import { computed, ref } from 'vue';
+import { computed, ref, toRef, watch } from 'vue';
 import { PERIOD_OPTIONS } from '../constants';
-
 import VueApexCharts from 'vue3-apexcharts'
+import { useThemeStore } from '@/stores/theme'
 const apexchart = VueApexCharts
+
+const themeStore = useThemeStore()
+const isDark = toRef(themeStore, 'isDark')
 
 // Period states
 const stackedPeriod = ref('Last 7 Days')
@@ -81,6 +84,7 @@ const stackedChartOptions = computed(() => ({
     }
   },
   tooltip: {
+    theme: isDark.value ? 'dark' : 'light',
     y: {
       formatter: function (value: number) {
         return '$' + value.toLocaleString()
@@ -117,6 +121,11 @@ const updateStackedData = (period: string) => {
   stackedSeries.value[1].data = data[1]
   stackedSeries.value[2].data = data[2]
 }
+
+// Watch theme changes for tooltip
+watch(isDark, () => {
+    // Tooltip theme computed option orqali avtomatik yangilanadi
+})
 </script>
 <template>
     <n-card>
