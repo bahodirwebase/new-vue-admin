@@ -1,23 +1,3 @@
-<template>
-  <n-card title="Avatar Groups">
-    <n-space vertical :size="16">
-      <div>
-        <h3 style="margin-bottom: 12px; color: var(--text-primary)">
-          Overlapping Avatars
-        </h3>
-        <n-avatar-group :options="avatarOptions" :max="3" />
-      </div>
-
-      <div>
-        <h3 style="margin-bottom: 12px; color: var(--text-primary)">
-          Custom Max Count
-        </h3>
-        <n-avatar-group :options="avatarOptions" :max="5" />
-      </div>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 interface AvatarOption {
   name: string;
@@ -51,3 +31,22 @@ const avatarOptions: AvatarOption[] = [
   },
 ];
 </script>
+<template>
+  <n-card title="Avatar Groups">
+    <n-space vertical :size="16">
+      <div>
+        <h3 style="margin-bottom: 12px; color: var(--text-primary)">
+          Overlapping Avatars
+        </h3>
+        <n-avatar-group :options="avatarOptions" :max="3" />
+      </div>
+
+      <div>
+        <h3 style="margin-bottom: 12px; color: var(--text-primary)">
+          Custom Max Count
+        </h3>
+        <n-avatar-group :options="avatarOptions" :max="5" />
+      </div>
+    </n-space>
+  </n-card>
+</template>

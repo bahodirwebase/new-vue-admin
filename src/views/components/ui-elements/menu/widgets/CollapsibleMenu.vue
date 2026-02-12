@@ -1,13 +1,3 @@
-<template>
-  <n-card title="Collapsible Menu">
-    <n-menu
-      :options="collapsibleMenuOptions"
-      :default-expanded-keys="['dashboard', 'products']"
-      accordion
-    />
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import type { MenuOption } from 'naive-ui'
 
@@ -35,3 +25,9 @@ const collapsibleMenuOptions: MenuOption[] = [
   }
 ]
 </script>
+
+<template>
+  <n-card title="Collapsible Menu">
+    <n-menu :options="collapsibleMenuOptions" :default-expanded-keys="['dashboard', 'products']" accordion />
+  </n-card>
+</template>

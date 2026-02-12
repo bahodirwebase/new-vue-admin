@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const activeTab1 = ref('tab1')
+const activeTab2 = ref('card1')
+</script>
+
 <template>
   <n-card title="Tab Types">
     <n-space vertical :size="16">
@@ -25,10 +32,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const activeTab1 = ref('tab1')
-const activeTab2 = ref('card1')
-</script>

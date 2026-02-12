@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { CASCADER_OPTIONS } from '../constants'
+
+const hoverValue = ref(null)
+</script>
+
 <template>
   <n-card>
     <div class="chart-header">
@@ -12,13 +19,6 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { CASCADER_OPTIONS } from '../constants'
-
-const hoverValue = ref(null)
-</script>
 
 <style scoped>
 .selection-display {

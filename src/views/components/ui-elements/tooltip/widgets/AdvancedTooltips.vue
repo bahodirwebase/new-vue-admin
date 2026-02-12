@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import {
+  InformationCircleOutline,
+  WarningOutline
+} from '@vicons/ionicons5'
+</script>
+
 <template>
   <n-card title="Advanced Tooltips">
     <n-space vertical :size="16">
@@ -48,10 +55,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import {
-  InformationCircleOutline,
-  WarningOutline
-} from '@vicons/ionicons5'
-</script>

@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const smallValue = ref('#f0a020')
+const mediumValue = ref('#d03050')
+const largeValue = ref('#2080f0')
+</script>
+
 <template>
   <n-card title="Color Picker Sizes">
     <n-space vertical :size="16">
@@ -9,11 +17,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const smallValue = ref('#f0a020')
-const mediumValue = ref('#d03050')
-const largeValue = ref('#2080f0')
-</script>

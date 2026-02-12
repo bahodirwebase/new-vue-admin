@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { CATEGORY_OPTIONS } from '../constants'
+
+const categoryValue = ref([])
+const productName = ref('')
+const productPrice = ref(null)
+</script>
+
 <template>
   <n-card>
     <div class="chart-header">
@@ -14,15 +23,6 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { CATEGORY_OPTIONS } from '../constants'
-
-const categoryValue = ref([])
-const productName = ref('')
-const productPrice = ref(null)
-</script>
 
 <style scoped>
 .selection-display {

@@ -1,57 +1,5 @@
-<template>
-  <n-card>
-    <div class="monthly-target__header">
-      <h2 class="monthly-target__title">Monthly Target</h2>
-      <n-dropdown
-        :options="menuOptions"
-        @select="handleMenuSelect"
-        trigger="click"
-      >
-        <n-button text class="menu-button">
-          <n-icon :size="20" :component="EllipsisHorizontalOutline" />
-        </n-button>
-      </n-dropdown>
-    </div>
-
-    <div class="monthly-target__chart">
-      <apexchart
-        type="radialBar"
-        height="280"
-        :options="(chartOptions as any)"
-        :series="[85]"
-      />
-    </div>
-
-    <div class="monthly-target__info">
-      <div class="progress-info">
-        <span class="progress-info__trend">+8.02%</span>
-        <span class="progress-info__period">from last month</span>
-      </div>
-
-      <div class="achievement">
-        <h3 class="achievement__title">Great Progress! 🎉</h3>
-        <p class="achievement__description">
-          Our achievement increased by <span class="achievement__amount">$200,000</span>,
-          let's reach 100% next month.
-        </p>
-      </div>
-
-      <div class="stats-grid">
-        <div class="stat-box">
-          <span class="stat-box__label">Target</span>
-          <span class="stat-box__value">$600,000</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-box__label">Revenue</span>
-          <span class="stat-box__value">$510,000</span>
-        </div>
-      </div>
-    </div>
-  </n-card>
-</template>
-
 <script setup lang="ts">
-import {  computed } from 'vue'
+import { computed } from 'vue'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
 import { EllipsisHorizontalOutline } from '@vicons/ionicons5'
 import VueApexCharts from 'vue3-apexcharts'
@@ -144,6 +92,49 @@ const chartOptions = computed(() => ({
   labels: ['Progress']
 }))
 </script>
+
+<template>
+  <n-card>
+    <div class="monthly-target__header">
+      <h2 class="monthly-target__title">Monthly Target</h2>
+      <n-dropdown :options="menuOptions" @select="handleMenuSelect" trigger="click">
+        <n-button text class="menu-button">
+          <n-icon :size="20" :component="EllipsisHorizontalOutline" />
+        </n-button>
+      </n-dropdown>
+    </div>
+
+    <div class="monthly-target__chart">
+      <apexchart type="radialBar" height="280" :options="(chartOptions as any)" :series="[85]" />
+    </div>
+
+    <div class="monthly-target__info">
+      <div class="progress-info">
+        <span class="progress-info__trend">+8.02%</span>
+        <span class="progress-info__period">from last month</span>
+      </div>
+
+      <div class="achievement">
+        <h3 class="achievement__title">Great Progress! 🎉</h3>
+        <p class="achievement__description">
+          Our achievement increased by <span class="achievement__amount">$200,000</span>,
+          let's reach 100% next month.
+        </p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <span class="stat-box__label">Target</span>
+          <span class="stat-box__value">$600,000</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-box__label">Revenue</span>
+          <span class="stat-box__value">$510,000</span>
+        </div>
+      </div>
+    </div>
+  </n-card>
+</template>
 
 <style scoped>
 .monthly-target {

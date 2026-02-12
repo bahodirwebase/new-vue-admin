@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import type { MenuOption } from 'naive-ui'
+
+const styleMenuOptions: MenuOption[] = [
+  { label: 'Home', key: 'home' },
+  { label: 'Products', key: 'products' },
+  { label: 'Services', key: 'services' },
+  { label: 'Contact', key: 'contact' }
+]
+</script>
+
 <template>
   <n-card title="Menu Styles">
     <n-space vertical :size="16">
@@ -17,14 +28,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import type { MenuOption } from 'naive-ui'
-
-const styleMenuOptions: MenuOption[] = [
-  { label: 'Home', key: 'home' },
-  { label: 'Products', key: 'products' },
-  { label: 'Services', key: 'services' },
-  { label: 'Contact', key: 'contact' }
-]
-</script>

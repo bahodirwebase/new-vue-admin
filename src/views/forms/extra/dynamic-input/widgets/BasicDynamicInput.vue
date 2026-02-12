@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const basicValue = ref(['Item 1', 'Item 2'])
+</script>
+
 <template>
   <n-card title="Basic Dynamic Input">
     <n-space vertical :size="16">
@@ -6,9 +12,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const basicValue = ref(['Item 1', 'Item 2'])
-</script>

@@ -1,46 +1,3 @@
-<template>
-  <n-card>
-    <div class="traffic-sources__header">
-      <h2 class="traffic-sources__title">Traffic Sources</h2>
-      <n-dropdown
-        :options="menuOptions"
-        @select="handleMenuSelect"
-        trigger="click"
-      >
-        <n-button text class="menu-button">
-          <n-icon :size="20" :component="EllipsisHorizontalOutline" />
-        </n-button>
-      </n-dropdown>
-    </div>
-
-    <div class="traffic-sources__chart">
-      <apexchart
-        :type="('treemap' as any)"
-        height="80"
-        :options="(chartOptions as any)"
-        :series="series"
-      />
-    </div>
-
-    <div class="traffic-sources__legend">
-      <div 
-        v-for="(source, index) in trafficSources" 
-        :key="source.name"
-        class="legend-item"
-      >
-        <div class="legend-item__info">
-          <span 
-            class="legend-item__color"
-            :style="{ backgroundColor: colors[index] }"
-          ></span>
-          <span class="legend-item__name">{{ source.name }}</span>
-        </div>
-        <span class="legend-item__percentage">{{ source.percentage }}%</span>
-      </div>
-    </div>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
@@ -120,7 +77,7 @@ const chartOptions = computed(() => ({
   tooltip: {
     enabled: true,
     y: {
-      formatter: function(val: number) {
+      formatter: function (val: number) {
         return val + '%'
       }
     },
@@ -139,8 +96,34 @@ const chartOptions = computed(() => ({
 }))
 </script>
 
-<style scoped>
+<template>
+  <n-card>
+    <div class="traffic-sources__header">
+      <h2 class="traffic-sources__title">Traffic Sources</h2>
+      <n-dropdown :options="menuOptions" @select="handleMenuSelect" trigger="click">
+        <n-button text class="menu-button">
+          <n-icon :size="20" :component="EllipsisHorizontalOutline" />
+        </n-button>
+      </n-dropdown>
+    </div>
 
+    <div class="traffic-sources__chart">
+      <apexchart :type="('treemap' as any)" height="80" :options="(chartOptions as any)" :series="series" />
+    </div>
+
+    <div class="traffic-sources__legend">
+      <div v-for="(source, index) in trafficSources" :key="source.name" class="legend-item">
+        <div class="legend-item__info">
+          <span class="legend-item__color" :style="{ backgroundColor: colors[index] }"></span>
+          <span class="legend-item__name">{{ source.name }}</span>
+        </div>
+        <span class="legend-item__percentage">{{ source.percentage }}%</span>
+      </div>
+    </div>
+  </n-card>
+</template>
+
+<style scoped>
 .traffic-sources__header {
   display: flex;
   justify-content: space-between;

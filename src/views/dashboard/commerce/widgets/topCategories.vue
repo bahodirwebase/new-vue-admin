@@ -1,40 +1,3 @@
-<template>
-  <n-card>
-    <div class="top-categories__header">
-      <h2 class="top-categories__title">Top Categories</h2>
-      <n-button text class="see-all-button" @click="handleSeeAll">
-        See All
-      </n-button>
-    </div>
-
-    <div class="top-categories__chart">
-      <apexchart
-        type="donut"
-        height="320"
-        :options="(chartOptions as any)"
-        :series="series"
-      />
-    </div>
-
-    <div class="top-categories__legend">
-      <div 
-        v-for="(category, index) in categories" 
-        :key="category.name"
-        class="category-item"
-      >
-        <div class="category-item__info">
-          <span 
-            class="category-item__color"
-            :style="{ backgroundColor: colors[index] }"
-          ></span>
-          <span class="category-item__name">{{ category.name }}</span>
-        </div>
-        <span class="category-item__value">{{ formatCurrency(category.value) }}</span>
-      </div>
-    </div>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { NButton } from 'naive-ui'
@@ -118,7 +81,7 @@ const chartOptions = computed(() => ({
   tooltip: {
     enabled: true,
     y: {
-      formatter: function(val: number) {
+      formatter: function (val: number) {
         return '$' + val.toLocaleString()
       }
     },
@@ -153,8 +116,32 @@ const handleSeeAll = () => {
 }
 </script>
 
-<style scoped>
+<template>
+  <n-card>
+    <div class="top-categories__header">
+      <h2 class="top-categories__title">Top Categories</h2>
+      <n-button text class="see-all-button" @click="handleSeeAll">
+        See All
+      </n-button>
+    </div>
 
+    <div class="top-categories__chart">
+      <apexchart type="donut" height="320" :options="(chartOptions as any)" :series="series" />
+    </div>
+
+    <div class="top-categories__legend">
+      <div v-for="(category, index) in categories" :key="category.name" class="category-item">
+        <div class="category-item__info">
+          <span class="category-item__color" :style="{ backgroundColor: colors[index] }"></span>
+          <span class="category-item__name">{{ category.name }}</span>
+        </div>
+        <span class="category-item__value">{{ formatCurrency(category.value) }}</span>
+      </div>
+    </div>
+  </n-card>
+</template>
+
+<style scoped>
 .top-categories__header {
   display: flex;
   justify-content: space-between;

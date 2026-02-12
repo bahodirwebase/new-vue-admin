@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { NotificationsOutline, MailOutline, ChatbubblesOutline } from '@vicons/ionicons5'
+import { NIcon } from 'naive-ui'
+</script>
 <template>
   <n-card title="Badge Positions">
     <n-space vertical :size="16">
@@ -40,8 +44,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { NotificationsOutline, MailOutline, ChatbubblesOutline } from '@vicons/ionicons5'
-import { NIcon } from 'naive-ui'
-</script>

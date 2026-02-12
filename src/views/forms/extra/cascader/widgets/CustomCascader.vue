@@ -1,18 +1,3 @@
-<template>
-  <n-card>
-    <div class="chart-header">
-      <h2 class="chart-title">Custom Render</h2>
-    </div>
-    <n-space vertical :size="16">
-      <n-cascader v-model:value="customValue" :options="CUSTOM_OPTIONS" :render-option="renderCustomOption"
-        placeholder="Custom rendered options" />
-      <div class="selection-display">
-        Selected: {{ JSON.stringify(customValue) }}
-      </div>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, h } from 'vue'
 import { CUSTOM_OPTIONS } from '../constants'
@@ -30,6 +15,21 @@ const renderCustomOption = ({ option }: any) => {
   ])
 }
 </script>
+
+<template>
+  <n-card>
+    <div class="chart-header">
+      <h2 class="chart-title">Custom Render</h2>
+    </div>
+    <n-space vertical :size="16">
+      <n-cascader v-model:value="customValue" :options="CUSTOM_OPTIONS" :render-option="renderCustomOption"
+        placeholder="Custom rendered options" />
+      <div class="selection-display">
+        Selected: {{ JSON.stringify(customValue) }}
+      </div>
+    </n-space>
+  </n-card>
+</template>
 
 <style scoped>
 .selection-display {

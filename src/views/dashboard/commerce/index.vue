@@ -1,3 +1,18 @@
+<script setup lang="ts">
+import { NGrid, NGi, NFlex } from "naive-ui";
+import statisticsCard from "./widgets/statisticsCard.vue";
+import revenueAnalytics from "./widgets/revenueAnalytics.vue";
+import monthlyTarget from "./widgets/monthlyTarget.vue";
+import topCategories from "./widgets/topCategories.vue";
+import activeUser from "./widgets/activeUser.vue";
+import conversionRate from "./widgets/conversionRate.vue";
+import trafficSources from "./widgets/trafficSources.vue";
+import recentOrders from "./widgets/recentOrders.vue";
+import recentActivity from "./widgets/recentActivity.vue";
+
+
+</script>
+
 <template>
   <div class="analytical-page">
     <n-space vertical :size="18">
@@ -10,7 +25,8 @@
         <n-gi span="xxs:1 md:2 lg:3">
           <statisticsCard />
 
-          <n-grid :x-gap="18" :y-gap="18" cols="xxs:1 sm:2 md:2 lg:2 xl:3" responsive="screen" style="margin-top: 18px;">
+          <n-grid :x-gap="18" :y-gap="18" cols="xxs:1 sm:2 md:2 lg:2 xl:3" responsive="screen"
+            style="margin-top: 18px;">
             <n-gi span="xxs:1 sm:2 lg:1 xl:2">
               <revenueAnalytics />
             </n-gi>
@@ -45,20 +61,7 @@
     </n-space>
   </div>
 </template>
-<script setup lang="ts">
-import { NGrid, NGi, NFlex } from "naive-ui";
-import statisticsCard from "./widgets/statisticsCard.vue";
-import revenueAnalytics from "./widgets/revenueAnalytics.vue";
-import monthlyTarget from "./widgets/monthlyTarget.vue";
-import topCategories from "./widgets/topCategories.vue";
-import activeUser from "./widgets/activeUser.vue";
-import conversionRate from "./widgets/conversionRate.vue";
-import trafficSources from "./widgets/trafficSources.vue";
-import recentOrders from "./widgets/recentOrders.vue";
-import recentActivity from "./widgets/recentActivity.vue";
 
-
-</script>
 <style scoped>
 .analytical-page {
   max-width: 100%;

@@ -1,9 +1,3 @@
-<template>
-  <n-card title="Menu with Badges">
-    <n-menu :options="badgeMenuOptions" />
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { h } from 'vue'
 import type { MenuOption } from 'naive-ui'
@@ -38,3 +32,9 @@ const badgeMenuOptions: MenuOption[] = [
   }
 ]
 </script>
+
+<template>
+  <n-card title="Menu with Badges">
+    <n-menu :options="badgeMenuOptions" />
+  </n-card>
+</template>

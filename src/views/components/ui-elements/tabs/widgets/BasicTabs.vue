@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const activeTab = ref('overview')
+</script>
+
 <template>
   <n-card title="Basic Tabs">
     <n-tabs type="line" v-model:value="activeTab">
@@ -13,9 +19,3 @@
     </n-tabs>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const activeTab = ref('overview')
-</script>

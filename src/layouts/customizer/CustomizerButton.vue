@@ -1,11 +1,3 @@
-<template>
-  <div class="customizer-button" @click="toggleCustomizer">
-    <n-icon size="20" class="settings-icon">
-      <Settings />
-    </n-icon>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { Settings } from '@vicons/ionicons5'
 
@@ -17,6 +9,13 @@ const toggleCustomizer = () => {
   emit('toggle')
 }
 </script>
+<template>
+  <div class="customizer-button" @click="toggleCustomizer">
+    <n-icon size="20" class="settings-icon">
+      <Settings />
+    </n-icon>
+  </div>
+</template>
 
 <style scoped>
 .customizer-button {
@@ -50,6 +49,7 @@ const toggleCustomizer = () => {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

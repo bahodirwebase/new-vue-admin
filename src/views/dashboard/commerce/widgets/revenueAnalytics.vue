@@ -1,36 +1,3 @@
-<template>
-  <n-card>
-    <div class="revenue-analytics__header">
-      <div class="revenue-analytics__title-section">
-        <h2 class="revenue-analytics__title">Revenue Analytics</h2>
-        <div class="revenue-analytics__legend">
-          <div class="legend-item">
-            <span class="legend-item__line legend-item__line--revenue"></span>
-            <span class="legend-item__text">Revenue</span>
-          </div>
-          <div class="legend-item">
-            <span class="legend-item__line legend-item__line--order"></span>
-            <span class="legend-item__text">Order</span>
-          </div>
-        </div>
-      </div>
-
-      <n-dropdown :options="periodOptions" @select="handlePeriodSelect" trigger="click">
-        <n-button class="period-button" type="primary" strong>
-          {{ selectedPeriod }}
-          <template #icon>
-            <n-icon :component="ChevronDownOutline" />
-          </template>
-        </n-button>
-      </n-dropdown>
-    </div>
-
-    <div class="revenue-analytics__chart">
-      <apexchart type="line" height="350" :options="(chartOptions as any)" :series="series" />
-    </div>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
@@ -181,8 +148,40 @@ const chartOptions = computed(() => ({
 }))
 </script>
 
-<style scoped>
+<template>
+  <n-card>
+    <div class="revenue-analytics__header">
+      <div class="revenue-analytics__title-section">
+        <h2 class="revenue-analytics__title">Revenue Analytics</h2>
+        <div class="revenue-analytics__legend">
+          <div class="legend-item">
+            <span class="legend-item__line legend-item__line--revenue"></span>
+            <span class="legend-item__text">Revenue</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-item__line legend-item__line--order"></span>
+            <span class="legend-item__text">Order</span>
+          </div>
+        </div>
+      </div>
 
+      <n-dropdown :options="periodOptions" @select="handlePeriodSelect" trigger="click">
+        <n-button class="period-button" type="primary" strong>
+          {{ selectedPeriod }}
+          <template #icon>
+            <n-icon :component="ChevronDownOutline" />
+          </template>
+        </n-button>
+      </n-dropdown>
+    </div>
+
+    <div class="revenue-analytics__chart">
+      <apexchart type="line" height="350" :options="(chartOptions as any)" :series="series" />
+    </div>
+  </n-card>
+</template>
+
+<style scoped>
 .revenue-analytics__header {
   display: flex;
   justify-content: space-between;

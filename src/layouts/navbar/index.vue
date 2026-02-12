@@ -1,35 +1,3 @@
-<template>
-    <n-layout-header class="app-header" :inverted="themeStore.isDark">
-        <div class="header-left">
-            <!-- Sidebar Toggle (Mobile) -->
-            <n-button v-if="isMobile" quaternary circle @click="toggleSidebar" class="hamburger-menu">
-                <template #icon>
-                    <n-icon :component="MenuOutline" :size="20" />
-                </template>
-            </n-button>
-
-            <!-- Sidebar Toggle (Desktop) -->
-            <n-button v-if="!isMobile" quaternary circle @click="minimizeSidebar" class="sidebar-toggle">
-                <template #icon>
-                    <n-icon :component="themeStore.isMiniSidebar ? ChevronForwardOutline : ChevronBackOutline"
-                        :size="20" />
-                </template>
-            </n-button>
-        </div>
-
-        <div class="header-right">
-            <n-space :size="isMobile ? 8 : 16">
-                <ThemeSwitcher class="nav-item" />
-                <FullScreen v-if="!isMobile" class="nav-item" />
-                <Language class="nav-item" />
-                <Apps v-if="!isMobile" class="nav-item" />
-                <Notification class="nav-item" />
-                <Account class="nav-item" />
-            </n-space>
-        </div>
-    </n-layout-header>
-</template>
-
 <script setup lang="ts">
 import {
     MenuOutline,
@@ -65,7 +33,37 @@ const minimizeSidebar = () => {
     themeStore.setMiniSidebar(!themeStore.isMiniSidebar)
 }
 </script>
+<template>
+    <n-layout-header class="app-header" :inverted="themeStore.isDark">
+        <div class="header-left">
+            <!-- Sidebar Toggle (Mobile) -->
+            <n-button v-if="isMobile" quaternary circle @click="toggleSidebar" class="hamburger-menu">
+                <template #icon>
+                    <n-icon :component="MenuOutline" :size="20" />
+                </template>
+            </n-button>
 
+            <!-- Sidebar Toggle (Desktop) -->
+            <n-button v-if="!isMobile" quaternary circle @click="minimizeSidebar" class="sidebar-toggle">
+                <template #icon>
+                    <n-icon :component="themeStore.isMiniSidebar ? ChevronForwardOutline : ChevronBackOutline"
+                        :size="20" />
+                </template>
+            </n-button>
+        </div>
+
+        <div class="header-right">
+            <n-space :size="isMobile ? 8 : 16">
+                <ThemeSwitcher class="nav-item" />
+                <FullScreen v-if="!isMobile" class="nav-item" />
+                <Language class="nav-item" />
+                <Apps v-if="!isMobile" class="nav-item" />
+                <Notification class="nav-item" />
+                <Account class="nav-item" />
+            </n-space>
+        </div>
+    </n-layout-header>
+</template>
 <style scoped>
 .app-header {
     height: 64px;

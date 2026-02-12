@@ -1,66 +1,3 @@
-<template>
-  <n-card class="projects-card" :bordered="false">
-      <div class="card-header">
-        <h3 class="card-title">Browser Usage</h3>
-        <n-button text class="expand-btn">
-          <n-icon :size="20">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-            </svg>
-          </n-icon>
-        </n-button>
-      </div>
-
-      <div class="chart-container">
-        <apexchart
-          type="donut"
-          height="240"
-          :options="chartOptions"
-          :series="series"
-        />
-      </div>
-
-      <n-list :show-divider="true" size="small" >
-        <n-list-item>
-          <div class="browser-stat">
-            <div class="stat-indicator chrome"></div>
-            <div class="stat-content">
-              <span class="stat-label">Chrome:</span>
-              <span class="stat-value">14</span>
-            </div>
-          </div>
-        </n-list-item>
-        <n-list-item>
-          <div class="browser-stat">
-            <div class="stat-indicator firefox"></div>
-            <div class="stat-content">
-              <span class="stat-label">Firefox:</span>
-              <span class="stat-value">32</span>
-            </div>
-          </div>
-        </n-list-item>
-        <n-list-item>
-          <div class="browser-stat">
-            <div class="stat-indicator edge"></div>
-            <div class="stat-content">
-              <span class="stat-label">Edge:</span>
-              <span class="stat-value">54</span>
-            </div>
-          </div>
-        </n-list-item>
-        <n-list-item>
-          <div class="browser-stat">
-            <div class="stat-indicator other"></div>
-            <div class="stat-content">
-              <span class="stat-label">Other:</span>
-              <span class="stat-value">10</span>
-            </div>
-          </div>
-        </n-list-item>
-      </n-list>
-    </n-card>
-</template>
-
 <script setup>
 import { ref } from 'vue';
 import { NCard, NButton, NIcon, NList, NListItem } from 'naive-ui';
@@ -101,13 +38,72 @@ const chartOptions = ref({
   tooltip: {
     enabled: true,
     y: {
-      formatter: function(val) {
+      formatter: function (val) {
         return val + ' projects'
       }
     }
   }
 });
 </script>
+
+<template>
+  <n-card class="projects-card" :bordered="false">
+    <div class="card-header">
+      <h3 class="card-title">Browser Usage</h3>
+      <n-button text class="expand-btn">
+        <n-icon :size="20">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </n-icon>
+      </n-button>
+    </div>
+
+    <div class="chart-container">
+      <apexchart type="donut" height="240" :options="chartOptions" :series="series" />
+    </div>
+
+    <n-list :show-divider="true" size="small">
+      <n-list-item>
+        <div class="browser-stat">
+          <div class="stat-indicator chrome"></div>
+          <div class="stat-content">
+            <span class="stat-label">Chrome:</span>
+            <span class="stat-value">14</span>
+          </div>
+        </div>
+      </n-list-item>
+      <n-list-item>
+        <div class="browser-stat">
+          <div class="stat-indicator firefox"></div>
+          <div class="stat-content">
+            <span class="stat-label">Firefox:</span>
+            <span class="stat-value">32</span>
+          </div>
+        </div>
+      </n-list-item>
+      <n-list-item>
+        <div class="browser-stat">
+          <div class="stat-indicator edge"></div>
+          <div class="stat-content">
+            <span class="stat-label">Edge:</span>
+            <span class="stat-value">54</span>
+          </div>
+        </div>
+      </n-list-item>
+      <n-list-item>
+        <div class="browser-stat">
+          <div class="stat-indicator other"></div>
+          <div class="stat-content">
+            <span class="stat-label">Other:</span>
+            <span class="stat-value">10</span>
+          </div>
+        </div>
+      </n-list-item>
+    </n-list>
+  </n-card>
+</template>
 
 <style scoped>
 .projects-card {
@@ -215,11 +211,11 @@ const chartOptions = ref({
   .projects-card {
     border-radius: 1rem;
   }
-  
+
   .chart-container {
     margin: 0 auto 1rem;
   }
-  
+
   .stats-grid {
     gap: 0.75rem;
   }

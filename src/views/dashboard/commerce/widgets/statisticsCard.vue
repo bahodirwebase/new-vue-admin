@@ -1,33 +1,3 @@
-<template>
-  <n-grid :x-gap="18" :y-gap="18"  responsive="screen" cols="1 xs:2 md:3">
-    <n-gi v-for="card in cards" :key="card.title">
-      <n-card class="stat-card" :class="`stat-card--${card.color}`">
-        <div>
-          <div class="stat-card__header">
-            <span class="stat-card__title">{{ card.title }}</span>
-            <div class="stat-card__icon" :class="`stat-card__icon--${card.color}`">
-              <n-icon :size="24" :component="card.icon" />
-            </div>
-          </div>
-
-          <div class="stat-card__content">
-            <div class="stat-card__value">{{ card.value }}</div>
-
-            <div class="stat-card__footer">
-              <span class="stat-card__trend"
-                :class="card.isPositive ? 'stat-card__trend--positive' : 'stat-card__trend--negative'">
-                {{ card.trend }}
-              </span>
-              <span class="stat-card__period">{{ card.period }}</span>
-            </div>
-          </div>
-        </div>
-      </n-card>
-    </n-gi>
-  </n-grid>
-
-</template>
-
 <script setup lang="ts">
 import { CashOutline, CartOutline, PeopleOutline } from '@vicons/ionicons5'
 import { NIcon } from 'naive-ui'
@@ -73,8 +43,37 @@ const cards: StatCard[] = [
 ]
 </script>
 
-<style scoped>
+<template>
+  <n-grid :x-gap="18" :y-gap="18" responsive="screen" cols="1 xs:2 md:3">
+    <n-gi v-for="card in cards" :key="card.title">
+      <n-card class="stat-card" :class="`stat-card--${card.color}`">
+        <div>
+          <div class="stat-card__header">
+            <span class="stat-card__title">{{ card.title }}</span>
+            <div class="stat-card__icon" :class="`stat-card__icon--${card.color}`">
+              <n-icon :size="24" :component="card.icon" />
+            </div>
+          </div>
 
+          <div class="stat-card__content">
+            <div class="stat-card__value">{{ card.value }}</div>
+
+            <div class="stat-card__footer">
+              <span class="stat-card__trend"
+                :class="card.isPositive ? 'stat-card__trend--positive' : 'stat-card__trend--negative'">
+                {{ card.trend }}
+              </span>
+              <span class="stat-card__period">{{ card.period }}</span>
+            </div>
+          </div>
+        </div>
+      </n-card>
+    </n-gi>
+  </n-grid>
+
+</template>
+
+<style scoped>
 .stat-card {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
@@ -162,6 +161,4 @@ const cards: StatCard[] = [
   color: #999999;
   font-weight: 400;
 }
-
-
 </style>

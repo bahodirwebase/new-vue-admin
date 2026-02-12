@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const hexValue = ref('#18a058')
+const rgbValue = ref('rgb(24, 160, 88)')
+const hslValue = ref('hsl(142, 74%, 36%)')
+</script>
+
 <template>
   <n-card title="Color Picker Modes">
     <n-space vertical :size="16">
@@ -12,11 +20,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const hexValue = ref('#18a058')
-const rgbValue = ref('rgb(24, 160, 88)')
-const hslValue = ref('hsl(142, 74%, 36%)')
-</script>

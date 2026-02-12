@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import CustomTag from '@/components/CustomTag.vue'
+</script>
+
 <template>
   <n-card title="Tag Styles">
     <n-space vertical :size="16">
@@ -28,7 +32,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import CustomTag from '@/components/CustomTag.vue'
-</script>

@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const showClosable = ref(false)
+const showMaskClosable = ref(false)
+</script>
+
 <template>
   <n-card title="Modal Features">
     <n-space vertical :size="16">
@@ -23,10 +30,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const showClosable = ref(false)
-const showMaskClosable = ref(false)
-</script>

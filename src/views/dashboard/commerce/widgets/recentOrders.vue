@@ -1,47 +1,3 @@
-<template>
-  <n-card>
-    <div class="recent-orders__header">
-      <h2 class="recent-orders__title">Recent Orders</h2>
-      
-      <div class="recent-orders__actions">
-        <n-input
-          v-model:value="searchQuery"
-          placeholder="Search product, customer, etc"
-          class="search-input"
-        >
-          <template #prefix>
-            <n-icon :component="SearchOutline" />
-          </template>
-        </n-input>
-        
-        <n-dropdown
-          :options="categoryOptions"
-          @select="handleCategorySelect"
-          trigger="click"
-        >
-          <n-button class="category-button" type="primary" strong>
-            {{ selectedCategory }}
-            <template #icon>
-              <n-icon :component="ChevronDownOutline" />
-            </template>
-          </n-button>
-        </n-dropdown>
-      </div>
-    </div>
-
-    <div class="recent-orders__table">
-      <n-data-table
-        :columns="columns"
-        :data="filteredOrders"
-        :pagination="false"
-        :bordered="false"
-        :single-line="false"
-        :scroll-x="700"
-      />
-    </div>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, computed, h } from 'vue'
 import { NButton, NInput, NDropdown, NIcon, NDataTable } from 'naive-ui'
@@ -132,9 +88,9 @@ const orders = ref<Order[]>([
 
 const filteredOrders = computed(() => {
   if (!searchQuery.value) return orders.value
-  
+
   const query = searchQuery.value.toLowerCase()
-  return orders.value.filter(order => 
+  return orders.value.filter(order =>
     order.customer.toLowerCase().includes(query) ||
     order.product.toLowerCase().includes(query) ||
     order.orderId.toLowerCase().includes(query)
@@ -209,8 +165,37 @@ const columns: DataTableColumns<Order> = [
 ]
 </script>
 
-<style scoped>
+<template>
+  <n-card>
+    <div class="recent-orders__header">
+      <h2 class="recent-orders__title">Recent Orders</h2>
 
+      <div class="recent-orders__actions">
+        <n-input v-model:value="searchQuery" placeholder="Search product, customer, etc" class="search-input">
+          <template #prefix>
+            <n-icon :component="SearchOutline" />
+          </template>
+        </n-input>
+
+        <n-dropdown :options="categoryOptions" @select="handleCategorySelect" trigger="click">
+          <n-button class="category-button" type="primary" strong>
+            {{ selectedCategory }}
+            <template #icon>
+              <n-icon :component="ChevronDownOutline" />
+            </template>
+          </n-button>
+        </n-dropdown>
+      </div>
+    </div>
+
+    <div class="recent-orders__table">
+      <n-data-table :columns="columns" :data="filteredOrders" :pagination="false" :bordered="false" :single-line="false"
+        :scroll-x="700" />
+    </div>
+  </n-card>
+</template>
+
+<style scoped>
 .recent-orders__header {
   display: flex;
   justify-content: space-between;
@@ -292,6 +277,7 @@ const columns: DataTableColumns<Order> = [
   color: #333333;
   font-weight: 400;
 }
+
 /* Responsive */
 @media (max-width: 1024px) {
   .recent-orders__header {

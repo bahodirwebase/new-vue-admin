@@ -1,3 +1,22 @@
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+
+const theme = ref({
+  primary: '#6366f1',
+  secondary: '#64748b',
+  background: 'var(--bg-primary)',
+  text: 'var(--text-primary)'
+})
+
+const themePreviewStyle = computed(() => ({
+  backgroundColor: theme.value.background,
+  color: theme.value.text,
+  padding: '16px',
+  borderRadius: '8px',
+  border: `1px solid ${theme.value.secondary}20`
+}))
+</script>
+
 <template>
   <n-card title="Real World Example - Theme Customizer">
     <n-space vertical :size="16">
@@ -27,25 +46,6 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref, computed } from 'vue'
-
-const theme = ref({
-  primary: '#6366f1',
-  secondary: '#64748b',
-  background: 'var(--bg-primary)',
-  text: 'var(--text-primary)'
-})
-
-const themePreviewStyle = computed(() => ({
-  backgroundColor: theme.value.background,
-  color: theme.value.text,
-  padding: '16px',
-  borderRadius: '8px',
-  border: `1px solid ${theme.value.secondary}20`
-}))
-</script>
 
 <style scoped>
 .theme-preview {

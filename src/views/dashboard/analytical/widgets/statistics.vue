@@ -1,22 +1,22 @@
-<template>
-  <n-card>
-      <h3 class="stat-value">{{ props.value }}</h3>
-      <div class="stat-info">
-        <n-icon class="stat-icon" size="36" :component="props.icon" />
-        <span class="stat-label">{{ props.label }}</span>
-      </div>
-    </n-card>
-</template>
-
 <script setup lang="ts">
 import { NCard } from "naive-ui";
 interface IProps {
-    value: string;
-    icon: any;
-    label: string;
+  value: string;
+  icon: any;
+  label: string;
 }
 const props = defineProps<IProps>()
 </script>
+
+<template>
+  <n-card>
+    <h3 class="stat-value">{{ props.value }}</h3>
+    <div class="stat-info">
+      <n-icon class="stat-icon" size="36" :component="props.icon" />
+      <span class="stat-label">{{ props.label }}</span>
+    </div>
+  </n-card>
+</template>
 
 <style scoped>
 .n-card {
@@ -57,7 +57,7 @@ const props = defineProps<IProps>()
 
 /* Responsive design */
 @media (max-width: 768px) {
-  
+
   .stat-value {
     font-size: 2rem;
   }

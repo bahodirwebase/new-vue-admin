@@ -1,3 +1,16 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const activeTab1 = ref('seg1')
+const activeTab2 = ref('home')
+
+const panes = ref([
+  { name: 'Tab 1', content: 'Content for Tab 1', closable: false },
+  { name: 'Tab 2', content: 'Content for Tab 2', closable: true },
+  { name: 'Tab 3', content: 'Content for Tab 3', closable: true }
+])
+</script>
+
 <template>
   <n-card title="Advanced Tabs">
     <n-space vertical :size="16">
@@ -17,7 +30,8 @@
           Addable Tabs
         </h3>
         <n-tabs type="card" v-model:value="activeTab2" :closable="true" tab-style="min-width: 80px;">
-          <n-tab-pane v-for="pane in panes" :key="pane.name" :name="pane.name" :tab="pane.name" :closable="pane.closable">
+          <n-tab-pane v-for="pane in panes" :key="pane.name" :name="pane.name" :tab="pane.name"
+            :closable="pane.closable">
             {{ pane.content }}
           </n-tab-pane>
         </n-tabs>
@@ -25,16 +39,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const activeTab1 = ref('seg1')
-const activeTab2 = ref('home')
-
-const panes = ref([
-  { name: 'Tab 1', content: 'Content for Tab 1', closable: false },
-  { name: 'Tab 2', content: 'Content for Tab 2', closable: true },
-  { name: 'Tab 3', content: 'Content for Tab 3', closable: true }
-])
-</script>

@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import { useMessage } from 'naive-ui'
+import CustomTag from '@/components/CustomTag.vue'
+
+const message = useMessage()
+
+const handleClose = (tag: string) => {
+  message.info(`Tag "${tag}" closed`)
+}
+</script>
+
 <template>
   <n-card title="Basic Tags">
     <n-space vertical :size="16">
@@ -27,14 +38,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { useMessage } from 'naive-ui'
-import CustomTag from '@/components/CustomTag.vue'
-
-const message = useMessage()
-
-const handleClose = (tag: string) => {
-  message.info(`Tag "${tag}" closed`)
-}
-</script>

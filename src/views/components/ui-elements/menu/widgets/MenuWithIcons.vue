@@ -1,9 +1,3 @@
-<template>
-  <n-card title="Menu with Icons">
-    <n-menu :options="iconMenuOptions" :default-expanded-keys="['products']" />
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { h } from 'vue'
 import type { MenuOption } from 'naive-ui'
@@ -68,3 +62,9 @@ const iconMenuOptions: MenuOption[] = [
   }
 ]
 </script>
+
+<template>
+  <n-card title="Menu with Icons">
+    <n-menu :options="iconMenuOptions" :default-expanded-keys="['products']" />
+  </n-card>
+</template>

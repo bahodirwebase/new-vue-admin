@@ -1,25 +1,4 @@
-<template>
-    <n-card class="leads-card" :bordered="false">
-        <div class="card-header">
-            <h3 class="card-title">Latest Leads</h3>
-            <n-button text class="see-all-btn">
-                See All
-            </n-button>
-        </div>
-
-        <div class="leads-list">
-            <div v-for="lead in leads" :key="lead.id" class="lead-item">
-                <div class="lead-left">
-                    <n-avatar :size="40" :src="lead.avatar" round />
-                    <span class="lead-name">{{ lead.name }}</span>
-                </div>
-                <span class="lead-time">{{ lead.time }}</span>
-            </div>
-        </div>
-    </n-card>
-</template>
-
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { NCard, NButton, NIcon, NAvatar } from 'naive-ui';
 
@@ -68,6 +47,27 @@ const leads = ref([
     }
 ]);
 </script>
+
+<template>
+    <n-card class="leads-card" :bordered="false">
+        <div class="card-header">
+            <h3 class="card-title">Latest Leads</h3>
+            <n-button text class="see-all-btn">
+                See All
+            </n-button>
+        </div>
+
+        <div class="leads-list">
+            <div v-for="lead in leads" :key="lead.id" class="lead-item">
+                <div class="lead-left">
+                    <n-avatar :size="40" :src="lead.avatar" round />
+                    <span class="lead-name">{{ lead.name }}</span>
+                </div>
+                <span class="lead-time">{{ lead.time }}</span>
+            </div>
+        </div>
+    </n-card>
+</template>
 
 <style scoped>
 .leads-card {
@@ -159,11 +159,11 @@ const leads = ref([
     .leads-card {
         max-width: 100%;
     }
-    
+
     .lead-item {
         padding: 0.75rem 0;
     }
-    
+
     .lead-left {
         gap: 0.75rem;
     }

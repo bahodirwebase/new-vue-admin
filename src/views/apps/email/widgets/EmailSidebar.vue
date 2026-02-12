@@ -1,102 +1,12 @@
-<!-- widgets/EmailSidebar.vue -->
-<template>
-  <div class="email-sidebar">
-    <!-- Logo -->
-    <div class="sidebar-header">
-      <n-button
-        v-if="isMobile"
-        text
-        type="primary"
-        :icon-placement="'left'"
-        @click="toggleSidebar"
-      >
-        <template #icon>
-          <n-icon :component="MenuOutline" />
-        </template>
-      </n-button>
-      <h2>MailBox</h2>
-    </div>
-
-    <!-- Compose Button -->
-    <n-button
-      block
-      type="primary"
-      size="large"
-      class="compose-button"
-      @click="handleCompose"
-    >
-      <template #icon>
-        <n-icon :component="CreateOutline" />
-      </template>
-      Compose
-    </n-button>
-
-    <!-- Folders -->
-    <div class="folders-section">
-      <h3 class="section-title">Folders</h3>
-      <n-menu
-        :value="selectedFolder"
-        :options="folderOptions"
-        :collapsed="false"
-        @update:value="handleFolderSelect"
-      />
-    </div>
-
-    <!-- Labels -->
-    <div class="labels-section">
-      <div class="labels-header">
-        <h3 class="section-title">Labels</h3>
-        <n-button text type="primary" size="small">
-          <template #icon>
-            <n-icon :component="AddOutline" />
-          </template>
-        </n-button>
-      </div>
-      <div class="labels-list">
-        <div
-          v-for="label in labels"
-          :key="label.id"
-          class="label-item"
-          :class="{ 'active': selectedLabel === label.id }"
-          @click="handleLabelSelect(label.id)"
-        >
-          <div class="label-color" :style="{ backgroundColor: label.color }"></div>
-          <span class="label-name">{{ label.name }}</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Account Settings -->
-    <div class="sidebar-footer">
-      <n-dropdown
-        :options="accountOptions"
-        placement="top-start"
-        @select="handleAccountAction"
-      >
-        <div class="account-info">
-          <n-avatar
-            round
-            src="https://api.dicebear.com/7.x/avataaars/svg?seed=user"
-          />
-          <div class="account-details">
-            <p class="account-name">Your Name</p>
-            <p class="account-email">user@example.com</p>
-          </div>
-        </div>
-      </n-dropdown>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref, computed, h } from 'vue';
 import { NButton, NIcon, NMenu, NDropdown, NAvatar } from 'naive-ui';
-import { 
-  MailOutline, 
-  StarOutline, 
-  SendOutline, 
-  DocumentTextOutline, 
-  WarningOutline, 
+import {
+  MailOutline,
+  StarOutline,
+  SendOutline,
+  DocumentTextOutline,
+  WarningOutline,
   TrashOutline,
   MenuOutline,
   CreateOutline,
@@ -183,7 +93,66 @@ if (typeof window !== 'undefined') {
   });
 }
 </script>
+<!-- widgets/EmailSidebar.vue -->
+<template>
+  <div class="email-sidebar">
+    <!-- Logo -->
+    <div class="sidebar-header">
+      <n-button v-if="isMobile" text type="primary" :icon-placement="'left'" @click="toggleSidebar">
+        <template #icon>
+          <n-icon :component="MenuOutline" />
+        </template>
+      </n-button>
+      <h2>MailBox</h2>
+    </div>
 
+    <!-- Compose Button -->
+    <n-button block type="primary" size="large" class="compose-button" @click="handleCompose">
+      <template #icon>
+        <n-icon :component="CreateOutline" />
+      </template>
+      Compose
+    </n-button>
+
+    <!-- Folders -->
+    <div class="folders-section">
+      <h3 class="section-title">Folders</h3>
+      <n-menu :value="selectedFolder" :options="folderOptions" :collapsed="false" @update:value="handleFolderSelect" />
+    </div>
+
+    <!-- Labels -->
+    <div class="labels-section">
+      <div class="labels-header">
+        <h3 class="section-title">Labels</h3>
+        <n-button text type="primary" size="small">
+          <template #icon>
+            <n-icon :component="AddOutline" />
+          </template>
+        </n-button>
+      </div>
+      <div class="labels-list">
+        <div v-for="label in labels" :key="label.id" class="label-item"
+          :class="{ 'active': selectedLabel === label.id }" @click="handleLabelSelect(label.id)">
+          <div class="label-color" :style="{ backgroundColor: label.color }"></div>
+          <span class="label-name">{{ label.name }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account Settings -->
+    <div class="sidebar-footer">
+      <n-dropdown :options="accountOptions" placement="top-start" @select="handleAccountAction">
+        <div class="account-info">
+          <n-avatar round src="https://api.dicebear.com/7.x/avataaars/svg?seed=user" />
+          <div class="account-details">
+            <p class="account-name">Your Name</p>
+            <p class="account-email">user@example.com</p>
+          </div>
+        </div>
+      </n-dropdown>
+    </div>
+  </div>
+</template>
 <style scoped lang="scss">
 .email-sidebar {
   display: flex;

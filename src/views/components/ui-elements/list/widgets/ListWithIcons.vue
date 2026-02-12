@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import {
+  MailOutline,
+  CalendarOutline,
+  FolderOutline,
+  SettingsOutline
+} from '@vicons/ionicons5'
+</script>
+
 <template>
   <n-card title="List with Icons">
     <n-list bordered>
@@ -28,12 +37,3 @@
     </n-list>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import {
-  MailOutline,
-  CalendarOutline,
-  FolderOutline,
-  SettingsOutline
-} from '@vicons/ionicons5'
-</script>

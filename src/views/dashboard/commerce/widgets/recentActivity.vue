@@ -1,41 +1,7 @@
-<template>
-  <n-card>
-    <div class="recent-activity__header">
-      <h2 class="recent-activity__title">Recent Activity</h2>
-      <n-dropdown
-        :options="menuOptions"
-        @select="handleMenuSelect"
-        trigger="click"
-      >
-        <n-button text class="menu-button">
-          <n-icon :size="20" :component="EllipsisHorizontalOutline" />
-        </n-button>
-      </n-dropdown>
-    </div>
-
-    <div class="activity-list">
-      <div 
-        v-for="(activity, index) in activities" 
-        :key="index"
-        class="activity-item"
-      >
-        <div class="activity-item__icon" :style="{ backgroundColor: activity.iconBg }">
-          <n-icon :size="18" :component="activity.icon" :color="activity.iconColor" />
-        </div>
-        
-        <div class="activity-item__content">
-          <p class="activity-item__text" v-html="activity.text"></p>
-          <span class="activity-item__time">{{ activity.time }}</span>
-        </div>
-      </div>
-    </div>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
-import { 
+import {
   EllipsisHorizontalOutline,
   CartOutline,
   PricetagOutline,
@@ -112,8 +78,33 @@ const handleMenuSelect = (key: string) => {
 }
 </script>
 
-<style scoped>
+<template>
+  <n-card>
+    <div class="recent-activity__header">
+      <h2 class="recent-activity__title">Recent Activity</h2>
+      <n-dropdown :options="menuOptions" @select="handleMenuSelect" trigger="click">
+        <n-button text class="menu-button">
+          <n-icon :size="20" :component="EllipsisHorizontalOutline" />
+        </n-button>
+      </n-dropdown>
+    </div>
 
+    <div class="activity-list">
+      <div v-for="(activity, index) in activities" :key="index" class="activity-item">
+        <div class="activity-item__icon" :style="{ backgroundColor: activity.iconBg }">
+          <n-icon :size="18" :component="activity.icon" :color="activity.iconColor" />
+        </div>
+
+        <div class="activity-item__content">
+          <p class="activity-item__text" v-html="activity.text"></p>
+          <span class="activity-item__time">{{ activity.time }}</span>
+        </div>
+      </div>
+    </div>
+  </n-card>
+</template>
+
+<style scoped>
 .recent-activity__header {
   display: flex;
   justify-content: space-between;

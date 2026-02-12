@@ -1,15 +1,3 @@
-<template>
-  <n-card title="Color Picker with Swatches">
-    <n-space vertical :size="16">
-      <n-color-picker
-        v-model:value="swatchValue"
-        :swatches="swatches"
-      />
-      <n-p>Selected: {{ swatchValue }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -28,3 +16,12 @@ const swatches = [
   '#6b7280'  // Gray
 ]
 </script>
+
+<template>
+  <n-card title="Color Picker with Swatches">
+    <n-space vertical :size="16">
+      <n-color-picker v-model:value="swatchValue" :swatches="swatches" />
+      <n-p>Selected: {{ swatchValue }}</n-p>
+    </n-space>
+  </n-card>
+</template>

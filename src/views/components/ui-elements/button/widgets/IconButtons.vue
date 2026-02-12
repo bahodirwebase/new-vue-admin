@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import {
+  AddOutline,
+  CheckmarkOutline,
+  SettingsOutline,
+  TrashOutline,
+  WarningOutline
+} from '@vicons/ionicons5'
+import { NIcon } from 'naive-ui'
+</script>
+
 <template>
   <n-card title="Icon Buttons">
     <n-space vertical :size="16">
@@ -57,14 +68,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import {
-  AddOutline,
-  CheckmarkOutline,
-  SettingsOutline,
-  TrashOutline,
-  WarningOutline
-} from '@vicons/ionicons5'
-import { NIcon } from 'naive-ui'
-</script>

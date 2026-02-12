@@ -1,174 +1,3 @@
-<!-- widgets/EmailComposer.vue -->
-<template>
-  <n-modal
-    v-model:show="isVisible"
-    preset="dialog"
-    title="Compose Email"
-    type="default"
-    :style="{ width: composerWidth }"
-    :mask-closable="false"
-    class="email-composer-modal"
-  >
-    <div class="composer-content">
-      <!-- To Field -->
-      <div class="composer-field">
-        <label class="field-label">To</label>
-        <n-dynamic-input
-          v-model:value="state.to"
-          item-style="display: flex; align-items: center; gap: 8px;"
-          @create="() => ({ name: '', email: '' })"
-        >
-          <template #default="{ value }">
-            <n-input
-              v-model:value="value.email"
-              type="text"
-              placeholder="email@example.com"
-              class="recipient-input"
-              @blur="validateEmail(value.email)"
-            />
-            <n-button text @click.stop="() => {}">
-              <template #icon>
-                <n-icon :component="CloseOutline" />
-              </template>
-            </n-button>
-          </template>
-        </n-dynamic-input>
-      </div>
-
-      <!-- CC Field -->
-      <div class="composer-field">
-        <button class="toggle-cc-bcc" @click="showCcBcc = !showCcBcc">
-          {{ showCcBcc ? '- CC/BCC' : '+ CC/BCC' }}
-        </button>
-      </div>
-
-      <!-- CC/BCC Fields (Conditional) -->
-      <template v-if="showCcBcc">
-        <div class="composer-field">
-          <label class="field-label">CC</label>
-          <n-input
-            v-model:value="ccInput"
-            type="text"
-            placeholder="Add CC recipients"
-            clearable
-          />
-        </div>
-
-        <div class="composer-field">
-          <label class="field-label">BCC</label>
-          <n-input
-            v-model:value="bccInput"
-            type="text"
-            placeholder="Add BCC recipients"
-            clearable
-          />
-        </div>
-      </template>
-
-      <!-- Subject -->
-      <div class="composer-field">
-        <label class="field-label">Subject</label>
-        <n-input
-          v-model:value="state.subject"
-          type="text"
-          placeholder="Email subject"
-          clearable
-        />
-      </div>
-
-      <!-- Body -->
-      <div class="composer-field">
-        <label class="field-label">Message</label>
-        <n-input
-          v-model:value="state.body"
-          type="textarea"
-          placeholder="Write your email here..."
-          :rows="10"
-        />
-      </div>
-
-      <!-- Attachments -->
-      <div class="composer-field">
-        <label class="field-label">Attachments</label>
-        <div class="attachments-section">
-          <n-upload
-            directory
-            action="#"
-            :auto-upload="false"
-            @change="handleFileUpload"
-            :default-file-list="attachmentFileList"
-          >
-            <n-button text>
-              <template #icon>
-                <n-icon :component="CloudUploadOutline" />
-              </template>
-              Click to upload or drag files
-            </n-button>
-          </n-upload>
-
-          <!-- Attachment List -->
-          <div v-if="state.attachments.length" class="attachment-list">
-            <div
-              v-for="attachment in state.attachments"
-              :key="attachment.id"
-              class="attachment-item"
-            >
-              <span class="attachment-name">{{ attachment.name }}</span>
-              <span class="attachment-size">({{ formatFileSize(attachment.size) }})</span>
-              <n-button
-                text
-                type="error"
-                size="small"
-                @click="handleRemoveAttachment(attachment.id)"
-              >
-                <template #icon>
-                <n-icon :component="CloseOutline" />
-              </template>
-              </n-button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Priority -->
-      <div class="composer-field">
-        <label class="field-label">Priority</label>
-        <n-select
-          v-model:value="priority"
-          :options="priorityOptions"
-          clearable
-        />
-      </div>
-    </div>
-
-    <!-- Footer Actions -->
-    <template #footer>
-      <div class="composer-footer">
-        <div class="left-actions">
-          <n-button text @click="handleSaveDraft">
-            <template #icon>
-              <n-icon :component="SaveOutline" />
-            </template>
-            Save Draft
-          </n-button>
-        </div>
-
-        <div class="right-actions">
-          <n-button @click="handleCancel">Cancel</n-button>
-          <n-button
-            type="primary"
-            :loading="state.isSending"
-            :disabled="!isValid"
-            @click="handleSend"
-          >
-            Send
-          </n-button>
-        </div>
-      </div>
-    </template>
-  </n-modal>
-</template>
-
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import {
@@ -181,8 +10,8 @@ import {
   NSelect,
   useMessage,
 } from 'naive-ui';
-import { 
-  CloseOutline, 
+import {
+  CloseOutline,
   SaveOutline,
   CloudUploadOutline
 } from '@vicons/ionicons5';
@@ -286,7 +115,118 @@ const handleSaveDraft = async () => {
   message.info('Draft saved');
 };
 </script>
+<!-- widgets/EmailComposer.vue -->
+<template>
+  <n-modal v-model:show="isVisible" preset="dialog" title="Compose Email" type="default"
+    :style="{ width: composerWidth }" :mask-closable="false" class="email-composer-modal">
+    <div class="composer-content">
+      <!-- To Field -->
+      <div class="composer-field">
+        <label class="field-label">To</label>
+        <n-dynamic-input v-model:value="state.to" item-style="display: flex; align-items: center; gap: 8px;"
+          @create="() => ({ name: '', email: '' })">
+          <template #default="{ value }">
+            <n-input v-model:value="value.email" type="text" placeholder="email@example.com" class="recipient-input"
+              @blur="validateEmail(value.email)" />
+            <n-button text @click.stop="() => { }">
+              <template #icon>
+                <n-icon :component="CloseOutline" />
+              </template>
+            </n-button>
+          </template>
+        </n-dynamic-input>
+      </div>
 
+      <!-- CC Field -->
+      <div class="composer-field">
+        <button class="toggle-cc-bcc" @click="showCcBcc = !showCcBcc">
+          {{ showCcBcc ? '- CC/BCC' : '+ CC/BCC' }}
+        </button>
+      </div>
+
+      <!-- CC/BCC Fields (Conditional) -->
+      <template v-if="showCcBcc">
+        <div class="composer-field">
+          <label class="field-label">CC</label>
+          <n-input v-model:value="ccInput" type="text" placeholder="Add CC recipients" clearable />
+        </div>
+
+        <div class="composer-field">
+          <label class="field-label">BCC</label>
+          <n-input v-model:value="bccInput" type="text" placeholder="Add BCC recipients" clearable />
+        </div>
+      </template>
+
+      <!-- Subject -->
+      <div class="composer-field">
+        <label class="field-label">Subject</label>
+        <n-input v-model:value="state.subject" type="text" placeholder="Email subject" clearable />
+      </div>
+
+      <!-- Body -->
+      <div class="composer-field">
+        <label class="field-label">Message</label>
+        <n-input v-model:value="state.body" type="textarea" placeholder="Write your email here..." :rows="10" />
+      </div>
+
+      <!-- Attachments -->
+      <div class="composer-field">
+        <label class="field-label">Attachments</label>
+        <div class="attachments-section">
+          <n-upload directory action="#" :auto-upload="false" @change="handleFileUpload"
+            :default-file-list="attachmentFileList">
+            <n-button text>
+              <template #icon>
+                <n-icon :component="CloudUploadOutline" />
+              </template>
+              Click to upload or drag files
+            </n-button>
+          </n-upload>
+
+          <!-- Attachment List -->
+          <div v-if="state.attachments.length" class="attachment-list">
+            <div v-for="attachment in state.attachments" :key="attachment.id" class="attachment-item">
+              <span class="attachment-name">{{ attachment.name }}</span>
+              <span class="attachment-size">({{ formatFileSize(attachment.size) }})</span>
+              <n-button text type="error" size="small" @click="handleRemoveAttachment(attachment.id)">
+                <template #icon>
+                  <n-icon :component="CloseOutline" />
+                </template>
+              </n-button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Priority -->
+      <div class="composer-field">
+        <label class="field-label">Priority</label>
+        <n-select v-model:value="priority" :options="priorityOptions" clearable />
+      </div>
+    </div>
+
+    <!-- Footer Actions -->
+    <template #footer>
+      <div class="composer-footer">
+        <div class="left-actions">
+          <n-button text @click="handleSaveDraft">
+            <template #icon>
+              <n-icon :component="SaveOutline" />
+            </template>
+            Save Draft
+          </n-button>
+        </div>
+
+        <div class="right-actions">
+          <n-button @click="handleCancel">Cancel</n-button>
+          <n-button type="primary" :loading="state.isSending" :disabled="!isValid" @click="handleSend">
+            Send
+          </n-button>
+        </div>
+      </div>
+    </template>
+  </n-modal>
+</template>
 <style scoped lang="scss">
 .email-composer-modal {
   :deep(.n-dialog) {

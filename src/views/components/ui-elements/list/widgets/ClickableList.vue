@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { useMessage } from 'naive-ui'
+
+const message = useMessage()
+
+const handleClick = (item: string) => {
+  message.info(`Clicked: ${item}`)
+}
+</script>
+
 <template>
   <n-card title="Clickable List Items">
     <n-list bordered clickable>
@@ -13,13 +23,3 @@
     </n-list>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { useMessage } from 'naive-ui'
-
-const message = useMessage()
-
-const handleClick = (item: string) => {
-  message.info(`Clicked: ${item}`)
-}
-</script>

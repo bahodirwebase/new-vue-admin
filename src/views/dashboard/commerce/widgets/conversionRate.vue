@@ -1,51 +1,3 @@
-<template>
-  <n-card>
-    <div class="conversion-rate__header">
-      <h2 class="conversion-rate__title">Convertion Rate</h2>
-      <n-dropdown
-        :options="periodOptions"
-        @select="handlePeriodSelect"
-        trigger="click"
-      >
-        <n-button class="period-button" type="primary" strong>
-          {{ selectedPeriod }}
-          <template #icon>
-            <n-icon :component="ChevronDownOutline" />
-          </template>
-        </n-button>
-      </n-dropdown>
-    </div>
-
-    <div class="conversion-rate__stats">
-      <div 
-        v-for="stat in stats" 
-        :key="stat.label"
-        class="stat-box"
-      >
-        <div class="stat-box__header">
-          <span class="stat-box__label">{{ stat.label }}</span>
-        </div>
-        <div class="stat-box__value">{{ stat.value.toLocaleString() }}</div>
-        <div 
-          class="stat-box__trend"
-          :class="stat.trend >= 0 ? 'stat-box__trend--positive' : 'stat-box__trend--negative'"
-        >
-          {{ stat.trend > 0 ? '+' : '' }}{{ stat.trend }}%
-        </div>
-      </div>
-    </div>
-
-    <div class="conversion-rate__chart">
-      <apexchart
-        type="bar"
-        height="200"
-        :options="(chartOptions as any)"
-        :series="series"
-      />
-    </div>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
@@ -143,7 +95,7 @@ const chartOptions = computed(() => ({
   tooltip: {
     enabled: true,
     y: {
-      formatter: function(val: number) {
+      formatter: function (val: number) {
         return val.toLocaleString()
       }
     },
@@ -162,9 +114,40 @@ const chartOptions = computed(() => ({
 }))
 </script>
 
+<template>
+  <n-card>
+    <div class="conversion-rate__header">
+      <h2 class="conversion-rate__title">Convertion Rate</h2>
+      <n-dropdown :options="periodOptions" @select="handlePeriodSelect" trigger="click">
+        <n-button class="period-button" type="primary" strong>
+          {{ selectedPeriod }}
+          <template #icon>
+            <n-icon :component="ChevronDownOutline" />
+          </template>
+        </n-button>
+      </n-dropdown>
+    </div>
+
+    <div class="conversion-rate__stats">
+      <div v-for="stat in stats" :key="stat.label" class="stat-box">
+        <div class="stat-box__header">
+          <span class="stat-box__label">{{ stat.label }}</span>
+        </div>
+        <div class="stat-box__value">{{ stat.value.toLocaleString() }}</div>
+        <div class="stat-box__trend"
+          :class="stat.trend >= 0 ? 'stat-box__trend--positive' : 'stat-box__trend--negative'">
+          {{ stat.trend > 0 ? '+' : '' }}{{ stat.trend }}%
+        </div>
+      </div>
+    </div>
+
+    <div class="conversion-rate__chart">
+      <apexchart type="bar" height="200" :options="(chartOptions as any)" :series="series" />
+    </div>
+  </n-card>
+</template>
+
 <style scoped>
-
-
 .conversion-rate__header {
   display: flex;
   justify-content: space-between;

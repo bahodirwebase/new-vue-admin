@@ -1,3 +1,19 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { ChevronBackOutline, ChevronForwardOutline } from '@vicons/ionicons5'
+import { NIcon } from 'naive-ui'
+
+const carouselRef = ref()
+
+const prevSlide = () => {
+  carouselRef.value?.prev()
+}
+
+const nextSlide = () => {
+  carouselRef.value?.next()
+}
+</script>
+
 <template>
   <n-card title="Carousel Controls">
     <n-space vertical :size="16">
@@ -35,22 +51,6 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { ChevronBackOutline, ChevronForwardOutline } from '@vicons/ionicons5'
-import { NIcon } from 'naive-ui'
-
-const carouselRef = ref()
-
-const prevSlide = () => {
-  carouselRef.value?.prev()
-}
-
-const nextSlide = () => {
-  carouselRef.value?.next()
-}
-</script>
 
 <style scoped>
 .control-slide {

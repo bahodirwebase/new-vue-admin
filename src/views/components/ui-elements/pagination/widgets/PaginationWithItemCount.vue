@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const pageTotal = ref(1)
+const totalItems = ref(250)
+const itemsPerPage = ref(20)
+</script>
+
 <template>
   <n-card title="Pagination with Item Count">
     <n-space vertical :size="16">
@@ -6,27 +14,13 @@
           Show Total
         </h3>
         <div class="pagination-container">
-          <n-pagination
-            v-model:page="pageTotal"
-            :item-count="totalItems"
-            :page-size="itemsPerPage"
-            show-size-picker
-            :page-sizes="[10, 20, 50, 100]"
-            :page-slot="6"
-          />
+          <n-pagination v-model:page="pageTotal" :item-count="totalItems" :page-size="itemsPerPage" show-size-picker
+            :page-sizes="[10, 20, 50, 100]" :page-slot="6" />
         </div>
       </div>
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const pageTotal = ref(1)
-const totalItems = ref(250)
-const itemsPerPage = ref(20)
-</script>
 
 <style scoped>
 /* Pagination container for horizontal scroll */
@@ -64,7 +58,7 @@ const itemsPerPage = ref(20)
     height: 32px;
     font-size: 12px;
   }
-  
+
   :deep(.n-select) {
     min-width: 80px;
   }

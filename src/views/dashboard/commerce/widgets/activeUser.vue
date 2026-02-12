@@ -1,52 +1,3 @@
-<template>
-  <n-card>
-    <div class="active-user__header">
-      <h2 class="active-user__title">Active User</h2>
-      <n-dropdown
-        :options="menuOptions"
-        @select="handleMenuSelect"
-        trigger="click"
-      >
-        <n-button text class="menu-button">
-          <n-icon :size="20" :component="EllipsisHorizontalOutline" />
-        </n-button>
-      </n-dropdown>
-    </div>
-
-    <div class="active-user__stats">
-      <div class="stats-main">
-        <h3 class="stats-main__value">{{ totalUsers.toLocaleString() }}</h3>
-        <span class="stats-main__label">Users</span>
-      </div>
-      
-      <div class="stats-trend">
-        <span class="stats-trend__value">+{{ trendPercentage }}%</span>
-        <span class="stats-trend__label">from last month</span>
-      </div>
-    </div>
-
-    <div class="country-list">
-      <div 
-        v-for="country in countries" 
-        :key="country.name"
-        class="country-item"
-      >
-        <div class="country-item__header">
-          <span class="country-item__name">{{ country.name }}</span>
-          <span class="country-item__percentage">{{ country.percentage }}%</span>
-        </div>
-        
-        <div class="progress-bar">
-          <div 
-            class="progress-bar__fill"
-            :style="{ width: country.percentage + '%' }"
-          ></div>
-        </div>
-      </div>
-    </div>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
@@ -98,8 +49,45 @@ const handleMenuSelect = (key: string) => {
 }
 </script>
 
-<style scoped>
+<template>
+  <n-card>
+    <div class="active-user__header">
+      <h2 class="active-user__title">Active User</h2>
+      <n-dropdown :options="menuOptions" @select="handleMenuSelect" trigger="click">
+        <n-button text class="menu-button">
+          <n-icon :size="20" :component="EllipsisHorizontalOutline" />
+        </n-button>
+      </n-dropdown>
+    </div>
 
+    <div class="active-user__stats">
+      <div class="stats-main">
+        <h3 class="stats-main__value">{{ totalUsers.toLocaleString() }}</h3>
+        <span class="stats-main__label">Users</span>
+      </div>
+
+      <div class="stats-trend">
+        <span class="stats-trend__value">+{{ trendPercentage }}%</span>
+        <span class="stats-trend__label">from last month</span>
+      </div>
+    </div>
+
+    <div class="country-list">
+      <div v-for="country in countries" :key="country.name" class="country-item">
+        <div class="country-item__header">
+          <span class="country-item__name">{{ country.name }}</span>
+          <span class="country-item__percentage">{{ country.percentage }}%</span>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-bar__fill" :style="{ width: country.percentage + '%' }"></div>
+        </div>
+      </div>
+    </div>
+  </n-card>
+</template>
+
+<style scoped>
 .active-user__header {
   display: flex;
   justify-content: space-between;
@@ -225,12 +213,10 @@ const handleMenuSelect = (key: string) => {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0) 100%);
   animation: shimmer 2s infinite;
 }
 
@@ -238,6 +224,7 @@ const handleMenuSelect = (key: string) => {
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }
@@ -246,5 +233,4 @@ const handleMenuSelect = (key: string) => {
 .country-item:hover .progress-bar__fill {
   filter: brightness(1.1);
 }
-
 </style>

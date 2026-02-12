@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const showBasic = ref(false)
+const showInfo = ref(false)
+const showSuccess = ref(false)
+</script>
+
 <template>
   <n-card title="Basic Modals">
     <n-space :size="12">
@@ -19,11 +27,3 @@
     </n-modal>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const showBasic = ref(false)
-const showInfo = ref(false)
-const showSuccess = ref(false)
-</script>

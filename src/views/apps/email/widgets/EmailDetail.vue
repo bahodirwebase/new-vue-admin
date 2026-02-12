@@ -1,170 +1,3 @@
-<!-- widgets/EmailDetail.vue -->
-<template>
-  <div class="email-detail">
-    <div v-if="email" class="detail-container">
-      <!-- Header -->
-      <div class="detail-header">
-        <div class="header-top">
-          <button class="back-button" @click="handleBack">← Back</button>
-          <div class="header-actions">
-            <n-button text type="primary" @click="handleArchive">
-              <template #icon>
-                <n-icon>
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M4 6h16V4H4v2zm16 2H4v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8zm-8 12H6v-6h6v6zm8-6h-2v-2h2v2z"/>
-                  </svg>
-                </n-icon>
-              </template>
-            </n-button>
-            <n-button
-              text
-              type="primary"
-              @click="handleStar"
-            >
-              <template #icon>
-                <n-icon v-if="email.starred">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                  </svg>
-                </n-icon>
-                <n-icon v-else>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-width="2"/>
-                  </svg>
-                </n-icon>
-              </template>
-            </n-button>
-            <n-button text type="primary" @click="handleDelete">
-              <template #icon>
-                <n-icon>
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-9l-1 1H5v2h14V4z"/>
-                  </svg>
-                </n-icon>
-              </template>
-            </n-button>
-            <n-dropdown
-              :options="moreOptions"
-              placement="bottom-end"
-              @select="handleMoreAction"
-            >
-              <n-button text type="primary">
-                <template #icon>
-                  <n-icon>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
-                    </svg>
-                  </n-icon>
-                </template>
-              </n-button>
-            </n-dropdown>
-          </div>
-        </div>
-      </div>
-
-      <!-- Email Info -->
-      <div class="detail-sender">
-        <div class="sender-header">
-          <n-avatar
-            :src="email.from.avatar"
-            :fallback-src="`https://api.dicebear.com/7.x/avataaars/svg?seed=${email.from.name}`"
-            round
-            :size="48"
-          />
-          <div class="sender-info">
-            <h3>{{ email.from.name }}</h3>
-            <p class="sender-email">{{ email.from.email }}</p>
-            <p class="send-time">{{ formatDateTime(email.timestamp) }}</p>
-          </div>
-          <CustomTag
-            v-if="email.priority !== 'normal'"
-            :type="email.priority === 'high' ? 'error' : 'success'"
-          >
-            {{ email.priority.charAt(0).toUpperCase() + email.priority.slice(1) }} Priority
-          </CustomTag>
-        </div>
-
-        <!-- Recipients -->
-        <div v-if="email.to.length || email.cc?.length || email.bcc?.length" class="recipients">
-          <details>
-            <summary>
-              To: <strong>{{ email.to.map(r => r.email).join(', ') }}</strong>
-              <span v-if="email.cc?.length"> + {{ email.cc.length }} more</span>
-            </summary>
-            <div class="recipients-expanded">
-              <div v-if="email.cc?.length" class="recipient-group">
-                <strong>CC:</strong>
-                <span>{{ email.cc.map(r => r.email).join(', ') }}</span>
-              </div>
-              <div v-if="email.bcc?.length" class="recipient-group">
-                <strong>BCC:</strong>
-                <span>{{ email.bcc.map(r => r.email).join(', ') }}</span>
-              </div>
-            </div>
-          </details>
-        </div>
-      </div>
-
-      <!-- Subject -->
-      <div class="detail-subject">
-        <h2>{{ email.subject }}</h2>
-      </div>
-
-      <!-- Body -->
-      <div class="detail-body">
-        <div v-html="parseEmailBody(email.body)"></div>
-      </div>
-
-      <!-- Attachments -->
-      <div v-if="email.attachments.length" class="detail-attachments">
-        <h4>Attachments</h4>
-        <div class="attachment-list">
-          <div
-            v-for="attachment in email.attachments"
-            :key="attachment.id"
-            class="attachment-item"
-          >
-            <n-icon class="attachment-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-            </n-icon>
-            <div class="attachment-info">
-              <span class="attachment-name">{{ attachment.name }}</span>
-              <span class="attachment-size">{{ formatFileSize(attachment.size) }}</span>
-            </div>
-            <n-button text type="primary">Download</n-button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Labels -->
-      <div v-if="email.labels.length" class="detail-labels">
-        <CustomTag
-          v-for="label in email.labels"
-          :key="label"
-          type="info"
-          round
-        >
-          {{ label }}
-        </CustomTag>
-      </div>
-    </div>
-
-    <!-- Empty State -->
-    <div v-else class="email-detail-empty">
-      <div class="empty-state">
-        <n-icon class="empty-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-width="2"/>
-          </svg>
-        </n-icon>
-        <p>No email selected</p>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { NButton, NIcon, NDropdown, NAvatar } from 'naive-ui';
 import type { Email } from '../types';
@@ -216,7 +49,154 @@ const handleMoreAction = (key: string | number) => {
   emits('action', key as string);
 };
 </script>
+<!-- widgets/EmailDetail.vue -->
+<template>
+  <div class="email-detail">
+    <div v-if="email" class="detail-container">
+      <!-- Header -->
+      <div class="detail-header">
+        <div class="header-top">
+          <button class="back-button" @click="handleBack">← Back</button>
+          <div class="header-actions">
+            <n-button text type="primary" @click="handleArchive">
+              <template #icon>
+                <n-icon>
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M4 6h16V4H4v2zm16 2H4v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8zm-8 12H6v-6h6v6zm8-6h-2v-2h2v2z" />
+                  </svg>
+                </n-icon>
+              </template>
+            </n-button>
+            <n-button text type="primary" @click="handleStar">
+              <template #icon>
+                <n-icon v-if="email.starred">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  </svg>
+                </n-icon>
+                <n-icon v-else>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path
+                      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                      stroke-width="2" />
+                  </svg>
+                </n-icon>
+              </template>
+            </n-button>
+            <n-button text type="primary" @click="handleDelete">
+              <template #icon>
+                <n-icon>
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-9l-1 1H5v2h14V4z" />
+                  </svg>
+                </n-icon>
+              </template>
+            </n-button>
+            <n-dropdown :options="moreOptions" placement="bottom-end" @select="handleMoreAction">
+              <n-button text type="primary">
+                <template #icon>
+                  <n-icon>
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+                    </svg>
+                  </n-icon>
+                </template>
+              </n-button>
+            </n-dropdown>
+          </div>
+        </div>
+      </div>
 
+      <!-- Email Info -->
+      <div class="detail-sender">
+        <div class="sender-header">
+          <n-avatar :src="email.from.avatar"
+            :fallback-src="`https://api.dicebear.com/7.x/avataaars/svg?seed=${email.from.name}`" round :size="48" />
+          <div class="sender-info">
+            <h3>{{ email.from.name }}</h3>
+            <p class="sender-email">{{ email.from.email }}</p>
+            <p class="send-time">{{ formatDateTime(email.timestamp) }}</p>
+          </div>
+          <CustomTag v-if="email.priority !== 'normal'" :type="email.priority === 'high' ? 'error' : 'success'">
+            {{ email.priority.charAt(0).toUpperCase() + email.priority.slice(1) }} Priority
+          </CustomTag>
+        </div>
+
+        <!-- Recipients -->
+        <div v-if="email.to.length || email.cc?.length || email.bcc?.length" class="recipients">
+          <details>
+            <summary>
+              To: <strong>{{email.to.map(r => r.email).join(', ')}}</strong>
+              <span v-if="email.cc?.length"> + {{ email.cc.length }} more</span>
+            </summary>
+            <div class="recipients-expanded">
+              <div v-if="email.cc?.length" class="recipient-group">
+                <strong>CC:</strong>
+                <span>{{email.cc.map(r => r.email).join(', ')}}</span>
+              </div>
+              <div v-if="email.bcc?.length" class="recipient-group">
+                <strong>BCC:</strong>
+                <span>{{email.bcc.map(r => r.email).join(', ')}}</span>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Subject -->
+      <div class="detail-subject">
+        <h2>{{ email.subject }}</h2>
+      </div>
+
+      <!-- Body -->
+      <div class="detail-body">
+        <div v-html="parseEmailBody(email.body)"></div>
+      </div>
+
+      <!-- Attachments -->
+      <div v-if="email.attachments.length" class="detail-attachments">
+        <h4>Attachments</h4>
+        <div class="attachment-list">
+          <div v-for="attachment in email.attachments" :key="attachment.id" class="attachment-item">
+            <n-icon class="attachment-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
+            </n-icon>
+            <div class="attachment-info">
+              <span class="attachment-name">{{ attachment.name }}</span>
+              <span class="attachment-size">{{ formatFileSize(attachment.size) }}</span>
+            </div>
+            <n-button text type="primary">Download</n-button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Labels -->
+      <div v-if="email.labels.length" class="detail-labels">
+        <CustomTag v-for="label in email.labels" :key="label" type="info" round>
+          {{ label }}
+        </CustomTag>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div v-else class="email-detail-empty">
+      <div class="empty-state">
+        <n-icon class="empty-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-width="2" />
+          </svg>
+        </n-icon>
+        <p>No email selected</p>
+      </div>
+    </div>
+  </div>
+</template>
 <style scoped lang="scss">
 .email-detail {
   flex: 1;

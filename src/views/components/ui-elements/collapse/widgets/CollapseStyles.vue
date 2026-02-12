@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import {
+  PersonCircleOutline,
+  ShieldCheckmarkOutline,
+  NotificationsOutline,
+} from "@vicons/ionicons5";
+import { NIcon } from "naive-ui";
+</script>
+
 <template>
   <n-card title="Collapse Styles">
     <n-space vertical :size="16">
@@ -74,15 +83,6 @@ app.use(naive)</code></pre>
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import {
-  PersonCircleOutline,
-  ShieldCheckmarkOutline,
-  NotificationsOutline,
-} from "@vicons/ionicons5";
-import { NIcon } from "naive-ui";
-</script>
 
 <style scoped>
 pre {

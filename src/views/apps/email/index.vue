@@ -1,162 +1,3 @@
-<!-- index.vue -->
-<template>
-  <div class="email-app">
-    <div class="app-container">
-      <!-- Backdrop Overlay -->
-      <div
-        v-if="sidebarOpen && isMobile"
-        class="sidebar-backdrop"
-        @click="sidebarOpen = false"
-      ></div>
-      
-      <!-- Sidebar -->
-      <div
-        class="sidebar-wrapper"
-        :class="{ 'mobile-open': sidebarOpen }"
-      >
-        <EmailSidebar
-          @compose-click="openComposer"
-          @folder-select="handleFolderSelect"
-          @label-select="handleLabelSelect"
-          @toggle-sidebar="sidebarOpen = !sidebarOpen"
-        />
-      </div>
-
-      <!-- Main Content -->
-      <div class="main-content">
-        <!-- Header -->
-        <div class="app-header">
-          <div class="header-left">
-            <n-button
-              v-if="isMobile"
-              text
-              type="primary"
-              circle
-              @click="sidebarOpen = !sidebarOpen"
-            >
-              <template #icon>
-                <n-icon :component="MenuOutline" />
-              </template>
-            </n-button>
-
-            <!-- Search -->
-            <div class="search-bar">
-              <n-input
-                v-model:value="searchQuery"
-                type="text"
-                placeholder="Search emails..."
-                clearable
-                @update:value="handleSearch"
-              >
-                <template #prefix>
-                  <n-icon>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                  </n-icon>
-                </template>
-              </n-input>
-            </div>
-          </div>
-
-          <!-- Header Actions -->
-          <div class="header-right">
-            <n-button text type="primary" circle>
-              <template #icon>
-                <n-icon>
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
-                  </svg>
-                </n-icon>
-              </template>
-            </n-button>
-          </div>
-        </div>
-
-        <!-- Email List and Detail -->
-        <div class="content-wrapper">
-          <!-- Email List -->
-          <div class="email-list-container">
-            <div class="list-header">
-              <h2>{{ currentFolderName }}</h2>
-              <div class="list-controls">
-                <n-checkbox
-                  v-model:checked="selectAll"
-                  @update:checked="handleSelectAll"
-                />
-                <n-button text type="primary" size="small">
-                  <template #icon>
-                    <n-icon>
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
-                      </svg>
-                    </n-icon>
-                  </template>
-                </n-button>
-              </div>
-            </div>
-
-            <!-- Loading State -->
-            <n-spin v-if="loading" />
-
-            <!-- Empty State -->
-            <div v-else-if="paginatedEmails.length === 0" class="empty-state">
-              <n-icon class="empty-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-width="2"/>
-                </svg>
-              </n-icon>
-              <p>No emails found</p>
-            </div>
-
-            <!-- Email List -->
-            <div v-else class="emails-list">
-              <EmailListItem
-                v-for="email in paginatedEmails"
-                :key="email.id"
-                :email="email"
-                :is-selected="selectedEmails.includes(email.id)"
-                @select-change="(checked) => handleSelectEmail(email.id, checked)"
-                @click="selectEmail(email)"
-                @star-toggle="toggleStar(email.id)"
-              />
-            </div>
-
-            <!-- Pagination -->
-            <div v-if="totalPages > 1" class="pagination">
-              <n-pagination
-                v-model:page="currentPage"
-                :page-count="totalPages"
-                :page-size="ITEMS_PER_PAGE"
-              />
-            </div>
-          </div>
-
-          <!-- Email Detail -->
-          <div class="email-detail-container" :class="{ active: selectedEmail }">
-            <EmailDetail
-              :email="selectedEmail"
-              @back="selectedEmail = undefined"
-              @star-toggle="handleToggleStar(selectedEmail?.id || '')"
-              @delete="deleteEmail(selectedEmail?.id || '')"
-              @archive="archiveEmail(selectedEmail?.id || '')"
-              @action="handleDetailAction"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Email Composer Modal -->
-    <EmailComposer
-      :visible="composerVisible"
-      @update:visible="composerVisible = $event"
-      @send="handleEmailSent"
-    />
-  </div>
-</template>
-
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 import { NButton, NIcon, NInput, NCheckbox, NSpin, NPagination, useMessage } from 'naive-ui';
@@ -328,6 +169,122 @@ onMounted(() => {
   fetchEmails();
 });
 </script>
+<!-- index.vue -->
+<template>
+  <div class="email-app">
+    <div class="app-container">
+      <!-- Backdrop Overlay -->
+      <div v-if="sidebarOpen && isMobile" class="sidebar-backdrop" @click="sidebarOpen = false"></div>
+
+      <!-- Sidebar -->
+      <div class="sidebar-wrapper" :class="{ 'mobile-open': sidebarOpen }">
+        <EmailSidebar @compose-click="openComposer" @folder-select="handleFolderSelect"
+          @label-select="handleLabelSelect" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Header -->
+        <div class="app-header">
+          <div class="header-left">
+            <n-button v-if="isMobile" text type="primary" circle @click="sidebarOpen = !sidebarOpen">
+              <template #icon>
+                <n-icon :component="MenuOutline" />
+              </template>
+            </n-button>
+
+            <!-- Search -->
+            <div class="search-bar">
+              <n-input v-model:value="searchQuery" type="text" placeholder="Search emails..." clearable
+                @update:value="handleSearch">
+                <template #prefix>
+                  <n-icon>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                  </n-icon>
+                </template>
+              </n-input>
+            </div>
+          </div>
+
+          <!-- Header Actions -->
+          <div class="header-right">
+            <n-button text type="primary" circle>
+              <template #icon>
+                <n-icon>
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+                  </svg>
+                </n-icon>
+              </template>
+            </n-button>
+          </div>
+        </div>
+
+        <!-- Email List and Detail -->
+        <div class="content-wrapper">
+          <!-- Email List -->
+          <div class="email-list-container">
+            <div class="list-header">
+              <h2>{{ currentFolderName }}</h2>
+              <div class="list-controls">
+                <n-checkbox v-model:checked="selectAll" @update:checked="handleSelectAll" />
+                <n-button text type="primary" size="small">
+                  <template #icon>
+                    <n-icon>
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
+                      </svg>
+                    </n-icon>
+                  </template>
+                </n-button>
+              </div>
+            </div>
+
+            <!-- Loading State -->
+            <n-spin v-if="loading" />
+
+            <!-- Empty State -->
+            <div v-else-if="paginatedEmails.length === 0" class="empty-state">
+              <n-icon class="empty-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-width="2" />
+                </svg>
+              </n-icon>
+              <p>No emails found</p>
+            </div>
+
+            <!-- Email List -->
+            <div v-else class="emails-list">
+              <EmailListItem v-for="email in paginatedEmails" :key="email.id" :email="email"
+                :is-selected="selectedEmails.includes(email.id)"
+                @select-change="(checked) => handleSelectEmail(email.id, checked)" @click="selectEmail(email)"
+                @star-toggle="toggleStar(email.id)" />
+            </div>
+
+            <!-- Pagination -->
+            <div v-if="totalPages > 1" class="pagination">
+              <n-pagination v-model:page="currentPage" :page-count="totalPages" :page-size="ITEMS_PER_PAGE" />
+            </div>
+          </div>
+
+          <!-- Email Detail -->
+          <div class="email-detail-container" :class="{ active: selectedEmail }">
+            <EmailDetail :email="selectedEmail" @back="selectedEmail = undefined"
+              @star-toggle="handleToggleStar(selectedEmail?.id || '')" @delete="deleteEmail(selectedEmail?.id || '')"
+              @archive="archiveEmail(selectedEmail?.id || '')" @action="handleDetailAction" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email Composer Modal -->
+    <EmailComposer :visible="composerVisible" @update:visible="composerVisible = $event" @send="handleEmailSent" />
+  </div>
+</template>
 
 <style scoped lang="scss">
 .email-app {
@@ -515,7 +472,7 @@ onMounted(() => {
 
       @media (max-width: 768px) {
         display: none;
-        
+
         &.active {
           display: flex;
           width: 100%;

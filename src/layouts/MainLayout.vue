@@ -1,25 +1,3 @@
-<template>
-  <n-layout has-sider class="main-layout">
-    <AppSidebar
-      :collapsed="isCollapsed"
-      :is-mobile="isMobile"
-      @toggle-sidebar="toggleSidebar"
-    />
-    <n-layout>
-      <AppHeader @toggle-sidebar="toggleSidebar" />
-      <n-layout-content :class="contentClass" :content-style="contentStyle">
-        <router-view v-slot="{ Component }">
-          <transition :name="themeStore.pageAnimation" mode="out-in">
-            <component :is="Component" />
-          </transition>
-        </router-view>
-      </n-layout-content>
-    </n-layout>
-    <CustomizerButton @toggle="handleCustomizerToggle" />
-    <CustomizerSidebar :is-open="isCustomizerOpen" @close="closeCustomizer" />
-  </n-layout>
-</template>
-
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted } from "vue";
 import { useThemeStore } from "@/stores/theme";
@@ -81,7 +59,23 @@ const contentStyle = computed(() => {
   };
 });
 </script>
-
+<template>
+  <n-layout has-sider class="main-layout">
+    <AppSidebar :collapsed="isCollapsed" :is-mobile="isMobile" @toggle-sidebar="toggleSidebar" />
+    <n-layout>
+      <AppHeader @toggle-sidebar="toggleSidebar" />
+      <n-layout-content :class="contentClass" :content-style="contentStyle">
+        <router-view v-slot="{ Component }">
+          <transition :name="themeStore.pageAnimation" mode="out-in">
+            <component :is="Component" />
+          </transition>
+        </router-view>
+      </n-layout-content>
+    </n-layout>
+    <CustomizerButton @toggle="handleCustomizerToggle" />
+    <CustomizerSidebar :is-open="isCustomizerOpen" @close="closeCustomizer" />
+  </n-layout>
+</template>
 <style scoped>
 .main-layout {
   min-height: 100vh;

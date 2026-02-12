@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const pageNav = ref(1)
+</script>
+
 <template>
   <n-card title="Pagination Display Options">
     <n-space vertical :size="16">
@@ -6,12 +12,7 @@
           Show Previous/Next
         </h3>
         <div class="pagination-container">
-          <n-pagination
-            v-model:page="pageNav"
-            :page-count="10"
-            show-prev
-            :page-slot="7"
-          />
+          <n-pagination v-model:page="pageNav" :page-count="10" show-prev :page-slot="7" />
         </div>
       </div>
 
@@ -29,12 +30,6 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const pageNav = ref(1)
-</script>
 
 <style scoped>
 /* Pagination container for horizontal scroll */
@@ -72,7 +67,7 @@ const pageNav = ref(1)
     height: 32px;
     font-size: 12px;
   }
-  
+
   :deep(.n-pagination .n-button) {
     padding: 0 8px;
     font-size: 12px;

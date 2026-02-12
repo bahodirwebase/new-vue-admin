@@ -1,3 +1,19 @@
+<script setup lang="ts">
+import {
+  CheckmarkCircleOutline,
+  InformationCircleOutline,
+  AlertCircleOutline,
+  TimeOutline,
+  RocketOutline,
+  PersonOutline,
+  CodeSlashOutline,
+  ConstructOutline,
+  GitBranchOutline,
+  FlaskOutline
+} from '@vicons/ionicons5'
+import CustomTag from '@/components/CustomTag.vue'
+</script>
+
 <template>
   <n-card title="Advanced Timeline">
     <n-space vertical :size="20">
@@ -17,7 +33,7 @@
               </div>
             </div>
           </n-timeline-item>
-          
+
           <n-timeline-item type="info" title="Review Phase">
             <template #icon>
               <n-icon :component="InformationCircleOutline" :size="20" />
@@ -30,7 +46,7 @@
               </div>
             </div>
           </n-timeline-item>
-          
+
           <n-timeline-item type="warning" title="Pending Approval">
             <template #icon>
               <n-icon :component="TimeOutline" :size="20" />
@@ -43,7 +59,7 @@
               </div>
             </div>
           </n-timeline-item>
-          
+
           <n-timeline-item type="error" title="Critical Issue">
             <template #icon>
               <n-icon :component="AlertCircleOutline" :size="20" />
@@ -85,7 +101,7 @@
               </div>
             </div>
           </n-timeline-item>
-          
+
           <n-timeline-item type="default" title="Bug Fix">
             <template #icon>
               <n-icon :component="ConstructOutline" :size="20" />
@@ -123,7 +139,7 @@
               </div>
             </div>
           </n-timeline-item>
-          
+
           <n-timeline-item type="info" title="Phase 2: Development">
             <template #icon>
               <n-icon :component="CodeSlashOutline" :size="20" />
@@ -136,7 +152,7 @@
               </div>
             </div>
           </n-timeline-item>
-          
+
           <n-timeline-item type="default" title="Phase 3: Testing">
             <template #icon>
               <n-icon :component="FlaskOutline" :size="20" />
@@ -154,22 +170,6 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import {
-  CheckmarkCircleOutline,
-  InformationCircleOutline,
-  AlertCircleOutline,
-  TimeOutline,
-  RocketOutline,
-  PersonOutline,
-  CodeSlashOutline,
-  ConstructOutline,
-  GitBranchOutline,
-  FlaskOutline
-} from '@vicons/ionicons5'
-import CustomTag from '@/components/CustomTag.vue'
-</script>
 
 <style scoped>
 .section-title {
@@ -230,7 +230,7 @@ import CustomTag from '@/components/CustomTag.vue'
     flex-direction: column;
     gap: 8px;
   }
-  
+
   .timeline-meta {
     flex-direction: column;
     align-items: flex-start;

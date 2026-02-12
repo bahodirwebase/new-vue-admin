@@ -1,179 +1,11 @@
-<template>
-  <div class="customizer-sidebar" :class="{ 'open': isOpen }">
-    <div class="customizer-header">
-      <h3>Theme Settings</h3>
-      <n-button quaternary circle @click="closeSidebar">
-        <template #icon>
-          <n-icon :component="CloseOutline" :size="18" />
-        </template>
-      </n-button>
-    </div>
-    
-    <div class="customizer-content">
-      <n-space vertical :size="16">
-        <div class="setting-group">
-          <h4>Display Mode</h4>
-          <div class="card-options">
-            <div 
-              class="option-card"
-              :class="{ 'active': themeStore.isDark }"
-              @click="themeStore.setDark(true)"
-            >
-              <n-icon :component="MoonOutline" :size="20" />
-              <span>Dark Mode</span>
-            </div>
-            <div 
-              class="option-card"
-              :class="{ 'active': !themeStore.isDark }"
-              @click="themeStore.setDark(false)"
-            >
-              <n-icon :component="SunnyOutline" :size="20" />
-              <span>Light Mode</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="setting-group">
-          <h4>Layout</h4>
-          <div class="card-options">
-            <div 
-              class="option-card"
-              :class="{ 'active': themeStore.isBoxed }"
-              @click="themeStore.setBoxed(true)"
-            >
-              <n-icon :component="DesktopOutline" :size="20" />
-              <span>Boxed Layout</span>
-            </div>
-            <div 
-              class="option-card"
-              :class="{ 'active': !themeStore.isBoxed }"
-              @click="themeStore.setBoxed(false)"
-            >
-              <n-icon :component="ExpandOutline" :size="20" />
-              <span>Full Width</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="setting-group">
-          <h4>Sidebar</h4>
-          <div class="card-options">
-            <div 
-              class="option-card"
-              :class="{ 'active': themeStore.isMiniSidebar }"
-              @click="themeStore.setMiniSidebar(true)"
-            >
-              <n-icon :component="ContractOutline" :size="20" />
-              <span>Mini Sidebar</span>
-            </div>
-            <div 
-              class="option-card"
-              :class="{ 'active': !themeStore.isMiniSidebar }"
-              @click="themeStore.setMiniSidebar(false)"
-            >
-              <n-icon :component="ExpandOutline" :size="20" />
-              <span>Full Sidebar</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="setting-group">
-          <h4>Theme Style</h4>
-          <div class="card-options">
-            <div 
-              class="option-card"
-              :class="{ 'active': themeStore.isBordered }"
-              @click="themeStore.setBordered(true)"
-            >
-              <n-icon :component="SquareOutline" :size="20" />
-              <span>Bordered Theme</span>
-            </div>
-            <div 
-              class="option-card"
-              :class="{ 'active': !themeStore.isBordered }"
-              @click="themeStore.setBordered(false)"
-            >
-              <n-icon :component="EllipseOutline" :size="20" />
-              <span>Shadow Theme</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="setting-group">
-          <h4>Winter Mode ({{ themeStore.isWinterMode }})</h4>
-          <div class="card-options">
-            <div 
-              class="option-card"
-              :class="{ 'active': themeStore.isWinterMode }"
-              @click="toggleWinterMode(true)"
-            >
-              <n-icon :component="SnowOutline" :size="20" />
-              <span>❄️ Winter</span>
-            </div>
-            <div 
-              class="option-card"
-              :class="{ 'active': !themeStore.isWinterMode }"
-              @click="toggleWinterMode(false)"
-            >
-              <n-icon :component="SunnyOutline" :size="20" />
-              <span>🌞 Normal</span>
-            </div>
-          </div>
-        </div>
-
-        <n-divider />
-
-        <div class="setting-group">
-          <h4>Page Animation {{ selectedAnimation }}</h4>
-          <div class="animation-options">
-            <div 
-              v-for="animation in animations" 
-              :key="animation.class"
-              class="animation-card"
-              :class="{ 'active': selectedAnimation === animation.class }"
-              @click="selectAnimation(animation)"
-            >
-              <div class="animation-preview">
-                <div :class="`preview-${animation.class}`"></div>
-              </div>
-              <span class="animation-name">{{ animation.name }}</span>
-            </div>
-          </div>
-        </div>
-
-        <n-divider />
-
-        <div class="setting-group">
-          <h4>Primary Colors</h4>
-          <div class="color-cards">
-            <div 
-              v-for="color in primaryColors" 
-              :key="color.name"
-              class="color-card"
-              :class="{ 'active': selectedColor === color.name }"
-              @click="selectColor(color)"
-            >
-              <div class="color-preview" :style="{ backgroundColor: color.value }"></div>
-              <span class="color-name">{{ color.name }}</span>
-            </div>
-          </div>
-        </div>
-      </n-space>
-    </div>
-  </div>
-  
-  <!-- Overlay -->
-  <div v-if="isOpen" class="customizer-overlay" @click="closeSidebar"></div>
-</template>
-
 <script setup lang="ts">
 import { computed } from 'vue'
-import { 
-  CloseOutline, 
-  MoonOutline, 
-  SunnyOutline, 
-  DesktopOutline, 
-  ExpandOutline, 
+import {
+  CloseOutline,
+  MoonOutline,
+  SunnyOutline,
+  DesktopOutline,
+  ExpandOutline,
   ContractOutline,
   SquareOutline,
   EllipseOutline,
@@ -245,7 +77,126 @@ const toggleWinterMode = (value: boolean) => {
   themeStore.setWinterMode(value)
 }
 </script>
+<template>
+  <div class="customizer-sidebar" :class="{ 'open': isOpen }">
+    <div class="customizer-header">
+      <h3>Theme Settings</h3>
+      <n-button quaternary circle @click="closeSidebar">
+        <template #icon>
+          <n-icon :component="CloseOutline" :size="18" />
+        </template>
+      </n-button>
+    </div>
 
+    <div class="customizer-content">
+      <n-space vertical :size="16">
+        <div class="setting-group">
+          <h4>Display Mode</h4>
+          <div class="card-options">
+            <div class="option-card" :class="{ 'active': themeStore.isDark }" @click="themeStore.setDark(true)">
+              <n-icon :component="MoonOutline" :size="20" />
+              <span>Dark Mode</span>
+            </div>
+            <div class="option-card" :class="{ 'active': !themeStore.isDark }" @click="themeStore.setDark(false)">
+              <n-icon :component="SunnyOutline" :size="20" />
+              <span>Light Mode</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <h4>Layout</h4>
+          <div class="card-options">
+            <div class="option-card" :class="{ 'active': themeStore.isBoxed }" @click="themeStore.setBoxed(true)">
+              <n-icon :component="DesktopOutline" :size="20" />
+              <span>Boxed Layout</span>
+            </div>
+            <div class="option-card" :class="{ 'active': !themeStore.isBoxed }" @click="themeStore.setBoxed(false)">
+              <n-icon :component="ExpandOutline" :size="20" />
+              <span>Full Width</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <h4>Sidebar</h4>
+          <div class="card-options">
+            <div class="option-card" :class="{ 'active': themeStore.isMiniSidebar }"
+              @click="themeStore.setMiniSidebar(true)">
+              <n-icon :component="ContractOutline" :size="20" />
+              <span>Mini Sidebar</span>
+            </div>
+            <div class="option-card" :class="{ 'active': !themeStore.isMiniSidebar }"
+              @click="themeStore.setMiniSidebar(false)">
+              <n-icon :component="ExpandOutline" :size="20" />
+              <span>Full Sidebar</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <h4>Theme Style</h4>
+          <div class="card-options">
+            <div class="option-card" :class="{ 'active': themeStore.isBordered }" @click="themeStore.setBordered(true)">
+              <n-icon :component="SquareOutline" :size="20" />
+              <span>Bordered Theme</span>
+            </div>
+            <div class="option-card" :class="{ 'active': !themeStore.isBordered }"
+              @click="themeStore.setBordered(false)">
+              <n-icon :component="EllipseOutline" :size="20" />
+              <span>Shadow Theme</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-group">
+          <h4>Winter Mode ({{ themeStore.isWinterMode }})</h4>
+          <div class="card-options">
+            <div class="option-card" :class="{ 'active': themeStore.isWinterMode }" @click="toggleWinterMode(true)">
+              <n-icon :component="SnowOutline" :size="20" />
+              <span>❄️ Winter</span>
+            </div>
+            <div class="option-card" :class="{ 'active': !themeStore.isWinterMode }" @click="toggleWinterMode(false)">
+              <n-icon :component="SunnyOutline" :size="20" />
+              <span>🌞 Normal</span>
+            </div>
+          </div>
+        </div>
+
+        <n-divider />
+
+        <div class="setting-group">
+          <h4>Page Animation {{ selectedAnimation }}</h4>
+          <div class="animation-options">
+            <div v-for="animation in animations" :key="animation.class" class="animation-card"
+              :class="{ 'active': selectedAnimation === animation.class }" @click="selectAnimation(animation)">
+              <div class="animation-preview">
+                <div :class="`preview-${animation.class}`"></div>
+              </div>
+              <span class="animation-name">{{ animation.name }}</span>
+            </div>
+          </div>
+        </div>
+
+        <n-divider />
+
+        <div class="setting-group">
+          <h4>Primary Colors</h4>
+          <div class="color-cards">
+            <div v-for="color in primaryColors" :key="color.name" class="color-card"
+              :class="{ 'active': selectedColor === color.name }" @click="selectColor(color)">
+              <div class="color-preview" :style="{ backgroundColor: color.value }"></div>
+              <span class="color-name">{{ color.name }}</span>
+            </div>
+          </div>
+        </div>
+      </n-space>
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div v-if="isOpen" class="customizer-overlay" @click="closeSidebar"></div>
+</template>
 <style scoped>
 .customizer-sidebar {
   position: fixed;
@@ -494,33 +445,75 @@ const toggleWinterMode = (value: boolean) => {
 }
 
 @keyframes previewFade {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
 }
 
 @keyframes previewSlideLeft {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(-10px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-10px);
+  }
 }
 
 @keyframes previewSlideRight {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(10px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(10px);
+  }
 }
 
 @keyframes previewSlideUp {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes previewSlideDown {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
 }
 
 @keyframes previewZoom {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(0.8); }
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.8);
+  }
 }
 
 /* Responsive adjustments */
@@ -529,11 +522,11 @@ const toggleWinterMode = (value: boolean) => {
     width: 280px;
     right: -280px;
   }
-  
+
   .card-options {
     grid-template-columns: 1fr;
   }
-  
+
   .color-cards {
     grid-template-columns: 1fr;
   }
@@ -541,14 +534,14 @@ const toggleWinterMode = (value: boolean) => {
   .animation-options {
     grid-template-columns: 1fr;
   }
-  
+
   .option-card {
     flex-direction: row;
     justify-content: flex-start;
     padding: 12px;
     min-height: 60px;
   }
-  
+
   .option-card span {
     text-align: left;
   }

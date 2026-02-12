@@ -1,32 +1,3 @@
-<template>
-  <n-card class="chart-card" :bordered="false">
-      <div class="card-header">
-        <h3 class="card-title">Call By Hour</h3>
-        <n-dropdown :options="dropdownOptions" placement="bottom-end">
-          <n-button text class="menu-btn">
-            <n-icon :size="20">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <circle cx="12" cy="5" r="2"/>
-                <circle cx="12" cy="12" r="2"/>
-                <circle cx="12" cy="19" r="2"/>
-              </svg>
-            </n-icon>
-          </n-button>
-        </n-dropdown>
-      </div>
-
-      <div class="chart-wrapper">
-        <apexchart
-          type="line"
-          height="280"
-          :options="(chartOptions as ApexOptions)"
-          :series="series"
-          :key="(isDark as any)"
-        />
-      </div>
-    </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, watch, toRef, onMounted } from 'vue';
 import { NCard, NButton, NIcon, NDropdown } from 'naive-ui';
@@ -46,7 +17,7 @@ const dropdownOptions = [
 const series = ref([
   {
     name: 'Calls',
-    data: [70, 25, 65, 100, 70, 30, 60, 65, ]
+    data: [70, 25, 65, 100, 70, 30, 60, 65,]
   }
 ]);
 
@@ -70,7 +41,7 @@ const chartOptions = ref({
       opacity: 0.25,
     },
   },
-  
+
   stroke: {
     curve: 'smooth',
     width: 3,
@@ -129,7 +100,7 @@ const chartOptions = ref({
       }
     }
   },
-  
+
   annotations: {
     xaxis: [
       {
@@ -147,16 +118,16 @@ const chartOptions = ref({
     //   fontSize: '12px'
     // },
     y: {
-      formatter: function(val: any) {
+      formatter: function (val: any) {
         return val + ' calls'
       }
     }
   },
 });
 const setThemeChart = (newValue: boolean) => {
-  if(chartOptions.value.tooltip){
-      chartOptions.value.tooltip.theme = newValue ? 'dark' : 'light'
-    }
+  if (chartOptions.value.tooltip) {
+    chartOptions.value.tooltip.theme = newValue ? 'dark' : 'light'
+  }
 }
 watch(
   isDark,
@@ -168,6 +139,30 @@ onMounted(() => {
   setThemeChart(isDark.value)
 })
 </script>
+
+<template>
+  <n-card class="chart-card" :bordered="false">
+    <div class="card-header">
+      <h3 class="card-title">Call By Hour</h3>
+      <n-dropdown :options="dropdownOptions" placement="bottom-end">
+        <n-button text class="menu-btn">
+          <n-icon :size="20">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="5" r="2" />
+              <circle cx="12" cy="12" r="2" />
+              <circle cx="12" cy="19" r="2" />
+            </svg>
+          </n-icon>
+        </n-button>
+      </n-dropdown>
+    </div>
+
+    <div class="chart-wrapper">
+      <apexchart type="line" height="280" :options="(chartOptions as ApexOptions)" :series="series"
+        :key="(isDark as any)" />
+    </div>
+  </n-card>
+</template>
 
 <style scoped>
 .chart-card {
@@ -216,7 +211,7 @@ onMounted(() => {
   .chart-card {
     border-radius: 1rem;
   }
-  
+
   .chart-wrapper {
     margin: 0 -0.5rem;
   }

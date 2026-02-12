@@ -1,3 +1,30 @@
+<script setup lang="ts">
+import { ref } from "vue";
+
+const expandedNames = ref<string[]>([]);
+
+const expandAll = () => {
+  expandedNames.value = ["first", "second", "third"];
+};
+
+const collapseAll = () => {
+  expandedNames.value = [];
+};
+
+const toggleRandom = () => {
+  const allPanels = ["first", "second", "third"];
+  const randomPanel = allPanels[Math.floor(Math.random() * allPanels.length)];
+
+  if (expandedNames.value.includes(randomPanel)) {
+    expandedNames.value = expandedNames.value.filter(
+      (name) => name !== randomPanel
+    );
+  } else {
+    expandedNames.value.push(randomPanel);
+  }
+};
+</script>
+
 <template>
   <n-card title="Collapse Features">
     <n-space vertical :size="16">
@@ -55,33 +82,6 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from "vue";
-
-const expandedNames = ref<string[]>([]);
-
-const expandAll = () => {
-  expandedNames.value = ["first", "second", "third"];
-};
-
-const collapseAll = () => {
-  expandedNames.value = [];
-};
-
-const toggleRandom = () => {
-  const allPanels = ["first", "second", "third"];
-  const randomPanel = allPanels[Math.floor(Math.random() * allPanels.length)];
-
-  if (expandedNames.value.includes(randomPanel)) {
-    expandedNames.value = expandedNames.value.filter(
-      (name) => name !== randomPanel
-    );
-  } else {
-    expandedNames.value.push(randomPanel);
-  }
-};
-</script>
 
 <style scoped>
 .control-buttons {
