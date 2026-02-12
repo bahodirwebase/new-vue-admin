@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const minMaxValue = ref(50)
+</script>
+
 <template>
   <n-card title="Input Number with Min/Max">
     <n-space vertical :size="16">
@@ -7,8 +13,4 @@
   </n-card>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
 
-const minMaxValue = ref(50)
-</script>

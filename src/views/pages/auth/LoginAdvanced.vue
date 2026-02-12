@@ -1,3 +1,39 @@
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
+import type { FormInst, FormRules } from 'naive-ui'
+import { useMessage } from 'naive-ui'
+import { MailOutline, LockClosedOutline, LogoGoogle, LogoGithub } from '@vicons/ionicons5'
+
+const message = useMessage()
+const loading = ref(false)
+const formRef = ref<FormInst | null>(null)
+
+const model = reactive({
+  email: '',
+  password: '',
+  remember: true
+})
+
+const rules: FormRules = {
+  email: [
+    { required: true, message: 'Email is required', trigger: ['input', 'blur'] },
+    { type: 'email', message: 'Invalid email', trigger: ['blur', 'input'] }
+  ],
+  password: [{ required: true, message: 'Password is required', trigger: ['input', 'blur'] }]
+}
+
+const onSubmit = async () => {
+  const ok = await formRef.value?.validate().then(() => true).catch(() => false)
+  if (!ok) return
+
+  loading.value = true
+  setTimeout(() => {
+    loading.value = false
+    message.success('Signed in (demo)')
+  }, 700)
+}
+</script>
+
 <template>
   <div class="auth-page">
     <div class="auth-container">
@@ -98,42 +134,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { reactive, ref } from 'vue'
-import type { FormInst, FormRules } from 'naive-ui'
-import { useMessage } from 'naive-ui'
-import { MailOutline, LockClosedOutline, LogoGoogle, LogoGithub } from '@vicons/ionicons5'
-
-const message = useMessage()
-const loading = ref(false)
-const formRef = ref<FormInst | null>(null)
-
-const model = reactive({
-  email: '',
-  password: '',
-  remember: true
-})
-
-const rules: FormRules = {
-  email: [
-    { required: true, message: 'Email is required', trigger: ['input', 'blur'] },
-    { type: 'email', message: 'Invalid email', trigger: ['blur', 'input'] }
-  ],
-  password: [{ required: true, message: 'Password is required', trigger: ['input', 'blur'] }]
-}
-
-const onSubmit = async () => {
-  const ok = await formRef.value?.validate().then(() => true).catch(() => false)
-  if (!ok) return
-
-  loading.value = true
-  setTimeout(() => {
-    loading.value = false
-    message.success('Signed in (demo)')
-  }, 700)
-}
-</script>
 
 <style scoped>
 .auth-page {

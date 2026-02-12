@@ -1,13 +1,3 @@
-<template>
-  <n-card title="Tree Select with Search">
-    <n-space vertical :size="16">
-      <n-tree-select v-model:value="searchValue" :options="basicOptions" filterable
-        placeholder="Search and select" />
-      <n-p>Selected: {{ JSON.stringify(searchValue) }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -59,3 +49,13 @@ const basicOptions = [
   }
 ]
 </script>
+
+<template>
+  <n-card title="Tree Select with Search">
+    <n-space vertical :size="16">
+      <n-tree-select v-model:value="searchValue" :options="basicOptions" filterable
+        placeholder="Search and select" />
+      <n-p>Selected: {{ JSON.stringify(searchValue) }}</n-p>
+    </n-space>
+  </n-card>
+</template>

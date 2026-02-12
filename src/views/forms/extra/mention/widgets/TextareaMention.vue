@@ -1,13 +1,3 @@
-<template>
-  <n-card title="Mention in Textarea">
-    <n-space vertical :size="16">
-      <n-mention v-model:value="textareaValue" type="textarea" :options="basicOptions"
-        placeholder="Type @ to mention in textarea..." :rows="4" />
-      <n-p>Text: {{ textareaValue }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -19,3 +9,13 @@ const basicOptions = [
   { label: 'Alice Brown', value: 'alice' }
 ]
 </script>
+
+<template>
+  <n-card title="Mention in Textarea">
+    <n-space vertical :size="16">
+      <n-mention v-model:value="textareaValue" type="textarea" :options="basicOptions"
+        placeholder="Type @ to mention in textarea..." :rows="4" />
+      <n-p>Text: {{ textareaValue }}</n-p>
+    </n-space>
+  </n-card>
+</template>

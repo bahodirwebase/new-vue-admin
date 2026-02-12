@@ -1,25 +1,3 @@
-<template>
-  <n-card title="Real World Example - Profile Picture">
-    <n-space vertical :size="16">
-      <div class="profile-upload">
-        <n-avatar v-if="profilePicture" :size="120" :src="profilePicture.url" />
-        <n-avatar v-else :size="120">
-          <n-icon size="48">
-            <PersonOutline />
-          </n-icon>
-        </n-avatar>
-        <n-upload v-model:file-list="profileFileList" :max="1" accept="image/*"
-          :before-upload="beforeProfileUpload" @change="handleProfileChange" style="margin-top: 12px;">
-          <n-button type="primary">Change Profile Picture</n-button>
-        </n-upload>
-        <n-input v-model:value="profileName" placeholder="Profile name" style="margin-top: 12px;" />
-        <n-input v-model:value="profileBio" type="textarea" placeholder="Bio" :rows="3"
-          style="margin-top: 12px;" />
-      </div>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 import { PersonOutline } from '@vicons/ionicons5'
@@ -47,6 +25,28 @@ const handleProfileChange = (options: any) => {
   }
 }
 </script>
+
+<template>
+  <n-card title="Real World Example - Profile Picture">
+    <n-space vertical :size="16">
+      <div class="profile-upload">
+        <n-avatar v-if="profilePicture" :size="120" :src="profilePicture.url" />
+        <n-avatar v-else :size="120">
+          <n-icon size="48">
+            <PersonOutline />
+          </n-icon>
+        </n-avatar>
+        <n-upload v-model:file-list="profileFileList" :max="1" accept="image/*"
+          :before-upload="beforeProfileUpload" @change="handleProfileChange" style="margin-top: 12px;">
+          <n-button type="primary">Change Profile Picture</n-button>
+        </n-upload>
+        <n-input v-model:value="profileName" placeholder="Profile name" style="margin-top: 12px;" />
+        <n-input v-model:value="profileBio" type="textarea" placeholder="Bio" :rows="3"
+          style="margin-top: 12px;" />
+      </div>
+    </n-space>
+  </n-card>
+</template>
 
 <style scoped>
 .profile-upload {

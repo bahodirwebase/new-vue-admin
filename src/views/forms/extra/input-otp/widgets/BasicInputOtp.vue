@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const basicValue = ref('')
+</script>
+
 <template>
   <n-card title="Basic OTP Input">
     <n-space vertical :size="16">
@@ -7,8 +13,4 @@
   </n-card>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
 
-const basicValue = ref('')
-</script>

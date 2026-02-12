@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const normalValue = ref(false)
+const disabledValue = ref(true)
+const indeterminateValue = ref(false)
+</script>
+
 <template>
   <n-card title="Checkbox States">
     <n-space vertical :size="16">
@@ -18,11 +26,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const normalValue = ref(false)
-const disabledValue = ref(true)
-const indeterminateValue = ref(false)
-</script>

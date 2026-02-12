@@ -1,3 +1,30 @@
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { useMessage } from 'naive-ui'
+
+const message = useMessage()
+const review = ref({
+  quality: 4.5,
+  value: 3.5,
+  service: 4,
+  shipping: 3,
+  comment: ''
+})
+
+const averageRating = computed(() => {
+  const ratings = [review.value.quality, review.value.value, review.value.service, review.value.shipping]
+  return ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length
+})
+
+const submitReview = () => {
+  message.success('Review submitted successfully!')
+  console.log('Review submitted:', {
+    ...review.value,
+    average: averageRating.value
+  })
+}
+</script>
+
 <template>
   <n-card title="Real World Example - Product Review">
     <n-space vertical :size="16">
@@ -31,33 +58,6 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useMessage } from 'naive-ui'
-
-const message = useMessage()
-const review = ref({
-  quality: 4.5,
-  value: 3.5,
-  service: 4,
-  shipping: 3,
-  comment: ''
-})
-
-const averageRating = computed(() => {
-  const ratings = [review.value.quality, review.value.value, review.value.service, review.value.shipping]
-  return ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length
-})
-
-const submitReview = () => {
-  message.success('Review submitted successfully!')
-  console.log('Review submitted:', {
-    ...review.value,
-    average: averageRating.value
-  })
-}
-</script>
 
 <style scoped>
 .product-review {

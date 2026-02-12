@@ -1,3 +1,32 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { SettingsOutline } from '@vicons/ionicons5'
+import { usePreferences } from '../composables/usePreferences'
+import type { Preferences } from '../types'
+
+const {
+  preferences,
+  updatePreference,
+  savePreferences,
+  resetPreferences,
+  getPreferenceItems
+} = usePreferences()
+
+// Add loading state for save operation
+const isLoading = ref(false)
+
+const preferenceItems = getPreferenceItems()
+
+const handleSavePreferences = async () => {
+  isLoading.value = true
+  try {
+    await savePreferences()
+  } finally {
+    isLoading.value = false
+  }
+}
+</script>
+
 <template>
   <n-card class="settings-card" :bordered="false">
     <template #header>
@@ -35,35 +64,6 @@
     </div>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { SettingsOutline } from '@vicons/ionicons5'
-import { usePreferences } from '../composables/usePreferences'
-import type { Preferences } from '../types'
-
-const {
-  preferences,
-  updatePreference,
-  savePreferences,
-  resetPreferences,
-  getPreferenceItems
-} = usePreferences()
-
-// Add loading state for save operation
-const isLoading = ref(false)
-
-const preferenceItems = getPreferenceItems()
-
-const handleSavePreferences = async () => {
-  isLoading.value = true
-  try {
-    await savePreferences()
-  } finally {
-    isLoading.value = false
-  }
-}
-</script>
 
 <style scoped>
 .settings-card {

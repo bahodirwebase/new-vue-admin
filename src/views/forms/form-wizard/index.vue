@@ -1,3 +1,12 @@
+<script setup lang="ts">
+
+import SimpleWizard from './widgets/SimpleWizard.vue'
+import SimpleWizardSelection from './widgets/SimpleWizardSelection.vue'
+import MediumWizard from './widgets/MediumWizard.vue'
+import ComprehensiveWizard from './widgets/ComprehensiveWizard.vue'
+
+</script>
+
 <template>
   <div class="form-wizard-demo p-0">
     <n-space vertical :size="18">
@@ -20,15 +29,6 @@
     </n-space>
   </div>
 </template>
-
-<script setup lang="ts">
-
-import SimpleWizard from './widgets/SimpleWizard.vue'
-import SimpleWizardSelection from './widgets/SimpleWizardSelection.vue'
-import MediumWizard from './widgets/MediumWizard.vue'
-import ComprehensiveWizard from './widgets/ComprehensiveWizard.vue'
-
-</script>
 
 <style lang="scss">
 .wizard-content {

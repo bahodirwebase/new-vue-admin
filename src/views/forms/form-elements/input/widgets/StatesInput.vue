@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const normalValue = ref('')
+const disabledValue = ref('Disabled content')
+const readonlyValue = ref('Readonly content')
+const errorValue = ref('')
+const warningValue = ref('')
+</script>
+
 <template>
   <n-card title="Input States">
     <n-space vertical :size="16">
@@ -9,13 +19,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const normalValue = ref('')
-const disabledValue = ref('Disabled content')
-const readonlyValue = ref('Readonly content')
-const errorValue = ref('')
-const warningValue = ref('')
-</script>

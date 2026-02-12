@@ -1,3 +1,42 @@
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
+import type { FormInst, FormItemRule, FormRules } from 'naive-ui'
+import { useMessage } from 'naive-ui'
+import { LockClosedOutline } from '@vicons/ionicons5'
+
+const message = useMessage()
+const loading = ref(false)
+const formRef = ref<FormInst | null>(null)
+
+const model = reactive({
+  password: '',
+  confirmPassword: ''
+})
+
+const rules: FormRules = {
+  password: [{ required: true, message: 'Password is required', trigger: ['input', 'blur'] }],
+  confirmPassword: [
+    { required: true, message: 'Please confirm password', trigger: ['input', 'blur'] },
+    {
+      validator: (_rule: FormItemRule, value: string) => value === model.password,
+      message: 'Passwords do not match',
+      trigger: ['input', 'blur']
+    }
+  ]
+}
+
+const onSubmit = async () => {
+  const ok = await formRef.value?.validate().then(() => true).catch(() => false)
+  if (!ok) return
+
+  loading.value = true
+  setTimeout(() => {
+    loading.value = false
+    message.success('Password reset (demo)')
+  }, 700)
+}
+</script>
+
 <template>
   <div class="auth-page">
     <n-card class="auth-card">
@@ -44,45 +83,6 @@
     </n-card>
   </div>
 </template>
-
-<script setup lang="ts">
-import { reactive, ref } from 'vue'
-import type { FormInst, FormItemRule, FormRules } from 'naive-ui'
-import { useMessage } from 'naive-ui'
-import { LockClosedOutline } from '@vicons/ionicons5'
-
-const message = useMessage()
-const loading = ref(false)
-const formRef = ref<FormInst | null>(null)
-
-const model = reactive({
-  password: '',
-  confirmPassword: ''
-})
-
-const rules: FormRules = {
-  password: [{ required: true, message: 'Password is required', trigger: ['input', 'blur'] }],
-  confirmPassword: [
-    { required: true, message: 'Please confirm password', trigger: ['input', 'blur'] },
-    {
-      validator: (_rule: FormItemRule, value: string) => value === model.password,
-      message: 'Passwords do not match',
-      trigger: ['input', 'blur']
-    }
-  ]
-}
-
-const onSubmit = async () => {
-  const ok = await formRef.value?.validate().then(() => true).catch(() => false)
-  if (!ok) return
-
-  loading.value = true
-  setTimeout(() => {
-    loading.value = false
-    message.success('Password reset (demo)')
-  }, 700)
-}
-</script>
 
 <style scoped>
 .auth-page {

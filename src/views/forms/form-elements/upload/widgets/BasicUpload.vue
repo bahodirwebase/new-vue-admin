@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const basicFileList = ref([])
+</script>
+
 <template>
   <n-card title="Basic Upload">
     <n-space vertical :size="16">
@@ -8,9 +14,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const basicFileList = ref([])
-</script>

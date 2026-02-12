@@ -1,12 +1,3 @@
-<template>
-  <n-card title="Transfer with Disabled Items">
-    <n-space vertical :size="16">
-      <n-transfer size="small" v-model:value="disabledValue" :options="disabledOptions" />
-      <n-p>Selected: {{ JSON.stringify(disabledValue) }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -19,3 +10,12 @@ const disabledOptions = [
   { label: 'Active Project 5', value: 'option5' }
 ]
 </script>
+
+<template>
+  <n-card title="Transfer with Disabled Items">
+    <n-space vertical :size="16">
+      <n-transfer size="small" v-model:value="disabledValue" :options="disabledOptions" />
+      <n-p>Selected: {{ JSON.stringify(disabledValue) }}</n-p>
+    </n-space>
+  </n-card>
+</template>

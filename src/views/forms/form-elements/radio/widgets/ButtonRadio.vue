@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const buttonRadio = ref('')
+</script>
+
 <template>
   <n-card title="Radio Button Group">
     <n-space vertical :size="16">
@@ -10,9 +16,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const buttonRadio = ref('')
-</script>

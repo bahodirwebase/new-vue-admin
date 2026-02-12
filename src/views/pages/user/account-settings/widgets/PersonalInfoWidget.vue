@@ -1,3 +1,30 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { PersonOutline, CreateOutline } from '@vicons/ionicons5'
+import { usePersonalInfo } from '../composables/usePersonalInfo'
+import { FORM_LABELS, PLACEHOLDERS } from '../constants'
+
+const {
+  personalInfo,
+  isEditing,
+  editPersonalInfo,
+  savePersonalInfo,
+  cancelEdit
+} = usePersonalInfo()
+
+// Add loading state for save operation
+const isLoading = ref(false)
+
+const handleSavePersonalInfo = async () => {
+  isLoading.value = true
+  try {
+    await savePersonalInfo()
+  } finally {
+    isLoading.value = false
+  }
+}
+</script>
+
 <template>
   <n-card class="settings-card" :bordered="false">
     <template #header>
@@ -61,33 +88,6 @@
     </div>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { PersonOutline, CreateOutline } from '@vicons/ionicons5'
-import { usePersonalInfo } from '../composables/usePersonalInfo'
-import { FORM_LABELS, PLACEHOLDERS } from '../constants'
-
-const {
-  personalInfo,
-  isEditing,
-  editPersonalInfo,
-  savePersonalInfo,
-  cancelEdit
-} = usePersonalInfo()
-
-// Add loading state for save operation
-const isLoading = ref(false)
-
-const handleSavePersonalInfo = async () => {
-  isLoading.value = true
-  try {
-    await savePersonalInfo()
-  } finally {
-    isLoading.value = false
-  }
-}
-</script>
 
 <style scoped>
 .settings-card {

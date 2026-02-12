@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const verticalRadio = ref('')
+</script>
+
 <template>
   <n-card title="Vertical Radio Group">
     <n-space vertical :size="16">
@@ -11,8 +17,4 @@
   </n-card>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
 
-const verticalRadio = ref('')
-</script>

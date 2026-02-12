@@ -1,13 +1,3 @@
-<template>
-  <n-card title="Checkable Tree Select">
-    <n-space vertical :size="16">
-      <n-tree-select v-model:value="checkableValue" :options="basicOptions" checkable
-        placeholder="Checkable selection" />
-      <n-p>Selected: {{ JSON.stringify(checkableValue) }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -59,3 +49,13 @@ const basicOptions = [
   }
 ]
 </script>
+
+<template>
+  <n-card title="Checkable Tree Select">
+    <n-space vertical :size="16">
+      <n-tree-select v-model:value="checkableValue" :options="basicOptions" checkable
+        placeholder="Checkable selection" />
+      <n-p>Selected: {{ JSON.stringify(checkableValue) }}</n-p>
+    </n-space>
+  </n-card>
+</template>

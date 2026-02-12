@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { HelpCircleOutline, ChevronDownOutline, ChevronUpOutline } from '@vicons/ionicons5'
+import { usePricingFaq } from '../composables/usePricingFaq'
+
+const {
+  faqs,
+  toggleFaq,
+  isFaqExpanded
+} = usePricingFaq()
+
+</script>
+
 <template>
   <div class="faq-section">
     <n-card class="faq-card" :bordered="false">
@@ -33,17 +45,6 @@
     </n-card>
   </div>
 </template>
-
-<script setup lang="ts">
-import { HelpCircleOutline, ChevronDownOutline, ChevronUpOutline } from '@vicons/ionicons5'
-import { usePricingFaq } from '../composables/usePricingFaq'
-
-const {
-  faqs,
-  toggleFaq,
-  isFaqExpanded
-} = usePricingFaq()
-</script>
 
 <style scoped>
 .card-header {

@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { usePricingToggle } from '../composables/usePricingToggle'
+import CustomTag from '@/components/CustomTag.vue'
+
+const {
+  isYearly,
+  getDiscountPercentage
+} = usePricingToggle()
+</script>
+
 <template>
   <div class="pricing-hero">
     <!-- Page Header -->
@@ -23,16 +33,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { usePricingToggle } from '../composables/usePricingToggle'
-import CustomTag from '@/components/CustomTag.vue'
-
-const {
-  isYearly,
-  getDiscountPercentage
-} = usePricingToggle()
-</script>
 
 <style scoped lang="scss">
 .pricing-hero {

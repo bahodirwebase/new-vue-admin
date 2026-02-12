@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const normalSwitch = ref(false)
+const disabledSwitch = ref(true)
+const loadingSwitch = ref(false)
+</script>
+
 <template>
   <n-card title="Switch States">
     <n-space vertical :size="16">
@@ -16,11 +24,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const normalSwitch = ref(false)
-const disabledSwitch = ref(true)
-const loadingSwitch = ref(false)
-</script>

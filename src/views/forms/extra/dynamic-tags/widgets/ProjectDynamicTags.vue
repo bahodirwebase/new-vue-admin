@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
+
+const projectName = ref('')
+const projectTags = ref(['Frontend', 'Vue.js'])
+const projectDescription = ref('')
+</script>
+
 <template>
   <n-card title="Real World Example - Project">
     <n-space vertical :size="16">
@@ -19,15 +28,6 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
-
-const projectName = ref('')
-const projectTags = ref(['Frontend', 'Vue.js'])
-const projectDescription = ref('')
-</script>
 
 <style scoped>
 .project-form {

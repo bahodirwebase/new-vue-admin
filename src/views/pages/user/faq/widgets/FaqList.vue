@@ -1,3 +1,29 @@
+<script setup lang="ts">
+import { 
+  SearchOutline, 
+  ChevronDownOutline, 
+  ChevronUpOutline, 
+  LinkOutline,
+  ThumbsUpOutline,
+  ThumbsDownOutline
+} from '@vicons/ionicons5'
+import { useFaqFilters } from '../composables/useFaqFilters'
+import { useFaqInteractions } from '../composables/useFaqInteractions'
+import CustomTag from '@/components/CustomTag.vue'
+
+const {
+  filteredFaqs,
+  clearFilters
+} = useFaqFilters()
+
+const {
+  expandedItems,
+  toggleFaq,
+  markHelpful,
+  getCategoryColor
+} = useFaqInteractions()
+</script>
+
 <template>
   <div class="faq-list">
     <div v-if="filteredFaqs.length === 0" class="no-results">
@@ -84,32 +110,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { 
-  SearchOutline, 
-  ChevronDownOutline, 
-  ChevronUpOutline, 
-  LinkOutline,
-  ThumbsUpOutline,
-  ThumbsDownOutline
-} from '@vicons/ionicons5'
-import { useFaqFilters } from '../composables/useFaqFilters'
-import { useFaqInteractions } from '../composables/useFaqInteractions'
-import CustomTag from '@/components/CustomTag.vue'
-
-const {
-  filteredFaqs,
-  clearFilters
-} = useFaqFilters()
-
-const {
-  expandedItems,
-  toggleFaq,
-  markHelpful,
-  getCategoryColor
-} = useFaqInteractions()
-</script>
 
 <style scoped>
 .faq-list {

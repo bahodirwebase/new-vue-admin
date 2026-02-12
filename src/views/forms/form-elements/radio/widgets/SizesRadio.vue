@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const sizeRadio = ref('')
+</script>
+
 <template>
   <n-card title="Radio Size Variants">
     <n-space vertical :size="16">
@@ -27,8 +33,4 @@
   </n-card>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
 
-const sizeRadio = ref('')
-</script>

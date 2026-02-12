@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const primaryValue = ref(4)
+const successValue = ref(3)
+const warningValue = ref(2)
+const errorValue = ref(1)
+</script>
+
 <template>
   <n-card title="Rate with Colors">
     <n-space vertical :size="16">
@@ -20,12 +29,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const primaryValue = ref(4)
-const successValue = ref(3)
-const warningValue = ref(2)
-const errorValue = ref(1)
-</script>

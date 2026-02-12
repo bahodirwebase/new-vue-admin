@@ -1,32 +1,3 @@
-<template>
-  <n-card title="Real World Example - Two-Factor Authentication">
-    <n-space vertical :size="16">
-      <div class="two-factor">
-        <n-space vertical :size="12">
-          <span>Enter the 6-digit code sent to your email:</span>
-          <n-input-otp v-model:value="twoFactorValue" :length="6" :on-complete="handleTwoFactor"
-            :auto-focus="true" />
-        </n-space>
-        <n-space vertical :size="12">
-          <span>Backup code (8 digits):</span>
-          <n-input-otp v-model:value="backupCodeValue" :length="8" :on-complete="handleBackupCode" />
-        </n-space>
-        <n-space :size="12">
-          <n-button @click="resendCode" :loading="resendLoading">
-            Resend Code
-          </n-button>
-          <n-button @click="useBackupCode">
-            Use Backup Code
-          </n-button>
-        </n-space>
-      </div>
-      <n-p v-if="authMessage" :style="{ color: authColor }">
-        {{ authMessage }}
-      </n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useMessage } from 'naive-ui'
@@ -76,6 +47,35 @@ const useBackupCode = () => {
   message.info('Please enter your 8-digit backup code')
 }
 </script>
+
+<template>
+  <n-card title="Real World Example - Two-Factor Authentication">
+    <n-space vertical :size="16">
+      <div class="two-factor">
+        <n-space vertical :size="12">
+          <span>Enter the 6-digit code sent to your email:</span>
+          <n-input-otp v-model:value="twoFactorValue" :length="6" :on-complete="handleTwoFactor"
+            :auto-focus="true" />
+        </n-space>
+        <n-space vertical :size="12">
+          <span>Backup code (8 digits):</span>
+          <n-input-otp v-model:value="backupCodeValue" :length="8" :on-complete="handleBackupCode" />
+        </n-space>
+        <n-space :size="12">
+          <n-button @click="resendCode" :loading="resendLoading">
+            Resend Code
+          </n-button>
+          <n-button @click="useBackupCode">
+            Use Backup Code
+          </n-button>
+        </n-space>
+      </div>
+      <n-p v-if="authMessage" :style="{ color: authColor }">
+        {{ authMessage }}
+      </n-p>
+    </n-space>
+  </n-card>
+</template>
 
 <style scoped>
 .two-factor {

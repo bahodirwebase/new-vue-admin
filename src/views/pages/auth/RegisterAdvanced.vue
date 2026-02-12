@@ -1,3 +1,64 @@
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
+import type { FormInst, FormItemRule, FormRules } from 'naive-ui'
+import { useMessage } from 'naive-ui'
+import { useRouter } from 'vue-router'
+import { PersonOutline, MailOutline, LockClosedOutline, LogoGoogle, LogoGithub, LayersOutline, PersonAddOutline } from '@vicons/ionicons5'
+
+const router = useRouter()
+const message = useMessage()
+const loading = ref(false)
+const formRef = ref<FormInst | null>(null)
+
+const model = reactive({
+  name: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+  agree: false
+})
+
+const rules: FormRules = {
+  name: [{ required: true, message: 'Name is required', trigger: ['input', 'blur'] }],
+  email: [
+    { required: true, message: 'Email is required', trigger: ['input', 'blur'] },
+    { type: 'email', message: 'Invalid email', trigger: ['blur', 'input'] }
+  ],
+  password: [{ required: true, message: 'Password is required', trigger: ['input', 'blur'] }],
+  confirmPassword: [
+    { required: true, message: 'Please confirm password', trigger: ['input', 'blur'] },
+    {
+      validator: (_rule: FormItemRule, value: string) => value === model.password,
+      message: 'Passwords do not match',
+      trigger: ['input', 'blur']
+    }
+  ],
+  agree: [
+    {
+      validator: (_rule: FormItemRule, value: boolean) => value === true,
+      message: 'You must accept the terms',
+      trigger: 'change'
+    }
+  ]
+}
+
+const onSubmit = async () => {
+  const ok = await formRef.value?.validate().then(() => true).catch(() => false)
+  if (!ok) return
+
+  loading.value = true
+  setTimeout(() => {
+    loading.value = false
+    message.success('Account created (demo)')
+    router.push({ name: 'LoginAdvanced' })
+  }, 700)
+}
+
+const handleSocialLogin = (provider: string) => {
+  message.info(`Continue with ${provider} (demo)`)
+}
+</script>
+
 <template>
   <div class="auth-page">
     <div class="auth-container">
@@ -130,67 +191,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { reactive, ref } from 'vue'
-import type { FormInst, FormItemRule, FormRules } from 'naive-ui'
-import { useMessage } from 'naive-ui'
-import { useRouter } from 'vue-router'
-import { PersonOutline, MailOutline, LockClosedOutline, LogoGoogle, LogoGithub, LayersOutline, PersonAddOutline } from '@vicons/ionicons5'
-
-const router = useRouter()
-const message = useMessage()
-const loading = ref(false)
-const formRef = ref<FormInst | null>(null)
-
-const model = reactive({
-  name: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-  agree: false
-})
-
-const rules: FormRules = {
-  name: [{ required: true, message: 'Name is required', trigger: ['input', 'blur'] }],
-  email: [
-    { required: true, message: 'Email is required', trigger: ['input', 'blur'] },
-    { type: 'email', message: 'Invalid email', trigger: ['blur', 'input'] }
-  ],
-  password: [{ required: true, message: 'Password is required', trigger: ['input', 'blur'] }],
-  confirmPassword: [
-    { required: true, message: 'Please confirm password', trigger: ['input', 'blur'] },
-    {
-      validator: (_rule: FormItemRule, value: string) => value === model.password,
-      message: 'Passwords do not match',
-      trigger: ['input', 'blur']
-    }
-  ],
-  agree: [
-    {
-      validator: (_rule: FormItemRule, value: boolean) => value === true,
-      message: 'You must accept the terms',
-      trigger: 'change'
-    }
-  ]
-}
-
-const onSubmit = async () => {
-  const ok = await formRef.value?.validate().then(() => true).catch(() => false)
-  if (!ok) return
-
-  loading.value = true
-  setTimeout(() => {
-    loading.value = false
-    message.success('Account created (demo)')
-    router.push({ name: 'LoginAdvanced' })
-  }, 700)
-}
-
-const handleSocialLogin = (provider: string) => {
-  message.info(`Continue with ${provider} (demo)`)
-}
-</script>
 
 <style scoped>
 .auth-page {

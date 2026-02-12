@@ -1,3 +1,35 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { LinkOutline, AddOutline } from '@vicons/ionicons5'
+import { useConnectedAccounts } from '../composables/useConnectedAccounts'
+
+const {
+  connectedAccounts,
+  toggleAccount,
+  addAccount,
+  getConnectedCount
+} = useConnectedAccounts()
+
+// Add loading state for account operations
+const isLoading = ref(false)
+const loadingAccount = ref('')
+
+const handleToggleAccount = async (account: any) => {
+  isLoading.value = true
+  loadingAccount.value = account.platform
+  try {
+    await toggleAccount(account)
+  } finally {
+    isLoading.value = false
+    loadingAccount.value = ''
+  }
+}
+
+const handleAddAccount = () => {
+  addAccount()
+}
+</script>
+
 <template>
   <n-card class="settings-card" :bordered="false">
     <template #header>
@@ -53,38 +85,6 @@
     </div>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { LinkOutline, AddOutline } from '@vicons/ionicons5'
-import { useConnectedAccounts } from '../composables/useConnectedAccounts'
-
-const {
-  connectedAccounts,
-  toggleAccount,
-  addAccount,
-  getConnectedCount
-} = useConnectedAccounts()
-
-// Add loading state for account operations
-const isLoading = ref(false)
-const loadingAccount = ref('')
-
-const handleToggleAccount = async (account: any) => {
-  isLoading.value = true
-  loadingAccount.value = account.platform
-  try {
-    await toggleAccount(account)
-  } finally {
-    isLoading.value = false
-    loadingAccount.value = ''
-  }
-}
-
-const handleAddAccount = () => {
-  addAccount()
-}
-</script>
 
 <style scoped>
 .settings-card {

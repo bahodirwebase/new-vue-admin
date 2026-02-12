@@ -1,13 +1,3 @@
-<template>
-  <n-card title="Multiple Select">
-    <n-space vertical :size="16">
-      <n-select v-model:value="multipleValues" :options="options" multiple placeholder="Select multiple options"
-        clearable />
-      <n-p>Selected values: {{ multipleValues.length > 0 ? multipleValues.join(', ') : 'None' }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -20,3 +10,13 @@ const options = [
   { label: 'Option 5', value: 'option5' }
 ]
 </script>
+
+<template>
+  <n-card title="Multiple Select">
+    <n-space vertical :size="16">
+      <n-select v-model:value="multipleValues" :options="options" multiple placeholder="Select multiple options"
+        clearable />
+      <n-p>Selected values: {{ multipleValues.length > 0 ? multipleValues.join(', ') : 'None' }}</n-p>
+    </n-space>
+  </n-card>
+</template>

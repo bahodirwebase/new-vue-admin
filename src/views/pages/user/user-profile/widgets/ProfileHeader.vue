@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { 
+  CameraOutline, CreateOutline, SettingsOutline, LocationOutline, 
+  BusinessOutline, CalendarOutline 
+} from '@vicons/ionicons5'
+import { useUserProfile } from '../composables/useUserProfile'
+import { useProfileActions } from '../composables/useProfileActions'
+
+const { userData } = useUserProfile()
+const { editProfile, viewSettings } = useProfileActions()
+</script>
+
 <template>
   <div class="profile-header">
     <div class="profile-cover">
@@ -48,18 +60,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { 
-  CameraOutline, CreateOutline, SettingsOutline, LocationOutline, 
-  BusinessOutline, CalendarOutline 
-} from '@vicons/ionicons5'
-import { useUserProfile } from '../composables/useUserProfile'
-import { useProfileActions } from '../composables/useProfileActions'
-
-const { userData } = useUserProfile()
-const { editProfile, viewSettings } = useProfileActions()
-</script>
 
 <style scoped>
 .profile-header {

@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { NText } from 'naive-ui'
+import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
+
+const tags = ref(['Design', 'Development', 'Product'])
+</script>
+
 <template>
   <n-card title="Validation Tags (Max 5)">
     <n-space vertical :size="16">
@@ -7,10 +15,4 @@
   </n-card>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
-import { NText } from 'naive-ui'
-import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
 
-const tags = ref(['Design', 'Development', 'Product'])
-</script>

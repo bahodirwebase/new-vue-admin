@@ -1,29 +1,3 @@
-<template>
-  <n-card title="Real World Example - File Explorer">
-    <n-space vertical :size="16">
-      <div class="file-explorer">
-        <n-space vertical :size="12">
-          <span>Select files or folders:</span>
-          <n-tree-select v-model:value="selectedFiles" :options="fileOptions" :render-option="renderFileOption"
-            checkable filterable placeholder="Choose files..." />
-        </n-space>
-        <n-input v-model:value="destination" placeholder="Destination path" style="margin-top: 12px;" />
-        <n-space :size="8" style="margin-top: 12px;">
-          <n-button type="primary" @click="copyFiles">
-            Copy Files
-          </n-button>
-          <n-button @click="moveFiles">
-            Move Files
-          </n-button>
-          <n-button @click="deleteFiles">
-            Delete Files
-          </n-button>
-        </n-space>
-      </div>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, h } from 'vue'
 import { useMessage } from 'naive-ui'
@@ -106,6 +80,32 @@ const deleteFiles = () => {
   message.warning(`Deleting ${selectedFiles.value.length} files`)
 }
 </script>
+
+<template>
+  <n-card title="Real World Example - File Explorer">
+    <n-space vertical :size="16">
+      <div class="file-explorer">
+        <n-space vertical :size="12">
+          <span>Select files or folders:</span>
+          <n-tree-select v-model:value="selectedFiles" :options="fileOptions" :render-option="renderFileOption"
+            checkable filterable placeholder="Choose files..." />
+        </n-space>
+        <n-input v-model:value="destination" placeholder="Destination path" style="margin-top: 12px;" />
+        <n-space :size="8" style="margin-top: 12px;">
+          <n-button type="primary" @click="copyFiles">
+            Copy Files
+          </n-button>
+          <n-button @click="moveFiles">
+            Move Files
+          </n-button>
+          <n-button @click="deleteFiles">
+            Delete Files
+          </n-button>
+        </n-space>
+      </div>
+    </n-space>
+  </n-card>
+</template>
 
 <style scoped>
 .file-explorer {

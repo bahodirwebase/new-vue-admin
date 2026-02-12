@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const smallValue = ref(null)
+const mediumValue = ref(null)
+const largeValue = ref(null)
+</script>
+
 <template>
   <n-card title="Input Number Sizes">
     <n-space vertical :size="16">
@@ -10,10 +18,4 @@
   </n-card>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
 
-const smallValue = ref(null)
-const mediumValue = ref(null)
-const largeValue = ref(null)
-</script>

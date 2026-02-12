@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const fourDigitValue = ref('')
+const sixDigitValue = ref('')
+const eightDigitValue = ref('')
+</script>
+
 <template>
   <n-card title="OTP Input with Different Lengths">
     <n-space vertical :size="16">
@@ -17,10 +25,4 @@
   </n-card>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
 
-const fourDigitValue = ref('')
-const sixDigitValue = ref('')
-const eightDigitValue = ref('')
-</script>

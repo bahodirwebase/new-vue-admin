@@ -1,31 +1,3 @@
-<template>
-  <div class="auth-page">
-    <n-card class="auth-card" title="Login">
-      <n-form ref="formRef" :model="model" :rules="rules" size="large" @submit.prevent="onSubmit">
-        <n-form-item path="email" label="Email">
-          <n-input v-model:value="model.email" placeholder="you@example.com" />
-        </n-form-item>
-
-        <n-form-item path="password" label="Password">
-          <n-input v-model:value="model.password" type="password" show-password-on="click" placeholder="••••••••" />
-        </n-form-item>
-
-        <div class="row">
-          <n-checkbox v-model:checked="model.remember">Remember me</n-checkbox>
-          <router-link class="link" :to="{ name: 'ForgotPassword' }">Forgot password?</router-link>
-        </div>
-
-        <n-button type="primary" block size="large" attr-type="submit" :loading="loading">Sign in</n-button>
-
-        <div class="footer">
-          <span class="muted">Don't have an account?</span>
-          <router-link class="link" :to="{ name: 'RegisterSimple' }">Create account</router-link>
-        </div>
-      </n-form>
-    </n-card>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import type { FormInst, FormRules } from 'naive-ui'
@@ -60,6 +32,34 @@ const onSubmit = async () => {
   }, 700)
 }
 </script>
+
+<template>
+  <div class="auth-page">
+    <n-card class="auth-card" title="Login">
+      <n-form ref="formRef" :model="model" :rules="rules" size="large" @submit.prevent="onSubmit">
+        <n-form-item path="email" label="Email">
+          <n-input v-model:value="model.email" placeholder="you@example.com" />
+        </n-form-item>
+
+        <n-form-item path="password" label="Password">
+          <n-input v-model:value="model.password" type="password" show-password-on="click" placeholder="••••••••" />
+        </n-form-item>
+
+        <div class="row">
+          <n-checkbox v-model:checked="model.remember">Remember me</n-checkbox>
+          <router-link class="link" :to="{ name: 'ForgotPassword' }">Forgot password?</router-link>
+        </div>
+
+        <n-button type="primary" block size="large" attr-type="submit" :loading="loading">Sign in</n-button>
+
+        <div class="footer">
+          <span class="muted">Don't have an account?</span>
+          <router-link class="link" :to="{ name: 'RegisterSimple' }">Create account</router-link>
+        </div>
+      </n-form>
+    </n-card>
+  </div>
+</template>
 
 <style scoped>
 .auth-page {

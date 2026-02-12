@@ -1,3 +1,18 @@
+<script setup lang="ts">
+import { AddOutline } from '@vicons/ionicons5'
+import { useUserProfile } from '../composables/useUserProfile'
+import { useProfileActions } from '../composables/useProfileActions'
+import { SKILL_LEVEL_COLORS } from '../constants'
+import CustomTag from '@/components/CustomTag.vue'
+
+const { skills } = useUserProfile()
+const { editSkills } = useProfileActions()
+
+const getSkillColor = (level: string): "default" | "primary" | "info" | "success" | "warning" | "error" => {
+  return SKILL_LEVEL_COLORS[level] || 'default'
+}
+</script>
+
 <template>
   <n-card class="skills-card" :bordered="false">
     <template #header>
@@ -23,21 +38,6 @@
     </div>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { AddOutline } from '@vicons/ionicons5'
-import { useUserProfile } from '../composables/useUserProfile'
-import { useProfileActions } from '../composables/useProfileActions'
-import { SKILL_LEVEL_COLORS } from '../constants'
-import CustomTag from '@/components/CustomTag.vue'
-
-const { skills } = useUserProfile()
-const { editSkills } = useProfileActions()
-
-const getSkillColor = (level: string): "default" | "primary" | "info" | "success" | "warning" | "error" => {
-  return SKILL_LEVEL_COLORS[level] || 'default'
-}
-</script>
 
 <style scoped>
 .skills-card {

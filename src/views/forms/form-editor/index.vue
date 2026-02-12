@@ -1,3 +1,79 @@
+<script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useEditor, EditorContent } from '@tiptap/vue-3'
+import StarterKit from '@tiptap/starter-kit'
+import Underline from '@tiptap/extension-underline'
+import { 
+  CodeSlashOutline,
+  ListOutline,
+  ArrowUndoOutline,
+  ArrowRedoOutline
+} from '@vicons/ionicons5'
+import { useMessage } from 'naive-ui'
+import { FormatBoldOutlined, FormatItalicOutlined, FormatStrikethroughOutlined, FormatUnderlinedOutlined } from '@vicons/material'
+
+const message = useMessage()
+const content = ref('')
+
+const editor = useEditor({
+  content: `
+    <h2>Welcome to Form Editor</h2>
+    <p>Start typing your form content here...</p>
+    <p>You can add form fields using the buttons above.</p>
+  `,
+  extensions: [
+    StarterKit,
+    Underline,
+  ],
+  onUpdate: ({ editor }) => {
+    content.value = editor.getHTML()
+  }
+})
+
+const clearEditor = () => {
+  editor.value?.chain().focus().clearContent().run()
+  message.info('Editor cleared')
+}
+
+const saveContent = () => {
+  if (content.value) {
+    localStorage.setItem('formEditorContent', content.value)
+    message.success('Content saved successfully!')
+  } else {
+    message.warning('No content to save')
+  }
+}
+
+const insertFormField = (type: string) => {
+  const fieldTemplates: Record<string, string> = {
+    text: '<div class="form-field"><label>Text Input:</label><input type="text" placeholder="Enter text..." /></div>',
+    email: '<div class="form-field"><label>Email:</label><input type="email" placeholder="Enter email..." /></div>',
+    textarea: '<div class="form-field"><label>Textarea:</label><textarea placeholder="Enter message..." rows="4"></textarea></div>',
+    select: '<div class="form-field"><label>Select:</label><select><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div>',
+    checkbox: '<div class="form-field"><label><input type="checkbox" /> Checkbox Option</label></div>',
+    radio: '<div class="form-field"><label><input type="radio" name="radio-group" /> Radio Option 1</label><br><label><input type="radio" name="radio-group" /> Radio Option 2</label></div>'
+  }
+
+  const fieldHtml = fieldTemplates[type] || ''
+  if (fieldHtml && editor.value) {
+    editor.value.chain().focus().insertContent(fieldHtml).run()
+    message.success(`${type} field inserted`)
+  }
+}
+
+onMounted(() => {
+  const savedContent = localStorage.getItem('formEditorContent')
+  if (savedContent && editor.value) {
+    editor.value.chain().focus().setContent(savedContent).run()
+    content.value = savedContent
+  }
+})
+
+onBeforeUnmount(() => {
+  editor.value?.destroy()
+})
+</script>
+
 <template>
   <div class="form-editor">
     <n-space vertical :size="18">
@@ -115,82 +191,6 @@
     </n-space>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { useEditor, EditorContent } from '@tiptap/vue-3'
-import StarterKit from '@tiptap/starter-kit'
-import Underline from '@tiptap/extension-underline'
-import { 
-  CodeSlashOutline,
-  ListOutline,
-  ArrowUndoOutline,
-  ArrowRedoOutline
-} from '@vicons/ionicons5'
-import { useMessage } from 'naive-ui'
-import { FormatBoldOutlined, FormatItalicOutlined, FormatStrikethroughOutlined, FormatUnderlinedOutlined } from '@vicons/material'
-
-const message = useMessage()
-const content = ref('')
-
-const editor = useEditor({
-  content: `
-    <h2>Welcome to Form Editor</h2>
-    <p>Start typing your form content here...</p>
-    <p>You can add form fields using the buttons above.</p>
-  `,
-  extensions: [
-    StarterKit,
-    Underline,
-  ],
-  onUpdate: ({ editor }) => {
-    content.value = editor.getHTML()
-  }
-})
-
-const clearEditor = () => {
-  editor.value?.chain().focus().clearContent().run()
-  message.info('Editor cleared')
-}
-
-const saveContent = () => {
-  if (content.value) {
-    localStorage.setItem('formEditorContent', content.value)
-    message.success('Content saved successfully!')
-  } else {
-    message.warning('No content to save')
-  }
-}
-
-const insertFormField = (type: string) => {
-  const fieldTemplates: Record<string, string> = {
-    text: '<div class="form-field"><label>Text Input:</label><input type="text" placeholder="Enter text..." /></div>',
-    email: '<div class="form-field"><label>Email:</label><input type="email" placeholder="Enter email..." /></div>',
-    textarea: '<div class="form-field"><label>Textarea:</label><textarea placeholder="Enter message..." rows="4"></textarea></div>',
-    select: '<div class="form-field"><label>Select:</label><select><option>Option 1</option><option>Option 2</option><option>Option 3</option></select></div>',
-    checkbox: '<div class="form-field"><label><input type="checkbox" /> Checkbox Option</label></div>',
-    radio: '<div class="form-field"><label><input type="radio" name="radio-group" /> Radio Option 1</label><br><label><input type="radio" name="radio-group" /> Radio Option 2</label></div>'
-  }
-
-  const fieldHtml = fieldTemplates[type] || ''
-  if (fieldHtml && editor.value) {
-    editor.value.chain().focus().insertContent(fieldHtml).run()
-    message.success(`${type} field inserted`)
-  }
-}
-
-onMounted(() => {
-  const savedContent = localStorage.getItem('formEditorContent')
-  if (savedContent && editor.value) {
-    editor.value.chain().focus().setContent(savedContent).run()
-    content.value = savedContent
-  }
-})
-
-onBeforeUnmount(() => {
-  editor.value?.destroy()
-})
-</script>
 
 <style scoped>
 .form-editor {

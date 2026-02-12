@@ -1,3 +1,23 @@
+<script setup lang="ts">
+import { WarningOutline } from '@vicons/ionicons5'
+import { useAccountActions } from '../composables/useAccountActions'
+import { DELETE_CONFIRMATION } from '../constants'
+
+const {
+  showDeleteModal,
+  deleteConfirmation,
+  isLoading,
+  openDeleteModal,
+  closeDeleteModal,
+  deleteAccount,
+  canDeleteAccount
+} = useAccountActions()
+
+const handleDeleteAccount = async () => {
+  await deleteAccount()
+}
+</script>
+
 <template>
   <n-card class="settings-card danger-card" :bordered="false">
     <template #header>
@@ -73,26 +93,6 @@
     </template>
   </n-modal>
 </template>
-
-<script setup lang="ts">
-import { WarningOutline } from '@vicons/ionicons5'
-import { useAccountActions } from '../composables/useAccountActions'
-import { DELETE_CONFIRMATION } from '../constants'
-
-const {
-  showDeleteModal,
-  deleteConfirmation,
-  isLoading,
-  openDeleteModal,
-  closeDeleteModal,
-  deleteAccount,
-  canDeleteAccount
-} = useAccountActions()
-
-const handleDeleteAccount = async () => {
-  await deleteAccount()
-}
-</script>
 
 <style scoped>
 .settings-card {

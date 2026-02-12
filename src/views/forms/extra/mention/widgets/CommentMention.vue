@@ -1,35 +1,3 @@
-<template>
-  <n-card title="Real World Example - Comment System">
-    <n-space vertical :size="16">
-      <div class="comment-system">
-        <n-space vertical :size="12">
-          <span>Write a comment:</span>
-          <n-mention v-model:value="commentText" type="textarea" :options="userOptions" :prefix="['@', '#']"
-            :render-option="renderUserOption"
-            placeholder="Write your comment... Use @ to mention users, # for tags" :rows="3" />
-          <n-space :size="8">
-            <n-button type="primary" @click="postComment">
-              Post Comment
-            </n-button>
-            <n-button @click="clearComment">
-              Clear
-            </n-button>
-          </n-space>
-        </n-space>
-        <div class="comments-list">
-          <div v-for="comment in comments" :key="comment.id" class="comment-item">
-            <div class="comment-header">
-              <strong>{{ comment.author }}</strong>
-              <span class="comment-time">{{ comment.time }}</span>
-            </div>
-            <div class="comment-content" v-html="formatComment(comment.text)"></div>
-          </div>
-        </div>
-      </div>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, h } from 'vue'
 import { NAvatar } from 'naive-ui'
@@ -89,6 +57,38 @@ const formatComment = (text: string) => {
     .replace(/#(\w+)/g, '<span style="color: #18a058; font-weight: 600;">#$1</span>')
 }
 </script>
+
+<template>
+  <n-card title="Real World Example - Comment System">
+    <n-space vertical :size="16">
+      <div class="comment-system">
+        <n-space vertical :size="12">
+          <span>Write a comment:</span>
+          <n-mention v-model:value="commentText" type="textarea" :options="userOptions" :prefix="['@', '#']"
+            :render-option="renderUserOption"
+            placeholder="Write your comment... Use @ to mention users, # for tags" :rows="3" />
+          <n-space :size="8">
+            <n-button type="primary" @click="postComment">
+              Post Comment
+            </n-button>
+            <n-button @click="clearComment">
+              Clear
+            </n-button>
+          </n-space>
+        </n-space>
+        <div class="comments-list">
+          <div v-for="comment in comments" :key="comment.id" class="comment-item">
+            <div class="comment-header">
+              <strong>{{ comment.author }}</strong>
+              <span class="comment-time">{{ comment.time }}</span>
+            </div>
+            <div class="comment-content" v-html="formatComment(comment.text)"></div>
+          </div>
+        </div>
+      </div>
+    </n-space>
+  </n-card>
+</template>
 
 <style scoped>
 .comment-system {

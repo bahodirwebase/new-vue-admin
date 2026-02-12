@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import { FilterOutline } from '@vicons/ionicons5'
+import { useActivityFeed } from '../composables/useActivityFeed'
+
+const {
+  filteredActivities,
+  activityOptions,
+  filterActivities
+} = useActivityFeed()
+</script>
+
 <template>
   <n-card class="activity-card" :bordered="false">
     <template #header>
@@ -27,17 +38,6 @@
     </div>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { FilterOutline } from '@vicons/ionicons5'
-import { useActivityFeed } from '../composables/useActivityFeed'
-
-const {
-  filteredActivities,
-  activityOptions,
-  filterActivities
-} = useActivityFeed()
-</script>
 
 <style scoped>
 .activity-card {

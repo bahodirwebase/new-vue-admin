@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { HomeOutline, BriefcaseOutline, SchoolOutline } from '@vicons/ionicons5'
+
+const iconRadio = ref('')
+</script>
+
 <template>
   <n-card title="Radio with Icons">
     <n-space vertical :size="16">
@@ -32,9 +39,4 @@
   </n-card>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
-import { HomeOutline, BriefcaseOutline, SchoolOutline } from '@vicons/ionicons5'
 
-const iconRadio = ref('')
-</script>

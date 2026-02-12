@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const smallValue = ref('')
+const mediumValue = ref('')
+const largeValue = ref('')
+</script>
+
 <template>
   <n-card title="Tree Select Sizes">
     <n-space vertical :size="16">
@@ -7,11 +15,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const smallValue = ref('')
-const mediumValue = ref('')
-const largeValue = ref('')
-</script>

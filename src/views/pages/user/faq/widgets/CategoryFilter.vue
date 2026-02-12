@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { useFaqFilters } from '../composables/useFaqFilters'
+
+const {
+  categories,
+  selectedCategory,
+  selectCategory
+} = useFaqFilters()
+</script>
+
 <template>
   <div class="category-section">
     <div class="category-header">
@@ -19,16 +29,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useFaqFilters } from '../composables/useFaqFilters'
-
-const {
-  categories,
-  selectedCategory,
-  selectCategory
-} = useFaqFilters()
-</script>
 
 <style scoped>
 .category-section {

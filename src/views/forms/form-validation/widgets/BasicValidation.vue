@@ -1,106 +1,3 @@
-<template>
-  <n-card title="Basic Form Validation">
-    <n-form
-      ref="formRef"
-      :model="formData"
-      :rules="rules"
-      label-placement="left"
-      label-width="120"
-      require-mark-placement="right-hanging"
-      size="medium"
-    >
-      <n-form-item label="Name" path="name">
-        <n-input
-          v-model:value="formData.name"
-          placeholder="Enter your name"
-        />
-      </n-form-item>
-
-      <n-form-item label="Email" path="email">
-        <n-input
-          v-model:value="formData.email"
-          placeholder="Enter your email"
-        />
-      </n-form-item>
-
-      <n-form-item label="Age" path="age">
-        <n-input-number
-          v-model:value="formData.age"
-          placeholder="Enter your age"
-        />
-      </n-form-item>
-
-      <n-form-item label="Password" path="password">
-        <n-input
-          v-model:value="formData.password"
-          type="password"
-          show-password-on="click"
-          placeholder="Enter password"
-        />
-      </n-form-item>
-
-      <n-form-item label="Confirm Password" path="confirmPassword">
-        <n-input
-          v-model:value="formData.confirmPassword"
-          type="password"
-          show-password-on="click"
-          placeholder="Confirm password"
-        />
-      </n-form-item>
-
-      <n-form-item label="Gender" path="gender">
-        <n-radio-group v-model:value="formData.gender">
-          <n-radio value="male">Male</n-radio>
-          <n-radio value="female">Female</n-radio>
-          <n-radio value="other">Other</n-radio>
-        </n-radio-group>
-      </n-form-item>
-
-      <n-form-item label="Country" path="country">
-        <n-select
-          v-model:value="formData.country"
-          placeholder="Select your country"
-          :options="countryOptions"
-        />
-      </n-form-item>
-
-      <n-form-item label="Interests" path="interests">
-        <n-checkbox-group v-model:value="formData.interests">
-          <n-space>
-            <n-checkbox value="sports">Sports</n-checkbox>
-            <n-checkbox value="music">Music</n-checkbox>
-            <n-checkbox value="reading">Reading</n-checkbox>
-            <n-checkbox value="traveling">Traveling</n-checkbox>
-          </n-space>
-        </n-checkbox-group>
-      </n-form-item>
-
-      <n-form-item label="Bio" path="bio">
-        <n-input
-          v-model:value="formData.bio"
-          type="textarea"
-          placeholder="Tell us about yourself"
-          :rows="4"
-        />
-      </n-form-item>
-
-      <n-form-item label="Terms" path="terms">
-        <n-checkbox v-model:value="formData.terms">
-          I agree to the terms and conditions
-        </n-checkbox>
-      </n-form-item>
-
-      <n-form-item>
-        <n-space>
-          <n-button type="primary" @click="handleSubmit"> Submit </n-button>
-          <n-button @click="handleReset"> Reset </n-button>
-          <n-button @click="handleValidate"> Validate Only </n-button>
-        </n-space>
-      </n-form-item>
-    </n-form>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, reactive } from "vue";
 import { useMessage } from "naive-ui";
@@ -249,3 +146,106 @@ const handleValidate = () => {
   });
 };
 </script>
+
+<template>
+  <n-card title="Basic Form Validation">
+    <n-form
+      ref="formRef"
+      :model="formData"
+      :rules="rules"
+      label-placement="left"
+      label-width="120"
+      require-mark-placement="right-hanging"
+      size="medium"
+    >
+      <n-form-item label="Name" path="name">
+        <n-input
+          v-model:value="formData.name"
+          placeholder="Enter your name"
+        />
+      </n-form-item>
+
+      <n-form-item label="Email" path="email">
+        <n-input
+          v-model:value="formData.email"
+          placeholder="Enter your email"
+        />
+      </n-form-item>
+
+      <n-form-item label="Age" path="age">
+        <n-input-number
+          v-model:value="formData.age"
+          placeholder="Enter your age"
+        />
+      </n-form-item>
+
+      <n-form-item label="Password" path="password">
+        <n-input
+          v-model:value="formData.password"
+          type="password"
+          show-password-on="click"
+          placeholder="Enter password"
+        />
+      </n-form-item>
+
+      <n-form-item label="Confirm Password" path="confirmPassword">
+        <n-input
+          v-model:value="formData.confirmPassword"
+          type="password"
+          show-password-on="click"
+          placeholder="Confirm password"
+        />
+      </n-form-item>
+
+      <n-form-item label="Gender" path="gender">
+        <n-radio-group v-model:value="formData.gender">
+          <n-radio value="male">Male</n-radio>
+          <n-radio value="female">Female</n-radio>
+          <n-radio value="other">Other</n-radio>
+        </n-radio-group>
+      </n-form-item>
+
+      <n-form-item label="Country" path="country">
+        <n-select
+          v-model:value="formData.country"
+          placeholder="Select your country"
+          :options="countryOptions"
+        />
+      </n-form-item>
+
+      <n-form-item label="Interests" path="interests">
+        <n-checkbox-group v-model:value="formData.interests">
+          <n-space>
+            <n-checkbox value="sports">Sports</n-checkbox>
+            <n-checkbox value="music">Music</n-checkbox>
+            <n-checkbox value="reading">Reading</n-checkbox>
+            <n-checkbox value="traveling">Traveling</n-checkbox>
+          </n-space>
+        </n-checkbox-group>
+      </n-form-item>
+
+      <n-form-item label="Bio" path="bio">
+        <n-input
+          v-model:value="formData.bio"
+          type="textarea"
+          placeholder="Tell us about yourself"
+          :rows="4"
+        />
+      </n-form-item>
+
+      <n-form-item label="Terms" path="terms">
+        <n-checkbox v-model:value="formData.terms">
+          I agree to the terms and conditions
+        </n-checkbox>
+      </n-form-item>
+
+      <n-form-item>
+        <n-space>
+          <n-button type="primary" @click="handleSubmit"> Submit </n-button>
+          <n-button @click="handleReset"> Reset </n-button>
+          <n-button @click="handleValidate"> Validate Only </n-button>
+        </n-space>
+      </n-form-item>
+    </n-form>
+  </n-card>
+</template>

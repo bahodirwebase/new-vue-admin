@@ -1,13 +1,3 @@
-<template>
-  <n-card title="Multiple Selection">
-    <n-space vertical :size="16">
-      <n-tree-select v-model:value="multipleValue" :options="basicOptions" multiple
-        placeholder="Select multiple options" />
-      <n-p>Selected: {{ JSON.stringify(multipleValue) }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -59,3 +49,13 @@ const basicOptions = [
   }
 ]
 </script>
+
+<template>
+  <n-card title="Multiple Selection">
+    <n-space vertical :size="16">
+      <n-tree-select v-model:value="multipleValue" :options="basicOptions" multiple
+        placeholder="Select multiple options" />
+      <n-p>Selected: {{ JSON.stringify(multipleValue) }}</n-p>
+    </n-space>
+  </n-card>
+</template>

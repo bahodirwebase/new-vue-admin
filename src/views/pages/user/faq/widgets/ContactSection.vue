@@ -1,3 +1,17 @@
+<script setup lang="ts">
+import { 
+  HeadsetOutline, 
+  MailOutline, 
+  ChatbubbleOutline 
+} from '@vicons/ionicons5'
+import { useFaqInteractions } from '../composables/useFaqInteractions'
+
+const {
+  contactSupport,
+  startLiveChat
+} = useFaqInteractions()
+</script>
+
 <template>
   <div class="contact-section">
     <div class="contact-card">
@@ -27,20 +41,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { 
-  HeadsetOutline, 
-  MailOutline, 
-  ChatbubbleOutline 
-} from '@vicons/ionicons5'
-import { useFaqInteractions } from '../composables/useFaqInteractions'
-
-const {
-  contactSupport,
-  startLiveChat
-} = useFaqInteractions()
-</script>
 
 <style scoped>
 

@@ -1,13 +1,3 @@
-<template>
-  <n-card title="Tree Select with Expand All">
-    <n-space vertical :size="16">
-      <n-tree-select v-model:value="expandValue" :options="basicOptions" :default-expand-all="true"
-        placeholder="All expanded by default" />
-      <n-p>Selected: {{ JSON.stringify(expandValue) }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -59,3 +49,13 @@ const basicOptions = [
   }
 ]
 </script>
+
+<template>
+  <n-card title="Tree Select with Expand All">
+    <n-space vertical :size="16">
+      <n-tree-select v-model:value="expandValue" :options="basicOptions" :default-expand-all="true"
+        placeholder="All expanded by default" />
+      <n-p>Selected: {{ JSON.stringify(expandValue) }}</n-p>
+    </n-space>
+  </n-card>
+</template>

@@ -1,15 +1,3 @@
-<template>
-  <n-card title="Checkbox with Events">
-    <n-space vertical :size="16">
-      <n-checkbox v-model:value="eventValue" @update:value="handleCheckboxChange">
-        Click me to see events
-      </n-checkbox>
-      <n-p>Last change: {{ lastChange || 'No changes yet' }}</n-p>
-      <n-p>Change count: {{ changeCount }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -22,3 +10,15 @@ const handleCheckboxChange = (value: boolean) => {
   changeCount.value++
 }
 </script>
+
+<template>
+  <n-card title="Checkbox with Events">
+    <n-space vertical :size="16">
+      <n-checkbox v-model:value="eventValue" @update:value="handleCheckboxChange">
+        Click me to see events
+      </n-checkbox>
+      <n-p>Last change: {{ lastChange || 'No changes yet' }}</n-p>
+      <n-p>Change count: {{ changeCount }}</n-p>
+    </n-space>
+  </n-card>
+</template>

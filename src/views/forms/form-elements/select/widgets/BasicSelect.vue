@@ -1,12 +1,3 @@
-<template>
-  <n-card title="Basic Select">
-    <n-space vertical :size="16">
-      <n-select v-model:value="selectedValue" :options="options" placeholder="Select an option" clearable />
-      <n-p>Selected value: {{ selectedValue || 'None' }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -19,3 +10,14 @@ const options = [
   { label: 'Option 5', value: 'option5' }
 ]
 </script>
+
+<template>
+  <n-card title="Basic Select">
+    <n-space vertical :size="16">
+      <n-select v-model:value="selectedValue" :options="options" placeholder="Select an option" clearable />
+      <n-p>Selected value: {{ selectedValue || 'None' }}</n-p>
+    </n-space>
+  </n-card>
+</template>
+
+

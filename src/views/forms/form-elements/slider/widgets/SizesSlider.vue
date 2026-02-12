@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const sizeValue = ref(50)
+</script>
+
 <template>
   <n-card title="Slider Sizes">
     <n-space vertical :size="16">
@@ -16,9 +22,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const sizeValue = ref(50)
-</script>

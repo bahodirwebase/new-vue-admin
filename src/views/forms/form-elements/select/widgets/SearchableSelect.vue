@@ -1,13 +1,3 @@
-<template>
-  <n-card title="Searchable Select">
-    <n-space vertical :size="16">
-      <n-select v-model:value="searchValue" :options="searchOptions" filterable placeholder="Search and select"
-        clearable />
-      <n-p>Selected value: {{ searchValue || 'None' }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -22,3 +12,13 @@ const searchOptions = [
   { label: 'Grape', value: 'grape' }
 ]
 </script>
+
+<template>
+  <n-card title="Searchable Select">
+    <n-space vertical :size="16">
+      <n-select v-model:value="searchValue" :options="searchOptions" filterable placeholder="Search and select"
+        clearable />
+      <n-p>Selected value: {{ searchValue || 'None' }}</n-p>
+    </n-space>
+  </n-card>
+</template>

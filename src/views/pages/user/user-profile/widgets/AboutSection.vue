@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { CreateOutline } from '@vicons/ionicons5'
+import { useUserProfile } from '../composables/useUserProfile'
+import { useProfileActions } from '../composables/useProfileActions'
+
+const { userData } = useUserProfile()
+const { editAbout } = useProfileActions()
+</script>
+
 <template>
   <n-card class="about-card" :bordered="false">
     <template #header>
@@ -25,15 +34,6 @@
     </div>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { CreateOutline } from '@vicons/ionicons5'
-import { useUserProfile } from '../composables/useUserProfile'
-import { useProfileActions } from '../composables/useProfileActions'
-
-const { userData } = useUserProfile()
-const { editAbout } = useProfileActions()
-</script>
 
 <style scoped>
 .about-card {

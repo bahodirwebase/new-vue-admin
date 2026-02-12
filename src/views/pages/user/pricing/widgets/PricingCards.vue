@@ -1,3 +1,31 @@
+<script setup lang="ts">
+import { StarOutline, CheckmarkOutline } from '@vicons/ionicons5'
+import { usePricingPlans } from '../composables/usePricingPlans'
+import { usePricingToggle } from '../composables/usePricingToggle'
+import { usePricingActions } from '../composables/usePricingActions'
+
+const {
+  plans,
+  calculatePrice,
+  formatPrice
+} = usePricingPlans()
+
+const {
+  isYearly,
+  getCurrency,
+  getBillingPeriod,
+  getSavingsText
+} = usePricingToggle()
+
+const {
+  selectPlan
+} = usePricingActions()
+
+const handleSelectPlan = (planId: string) => {
+  selectPlan(planId)
+}
+</script>
+
 <template>
   <div class="pricing-grid">
     <n-card 
@@ -63,34 +91,6 @@
     </n-card>
   </div>
 </template>
-
-<script setup lang="ts">
-import { StarOutline, CheckmarkOutline } from '@vicons/ionicons5'
-import { usePricingPlans } from '../composables/usePricingPlans'
-import { usePricingToggle } from '../composables/usePricingToggle'
-import { usePricingActions } from '../composables/usePricingActions'
-
-const {
-  plans,
-  calculatePrice,
-  formatPrice
-} = usePricingPlans()
-
-const {
-  isYearly,
-  getCurrency,
-  getBillingPeriod,
-  getSavingsText
-} = usePricingToggle()
-
-const {
-  selectPlan
-} = usePricingActions()
-
-const handleSelectPlan = (planId: string) => {
-  selectPlan(planId)
-}
-</script>
 
 <style scoped>
 .pricing-grid {

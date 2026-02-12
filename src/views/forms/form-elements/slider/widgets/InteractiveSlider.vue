@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { VolumeMuteOutline, VolumeHighOutline, SunnyOutline } from '@vicons/ionicons5'
+
+const volumeValue = ref(75)
+const brightnessValue = ref(60)
+const priceRange = ref([200, 800])
+</script>
+
 <template>
   <n-card title="Interactive Examples">
     <n-space vertical :size="16">
@@ -31,12 +40,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { VolumeMuteOutline, VolumeHighOutline, SunnyOutline } from '@vicons/ionicons5'
-
-const volumeValue = ref(75)
-const brightnessValue = ref(60)
-const priceRange = ref([200, 800])
-</script>

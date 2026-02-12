@@ -1,3 +1,16 @@
+<script setup lang="ts">
+import { 
+  TrendingUpOutline, 
+  BonfireOutline, 
+  ArrowForwardOutline 
+} from '@vicons/ionicons5'
+import { useFaqData } from '../composables/useFaqData'
+import { useFaqInteractions } from '../composables/useFaqInteractions'
+
+const { popularQuestions } = useFaqData()
+const { goToQuestion } = useFaqInteractions()
+</script>
+
 <template>
   <div class="popular-section">
     <n-card class="popular-card" :bordered="false">
@@ -30,19 +43,6 @@
     </n-card>
   </div>
 </template>
-
-<script setup lang="ts">
-import { 
-  TrendingUpOutline, 
-  BonfireOutline, 
-  ArrowForwardOutline 
-} from '@vicons/ionicons5'
-import { useFaqData } from '../composables/useFaqData'
-import { useFaqInteractions } from '../composables/useFaqInteractions'
-
-const { popularQuestions } = useFaqData()
-const { goToQuestion } = useFaqInteractions()
-</script>
 
 <style scoped>
 .popular-section {

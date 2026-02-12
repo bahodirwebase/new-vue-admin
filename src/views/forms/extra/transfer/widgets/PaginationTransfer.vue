@@ -1,13 +1,3 @@
-<template>
-  <n-card title="Transfer with Pagination">
-    <n-space vertical :size="16">
-      <n-transfer size="small" v-model:value="paginationValue" :options="largeOptions" :pagination="{ pageSize: 10 }"
-        source-filterable />
-      <n-p>Selected: {{ JSON.stringify(paginationValue) }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -17,3 +7,13 @@ const largeOptions = Array.from({ length: 50 }, (_, i) => ({
   value: `item${i + 1}`
 }))
 </script>
+
+<template>
+  <n-card title="Transfer with Pagination">
+    <n-space vertical :size="16">
+      <n-transfer size="small" v-model:value="paginationValue" :options="largeOptions" :pagination="{ pageSize: 10 }"
+        source-filterable />
+      <n-p>Selected: {{ JSON.stringify(paginationValue) }}</n-p>
+    </n-space>
+  </n-card>
+</template>

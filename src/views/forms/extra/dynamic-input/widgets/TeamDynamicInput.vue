@@ -1,16 +1,3 @@
-<template>
-  <n-card title="Real World Example - Team Members">
-    <n-space vertical :size="16">
-      <div class="team-form">
-        <n-dynamic-input v-model:value="teamMembers" :preset="memberPreset" placeholder="Add team member" />
-        <n-input v-model:value="teamName" placeholder="Team name" style="margin-top: 12px;" />
-        <n-input v-model:value="teamDescription" type="textarea" placeholder="Team description" :rows="3"
-          style="margin-top: 12px;" />
-      </div>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, h } from 'vue'
 import { NInput } from 'naive-ui'
@@ -35,6 +22,19 @@ const memberPreset = () => {
   ])
 }
 </script>
+
+<template>
+  <n-card title="Real World Example - Team Members">
+    <n-space vertical :size="16">
+      <div class="team-form">
+        <n-dynamic-input v-model:value="teamMembers" :preset="memberPreset" placeholder="Add team member" />
+        <n-input v-model:value="teamName" placeholder="Team name" style="margin-top: 12px;" />
+        <n-input v-model:value="teamDescription" type="textarea" placeholder="Team description" :rows="3"
+          style="margin-top: 12px;" />
+      </div>
+    </n-space>
+  </n-card>
+</template>
 
 <style scoped>
 .team-form {

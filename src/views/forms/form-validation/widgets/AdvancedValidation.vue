@@ -1,67 +1,3 @@
-<template>
-  <n-card title="Advanced Validation Rules">
-    <n-form
-      ref="advancedFormRef"
-      :model="advancedFormData"
-      :rules="advancedRules"
-      label-placement="left"
-      label-width="140"
-    >
-      <n-form-item label="Username" path="username">
-        <n-input
-          v-model:value="advancedFormData.username"
-          placeholder="3-20 characters, alphanumeric"
-        />
-      </n-form-item>
-
-      <n-form-item label="Phone Number" path="phone">
-        <n-input
-          v-model:value="advancedFormData.phone"
-          placeholder="+1234567890"
-        />
-      </n-form-item>
-
-      <n-form-item label="Website URL" path="website">
-        <n-input
-          v-model:value="advancedFormData.website"
-          placeholder="https://example.com"
-        />
-      </n-form-item>
-
-      <n-form-item label="Credit Card" path="creditCard">
-        <n-input
-          v-model:value="advancedFormData.creditCard"
-          placeholder="1234 5678 9012 3456"
-        />
-      </n-form-item>
-
-      <n-form-item label="Date of Birth" path="dob">
-        <n-date-picker
-          v-model:value="advancedFormData.dob"
-          type="date"
-          placeholder="Select your birth date"
-        />
-      </n-form-item>
-
-      <n-form-item label="Salary Range" path="salary">
-        <n-slider
-          v-model:value="advancedFormData.salary"
-          :min="0"
-          :max="200000"
-          :step="5000"
-          :marks="salaryMarks"
-        />
-      </n-form-item>
-
-      <n-form-item>
-        <n-button type="primary" @click="handleAdvancedSubmit">
-          Submit Advanced Form
-        </n-button>
-      </n-form-item>
-    </n-form>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, reactive } from "vue";
 import { useMessage } from "naive-ui";
@@ -162,3 +98,67 @@ const handleAdvancedSubmit = () => {
   });
 };
 </script>
+
+<template>
+  <n-card title="Advanced Validation Rules">
+    <n-form
+      ref="advancedFormRef"
+      :model="advancedFormData"
+      :rules="advancedRules"
+      label-placement="left"
+      label-width="140"
+    >
+      <n-form-item label="Username" path="username">
+        <n-input
+          v-model:value="advancedFormData.username"
+          placeholder="3-20 characters, alphanumeric"
+        />
+      </n-form-item>
+
+      <n-form-item label="Phone Number" path="phone">
+        <n-input
+          v-model:value="advancedFormData.phone"
+          placeholder="+1234567890"
+        />
+      </n-form-item>
+
+      <n-form-item label="Website URL" path="website">
+        <n-input
+          v-model:value="advancedFormData.website"
+          placeholder="https://example.com"
+        />
+      </n-form-item>
+
+      <n-form-item label="Credit Card" path="creditCard">
+        <n-input
+          v-model:value="advancedFormData.creditCard"
+          placeholder="1234 5678 9012 3456"
+        />
+      </n-form-item>
+
+      <n-form-item label="Date of Birth" path="dob">
+        <n-date-picker
+          v-model:value="advancedFormData.dob"
+          type="date"
+          placeholder="Select your birth date"
+        />
+      </n-form-item>
+
+      <n-form-item label="Salary Range" path="salary">
+        <n-slider
+          v-model:value="advancedFormData.salary"
+          :min="0"
+          :max="200000"
+          :step="5000"
+          :marks="salaryMarks"
+        />
+      </n-form-item>
+
+      <n-form-item>
+        <n-button type="primary" @click="handleAdvancedSubmit">
+          Submit Advanced Form
+        </n-button>
+      </n-form-item>
+    </n-form>
+  </n-card>
+</template>

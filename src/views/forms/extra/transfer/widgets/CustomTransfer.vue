@@ -1,13 +1,3 @@
-<template>
-  <n-card title="Transfer with Custom Render">
-    <n-space vertical :size="16">
-      <n-transfer size="small" v-model:value="customValue" :options="customOptions" :render-source-label="renderSourceLabel"
-        :render-target-label="renderTargetLabel" />
-      <n-p>Selected: {{ JSON.stringify(customValue) }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, h } from 'vue'
 import CustomTag from '@/components/CustomTag.vue'
@@ -40,3 +30,13 @@ const renderTargetLabel = ({ option }: any) => {
   ])
 }
 </script>
+
+<template>
+  <n-card title="Transfer with Custom Render">
+    <n-space vertical :size="16">
+      <n-transfer size="small" v-model:value="customValue" :options="customOptions" :render-source-label="renderSourceLabel"
+        :render-target-label="renderTargetLabel" />
+      <n-p>Selected: {{ JSON.stringify(customValue) }}</n-p>
+    </n-space>
+  </n-card>
+</template>

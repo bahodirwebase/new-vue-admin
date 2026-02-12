@@ -1,13 +1,3 @@
-<template>
-  <n-card title="Mention with Custom Render">
-    <n-space vertical :size="16">
-      <n-mention v-model:value="customValue" :options="customOptions" :render-option="renderCustomOption"
-        placeholder="Type @ to mention..." />
-      <n-p>Text: {{ customValue }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, h } from 'vue'
 
@@ -28,3 +18,13 @@ const renderCustomOption = ({ option }: any) => {
   ])
 }
 </script>
+
+<template>
+  <n-card title="Mention with Custom Render">
+    <n-space vertical :size="16">
+      <n-mention v-model:value="customValue" :options="customOptions" :render-option="renderCustomOption"
+        placeholder="Type @ to mention..." />
+      <n-p>Text: {{ customValue }}</n-p>
+    </n-space>
+  </n-card>
+</template>

@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const textareaValue = ref('')
+const resizableValue = ref('')
+</script>
+
 <template>
   <n-card title="Textarea">
     <n-space vertical :size="16">
@@ -7,10 +14,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const textareaValue = ref('')
-const resizableValue = ref('')
-</script>

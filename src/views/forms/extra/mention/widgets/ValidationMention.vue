@@ -1,16 +1,3 @@
-<template>
-  <n-card title="Mention with Validation">
-    <n-space vertical :size="16">
-      <n-mention v-model:value="validatedValue" :options="basicOptions"
-        placeholder="Mention team members only..." :on-select="validateMention" />
-      <n-p>Text: {{ validatedValue }}</n-p>
-      <n-p v-if="validationMessage" :style="{ color: validationColor }">
-        {{ validationMessage }}
-      </n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -34,3 +21,16 @@ const validateMention = (option: any) => {
   }
 }
 </script>
+
+<template>
+  <n-card title="Mention with Validation">
+    <n-space vertical :size="16">
+      <n-mention v-model:value="validatedValue" :options="basicOptions"
+        placeholder="Mention team members only..." :on-select="validateMention" />
+      <n-p>Text: {{ validatedValue }}</n-p>
+      <n-p v-if="validationMessage" :style="{ color: validationColor }">
+        {{ validationMessage }}
+      </n-p>
+    </n-space>
+  </n-card>
+</template>

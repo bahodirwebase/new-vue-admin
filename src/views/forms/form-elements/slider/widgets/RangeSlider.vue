@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const rangeValue = ref([20, 80])
+</script>
+
 <template>
   <n-card title="Slider Range">
     <n-space vertical :size="16">
@@ -6,9 +12,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const rangeValue = ref([20, 80])
-</script>

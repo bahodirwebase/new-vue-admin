@@ -1,76 +1,3 @@
-<template>
-  <div class="auth-page">
-    <n-card class="auth-card" :bordered="false">
-      <div class="auth-header">
-        <n-icon size="64" :component="ShieldCheckmarkOutline" class="auth-icon" />
-        <h1 class="title">Two Step Verification</h1>
-        <p class="subtitle">Enter the 6-digit code sent to your email</p>
-      </div>
-
-      <n-form ref="formRef" :model="model" :rules="rules" size="large" @submit.prevent="onSubmit">
-        <n-form-item path="code" :show-label="false">
-          <n-input-otp
-            v-model:value="model.code"
-            :length="6"
-            size="large"
-            @focus="onFocus"
-            @blur="onBlur"
-            @finish="onFinish"
-            @update:value="onUpdateValue"
-            block
-          />
-        </n-form-item>
-
-        <n-button 
-          type="primary" 
-          block 
-          size="large" 
-          attr-type="submit" 
-          :loading="loading"
-          :disabled="model.code.length !== 6"
-        >
-          <template #icon>
-            <n-icon :component="LockClosedOutline" />
-          </template>
-          Verify Code
-        </n-button>
-
-        <n-space justify="space-between" align="center" style="margin-top: 16px;">
-          <n-button 
-            text 
-            @click="resendCode" 
-            :disabled="resendDisabled"
-            size="medium"
-          >
-            <template #icon>
-              <n-icon :component="RefreshOutline" />
-            </template>
-            {{ resendDisabled ? `Resend in ${countdown}s` : 'Resend Code' }}
-          </n-button>
-          
-          <n-button text @click="goBack" size="medium">
-            <template #icon>
-              <n-icon :component="ArrowBackOutline" />
-            </template>
-            Back to Login
-          </n-button>
-        </n-space>
-
-        <n-alert 
-          type="info" 
-          style="margin-top: 16px;"
-          :show-icon="false"
-        >
-          <template #icon>
-            <n-icon :component="InformationCircleOutline" />
-          </template>
-          Didn't receive the code? Check your spam folder or request a new code.
-        </n-alert>
-      </n-form>
-    </n-card>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { reactive, ref, onMounted, onUnmounted } from 'vue'
 import type { FormInst, FormRules } from 'naive-ui'
@@ -165,6 +92,79 @@ onUnmounted(() => {
   }
 })
 </script>
+
+<template>
+  <div class="auth-page">
+    <n-card class="auth-card" :bordered="false">
+      <div class="auth-header">
+        <n-icon size="64" :component="ShieldCheckmarkOutline" class="auth-icon" />
+        <h1 class="title">Two Step Verification</h1>
+        <p class="subtitle">Enter the 6-digit code sent to your email</p>
+      </div>
+
+      <n-form ref="formRef" :model="model" :rules="rules" size="large" @submit.prevent="onSubmit">
+        <n-form-item path="code" :show-label="false">
+          <n-input-otp
+            v-model:value="model.code"
+            :length="6"
+            size="large"
+            @focus="onFocus"
+            @blur="onBlur"
+            @finish="onFinish"
+            @update:value="onUpdateValue"
+            block
+          />
+        </n-form-item>
+
+        <n-button 
+          type="primary" 
+          block 
+          size="large" 
+          attr-type="submit" 
+          :loading="loading"
+          :disabled="model.code.length !== 6"
+        >
+          <template #icon>
+            <n-icon :component="LockClosedOutline" />
+          </template>
+          Verify Code
+        </n-button>
+
+        <n-space justify="space-between" align="center" style="margin-top: 16px;">
+          <n-button 
+            text 
+            @click="resendCode" 
+            :disabled="resendDisabled"
+            size="medium"
+          >
+            <template #icon>
+              <n-icon :component="RefreshOutline" />
+            </template>
+            {{ resendDisabled ? `Resend in ${countdown}s` : 'Resend Code' }}
+          </n-button>
+          
+          <n-button text @click="goBack" size="medium">
+            <template #icon>
+              <n-icon :component="ArrowBackOutline" />
+            </template>
+            Back to Login
+          </n-button>
+        </n-space>
+
+        <n-alert 
+          type="info" 
+          style="margin-top: 16px;"
+          :show-icon="false"
+        >
+          <template #icon>
+            <n-icon :component="InformationCircleOutline" />
+          </template>
+          Didn't receive the code? Check your spam folder or request a new code.
+        </n-alert>
+      </n-form>
+    </n-card>
+  </div>
+</template>
 
 <style scoped>
 .auth-page {

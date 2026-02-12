@@ -1,12 +1,3 @@
-<template>
-  <n-card title="Disabled Select">
-    <n-space vertical :size="16">
-      <n-select v-model:value="disabledValue" :options="options" placeholder="This is disabled" disabled />
-      <n-select v-model:value="readonlyValue" :options="options" placeholder="This is readonly" readonly />
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -20,3 +11,12 @@ const options = [
   { label: 'Option 5', value: 'option5' }
 ]
 </script>
+
+<template>
+  <n-card title="Disabled Select">
+    <n-space vertical :size="16">
+      <n-select v-model:value="disabledValue" :options="options" placeholder="This is disabled" disabled />
+      <n-select v-model:value="readonlyValue" :options="options" placeholder="This is readonly" readonly />
+    </n-space>
+  </n-card>
+</template>

@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { SearchOutline } from '@vicons/ionicons5'
+import { useFaqFilters } from '../composables/useFaqFilters'
+
+const {
+  searchQuery,
+  clearSearch
+} = useFaqFilters()
+</script>
+
 <template>
   <div class="faq-hero">
     <!-- Page Header -->
@@ -28,16 +38,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { SearchOutline } from '@vicons/ionicons5'
-import { useFaqFilters } from '../composables/useFaqFilters'
-
-const {
-  searchQuery,
-  clearSearch
-} = useFaqFilters()
-</script>
 
 <style scoped lang="scss">
 .faq-hero {

@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { CheckmarkOutline, CloseOutline } from '@vicons/ionicons5'
+
+const labeledSwitch = ref(false)
+const iconSwitch = ref(false)
+</script>
+
 <template>
   <n-card title="Switch with Labels">
     <n-space vertical :size="16">
@@ -16,11 +24,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { CheckmarkOutline, CloseOutline } from '@vicons/ionicons5'
-
-const labeledSwitch = ref(false)
-const iconSwitch = ref(false)
-</script>

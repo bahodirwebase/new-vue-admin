@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const normalValue = ref(50)
+const disabledValue = ref(50)
+const readonlyValue = ref(50)
+</script>
+
 <template>
   <n-card title="Slider States">
     <n-space vertical :size="16">
@@ -16,11 +24,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const normalValue = ref(50)
-const disabledValue = ref(50)
-const readonlyValue = ref(50)
-</script>

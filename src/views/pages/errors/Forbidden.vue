@@ -1,3 +1,17 @@
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const goHome = () => {
+  router.push('/dashboard/analytical')
+}
+
+const goBack = () => {
+  router.go(-1)
+}
+</script>
+
 <template>
   <div class="error-page">
     <div class="error-container">
@@ -13,20 +27,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-
-const goHome = () => {
-  router.push('/dashboard/analytical')
-}
-
-const goBack = () => {
-  router.go(-1)
-}
-</script>
 
 <style scoped>
 .error-page {

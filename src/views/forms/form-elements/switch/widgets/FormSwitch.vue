@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import { reactive } from 'vue'
+
+const formData = reactive({
+  notifications: false,
+  emailUpdates: true,
+  darkMode: false,
+  autoSave: true
+})
+</script>
+
 <template>
   <n-card title="Switch in Form">
     <n-space vertical :size="16">
@@ -19,17 +30,6 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { reactive } from 'vue'
-
-const formData = reactive({
-  notifications: false,
-  emailUpdates: true,
-  darkMode: false,
-  autoSave: true
-})
-</script>
 
 <style scoped>
 .n-code {

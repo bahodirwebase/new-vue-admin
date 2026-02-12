@@ -1,13 +1,3 @@
-<template>
-  <n-card title="Tree Select with Custom Render">
-    <n-space vertical :size="16">
-      <n-tree-select v-model:value="customValue" :options="customOptions" :render-option="renderCustomOption"
-        placeholder="Custom rendered options" />
-      <n-p>Selected: {{ JSON.stringify(customValue) }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref, h } from 'vue'
 import CustomTag from '@/components/CustomTag.vue'
@@ -46,3 +36,13 @@ const renderCustomOption = ({ option }: any) => {
   ])
 }
 </script>
+
+<template>
+  <n-card title="Tree Select with Custom Render">
+    <n-space vertical :size="16">
+      <n-tree-select v-model:value="customValue" :options="customOptions" :render-option="renderCustomOption"
+        placeholder="Custom rendered options" />
+      <n-p>Selected: {{ JSON.stringify(customValue) }}</n-p>
+    </n-space>
+  </n-card>
+</template>

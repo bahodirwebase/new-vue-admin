@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { reactive } from 'vue'
+
+const features = reactive({
+  beta: false,
+  advanced: false,
+  experimental: false
+})
+</script>
+
 <template>
   <n-card title="Switch Group">
     <n-space vertical :size="16">
@@ -20,16 +30,6 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { reactive } from 'vue'
-
-const features = reactive({
-  beta: false,
-  advanced: false,
-  experimental: false
-})
-</script>
 
 <style scoped>
 .n-code {

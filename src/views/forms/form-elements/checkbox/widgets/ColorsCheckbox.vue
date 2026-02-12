@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const primaryValue = ref(false)
+const successValue = ref(false)
+const warningValue = ref(false)
+const errorValue = ref(false)
+</script>
+
 <template>
   <n-card title="Custom Colors">
     <n-space vertical :size="16">
@@ -18,12 +27,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const primaryValue = ref(false)
-const successValue = ref(false)
-const warningValue = ref(false)
-const errorValue = ref(false)
-</script>

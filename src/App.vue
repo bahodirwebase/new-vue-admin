@@ -1,58 +1,3 @@
-<template>
-  <n-config-provider :theme="theme" :theme-overrides="themeOverrides" :breakpoints="THEME_CONSTANTS.BREAKPOINTS">
-    <n-message-provider>
-      
-    <n-global-style />
-    
-    <!-- Winter Snow Effect -->
-    <div v-if="themeStore.isWinterMode" class="winter-snow-container" ref="snowContainer"></div>
-    
-    <!-- Initial Loading Overlay -->
-    <div v-if="isInitialLoading" class="initial-loading">
-      <div class="loading-content">
-        <div class="loading-logo">
-          <div class="logo-icon" :style="{ color: logoColor }">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Top diamond shape -->
-              <path
-                d="M12 2L2 7L12 12L22 7L12 2Z"
-                :stroke="logoColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <!-- Middle diamond shape -->
-              <path
-                d="M2 12L12 17L22 12"
-                :stroke="logoColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <!-- Bottom diamond shape -->
-              <path
-                d="M2 17L12 22L22 17"
-                :stroke="logoColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </div>
-          <h1 class="logo-text">Byxora</h1>
-        </div>
-        <n-spin size="large" />
-        <p class="loading-text">Loading application...</p>
-      </div>
-    </div>
-    
-    <div :class="appClasses">
-      <router-view />
-    </div>
-    </n-message-provider>
-  </n-config-provider>
-</template>
-
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { darkTheme, type GlobalThemeOverrides } from 'naive-ui'
@@ -198,6 +143,61 @@ onUnmounted(() => {
   stopSnow()
 })
 </script>
+
+<template>
+  <n-config-provider :theme="theme" :theme-overrides="themeOverrides" :breakpoints="THEME_CONSTANTS.BREAKPOINTS">
+    <n-message-provider>
+      
+    <n-global-style />
+    
+    <!-- Winter Snow Effect -->
+    <div v-if="themeStore.isWinterMode" class="winter-snow-container" ref="snowContainer"></div>
+    
+    <!-- Initial Loading Overlay -->
+    <div v-if="isInitialLoading" class="initial-loading">
+      <div class="loading-content">
+        <div class="loading-logo">
+          <div class="logo-icon" :style="{ color: logoColor }">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Top diamond shape -->
+              <path
+                d="M12 2L2 7L12 12L22 7L12 2Z"
+                :stroke="logoColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <!-- Middle diamond shape -->
+              <path
+                d="M2 12L12 17L22 12"
+                :stroke="logoColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <!-- Bottom diamond shape -->
+              <path
+                d="M2 17L12 22L22 17"
+                :stroke="logoColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <h1 class="logo-text">Byxora</h1>
+        </div>
+        <n-spin size="large" />
+        <p class="loading-text">Loading application...</p>
+      </div>
+    </div>
+    
+    <div :class="appClasses">
+      <router-view />
+    </div>
+    </n-message-provider>
+  </n-config-provider>
+</template>
 
 <style scoped>
 .boxed-layout {

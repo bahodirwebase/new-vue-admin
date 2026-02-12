@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { 
+  ListOutline, RocketOutline, TrophyOutline, BusinessOutline,
+  CheckmarkOutline, CloseOutline
+} from '@vicons/ionicons5'
+import { COMPARISON_FEATURES } from '../constants'
+
+const comparisonFeatures = COMPARISON_FEATURES
+</script>
+
 <template>
   <div class="comparison-section">
     <n-card class="comparison-card" :bordered="false">
@@ -75,16 +85,6 @@
     </n-card>
   </div>
 </template>
-
-<script setup lang="ts">
-import { 
-  ListOutline, RocketOutline, TrophyOutline, BusinessOutline,
-  CheckmarkOutline, CloseOutline
-} from '@vicons/ionicons5'
-import { COMPARISON_FEATURES } from '../constants'
-
-const comparisonFeatures = COMPARISON_FEATURES
-</script>
 
 <style scoped>
 

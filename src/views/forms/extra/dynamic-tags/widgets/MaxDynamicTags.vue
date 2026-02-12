@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
+
+const tags = ref(['Tag 1', 'Tag 2', 'Tag 3'])
+</script>
+
 <template>
   <n-card title="Max Tags Limit (3)">
     <n-space vertical :size="16">
@@ -7,9 +14,4 @@
   </n-card>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
-import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
 
-const tags = ref(['Tag 1', 'Tag 2', 'Tag 3'])
-</script>

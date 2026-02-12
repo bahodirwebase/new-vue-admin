@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const stepValue = ref(30)
+const stepValue2 = ref(0.5)
+</script>
+
 <template>
   <n-card title="Slider Steps">
     <n-space vertical :size="16">
@@ -8,10 +15,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const stepValue = ref(30)
-const stepValue2 = ref(0.5)
-</script>

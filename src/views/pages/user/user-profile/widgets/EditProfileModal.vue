@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { CreateOutline } from '@vicons/ionicons5'
+import { useProfileActions } from '../composables/useProfileActions'
+
+const {
+  showEditModal,
+  editForm,
+  saveProfile,
+  cancelEdit
+} = useProfileActions()
+</script>
+
 <template>
   <n-modal v-model:show="showEditModal" preset="dialog" title="Edit Profile">
     <template #header>
@@ -40,18 +52,6 @@
     </template>
   </n-modal>
 </template>
-
-<script setup lang="ts">
-import { CreateOutline } from '@vicons/ionicons5'
-import { useProfileActions } from '../composables/useProfileActions'
-
-const {
-  showEditModal,
-  editForm,
-  saveProfile,
-  cancelEdit
-} = useProfileActions()
-</script>
 
 <style scoped>
 .modal-header {

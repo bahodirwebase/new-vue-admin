@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { SearchOutline, PersonOutline, MailOutline } from '@vicons/ionicons5'
+
+const searchValue = ref('')
+const userValue = ref('')
+const emailInput = ref('')
+</script>
+
 <template>
   <n-card title="Input with Prefix and Suffix">
     <n-space vertical :size="16">
@@ -19,12 +28,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { SearchOutline, PersonOutline, MailOutline } from '@vicons/ionicons5'
-
-const searchValue = ref('')
-const userValue = ref('')
-const emailInput = ref('')
-</script>

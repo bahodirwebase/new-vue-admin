@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const basicSwitch = ref(false)
+</script>
+
 <template>
   <n-card title="Basic Switch">
     <n-space vertical :size="16">
@@ -6,9 +12,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const basicSwitch = ref(false)
-</script>

@@ -1,3 +1,20 @@
+<script setup lang="ts">
+import { 
+  HelpCircleOutline, 
+  ThumbsUpOutline, 
+  TimeOutline 
+} from '@vicons/ionicons5'
+import { useFaqFilters } from '../composables/useFaqFilters'
+import { useFaqData } from '../composables/useFaqData'
+import { FAQ_STATS } from '../constants'
+
+const { filteredFaqs } = useFaqFilters()
+const { getTotalHelpfulVotes } = useFaqData()
+
+const helpfulCount = getTotalHelpfulVotes()
+const supportAvailable = FAQ_STATS.SUPPORT_AVAILABLE
+</script>
+
 <template>
   <div class="stats-section">
     <div class="stats-grid">
@@ -31,23 +48,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { 
-  HelpCircleOutline, 
-  ThumbsUpOutline, 
-  TimeOutline 
-} from '@vicons/ionicons5'
-import { useFaqFilters } from '../composables/useFaqFilters'
-import { useFaqData } from '../composables/useFaqData'
-import { FAQ_STATS } from '../constants'
-
-const { filteredFaqs } = useFaqFilters()
-const { getTotalHelpfulVotes } = useFaqData()
-
-const helpfulCount = getTotalHelpfulVotes()
-const supportAvailable = FAQ_STATS.SUPPORT_AVAILABLE
-</script>
 
 <style scoped>
 .stats-section {

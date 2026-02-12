@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const valueSwitch = ref('no')
+</script>
+
 <template>
   <n-card title="Switch with Custom Values">
     <n-space vertical :size="16">
@@ -9,9 +15,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const valueSwitch = ref('no')
-</script>

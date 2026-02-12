@@ -1,3 +1,34 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { 
+  BarChartOutline, 
+  CalendarOutline, 
+  DocumentTextOutline, 
+  TimeOutline, 
+  ShieldCheckmarkOutline,
+  RefreshOutline
+} from '@vicons/ionicons5'
+import { useAccountStats } from '../composables/useAccountStats'
+
+const {
+  accountStats,
+  refreshStats,
+  getSecurityLevelColor
+} = useAccountStats()
+
+// Add loading state for refresh operation
+const isLoading = ref(false)
+
+const handleRefreshStats = async () => {
+  isLoading.value = true
+  try {
+    await refreshStats()
+  } finally {
+    isLoading.value = false
+  }
+}
+</script>
+
 <template>
   <n-card class="stats-card" :bordered="false">
     <template #header>
@@ -56,37 +87,6 @@
     </div>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { 
-  BarChartOutline, 
-  CalendarOutline, 
-  DocumentTextOutline, 
-  TimeOutline, 
-  ShieldCheckmarkOutline,
-  RefreshOutline
-} from '@vicons/ionicons5'
-import { useAccountStats } from '../composables/useAccountStats'
-
-const {
-  accountStats,
-  refreshStats,
-  getSecurityLevelColor
-} = useAccountStats()
-
-// Add loading state for refresh operation
-const isLoading = ref(false)
-
-const handleRefreshStats = async () => {
-  isLoading.value = true
-  try {
-    await refreshStats()
-  } finally {
-    isLoading.value = false
-  }
-}
-</script>
 
 <style scoped>
 .stats-card {

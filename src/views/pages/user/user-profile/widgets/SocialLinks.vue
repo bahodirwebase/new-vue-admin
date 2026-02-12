@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { AddOutline, ArrowForwardOutline } from '@vicons/ionicons5'
+import { useUserProfile } from '../composables/useUserProfile'
+import { useProfileActions } from '../composables/useProfileActions'
+
+const { socialLinks } = useUserProfile()
+const { editSocial } = useProfileActions()
+</script>
+
 <template>
   <n-card class="social-card" :bordered="false">
     <template #header>
@@ -25,15 +34,6 @@
     </div>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { AddOutline, ArrowForwardOutline } from '@vicons/ionicons5'
-import { useUserProfile } from '../composables/useUserProfile'
-import { useProfileActions } from '../composables/useProfileActions'
-
-const { socialLinks } = useUserProfile()
-const { editSocial } = useProfileActions()
-</script>
 
 <style scoped>
 .social-card {

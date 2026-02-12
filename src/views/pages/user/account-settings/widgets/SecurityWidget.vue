@@ -1,3 +1,33 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { LockClosedOutline, CreateOutline } from '@vicons/ionicons5'
+import { useSecurity } from '../composables/useSecurity'
+import { FORM_LABELS, PLACEHOLDERS } from '../constants'
+
+const {
+  securityData,
+  isEditing,
+  passwordStrengthClass,
+  passwordStrengthText,
+  isPasswordValid,
+  editSecurity,
+  saveSecuritySettings,
+  cancelEdit
+} = useSecurity()
+
+// Add loading state for save operation
+const isLoading = ref(false)
+
+const handleSaveSecurity = async () => {
+  isLoading.value = true
+  try {
+    await saveSecuritySettings()
+  } finally {
+    isLoading.value = false
+  }
+}
+</script>
+
 <template>
   <n-card class="settings-card security-card" :bordered="false">
     <template #header>
@@ -63,36 +93,6 @@
     </div>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { LockClosedOutline, CreateOutline } from '@vicons/ionicons5'
-import { useSecurity } from '../composables/useSecurity'
-import { FORM_LABELS, PLACEHOLDERS } from '../constants'
-
-const {
-  securityData,
-  isEditing,
-  passwordStrengthClass,
-  passwordStrengthText,
-  isPasswordValid,
-  editSecurity,
-  saveSecuritySettings,
-  cancelEdit
-} = useSecurity()
-
-// Add loading state for save operation
-const isLoading = ref(false)
-
-const handleSaveSecurity = async () => {
-  isLoading.value = true
-  try {
-    await saveSecuritySettings()
-  } finally {
-    isLoading.value = false
-  }
-}
-</script>
 
 <style scoped>
 .settings-card {

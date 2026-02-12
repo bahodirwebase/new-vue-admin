@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
+
+const tags = ref(['Vue.js', 'TypeScript'])
+</script>
+
 <template>
   <n-card title="Basic Dynamic Tags">
     <n-space vertical :size="16">
@@ -7,9 +14,3 @@
   </n-card>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue'
-import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
-
-const tags = ref(['Vue.js', 'TypeScript'])
-</script>

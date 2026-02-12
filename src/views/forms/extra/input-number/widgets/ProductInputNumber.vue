@@ -1,3 +1,21 @@
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+
+const quantity = ref(1)
+const price = ref(99.99)
+const discount = ref(10)
+const weight = ref(2.5)
+
+const total = computed(() => {
+  return (quantity.value || 0) * (price.value || 0)
+})
+
+const finalPrice = computed(() => {
+  const discountAmount = total.value * ((discount.value || 0) / 100)
+  return total.value - discountAmount
+})
+</script>
+
 <template>
   <n-card title="Real World Example - Product Configuration">
     <n-space vertical :size="16">
@@ -27,24 +45,6 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref, computed } from 'vue'
-
-const quantity = ref(1)
-const price = ref(99.99)
-const discount = ref(10)
-const weight = ref(2.5)
-
-const total = computed(() => {
-  return (quantity.value || 0) * (price.value || 0)
-})
-
-const finalPrice = computed(() => {
-  const discountAmount = total.value * ((discount.value || 0) / 100)
-  return total.value - discountAmount
-})
-</script>
 
 <style scoped>
 .product-config {

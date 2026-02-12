@@ -1,3 +1,50 @@
+<script setup lang="ts">
+import { ref, reactive } from "vue";
+import { useMessage } from "naive-ui";
+import { AddOutline, TrashOutline } from "@vicons/ionicons5";
+
+const message = useMessage();
+const dynamicFormRef = ref();
+
+const dynamicFormData = reactive({
+  fields: [{ value: "" }],
+});
+
+const dynamicRules = {
+  fields: {
+    type: "array",
+    required: true,
+    fields: {
+      value: {
+        required: true,
+        message: "Field value is required",
+        trigger: ["input", "blur"],
+        min: 3,
+      },
+    },
+  },
+};
+
+const handleDynamicSubmit = () => {
+  dynamicFormRef.value?.validate((errors: any) => {
+    if (!errors) {
+      message.success("Dynamic form submitted successfully!");
+      console.log("Dynamic form data:", dynamicFormData);
+    } else {
+      message.error("Please fix the validation errors");
+    }
+  });
+};
+
+const addField = () => {
+  dynamicFormData.fields.push({ value: "" });
+};
+
+const removeField = (index: number) => {
+  dynamicFormData.fields.splice(index, 1);
+};
+</script>
+
 <template>
   <n-card title="Dynamic Form Fields">
     <n-form
@@ -48,50 +95,3 @@
     </n-form>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref, reactive } from "vue";
-import { useMessage } from "naive-ui";
-import { AddOutline, TrashOutline } from "@vicons/ionicons5";
-
-const message = useMessage();
-const dynamicFormRef = ref();
-
-const dynamicFormData = reactive({
-  fields: [{ value: "" }],
-});
-
-const dynamicRules = {
-  fields: {
-    type: "array",
-    required: true,
-    fields: {
-      value: {
-        required: true,
-        message: "Field value is required",
-        trigger: ["input", "blur"],
-        min: 3,
-      },
-    },
-  },
-};
-
-const handleDynamicSubmit = () => {
-  dynamicFormRef.value?.validate((errors: any) => {
-    if (!errors) {
-      message.success("Dynamic form submitted successfully!");
-      console.log("Dynamic form data:", dynamicFormData);
-    } else {
-      message.error("Please fix the validation errors");
-    }
-  });
-};
-
-const addField = () => {
-  dynamicFormData.fields.push({ value: "" });
-};
-
-const removeField = (index: number) => {
-  dynamicFormData.fields.splice(index, 1);
-};
-</script>

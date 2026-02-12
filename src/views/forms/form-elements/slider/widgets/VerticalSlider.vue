@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const verticalValue = ref(50)
+const verticalRangeValue = ref([20, 80])
+</script>
+
 <template>
   <n-card title="Vertical Slider">
     <n-space vertical :size="16">
@@ -14,10 +21,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const verticalValue = ref(50)
-const verticalRangeValue = ref([20, 80])
-</script>

@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { 
+  FilterOutline, EyeOutline, HeartOutline, ChatbubbleOutline 
+} from '@vicons/ionicons5'
+import { useUserProfile } from '../composables/useUserProfile'
+
+const { recentProjects } = useUserProfile()
+</script>
+
 <template>
   <n-card class="projects-card" :bordered="false">
     <template #header>
@@ -48,15 +57,6 @@
     </div>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { 
-  FilterOutline, EyeOutline, HeartOutline, ChatbubbleOutline 
-} from '@vicons/ionicons5'
-import { useUserProfile } from '../composables/useUserProfile'
-
-const { recentProjects } = useUserProfile()
-</script>
 
 <style scoped>
 .projects-card {

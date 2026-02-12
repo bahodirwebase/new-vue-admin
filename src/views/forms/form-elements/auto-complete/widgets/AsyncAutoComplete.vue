@@ -1,13 +1,3 @@
-<template>
-  <n-card title="Async Options">
-    <n-space vertical :size="16">
-      <n-auto-complete v-model:value="asyncValue" :options="asyncOptions" :loading="asyncLoading"
-        placeholder="Search async..." clearable @update:value="performAsyncSearch" />
-      <n-p>Selected value: {{ asyncValue || 'None' }}</n-p>
-    </n-space>
-  </n-card>
-</template>
-
 <script setup lang="ts">
 import { ref } from 'vue'
 
@@ -31,3 +21,13 @@ const performAsyncSearch = (query: string) => {
   }, 500)
 }
 </script>
+
+<template>
+  <n-card title="Async Options">
+    <n-space vertical :size="16">
+      <n-auto-complete v-model:value="asyncValue" :options="asyncOptions" :loading="asyncLoading"
+        placeholder="Search async..." clearable @update:value="performAsyncSearch" />
+      <n-p>Selected value: {{ asyncValue || 'None' }}</n-p>
+    </n-space>
+  </n-card>
+</template>

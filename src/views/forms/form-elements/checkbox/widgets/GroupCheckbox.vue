@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const groupValue = ref(['vue', 'react'])
+</script>
+
 <template>
   <n-card title="Checkbox Group">
     <n-space vertical :size="16">
@@ -13,9 +19,3 @@
     </n-space>
   </n-card>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const groupValue = ref(['vue', 'react'])
-</script>

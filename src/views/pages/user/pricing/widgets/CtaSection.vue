@@ -1,20 +1,3 @@
-<template>
-  <div class="cta-section">
-    <div class="cta-content">
-      <h2>Ready to get started?</h2>
-      <p>Join thousands of satisfied customers using our platform</p>
-      <div class="cta-buttons">
-        <n-button type="primary" size="large" @click="handleStartFreeTrial">
-          Start Free Trial
-        </n-button>
-        <n-button size="large" @click="handleScheduleDemo">
-          Schedule Demo
-        </n-button>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { usePricingActions } from '../composables/usePricingActions'
 
@@ -31,6 +14,23 @@ const handleScheduleDemo = () => {
   scheduleDemo()
 }
 </script>
+
+<template>
+  <div class="cta-section">
+    <div class="cta-content">
+      <h2>Ready to get started?</h2>
+      <p>Join thousands of satisfied customers using our platform</p>
+      <div class="cta-buttons">
+        <n-button type="primary" size="large" @click="handleStartFreeTrial">
+          Start Free Trial
+        </n-button>
+        <n-button size="large" @click="handleScheduleDemo">
+          Schedule Demo
+        </n-button>
+      </div>
+    </div>
+  </div>
+</template>
 
 <style scoped>
 .cta-section {

@@ -1,33 +1,3 @@
-<template>
-  <div class="auth-page">
-    <n-card class="auth-card">
-      <n-form ref="formRef" :model="model" :rules="rules" size="large" @submit.prevent="onSubmit">
-        <n-form-item path="email">
-          <n-input
-            v-model:value="model.email"
-            placeholder="Email address"
-            size="large"
-            :input-props="{ autocomplete: 'email' }"
-          >
-            <template #prefix>
-              <n-icon :component="MailOutline" />
-            </template>
-          </n-input>
-        </n-form-item>
-
-        <n-button type="primary" block size="large" attr-type="submit" :loading="loading">
-          Send Reset Link
-        </n-button>
-
-        <div class="footer">
-          <span class="muted">Remember your password?</span>
-          <router-link class="link" :to="{ name: 'LoginSimple' }">Back to login</router-link>
-        </div>
-      </n-form>
-    </n-card>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import type { FormInst, FormRules } from 'naive-ui'
@@ -60,6 +30,36 @@ const onSubmit = async () => {
   }, 700)
 }
 </script>
+
+<template>
+  <div class="auth-page">
+    <n-card class="auth-card">
+      <n-form ref="formRef" :model="model" :rules="rules" size="large" @submit.prevent="onSubmit">
+        <n-form-item path="email">
+          <n-input
+            v-model:value="model.email"
+            placeholder="Email address"
+            size="large"
+            :input-props="{ autocomplete: 'email' }"
+          >
+            <template #prefix>
+              <n-icon :component="MailOutline" />
+            </template>
+          </n-input>
+        </n-form-item>
+
+        <n-button type="primary" block size="large" attr-type="submit" :loading="loading">
+          Send Reset Link
+        </n-button>
+
+        <div class="footer">
+          <span class="muted">Remember your password?</span>
+          <router-link class="link" :to="{ name: 'LoginSimple' }">Back to login</router-link>
+        </div>
+      </n-form>
+    </n-card>
+  </div>
+</template>
 
 <style scoped>
 .auth-page {
