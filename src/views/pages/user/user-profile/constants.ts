@@ -2,6 +2,7 @@ import {
   LogoGithub, LogoTwitter, LogoLinkedin, LogoFacebook,
   DocumentTextOutline, TrophyOutline, PeopleOutline, TimeOutline
 } from '@vicons/ionicons5'
+import { markRaw } from 'vue'
 import type { UserProfile, Skill, SocialLink, Project, Activity, ActivityOption } from './types'
 
 // Default User Data
@@ -33,10 +34,10 @@ export const DEFAULT_SKILLS: Skill[] = [
 
 // Social Links
 export const SOCIAL_LINKS: SocialLink[] = [
-  { platform: 'GitHub', url: 'https://github.com', icon: LogoGithub },
-  { platform: 'Twitter', url: 'https://twitter.com', icon: LogoTwitter },
-  { platform: 'LinkedIn', url: 'https://linkedin.com', icon: LogoLinkedin },
-  { platform: 'Facebook', url: 'https://facebook.com', icon: LogoFacebook }
+  { platform: 'GitHub', url: 'https://github.com', icon: markRaw(LogoGithub) },
+  { platform: 'Twitter', url: 'https://twitter.com', icon: markRaw(LogoTwitter) },
+  { platform: 'LinkedIn', url: 'https://linkedin.com', icon: markRaw(LogoLinkedin) },
+  { platform: 'Facebook', url: 'https://facebook.com', icon: markRaw(LogoFacebook) }
 ]
 
 // Recent Projects
@@ -72,28 +73,28 @@ export const RECENT_ACTIVITIES: Activity[] = [
   {
     id: 1,
     type: 'project',
-    icon: DocumentTextOutline,
+    icon: markRaw(DocumentTextOutline),
     text: 'Completed E-Commerce Platform project',
     time: '2 hours ago'
   },
   {
     id: 2,
     type: 'achievement',
-    icon: TrophyOutline,
+    icon: markRaw(TrophyOutline),
     text: 'Earned "Top Contributor" badge',
     time: '1 day ago'
   },
   {
     id: 3,
     type: 'social',
-    icon: PeopleOutline,
+    icon: markRaw(PeopleOutline),
     text: 'Connected with 5 new developers',
     time: '2 days ago'
   },
   {
     id: 4,
     type: 'time',
-    icon: TimeOutline,
+    icon: markRaw(TimeOutline),
     text: 'Logged 40 hours this week',
     time: '3 days ago'
   }
