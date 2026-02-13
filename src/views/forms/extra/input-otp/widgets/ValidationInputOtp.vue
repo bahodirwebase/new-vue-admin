@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const validatedValue = ref('')
+const validatedValue = ref([])
 const validationMessage = ref('')
 const validationColor = ref('')
 
-const validateOtp = (value: string) => {
-  if (value === '123456') {
+const validateOtp = (value: string[]) => {
+  const otpString = value.join('')
+  if (otpString === '123456') {
     validationMessage.value = '✓ Valid OTP code'
     validationColor.value = '#18a058'
   } else {
@@ -20,7 +21,7 @@ const validateOtp = (value: string) => {
   <n-card title="OTP Input with Validation">
     <n-space vertical :size="16">
       <n-input-otp v-model:value="validatedValue" :length="6" :on-complete="validateOtp" />
-      <n-p>OTP: {{ validatedValue }}</n-p>
+      <n-p>OTP: {{ validatedValue.join('') }}</n-p>
       <n-p v-if="validationMessage" :style="{ color: validationColor }">
         {{ validationMessage }}
       </n-p>

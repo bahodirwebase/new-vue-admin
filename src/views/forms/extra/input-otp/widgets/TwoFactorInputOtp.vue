@@ -3,14 +3,15 @@ import { ref } from 'vue'
 import { useMessage } from 'naive-ui'
 
 const message = useMessage()
-const twoFactorValue = ref('')
-const backupCodeValue = ref('')
+const twoFactorValue = ref([])
+const backupCodeValue = ref([])
 const resendLoading = ref(false)
 const authMessage = ref('')
 const authColor = ref('')
 
-const handleTwoFactor = (value: string) => {
-  if (value === '654321') {
+const handleTwoFactor = (value: string[]) => {
+  const otpString = value.join('')
+  if (otpString === '654321') {
     authMessage.value = '✓ Authentication successful!'
     authColor.value = '#18a058'
     message.success('Two-factor authentication successful')
@@ -21,8 +22,9 @@ const handleTwoFactor = (value: string) => {
   }
 }
 
-const handleBackupCode = (value: string) => {
-  if (value === '87654321') {
+const handleBackupCode = (value: string[]) => {
+  const otpString = value.join('')
+  if (otpString === '87654321') {
     authMessage.value = '✓ Backup code verified!'
     authColor.value = '#18a058'
     message.success('Backup code verified')
@@ -53,15 +55,15 @@ const useBackupCode = () => {
     <n-space vertical :size="16">
       <div class="two-factor">
         <n-space vertical :size="12">
-          <span>Enter the 6-digit code sent to your email:</span>
+          <span>Enter the 6-digit code sent to your email: {{ twoFactorValue.join('') }}</span>
           <n-input-otp v-model:value="twoFactorValue" :length="6" :on-complete="handleTwoFactor"
             :auto-focus="true" />
         </n-space>
-        <n-space vertical :size="12">
-          <span>Backup code (8 digits):</span>
+        <n-space vertical :size="12" class="mt-3">
+          <span>Backup code (8 digits): {{ backupCodeValue.join('') }}</span>
           <n-input-otp v-model:value="backupCodeValue" :length="8" :on-complete="handleBackupCode" />
         </n-space>
-        <n-space :size="12">
+        <n-space :size="12" class="mt-3">
           <n-button @click="resendCode" :loading="resendLoading">
             Resend Code
           </n-button>
