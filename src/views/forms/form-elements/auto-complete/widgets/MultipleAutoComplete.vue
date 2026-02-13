@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const multipleValue = ref([])
+const multipleValue = ref('')
 const multipleOptions = [
   { label: 'JavaScript', value: 'js' },
   { label: 'TypeScript', value: 'ts' },
@@ -15,7 +15,7 @@ const multipleOptions = [
     <n-space vertical :size="16">
       <n-auto-complete v-model:value="multipleValue" :options="multipleOptions" multiple
         placeholder="Select multiple options..." />
-      <n-p>Selected values: {{ JSON.stringify(multipleValue) }}</n-p>
+      <n-p>Selected values: {{ multipleValue }}</n-p>
     </n-space>
   </n-card>
 </template>
