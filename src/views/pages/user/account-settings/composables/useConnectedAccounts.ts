@@ -1,5 +1,6 @@
 import { reactive } from 'vue'
 import { useMessage } from 'naive-ui'
+import { markRaw } from 'vue'
 import type { ConnectedAccount } from '../types'
 import { CONNECTED_ACCOUNTS_DEFAULT, MESSAGES } from '../constants'
 import {
@@ -17,11 +18,11 @@ export function useConnectedAccounts() {
     CONNECTED_ACCOUNTS_DEFAULT.map(account => ({
       ...account,
       icon: {
-        'GitHub': LogoGithub,
-        'Google': LogoGoogle,
-        'Twitter': LogoTwitter,
-        'Facebook': LogoFacebook
-      }[account.platform] || LogoGithub
+        'GitHub': markRaw(LogoGithub),
+        'Google': markRaw(LogoGoogle),
+        'Twitter': markRaw(LogoTwitter),
+        'Facebook': markRaw(LogoFacebook)
+      }[account.platform] || markRaw(LogoGithub)
     }))
   )
   
