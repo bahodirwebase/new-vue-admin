@@ -4,7 +4,8 @@ import BasicCollapse from './widgets/BasicCollapse.vue'
 import CollapseFeatures from './widgets/CollapseFeatures.vue'
 import CollapseStyles from './widgets/CollapseStyles.vue'
 import RichContent from './widgets/RichContent.vue'
-
+import CustomCollapseWidget from './widgets/CustomCollapseWidget.vue'
+import AccordionMode from './widgets/AccordionMode.vue'
 
 </script>
 <template>
@@ -25,6 +26,12 @@ import RichContent from './widgets/RichContent.vue'
         <n-gi>
           <CollapseStyles />
           <RichContent />
+        </n-gi>
+        <n-gi>
+          <CustomCollapseWidget />
+        </n-gi>
+        <n-gi>
+          <AccordionMode />
         </n-gi>
       </n-grid>
     </n-space>
