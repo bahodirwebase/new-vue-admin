@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, markRaw, toRaw } from 'vue'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
 import {
   EllipsisHorizontalOutline,
@@ -20,35 +20,35 @@ interface Activity {
 
 const activities = ref<Activity[]>([
   {
-    icon: CartOutline,
+    icon: markRaw(toRaw(CartOutline)),
     iconColor: '#ffffff',
     iconBg: 'var(--primary-color)',
     text: '<strong>Maureen Steel</strong> purchased 2 items totaling <strong>$120</strong>.',
     time: '10:30 AM'
   },
   {
-    icon: PricetagOutline,
+    icon: markRaw(toRaw(PricetagOutline)),
     iconColor: '#ffffff',
     iconBg: 'var(--primary-color-200)',
     text: 'The price of <strong>"Smart TV"</strong> was updated from <strong>$500</strong> to <strong>$450</strong>.',
     time: '9:45 AM'
   },
   {
-    icon: StarOutline,
+    icon: markRaw(toRaw(StarOutline)),
     iconColor: '#ffffff',
     iconBg: 'var(--primary-color-400)',
     text: '<strong>Vincent Laurent</strong> left a 5-star review for <strong>"Wireless Headphones."</strong>',
     time: '8:40 AM'
   },
   {
-    icon: AlertCircleOutline,
+    icon: markRaw(toRaw(AlertCircleOutline)),
     iconColor: '#ffffff',
     iconBg: 'var(--primary-color-600)',
     text: '<strong>"Running Shoes"</strong> stock is below 10 units.',
     time: '7:55 AM'
   },
   {
-    icon: TimeOutline,
+    icon: markRaw(toRaw(TimeOutline)),
     iconColor: '#ffffff',
     iconBg: 'var(--primary-color-800)',
     text: '<strong>Damian Ugo\'s</strong> order status changed from <strong>"Pending"</strong> to <strong>"Processing."</strong>',

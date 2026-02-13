@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { markRaw, toRaw } from "vue";
 import { NCard } from "naive-ui";
 interface IProps {
   value: string;
@@ -6,13 +7,16 @@ interface IProps {
   label: string;
 }
 const props = defineProps<IProps>()
+
+// Use toRaw and markRaw to completely prevent reactivity
+const rawIcon = markRaw(toRaw(props.icon))
 </script>
 
 <template>
   <n-card>
     <h3 class="stat-value">{{ props.value }}</h3>
     <div class="stat-info">
-      <n-icon class="stat-icon" size="36" :component="props.icon" />
+      <n-icon class="stat-icon" size="36" :component="rawIcon" />
       <span class="stat-label">{{ props.label }}</span>
     </div>
   </n-card>

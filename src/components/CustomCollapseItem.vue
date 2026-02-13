@@ -5,7 +5,7 @@ interface Props {
   /**
    * Unique key for the item
    */
-  key?: string | number
+  itemKey?: string | number
   
   /**
    * Title of the collapse item
@@ -58,7 +58,7 @@ const collapseContext: any = inject('collapseContext', {
   toggleItem: () => {}
 })
 
-const itemKey = computed(() => String(props.key || Math.random().toString(36).substr(2, 9)))
+const itemKey = computed(() => String(props.itemKey || Math.random().toString(36).substr(2, 9)))
 const isActive = computed(() => collapseContext.activeKeys.value.has(itemKey.value))
 const contentHeight = ref(0)
 const contentRef = ref<HTMLElement>()

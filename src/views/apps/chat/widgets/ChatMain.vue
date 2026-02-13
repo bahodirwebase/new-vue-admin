@@ -70,7 +70,7 @@ const chatStore = useChatStore();
 
       <!-- Messages Area -->
       <div class="chat-messages" ref="messagesContainer">
-        <div v-if="chatStore.showSearchInChat" class="chat-search">
+        <div v-show="chatStore.showSearchInChat" class="chat-search">
           <n-input v-model:value="chatStore.searchInChatQuery" placeholder="Search in this conversation..." clearable
             @keyup.enter="chatStore.searchInChat">
             <template #prefix>
@@ -129,8 +129,10 @@ const chatStore = useChatStore();
         </div>
         <div class="input-area">
           <n-input v-model:value="chatStore.messageInput" placeholder="Type a message..." type="textarea"
-            :autosize="{ minRows: 1, maxRows: 4 }" @keydown.enter.prevent="chatStore.sendMessage"
-            @keydown.shift.enter="chatStore.handleShiftEnter" class="message-input" />
+            :autosize="{ minRows: 1, maxRows: 4 }" 
+            @keyup.enter="chatStore.sendMessage"
+            @keydown.shift.enter="chatStore.handleShiftEnter"
+            class="message-input" />
           <n-button type="primary" circle :disabled="!chatStore.messageInput.trim()" @click="chatStore.sendMessage"
             class="send-button">
             <template #icon>

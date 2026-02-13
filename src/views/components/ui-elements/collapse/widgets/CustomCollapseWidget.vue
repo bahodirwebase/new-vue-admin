@@ -62,7 +62,7 @@ const codeExamples = [
 
         <!-- Demo Collapse -->
         <CustomCollapse v-model:default-active="activeItems" class="demo-collapse">
-          <CustomCollapseItem key="features" title="Key Features">
+          <CustomCollapseItem item-key="features" title="Key Features">
             <NSpace vertical :size="12">
               <div v-for="feature in features" :key="feature.title" class="feature-item">
                 <div class="feature-content">
@@ -78,7 +78,7 @@ const codeExamples = [
             </NSpace>
           </CustomCollapseItem>
 
-          <CustomCollapseItem key="customization" title="Customization Options">
+          <CustomCollapseItem item-key="customization" title="Customization Options">
             <NSpace vertical :size="8">
               <NText>Available customization options:</NText>
               <div class="customization-grid">
@@ -93,7 +93,7 @@ const codeExamples = [
             </NSpace>
           </CustomCollapseItem>
 
-          <CustomCollapseItem key="examples" title="Code Examples">
+          <CustomCollapseItem item-key="examples" title="Code Examples">
             <NSpace vertical :size="16">
               <div v-for="example in codeExamples" :key="example.title">
                 <NText strong>{{ example.title }}</NText>
@@ -102,7 +102,7 @@ const codeExamples = [
             </NSpace>
           </CustomCollapseItem>
 
-          <CustomCollapseItem key="performance" title="Performance">
+          <CustomCollapseItem item-key="performance" title="Performance">
             <NSpace vertical :size="12">
               <div class="performance-item">
                 <NIcon :component="TimeOutline" class="perf-icon" />
