@@ -14,7 +14,7 @@ const basicOptions = [
 <template>
   <n-card title="Transfer with Search">
     <n-space vertical :size="16">
-      <n-transfer size="small" v-model:value="searchValue" :options="basicOptions" filterable />
+      <n-transfer size="small" v-model:value="searchValue" :options="basicOptions" source-filterable target-filterable />
       <n-p>Selected: {{ JSON.stringify(searchValue) }}</n-p>
     </n-space>
   </n-card>
