@@ -2,7 +2,6 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
-import Underline from '@tiptap/extension-underline'
 import { 
   CodeSlashOutline,
   ListOutline,
@@ -23,7 +22,6 @@ const editor = useEditor({
   `,
   extensions: [
     StarterKit,
-    Underline,
   ],
   onUpdate: ({ editor }) => {
     content.value = editor.getHTML()

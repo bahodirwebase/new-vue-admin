@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
 import { NCard, NSpace, NIcon, NText } from 'naive-ui'
 import {
   SettingsOutline,

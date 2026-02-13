@@ -234,7 +234,7 @@ const handleValidate = () => {
       </n-form-item>
 
       <n-form-item label="Terms" path="terms">
-        <n-checkbox v-model:value="formData.terms">
+        <n-checkbox v-model:checked="formData.terms">
           I agree to the terms and conditions
         </n-checkbox>
       </n-form-item>
