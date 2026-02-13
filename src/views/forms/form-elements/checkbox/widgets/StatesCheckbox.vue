@@ -11,15 +11,15 @@ const indeterminateValue = ref(false)
     <n-space vertical :size="16">
       <n-space align="center" :size="12">
         <span>Normal:</span>
-        <n-checkbox v-model:value="normalValue">Normal</n-checkbox>
+        <n-checkbox v-model:checked="normalValue">Normal</n-checkbox>
       </n-space>
       <n-space align="center" :size="12">
         <span>Disabled:</span>
-        <n-checkbox v-model:value="disabledValue" disabled>Disabled</n-checkbox>
+        <n-checkbox v-model:checked="disabledValue" disabled>Disabled</n-checkbox>
       </n-space>
       <n-space align="center" :size="12">
         <span>Indeterminate:</span>
-        <n-checkbox v-model:value="indeterminateValue" :indeterminate="true">
+        <n-checkbox v-model:checked="indeterminateValue" :indeterminate="true">
           Indeterminate
         </n-checkbox>
       </n-space>

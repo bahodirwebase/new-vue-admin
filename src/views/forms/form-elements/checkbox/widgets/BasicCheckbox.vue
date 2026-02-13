@@ -7,7 +7,7 @@ const basicValue = ref(false)
 <template>
   <n-card title="Basic Checkbox">
     <n-space vertical :size="16">
-      <n-checkbox v-model:value="basicValue">
+      <n-checkbox v-model:checked="basicValue">
         Basic checkbox
       </n-checkbox>
       <n-p>Checkbox state: {{ basicValue ? 'Checked' : 'Unchecked' }}</n-p>

@@ -14,7 +14,7 @@ const handleCheckboxChange = (value: boolean) => {
 <template>
   <n-card title="Checkbox with Events">
     <n-space vertical :size="16">
-      <n-checkbox v-model:value="eventValue" @update:value="handleCheckboxChange">
+      <n-checkbox v-model:checked="eventValue" @update:checked="handleCheckboxChange">
         Click me to see events
       </n-checkbox>
       <n-p>Last change: {{ lastChange || 'No changes yet' }}</n-p>

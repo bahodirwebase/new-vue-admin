@@ -34,8 +34,8 @@ const updateTodo = (todo: any) => {
     <n-space vertical :size="16">
       <div class="todo-list">
         <n-space vertical :size="8">
-          <n-checkbox v-for="todo in todos" :key="todo.id" v-model:value="todo.completed"
-            @update:value="updateTodo(todo)">
+          <n-checkbox v-for="todo in todos" :key="todo.id" v-model:checked="todo.completed"
+            @update:checked="updateTodo(todo)">
             <span :style="{ textDecoration: todo.completed ? 'line-through' : 'none' }">
               {{ todo.text }}
             </span>

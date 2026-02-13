@@ -3,6 +3,7 @@ import {
   PeopleOutline, ShieldCheckmarkOutline, CloudOutline,
   StatsChartOutline, CodeOutline, SchoolOutline
 } from '@vicons/ionicons5'
+import { markRaw } from 'vue'
 import type { PricingPlan, FeatureItem, FaqItem } from './types'
 
 // Pricing Plans Data
@@ -13,7 +14,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     description: 'Perfect for individuals and small projects',
     monthlyPrice: 12,
     yearlyPrice: 9,
-    icon: RocketOutline,
+    icon: markRaw(RocketOutline),
     features: [
       'Up to 5 projects',
       'Basic analytics dashboard',
@@ -29,7 +30,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     description: 'Great for growing teams and businesses',
     monthlyPrice: 29,
     yearlyPrice: 24,
-    icon: TrophyOutline,
+    icon: markRaw(TrophyOutline),
     featured: true,
     badge: 'Most Popular',
     features: [
@@ -50,7 +51,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     description: 'Advanced features for large organizations',
     monthlyPrice: 99,
     yearlyPrice: 79,
-    icon: BusinessOutline,
+    icon: markRaw(BusinessOutline),
     features: [
       'Unlimited projects',
       'Enterprise analytics suite',
@@ -69,13 +70,13 @@ export const PRICING_PLANS: PricingPlan[] = [
 
 // Comparison Features
 export const COMPARISON_FEATURES: FeatureItem[] = [
-  { name: 'Projects', icon: RocketOutline, basic: true, pro: true, enterprise: true },
-  { name: 'Team Members', icon: PeopleOutline, basic: false, pro: true, enterprise: true },
-  { name: 'Advanced Security', icon: ShieldCheckmarkOutline, basic: false, pro: true, enterprise: true },
-  { name: 'Cloud Storage', icon: CloudOutline, basic: true, pro: true, enterprise: true },
-  { name: 'Analytics', icon: StatsChartOutline, basic: true, pro: true, enterprise: true },
-  { name: 'API Access', icon: CodeOutline, basic: false, pro: true, enterprise: true },
-  { name: 'Priority Support', icon: SchoolOutline, basic: false, pro: true, enterprise: true }
+  { name: 'Projects', icon: markRaw(RocketOutline), basic: true, pro: true, enterprise: true },
+  { name: 'Team Members', icon: markRaw(PeopleOutline), basic: false, pro: true, enterprise: true },
+  { name: 'Advanced Security', icon: markRaw(ShieldCheckmarkOutline), basic: false, pro: true, enterprise: true },
+  { name: 'Cloud Storage', icon: markRaw(CloudOutline), basic: true, pro: true, enterprise: true },
+  { name: 'Analytics', icon: markRaw(StatsChartOutline), basic: true, pro: true, enterprise: true },
+  { name: 'API Access', icon: markRaw(CodeOutline), basic: false, pro: true, enterprise: true },
+  { name: 'Priority Support', icon: markRaw(SchoolOutline), basic: false, pro: true, enterprise: true }
 ]
 
 // FAQ Data
