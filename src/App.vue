@@ -14,7 +14,6 @@ const theme = computed(() => themeStore.isDark ? darkTheme : null)
 
 const appClasses = computed(() => {
   return [
-    themeStore.isBoxed ? 'boxed-layout' : '',
     themeStore.isBordered ? 'bordered-theme' : 'shadow-theme',
     themeStore.isDark ? 'dark-mode' : 'light-mode'
   ].filter(Boolean).join(' ')
@@ -201,10 +200,6 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.boxed-layout {
-  max-width: 1400px;
-  margin: 0 auto;
-}
 
 .initial-loading {
   position: fixed;

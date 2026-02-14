@@ -43,7 +43,7 @@ onUnmounted(() => {
 });
 
 const contentClass = computed(() => {
-  return themeStore.isBoxed ? "boxed-content" : "full-content";
+  return "full-content";
 });
 
 const contentStyle = computed(() => {
@@ -65,11 +65,13 @@ const contentStyle = computed(() => {
     <n-layout>
       <AppHeader @toggle-sidebar="toggleSidebar" />
       <n-layout-content :class="contentClass" :content-style="contentStyle">
-        <router-view v-slot="{ Component }">
-          <transition :name="themeStore.pageAnimation" mode="out-in">
-            <component :is="Component" />
-          </transition>
-        </router-view>
+        <div :class="themeStore.isBoxed ? 'boxed-wrapper' : 'full-wrapper'">
+          <router-view v-slot="{ Component }">
+            <transition :name="themeStore.pageAnimation" mode="out-in">
+              <component :is="Component" />
+            </transition>
+          </router-view>
+        </div>
       </n-layout-content>
     </n-layout>
     <CustomizerButton @toggle="handleCustomizerToggle" />
@@ -85,14 +87,19 @@ const contentStyle = computed(() => {
   width: 100%;
 }
 
-.boxed-content {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
 .full-content {
   width: auto;
   flex: 1 1 auto;
+}
+
+.boxed-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.full-wrapper {
+  width: 100%;
 }
 
 /* Page Transitions */
@@ -181,17 +188,6 @@ const contentStyle = computed(() => {
 @media (max-width: 768px) {
   .main-layout {
     overflow-x: auto;
-  }
-
-  .boxed-content {
-    max-width: 100%;
-    padding: 0 8px;
-  }
-}
-
-@media (max-width: 480px) {
-  .boxed-content {
-    padding: 0 4px;
   }
 }
 </style>
