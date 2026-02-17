@@ -25,6 +25,7 @@ export const createThemeOverrides = (
         fontSize: "14px",
         fontFamily:
           "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        popoverColor: '#1a1a1a'
       },
       Card: {
         borderRadius: "12px",
@@ -50,7 +51,7 @@ export const createThemeOverrides = (
         itemTextColorActiveHover: "#fff",
 
         // Minimized state
-        itemColorActiveCollapsed: primaryColor,
+        itemColorActiveCollapsed: primaryColor
       },
 
       Descriptions: {
