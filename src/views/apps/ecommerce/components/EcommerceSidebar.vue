@@ -7,7 +7,7 @@ import {
   NAVIGATION_OPTIONS,
 } from "../constants";
 import { useEcommerceStore } from "../store";
-import CustomTag from "@/components/CustomTag.vue";
+import CustomTag from '@/components/custom/CustomTag.vue';
 
 const ecommerceStore = useEcommerceStore();
 

@@ -11,7 +11,7 @@ import {
   GitBranchOutline,
   FlaskOutline
 } from '@vicons/ionicons5'
-import CustomTag from '@/components/CustomTag.vue'
+import CustomTag from '@/components/custom/CustomTag.vue'
 </script>
 
 <template>

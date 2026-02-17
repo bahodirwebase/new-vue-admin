@@ -1,7 +1,7 @@
 import type { DataTableColumns } from 'naive-ui'
 import { h } from 'vue'
 import { NButton, NIcon } from 'naive-ui'
-import CustomTag from '@/components/CustomTag.vue'
+import CustomTag from '@/components/custom/CustomTag.vue'
 import { EyeOutline, CreateOutline, TrashOutline } from '@vicons/ionicons5'
 
 export type RowData = {

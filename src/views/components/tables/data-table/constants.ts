@@ -1,6 +1,6 @@
 import type { DataTableColumns, FormRules } from 'naive-ui'
 import { h } from 'vue'
-import CustomTag from '@/components/CustomTag.vue'
+import CustomTag from '@/components/custom/CustomTag.vue'
 import {
   NButton,
   NIcon,

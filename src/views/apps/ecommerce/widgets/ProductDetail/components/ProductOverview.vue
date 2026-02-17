@@ -4,7 +4,7 @@ import { useProductDetail } from "../composables/useProductDetail";
 import { useProductDetailStore } from "../store";
 import { Product } from "../types";
 import { formatDate } from "@/utils"
-import CustomTag from "@/components/CustomTag.vue"
+import CustomTag from '@/components/custom/CustomTag.vue'
 
 const { currentImage, getStatusType, formatStatus, getStockClass, getStockStatus } = useProductDetail();
 

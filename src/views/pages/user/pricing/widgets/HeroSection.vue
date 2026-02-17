@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePricingToggle } from '../composables/usePricingToggle'
-import CustomTag from '@/components/CustomTag.vue'
+import CustomTag from '@/components/custom/CustomTag.vue'
 
 const {
   isYearly,

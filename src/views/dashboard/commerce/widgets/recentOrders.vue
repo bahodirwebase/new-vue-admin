@@ -3,7 +3,7 @@ import { ref, computed, h } from 'vue'
 import { NButton, NInput, NDropdown, NIcon, NDataTable } from 'naive-ui'
 import { SearchOutline, ChevronDownOutline } from '@vicons/ionicons5'
 import type { DataTableColumns } from 'naive-ui'
-import CustomTag from '@/components/CustomTag.vue'
+import CustomTag from '@/components/custom/CustomTag.vue'
 
 interface Order {
   no: number

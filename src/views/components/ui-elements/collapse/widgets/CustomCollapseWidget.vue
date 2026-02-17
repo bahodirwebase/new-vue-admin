@@ -9,8 +9,8 @@ import {
   CheckmarkCircleOutline,
   TimeOutline
 } from '@vicons/ionicons5'
-import CustomCollapse from '@/components/CustomCollapse.vue'
-import CustomCollapseItem from '@/components/CustomCollapseItem.vue'
+import CustomCollapse from '@/components/custom/CustomCollapse.vue'
+import CustomCollapseItem from '@/components/custom/CustomCollapseItem.vue'
 
 const activeItems = ref(['features', 'customization'])
 

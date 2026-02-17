@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { NText } from 'naive-ui'
-import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
+import CustomDynamicTags from '@/components/custom/CustomDynamicTags.vue'
 
 const tags = ref(['Design', 'Development', 'Product'])
 </script>

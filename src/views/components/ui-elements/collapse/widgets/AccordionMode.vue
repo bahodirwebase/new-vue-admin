@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import CustomCollapse from '@/components/CustomCollapse.vue'
-import CustomCollapseItem from '@/components/CustomCollapseItem.vue'
+import CustomCollapse from '@/components/custom/CustomCollapse.vue'
+import CustomCollapseItem from '@/components/custom/CustomCollapseItem.vue'
 import { NCard, NSpace, NText } from 'naive-ui'
 </script>
 <template>

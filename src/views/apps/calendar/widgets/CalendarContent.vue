@@ -8,7 +8,7 @@ import {
 import { useCalendarStore } from "../store";
 import { useCalendar } from "../composables/useCalendar";
 import { formatDate } from "@/utils"
-import CustomTag from "@/components/CustomTag.vue";
+import CustomTag from '@/components/custom/CustomTag.vue';
 
 const calendarStore = useCalendarStore();
 const { getEventsForDate, weekRange, weekDays, getEventsForDay, selectedDayFormatted, getEventsForHour } = useCalendar();

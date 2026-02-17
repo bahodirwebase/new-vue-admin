@@ -3,7 +3,7 @@ import { AddOutline } from '@vicons/ionicons5'
 import { useUserProfile } from '../composables/useUserProfile'
 import { useProfileActions } from '../composables/useProfileActions'
 import { SKILL_LEVEL_COLORS } from '../constants'
-import CustomTag from '@/components/CustomTag.vue'
+import CustomTag from '@/components/custom/CustomTag.vue'
 
 const { skills } = useUserProfile()
 const { editSkills } = useProfileActions()

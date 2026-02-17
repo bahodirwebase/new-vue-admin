@@ -7,7 +7,7 @@ import {
 import { useCalendarStore } from "../store";
 import { VIEW_OPTIONS } from "../constants";
 import { useCalendar } from "../composables/useCalendar";
-import CustomTag from "@/components/CustomTag.vue";
+import CustomTag from '@/components/custom/CustomTag.vue';
 
 const calendarStore = useCalendarStore();
 const { todayEvents, thisWeekEvents, upcomingEvents, currentPeriodInfo } = useCalendar();

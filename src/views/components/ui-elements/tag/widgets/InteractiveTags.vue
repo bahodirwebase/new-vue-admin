@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CustomTag from '@/components/CustomTag.vue'
+import CustomTag from '@/components/custom/CustomTag.vue'
 </script>
 
 <template>

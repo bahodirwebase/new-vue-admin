@@ -2,7 +2,7 @@
 import { TrashOutline } from "@vicons/ionicons5";
 import { useShoppingCartStore } from "../store";
 import { useShoppingCart } from "../composables/useShoppingCart";
-import CustomTag from "@/components/CustomTag.vue";
+import CustomTag from '@/components/custom/CustomTag.vue';
 
 const shoppingCartStore = useShoppingCartStore();
 const { calculateItemTotal } = useShoppingCart();

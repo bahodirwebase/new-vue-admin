@@ -2,7 +2,7 @@
 import { ref, computed, h, watch } from 'vue'
 import { useMessage, NDynamicTags, NAutoComplete, NText, NCollapseTransition, NIcon } from 'naive-ui'
 import { PricetagOutline, AlertCircleOutline } from '@vicons/ionicons5'
-import CustomTag from '@/components/CustomTag.vue'
+import CustomTag from '@/components/custom/CustomTag.vue'
 
 interface Props {
     value?: string[]

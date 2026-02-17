@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { NPageHeader, NSpace, NButton } from 'naive-ui'
 import { BREADCRUMB_EXAMPLES, AVATAR_EXAMPLES } from '../constants'
-import CustomTag from '@/components/CustomTag.vue'
+import CustomTag from '@/components/custom/CustomTag.vue'
 
 const handleBack = () => {
   console.log('Back button clicked')

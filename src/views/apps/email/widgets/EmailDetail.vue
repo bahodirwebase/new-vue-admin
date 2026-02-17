@@ -2,7 +2,7 @@
 import { NButton, NIcon, NDropdown, NAvatar } from 'naive-ui';
 import type { Email } from '../types';
 import { useEmailUtils } from '../composables/useEmailUtils';
-import CustomTag from '@/components/CustomTag.vue';
+import CustomTag from '@/components/custom/CustomTag.vue';
 
 interface Props {
   email?: Email;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, h } from 'vue'
 import { CUSTOM_OPTIONS } from '../constants'
-import CustomTag from '@/components/CustomTag.vue'
+import CustomTag from '@/components/custom/CustomTag.vue'
 
 const customValue = ref(null)
 

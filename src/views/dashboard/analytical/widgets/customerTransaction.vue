@@ -10,7 +10,7 @@ import {
 } from "naive-ui";
 import type { DataTableColumns } from "naive-ui";
 import type { Transaction } from "../types";
-import CustomTag from '@/components/CustomTag.vue';
+import CustomTag from '@/components/custom/CustomTag.vue';
 
 // Icons
 const SearchIcon = {

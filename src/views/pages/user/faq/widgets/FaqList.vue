@@ -9,7 +9,7 @@ import {
 } from '@vicons/ionicons5'
 import { useFaqFilters } from '../composables/useFaqFilters'
 import { useFaqInteractions } from '../composables/useFaqInteractions'
-import CustomTag from '@/components/CustomTag.vue'
+import CustomTag from '@/components/custom/CustomTag.vue'
 
 const {
   filteredFaqs,

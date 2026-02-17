@@ -1,6 +1,6 @@
 import { h } from "vue";
 import { NButton, NIcon } from "naive-ui";
-import CustomTag from "@/components/CustomTag.vue";
+import CustomTag from '@/components/custom/CustomTag.vue';
 import { CreateOutline, TrashOutline, EyeOutline } from "@vicons/ionicons5";
 import { Product } from "../../../types";
 import { useActions } from "../composables/useActions";

@@ -2,7 +2,7 @@
 import { CreateOutline, TrashOutline } from "@vicons/ionicons5";
 import { useProductFilter } from "../composables/useProductFilter";
 import { useActions } from "../composables/useActions";
-import CustomTag from "@/components/CustomTag.vue";
+import CustomTag from '@/components/custom/CustomTag.vue';
 
 const { filteredProducts, getStockClass } = useProductFilter();
 const { viewProduct, editProduct, deleteProduct } = useActions();

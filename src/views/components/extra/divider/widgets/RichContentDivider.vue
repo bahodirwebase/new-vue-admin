@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { NCard, NDivider, NSpace, NIcon, NButton } from 'naive-ui'
 import { ChevronDownOutline, CheckmarkCircle } from '@vicons/ionicons5'
-import CustomTag from '@/components/CustomTag.vue'
+import CustomTag from '@/components/custom/CustomTag.vue'
 
 const selectedContentType = ref('icon')
 

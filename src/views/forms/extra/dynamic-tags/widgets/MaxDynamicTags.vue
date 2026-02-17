@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import CustomDynamicTags from '@/components/CustomDynamicTags.vue'
+import CustomDynamicTags from '@/components/custom/CustomDynamicTags.vue'
 
 const tags = ref(['Tag 1', 'Tag 2', 'Tag 3'])
 </script>
