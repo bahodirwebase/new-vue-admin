@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { NGrid, NGi, NFlex } from "naive-ui";
-import statisticsCard from "./widgets/statisticsCard.vue";
-import revenueAnalytics from "./widgets/revenueAnalytics.vue";
-import monthlyTarget from "./widgets/monthlyTarget.vue";
-import topCategories from "./widgets/topCategories.vue";
-import activeUser from "./widgets/activeUser.vue";
-import conversionRate from "./widgets/conversionRate.vue";
-import trafficSources from "./widgets/trafficSources.vue";
-import recentOrders from "./widgets/recentOrders.vue";
-import recentActivity from "./widgets/recentActivity.vue";
+import StatisticsCard from "./widgets/StatisticsCard.vue";
+import RevenueAnalytics from "./widgets/RevenueAnalytics.vue";
+import MonthlyTarget from "./widgets/MonthlyTarget.vue";
+import TopCategories from "./widgets/TopCategories.vue";
+import ActiveUser from "./widgets/ActiveUser.vue";
+import ConversionRate from "./widgets/ConversionRate.vue";
+import TrafficSources from "./widgets/TrafficSources.vue";
+import RecentOrders from "./widgets/RecentOrders.vue";
+import RecentActivity from "./widgets/RecentActivity.vue";
 
 
 </script>
@@ -23,37 +23,37 @@ import recentActivity from "./widgets/recentActivity.vue";
       <n-grid :x-gap="18" :y-gap="18" cols="xxs:1 md:3 lg:4" responsive="screen">
 
         <n-gi span="xxs:1 md:2 lg:3">
-          <statisticsCard />
+          <StatisticsCard />
 
           <n-grid :x-gap="18" :y-gap="18" cols="xxs:1 sm:2 md:2 lg:2 xl:3" responsive="screen"
             style="margin-top: 18px;">
             <n-gi span="xxs:1 sm:2 lg:1 xl:2">
-              <revenueAnalytics />
+              <RevenueAnalytics />
             </n-gi>
 
             <n-gi span="xxs:1 sm:1 md:1 lg:1 xl:1">
-              <monthlyTarget />
+              <MonthlyTarget />
             </n-gi>
 
             <n-gi span="xxs:1 md:1 sm:1 lg:2 xl:1">
-              <activeUser />
+              <ActiveUser />
             </n-gi>
 
             <n-gi span="xxs:1 md:2 sm:2 xl:2">
-              <conversionRate />
+              <ConversionRate />
             </n-gi>
 
             <n-gi span="xxs:1 sm:2 md:3 xl:3">
-              <recentOrders />
+              <RecentOrders />
             </n-gi>
           </n-grid>
         </n-gi>
 
         <n-gi span="xxs:1 md:1 lg:1">
           <n-flex vertical :size="18">
-            <topCategories />
-            <trafficSources />
-            <recentActivity />
+            <TopCategories />
+            <TrafficSources />
+            <RecentActivity />
           </n-flex>
         </n-gi>
 

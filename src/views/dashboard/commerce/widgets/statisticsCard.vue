@@ -115,12 +115,12 @@ const cards: StatCard[] = [
 }
 
 .stat-card__icon--gray {
-  background: #f5f5f5;
+  background: var(--bg-secondary);
   color: #999999;
 }
 
 .stat-card__icon--blue {
-  background: #f5f5f5;
+  background: var(--bg-secondary);
   color: #999999;
 }
 
