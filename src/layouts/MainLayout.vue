@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, onMounted, onUnmounted } from "vue";
+
+// Static CSS class for the main content area
+const CONTENT_CLASS = 'full-content';
 import { useThemeStore } from "@/stores/theme";
 import AppSidebar from "@/layouts/sidebar/index.vue";
 import AppHeader from "@/layouts/navbar/index.vue";
@@ -42,10 +45,6 @@ onUnmounted(() => {
   }
 });
 
-const contentClass = computed(() => {
-  return "full-content";
-});
-
 const contentStyle = computed(() => {
   return {
     padding: isMobile.value ? "16px 8px 16px 16px" : "24px 16px 24px 24px",
@@ -64,7 +63,7 @@ const contentStyle = computed(() => {
     <AppSidebar :collapsed="isCollapsed" :is-mobile="isMobile" @toggle-sidebar="toggleSidebar" />
     <n-layout>
       <AppHeader @toggle-sidebar="toggleSidebar" />
-      <n-layout-content :class="contentClass" :content-style="contentStyle">
+      <n-layout-content :class="CONTENT_CLASS" :content-style="contentStyle">
         <div :class="themeStore.isBoxed ? 'boxed-wrapper' : 'full-wrapper'">
           <router-view v-slot="{ Component }">
             <transition :name="themeStore.pageAnimation" mode="out-in">

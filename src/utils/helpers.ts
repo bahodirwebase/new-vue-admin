@@ -94,7 +94,7 @@ export const deepClone = <T>(obj: T): T => {
   if (typeof obj === 'object') {
     const clonedObj = {} as T
     for (const key in obj) {
-      if (obj.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
         clonedObj[key] = deepClone(obj[key])
       }
     }
@@ -113,14 +113,6 @@ export const camelToKebab = (str: string): string => {
 
 export const kebabToCamel = (str: string): string => {
   return str.replace(/-([a-z])/g, (g) => g[1].toUpperCase())
-}
-
-export const getColorShade = (color: string, amount: number): string => {
-  const num = parseInt(color.replace('#', ''), 16)
-  const r = Math.min(255, Math.max(0, (num >> 16) + amount))
-  const g = Math.min(255, Math.max(0, ((num >> 8) & 0x00FF) + amount))
-  const b = Math.min(255, Math.max(0, (num & 0x0000FF) + amount))
-  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`
 }
 
 export const getContrastColor = (hexColor: string): string => {

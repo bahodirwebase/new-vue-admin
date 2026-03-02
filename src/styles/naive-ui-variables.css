@@ -132,13 +132,13 @@
 }
 
 
-/* Guruh sarlavhasi ustiga borganda fon o'zgarmasligi uchun */
+/* Prevent background change on group title hover */
 .n-menu-item-group-title {
   background-color: transparent !important;
-  cursor: default !important; /* Pointer (qo'lcha) chiqmasligi uchun */
+  cursor: default !important; /* Disable pointer cursor on non-interactive group labels */
 }
 
-/* Agar ichida hover effekti bo'lsa, uni ham o'chiramiz */
+/* Remove hover background effect from group title */
 .n-menu-item-group-title:hover {
   background-color: transparent !important;
 }

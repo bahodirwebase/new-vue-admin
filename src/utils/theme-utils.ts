@@ -1,6 +1,18 @@
 import type { GlobalThemeOverrides } from "naive-ui";
 
-// Helper function to adjust color brightness
+/**
+ * Adjusts the brightness of a hex color by adding a fixed amount to each RGB channel.
+ * Positive values lighten the color; negative values darken it.
+ * Channel values are clamped to the [0, 255] range.
+ *
+ * @param color - Hex color string (e.g., '#6366f1')
+ * @param amount - Integer amount to add to each RGB channel (-255 to 255)
+ * @returns Adjusted hex color string
+ *
+ * @example
+ * adjustColor('#6366f1', 20)   // returns a lighter variant
+ * adjustColor('#6366f1', -20)  // returns a darker variant
+ */
 export const adjustColor = (color: string, amount: number): string => {
   const num = parseInt(color.replace("#", ""), 16);
   const r = Math.min(255, Math.max(0, (num >> 16) + amount));
@@ -9,7 +21,14 @@ export const adjustColor = (color: string, amount: number): string => {
   return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`;
 };
 
-// Create theme overrides based on primary color and dark mode
+/**
+ * Creates Naive UI theme overrides based on the given primary color and mode.
+ * Covers common components: Card, Layout, Menu, DataTable, Dialog, Dropdown, etc.
+ *
+ * @param primaryColor - Hex color string used as the brand accent color
+ * @param isDark - Whether to generate dark mode overrides (default: false)
+ * @returns Naive UI GlobalThemeOverrides object
+ */
 export const createThemeOverrides = (
   primaryColor: string,
   isDark: boolean = false,
@@ -49,11 +68,9 @@ export const createThemeOverrides = (
         itemIconColorActive: "#fff",
         itemIconColorActiveHover: "#fff",
         itemTextColorActiveHover: "#fff",
-
-        // Minimized state
+        // Collapsed (mini) sidebar active item
         itemColorActiveCollapsed: primaryColor
       },
-
       Descriptions: {
         thColor: "var(--bg-primary)",
         thColorModal: "#262626",
@@ -63,7 +80,7 @@ export const createThemeOverrides = (
         borderColor: "#333333",
       },
       InternalSelectMenu: {
-        color: "#1e293b", // Modern soft dark slate
+        color: "#1e293b",
         optionTextColor: "#e2e8f0",
         optionTextColorActive: "#ffffff",
         optionColorPending: "rgba(255, 255, 255, 0.08)",
@@ -104,7 +121,7 @@ export const createThemeOverrides = (
         nodeTextColor: "#e2e8f0",
         nodeColorHover: "rgba(255, 255, 255, 0.08)",
         nodeColorPressed: "rgba(255, 255, 255, 0.12)",
-        nodeColorActive: "rgba(255, 255, 255, 0.12)" // selected
+        nodeColorActive: "rgba(255, 255, 255, 0.12)"
       },
       Cascader: {
         menuColor: "#1e293b",
@@ -145,7 +162,6 @@ export const createThemeOverrides = (
         tdTextColor: "#d1d5db",
         borderColor: "var(--bg-secondary)",
         thColorHover: "#2a2a2a",
-
         paginationBorderColor: "#333333",
         loadingColor: "#60a5fa",
       },
@@ -187,8 +203,7 @@ export const createThemeOverrides = (
         itemIconColorActive: "#fff",
         itemIconColorActiveHover: "#fff",
         itemTextColorActiveHover: "#fff",
-
-        // Minimized state
+        // Collapsed (mini) sidebar active item
         itemColorActiveCollapsed: primaryColor,
       },
     };
@@ -196,7 +211,15 @@ export const createThemeOverrides = (
   return base;
 };
 
-// Create dynamic theme with additional components
+/**
+ * Creates a comprehensive Naive UI theme with additional component overrides
+ * beyond the base set. Extends createThemeOverrides with Button, Input, Select,
+ * Tabs, Tag, Modal, Message, and Notification customizations.
+ *
+ * @param primaryColor - Hex color string used as the brand accent color
+ * @param isDark - Whether to generate dark mode overrides (default: false)
+ * @returns Extended Naive UI GlobalThemeOverrides object
+ */
 export const createDynamicTheme = (
   primaryColor: string,
   isDark: boolean = false,
@@ -261,7 +284,14 @@ export const createDynamicTheme = (
   };
 };
 
-// Apply additional overrides to existing theme
+/**
+ * Deep-merges a set of partial overrides into an existing theme object.
+ * Handles nested merging for common component override keys.
+ *
+ * @param baseTheme - The base theme overrides to extend
+ * @param overrides - Partial overrides to merge on top of the base
+ * @returns Merged GlobalThemeOverrides object
+ */
 export const applyThemeOverrides = (
   baseTheme: GlobalThemeOverrides,
   overrides: Partial<GlobalThemeOverrides>,
@@ -269,58 +299,28 @@ export const applyThemeOverrides = (
   return {
     ...baseTheme,
     ...overrides,
-    common: {
-      ...baseTheme.common,
-      ...overrides.common,
-    },
-    Card: {
-      ...baseTheme.Card,
-      ...overrides.Card,
-    },
-    Layout: {
-      ...baseTheme.Layout,
-      ...overrides.Layout,
-    },
-    Menu: {
-      ...baseTheme.Menu,
-      ...overrides.Menu,
-    },
-    Button: {
-      ...baseTheme.Button,
-      ...overrides.Button,
-    },
-    Input: {
-      ...baseTheme.Input,
-      ...overrides.Input,
-    },
-    Select: {
-      ...baseTheme.Select,
-      ...overrides.Select,
-    },
-    Tabs: {
-      ...baseTheme.Tabs,
-      ...overrides.Tabs,
-    },
-    Tag: {
-      ...baseTheme.Tag,
-      ...overrides.Tag,
-    },
-    Modal: {
-      ...baseTheme.Modal,
-      ...overrides.Modal,
-    },
-    Message: {
-      ...baseTheme.Message,
-      ...overrides.Message,
-    },
-    Notification: {
-      ...baseTheme.Notification,
-      ...overrides.Notification,
-    },
+    common: { ...baseTheme.common, ...overrides.common },
+    Card: { ...baseTheme.Card, ...overrides.Card },
+    Layout: { ...baseTheme.Layout, ...overrides.Layout },
+    Menu: { ...baseTheme.Menu, ...overrides.Menu },
+    Button: { ...baseTheme.Button, ...overrides.Button },
+    Input: { ...baseTheme.Input, ...overrides.Input },
+    Select: { ...baseTheme.Select, ...overrides.Select },
+    Tabs: { ...baseTheme.Tabs, ...overrides.Tabs },
+    Tag: { ...baseTheme.Tag, ...overrides.Tag },
+    Modal: { ...baseTheme.Modal, ...overrides.Modal },
+    Message: { ...baseTheme.Message, ...overrides.Message },
+    Notification: { ...baseTheme.Notification, ...overrides.Notification },
   };
 };
 
-// Generate theme variants for both light and dark modes
+/**
+ * Generates both light and dark theme variants for a given primary color.
+ * Useful for pre-computing theme objects when the mode may switch at runtime.
+ *
+ * @param primaryColor - Hex color string used as the brand accent color
+ * @returns Object with `light` and `dark` GlobalThemeOverrides
+ */
 export const generateThemeVariants = (primaryColor: string) => {
   return {
     light: createDynamicTheme(primaryColor, false),
@@ -328,8 +328,13 @@ export const generateThemeVariants = (primaryColor: string) => {
   };
 };
 
-// Utility functions for color manipulation
-export const hexToRgb = (hex: string) => {
+/**
+ * Converts a hex color string to an RGB object.
+ *
+ * @param hex - Hex color string with or without leading '#'
+ * @returns Object with r, g, b number properties, or null if parsing fails
+ */
+export const hexToRgb = (hex: string): { r: number; g: number; b: number } | null => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
     ? {
@@ -340,17 +345,37 @@ export const hexToRgb = (hex: string) => {
     : null;
 };
 
+/**
+ * Applies an alpha channel to a hex color, returning an rgba() string.
+ *
+ * @param color - Hex color string (e.g., '#6366f1')
+ * @param opacity - Opacity value between 0 and 1
+ * @returns rgba() CSS color string, or the original value if parsing fails
+ */
 export const withOpacity = (color: string, opacity: number): string => {
   const rgb = hexToRgb(color);
   if (!rgb) return color;
-
   return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
 };
 
+/**
+ * Lightens a hex color by a given percentage.
+ *
+ * @param color - Hex color string (e.g., '#6366f1')
+ * @param percent - Percentage to lighten (0–100)
+ * @returns Lightened hex color string
+ */
 export const lightenColor = (color: string, percent: number): string => {
   return adjustColor(color, Math.round((255 * percent) / 100));
 };
 
+/**
+ * Darkens a hex color by a given percentage.
+ *
+ * @param color - Hex color string (e.g., '#6366f1')
+ * @param percent - Percentage to darken (0–100)
+ * @returns Darkened hex color string
+ */
 export const darkenColor = (color: string, percent: number): string => {
   return adjustColor(color, -Math.round((255 * percent) / 100));
 };

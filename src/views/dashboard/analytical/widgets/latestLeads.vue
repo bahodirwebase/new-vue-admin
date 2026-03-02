@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { NCard, NButton, NIcon, NAvatar } from 'naive-ui';
+import { NCard, NButton, NAvatar } from 'naive-ui';
 
 const leads = ref([
     {

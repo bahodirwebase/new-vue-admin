@@ -1,5 +1,5 @@
 import { computed, type ComputedRef } from 'vue'
-import { darkTheme, type GlobalThemeOverrides } from 'naive-ui'
+import { darkTheme, type GlobalTheme, type GlobalThemeOverrides } from 'naive-ui'
 import { useThemeStore } from '@/stores/theme'
 import { createThemeOverrides } from '@/utils/theme-utils'
 
@@ -7,8 +7,8 @@ import { createThemeOverrides } from '@/utils/theme-utils'
  * Interface for theme configuration return values
  */
 export interface UseThemeConfigReturn {
-  /** Current theme (dark/light) */
-  theme: ComputedRef<any>
+  /** Naive UI theme object — darkTheme for dark mode, null for light mode */
+  theme: ComputedRef<GlobalTheme | null>
   /** CSS classes for app container */
   appClasses: ComputedRef<string>
   /** Theme overrides for naive-ui */

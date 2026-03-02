@@ -20,8 +20,13 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          // Split naive-ui into its own chunk for better long-term caching
+          if (id.includes('naive-ui') || id.includes('vueuc') || id.includes('@css-render')) {
+            return 'naive-ui'
+          }
+          // Group remaining node_modules into a shared vendor chunk
           if (id.includes('node_modules')) {
-            return 'vendor';
+            return 'vendor'
           }
         },
       },
@@ -29,7 +34,7 @@ export default defineConfig({
     chunkSizeWarningLimit: 500,
   },
   esbuild: {
-    // Console va debuggerlarni o'chirishning zamonaviy usuli
+    // Strip all console and debugger statements from the production build
     drop: ["console", "debugger"],
   },
   optimizeDeps: {

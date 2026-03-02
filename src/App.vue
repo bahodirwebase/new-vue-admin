@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, watch } from 'vue'
+import { watch } from 'vue'
 import { NConfigProvider, NMessageProvider, NGlobalStyle } from 'naive-ui'
 import { THEME_CONSTANTS } from '@/constants/theme'
 import { useThemeStore } from '@/stores/theme'
@@ -42,14 +42,6 @@ watch(primaryColor, (newColor) => {
   logoColor.value = newColor
 }, { immediate: true })
 
-/**
- * Component lifecycle hook
- * Performs any additional setup after component is mounted
- */
-onMounted(() => {
-  // Additional initialization logic can be added here
-  console.log('App component mounted successfully')
-})
 
 </script>
 
@@ -103,6 +95,3 @@ onMounted(() => {
   </n-config-provider>
 </template>
 
-<style scoped>
-
-</style>

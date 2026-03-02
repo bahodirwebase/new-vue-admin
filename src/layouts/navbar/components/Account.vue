@@ -14,10 +14,11 @@ import {
 } from '@vicons/ionicons5'
 import { useRouter, useRoute } from 'vue-router'
 import { NIcon } from 'naive-ui'
-
+import { useAuthStore } from '@/stores/auth'
 
 const router = useRouter()
 const route = useRoute()
+const authStore = useAuthStore()
 const userMenuOptions: DropdownOption[] = [
     {
         label: 'Welcome Admin!',
@@ -89,10 +90,9 @@ const userMenuOptions: DropdownOption[] = [
 ]
 const handleSelect = (key: string) => {
     if (key === 'logout') {
-        router.push({ name: 'LoginSimple' })
-        // logout logikasi
+        authStore.logout()
+        router.push('/login')
     } else {
-        // Tanlangan key (path) ga yo'naltirish
         router.push({ name: key })
     }
 }

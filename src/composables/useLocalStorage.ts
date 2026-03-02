@@ -25,13 +25,16 @@ export function useLocalStorage<T>(key: string, defaultValue: T) {
     }
   }
 
+  // Use deep watching only for object/array values; primitives do not need it
+  const isComplexType = typeof defaultValue === 'object' && defaultValue !== null
+
   // Watch for changes and save
   watch(
     storedValue,
     (newValue) => {
       saveValue(newValue)
     },
-    { deep: true }
+    { deep: isComplexType }
   )
 
   // Initialize

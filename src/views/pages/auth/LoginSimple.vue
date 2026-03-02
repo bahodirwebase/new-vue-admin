@@ -2,23 +2,28 @@
 import { reactive, ref } from 'vue'
 import type { FormInst, FormRules } from 'naive-ui'
 import { useMessage } from 'naive-ui'
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 
 const message = useMessage()
+const router = useRouter()
+const authStore = useAuthStore()
 const loading = ref(false)
 const formRef = ref<FormInst | null>(null)
 
 const model = reactive({
-  email: '',
+  username: '',
   password: '',
   remember: true
 })
 
 const rules: FormRules = {
-  email: [
-    { required: true, message: 'Email is required', trigger: ['input', 'blur'] },
-    { type: 'email', message: 'Invalid email', trigger: ['blur', 'input'] }
+  username: [
+    { required: true, message: 'Username is required', trigger: ['input', 'blur'] }
   ],
-  password: [{ required: true, message: 'Password is required', trigger: ['input', 'blur'] }]
+  password: [
+    { required: true, message: 'Password is required', trigger: ['input', 'blur'] }
+  ]
 }
 
 const onSubmit = async () => {
@@ -26,19 +31,26 @@ const onSubmit = async () => {
   if (!ok) return
 
   loading.value = true
+
   setTimeout(() => {
+    const success = authStore.login(model.username, model.password)
     loading.value = false
-    message.success('Signed in (demo)')
-  }, 700)
+
+    if (success) {
+      router.push('/dashboard/analytical')
+    } else {
+      message.error('Invalid username or password')
+    }
+  }, 400)
 }
 </script>
 
 <template>
   <div class="auth-page">
-    <n-card class="auth-card" title="Login">
+    <n-card class="auth-card" title="Sign In">
       <n-form ref="formRef" :model="model" :rules="rules" size="large" @submit.prevent="onSubmit">
-        <n-form-item path="email" label="Email">
-          <n-input v-model:value="model.email" placeholder="you@example.com" />
+        <n-form-item path="username" label="Username">
+          <n-input v-model:value="model.username" placeholder="admin" />
         </n-form-item>
 
         <n-form-item path="password" label="Password">
@@ -113,23 +125,22 @@ const onSubmit = async () => {
   color: var(--primary-color-hover);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .auth-page {
     padding: 16px;
   }
-  
+
   .auth-card {
     width: 100%;
     max-width: 400px;
   }
-  
+
   .row {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
-  
+
   .footer {
     flex-direction: column;
     text-align: center;
@@ -141,11 +152,11 @@ const onSubmit = async () => {
   .auth-page {
     padding: 12px;
   }
-  
+
   .auth-card {
     border-radius: 12px;
   }
-  
+
   .footer {
     font-size: 0.9rem;
   }
@@ -155,7 +166,7 @@ const onSubmit = async () => {
   .auth-page {
     padding: 8px;
   }
-  
+
   .auth-card {
     max-width: 100%;
   }
