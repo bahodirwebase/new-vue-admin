@@ -43,39 +43,10 @@ import EditProfileModal from './widgets/EditProfileModal.vue'
   padding: 0 2rem 4rem;
 }
 
-.content-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-.left-column,
-.right-column {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
 /* Responsive Design */
-@media (max-width: 1024px) {
-  .content-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
-
 @media (max-width: 768px) {
   .profile-content {
     padding: 0 1rem 2rem;
-  }
-  
-  .content-grid {
-    gap: 1rem;
-  }
-  
-  .left-column,
-  .right-column {
-    gap: 1rem;
   }
 }
 
@@ -83,29 +54,11 @@ import EditProfileModal from './widgets/EditProfileModal.vue'
   .profile-content {
     padding: 0 0.75rem 1.5rem;
   }
-  
-  .content-grid {
-    gap: 0.75rem;
-  }
-  
-  .left-column,
-  .right-column {
-    gap: 0.75rem;
-  }
 }
 
 @media (max-width: 360px) {
   .profile-content {
     padding: 0 0.5rem 1rem;
-  }
-  
-  .content-grid {
-    gap: 0.5rem;
-  }
-  
-  .left-column,
-  .right-column {
-    gap: 0.5rem;
   }
 }
 </style>

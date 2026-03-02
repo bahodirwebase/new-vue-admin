@@ -113,17 +113,11 @@ const chartOptions = ref({
 }
 
 .card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   margin-bottom: 1rem;
 }
 
 .card-title {
   font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin: 0;
 }
 
 .expand-btn {

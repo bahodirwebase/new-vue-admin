@@ -35,39 +35,4 @@ import CtaSection from './widgets/CtaSection.vue'
   min-height: 100vh;
   background: var(--bg-secondary);
 }
-
-.content-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-
-  .content-container {
-    gap: 1.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-
-  .content-container {
-    gap: 1.25rem;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .content-container {
-    gap: 1rem;
-  }
-}
-
-@media (max-width: 360px) {
-
-  .content-container {
-    gap: 0.75rem;
-  }
-}
 </style>

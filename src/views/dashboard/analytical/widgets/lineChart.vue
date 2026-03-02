@@ -171,18 +171,8 @@ onMounted(() => {
   background: var(--bg-primary);
 }
 
-.card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-}
-
 .card-title {
   font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin: 0;
 }
 
 .menu-btn {
