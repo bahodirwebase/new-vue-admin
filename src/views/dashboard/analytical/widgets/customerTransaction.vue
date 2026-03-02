@@ -366,16 +366,13 @@ const handleMore = (row: Transaction) => {
   box-shadow: var(--shadow-md);
 }
 
+/* Inside n-card #header slot — suppress global margin-bottom */
 .card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  margin-bottom: 0;
 }
 
 .card-title {
   font-size: 18px;
-  font-weight: 600;
-  color: var(--text-primary);
 }
 
 .table-wrapper {

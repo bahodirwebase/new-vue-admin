@@ -61,12 +61,6 @@ withDefaults(defineProps<IProps>(), {
     padding: 16px;
 }
 
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 @media (max-width: 768px) {
     :deep(.n-grid) {
         grid-template-columns: 1fr !important;

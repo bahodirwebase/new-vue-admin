@@ -113,10 +113,9 @@ const handleDeleteAccount = async () => {
   box-shadow: 0 12px 24px rgba(239, 68, 68, 0.2);
 }
 
+/* Inside n-card #header slot — suppress global margin-bottom */
 .card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-bottom: 0;
 }
 
 .header-title {

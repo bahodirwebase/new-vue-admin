@@ -104,10 +104,9 @@ const handleSaveSecurity = async () => {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
+/* Inside n-card #header slot — suppress global margin-bottom */
 .card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-bottom: 0;
 }
 
 .header-title {
@@ -125,12 +124,6 @@ const handleSaveSecurity = async () => {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
 }
 
 .form-group label {
@@ -183,9 +176,5 @@ const handleSaveSecurity = async () => {
   color: var(--text-secondary);
 }
 
-.form-actions {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-color);
-}
+
 </style>

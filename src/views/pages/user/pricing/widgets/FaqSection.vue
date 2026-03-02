@@ -47,9 +47,10 @@ const {
 </template>
 
 <style scoped>
+/* Inside n-card #header slot — uses inline gap layout */
 .card-header {
-  display: flex;
-  align-items: center;
+  margin-bottom: 0;
+  justify-content: flex-start;
   gap: 0.75rem;
 }
 

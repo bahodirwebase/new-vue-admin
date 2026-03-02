@@ -49,10 +49,9 @@ const {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
+/* Inside n-card #header slot — suppress global margin-bottom */
 .card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-bottom: 0;
 }
 
 .card-header h3 {
