@@ -157,11 +157,11 @@ const handleAddAccount = () => {
 }
 
 .account-status.connected {
-  color: #22c55e;
+  color: var(--status-success);
 }
 
 .account-status.disconnected {
-  color: #ef4444;
+  color: var(--status-error);
 }
 
 .accounts-summary {

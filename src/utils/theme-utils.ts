@@ -1,4 +1,35 @@
 import type { GlobalThemeOverrides } from "naive-ui";
+import { DARK_COLORS, LIGHT_COLORS } from "@/constants/theme";
+
+/**
+ * Converts a hex color string to an RGB object.
+ *
+ * @param hex - Hex color string with or without leading '#'
+ * @returns Object with r, g, b number properties, or null if parsing fails
+ */
+export const hexToRgb = (hex: string): { r: number; g: number; b: number } | null => {
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16),
+    }
+    : null;
+};
+
+/**
+ * Applies an alpha channel to a hex color, returning an rgba() string.
+ *
+ * @param color - Hex color string (e.g., '#6366f1')
+ * @param opacity - Opacity value between 0 and 1
+ * @returns rgba() CSS color string, or the original value if parsing fails
+ */
+export const withOpacity = (color: string, opacity: number): string => {
+  const rgb = hexToRgb(color);
+  if (!rgb) return color;
+  return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
+};
 
 /**
  * Adjusts the brightness of a hex color by adding a fixed amount to each RGB channel.
@@ -24,6 +55,8 @@ export const adjustColor = (color: string, amount: number): string => {
 /**
  * Creates Naive UI theme overrides based on the given primary color and mode.
  * Covers common components: Card, Layout, Menu, DataTable, Dialog, Dropdown, etc.
+ * Surface colors are sourced from DARK_COLORS / LIGHT_COLORS in src/constants/theme.ts,
+ * which mirror the CSS variables defined in src/styles/variables.css.
  *
  * @param primaryColor - Hex color string used as the brand accent color
  * @param isDark - Whether to generate dark mode overrides (default: false)
@@ -33,136 +66,139 @@ export const createThemeOverrides = (
   primaryColor: string,
   isDark: boolean = false,
 ): GlobalThemeOverrides => {
+  const hoverColor = adjustColor(primaryColor, 20);
+  const pressedColor = adjustColor(primaryColor, -20);
+  const menuHover = withOpacity(primaryColor, 0.1);
+
   const base = isDark
     ? {
       common: {
         primaryColor,
-        primaryColorHover: adjustColor(primaryColor, 20),
-        primaryColorPressed: adjustColor(primaryColor, -20),
+        primaryColorHover: hoverColor,
+        primaryColorPressed: pressedColor,
         primaryColorSuppl: primaryColor,
         borderRadius: "8px",
         fontSize: "14px",
         fontFamily:
           "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-        popoverColor: '#1a1a1a'
+        popoverColor: DARK_COLORS.bgCard
       },
       Card: {
         borderRadius: "12px",
         paddingMedium: "20px",
-        color: "#1e293b",
-        textColor: "#f8fafc",
+        color: DARK_COLORS.bgCard,
+        textColor: DARK_COLORS.textPrimary,
       },
       Layout: {
-        color: "#0f172a",
-        headerColor: "#1e293b",
-        siderColor: "#1e293b",
-        footerColor: "#1e293b",
+        color: DARK_COLORS.bgBody,
+        headerColor: DARK_COLORS.bgSurface,
+        siderColor: DARK_COLORS.bgSurface,
+        footerColor: DARK_COLORS.bgSurface,
       },
       Menu: {
         borderRadius: "8px",
         itemColorActive: primaryColor,
-        itemColorActiveHover: adjustColor(primaryColor, 20),
-        itemColorHover: "rgba(99, 102, 241, 0.1)",
+        itemColorActiveHover: hoverColor,
+        itemColorHover: menuHover,
         itemHeight: "40px",
         itemTextColorActive: "#fff",
         itemIconColorActive: "#fff",
         itemIconColorActiveHover: "#fff",
         itemTextColorActiveHover: "#fff",
-        // Collapsed (mini) sidebar active item
         itemColorActiveCollapsed: primaryColor
       },
       Descriptions: {
         thColor: "var(--bg-primary)",
-        thColorModal: "#262626",
+        thColorModal: DARK_COLORS.bgTableHeader,
         tdColor: "var(--bg-secondary)",
-        tdColorModal: "#1a1a1a",
+        tdColorModal: DARK_COLORS.bgCard,
         tdColorStriped: "var(--bg-secondary)",
-        borderColor: "#333333",
+        borderColor: DARK_COLORS.border,
       },
       InternalSelectMenu: {
-        color: "#1e293b",
-        optionTextColor: "#e2e8f0",
+        color: DARK_COLORS.bgCard,
+        optionTextColor: DARK_COLORS.textSecondary,
         optionTextColorActive: "#ffffff",
-        optionColorPending: "rgba(255, 255, 255, 0.08)",
+        optionColorPending: DARK_COLORS.hoverOverlay,
         borderRadius: "8px",
-        boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15)"
+        boxShadow: DARK_COLORS.shadowMd
       },
       Dropdown: {
-        color: "#1e293b",
-        optionTextColor: "#e2e8f0",
+        color: DARK_COLORS.bgCard,
+        optionTextColor: DARK_COLORS.textSecondary,
         optionTextColorHover: "#ffffff",
-        optionColorHover: "rgba(255, 255, 255, 0.08)",
+        optionColorHover: DARK_COLORS.hoverOverlay,
         borderRadius: "8px",
-        boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15)"
+        boxShadow: DARK_COLORS.shadowMd
       },
       Popover: {
-        color: "#1e293b",
-        textColor: "#e2e8f0",
+        color: DARK_COLORS.bgCard,
+        textColor: DARK_COLORS.textSecondary,
         borderRadius: "8px",
-        boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15)"
+        boxShadow: DARK_COLORS.shadowMd
       },
       DatePicker: {
-        panelColor: "#1e293b",
-        panelTextColor: "#e2e8f0",
-        calendarDaysTextColor: "#e2e8f0",
-        itemTextColor: "#e2e8f0",
-        itemColorHover: "rgba(255, 255, 255, 0.08)",
+        panelColor: DARK_COLORS.bgCard,
+        panelTextColor: DARK_COLORS.textSecondary,
+        calendarDaysTextColor: DARK_COLORS.textSecondary,
+        itemTextColor: DARK_COLORS.textSecondary,
+        itemColorHover: DARK_COLORS.hoverOverlay,
         borderRadius: "8px",
-        boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15)"
+        boxShadow: DARK_COLORS.shadowMd
       },
       TreeSelect: {
-        menuColor: "#1e293b",
-        menuBoxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15)",
+        menuColor: DARK_COLORS.bgCard,
+        menuBoxShadow: DARK_COLORS.shadowMd,
         menuBorderRadius: "8px",
-        itemTextColor: "#e2e8f0",
-        itemColorHover: "rgba(255, 255, 255, 0.08)"
+        itemTextColor: DARK_COLORS.textSecondary,
+        itemColorHover: DARK_COLORS.hoverOverlay
       },
       Tree: {
-        nodeTextColor: "#e2e8f0",
-        nodeColorHover: "rgba(255, 255, 255, 0.08)",
-        nodeColorPressed: "rgba(255, 255, 255, 0.12)",
-        nodeColorActive: "rgba(255, 255, 255, 0.12)"
+        nodeTextColor: DARK_COLORS.textSecondary,
+        nodeColorHover: DARK_COLORS.hoverOverlay,
+        nodeColorPressed: DARK_COLORS.pressedOverlay,
+        nodeColorActive: DARK_COLORS.pressedOverlay
       },
       Cascader: {
-        menuColor: "#1e293b",
-        menuBoxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15)",
+        menuColor: DARK_COLORS.bgCard,
+        menuBoxShadow: DARK_COLORS.shadowMd,
         menuBorderRadius: "8px",
-        optionTextColor: "#e2e8f0",
-        optionColorHover: "rgba(255, 255, 255, 0.08)"
+        optionTextColor: DARK_COLORS.textSecondary,
+        optionColorHover: DARK_COLORS.hoverOverlay
       },
       Tooltip: {
-        color: "#1e293b",
-        textColor: "#e2e8f0",
+        color: DARK_COLORS.bgCard,
+        textColor: DARK_COLORS.textSecondary,
         borderRadius: "4px",
-        boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15)"
+        boxShadow: DARK_COLORS.shadowMd
       },
       Slider: {
-        indicatorColor: "#1e293b",
-        indicatorTextColor: "#e2e8f0",
+        indicatorColor: DARK_COLORS.bgCard,
+        indicatorTextColor: DARK_COLORS.textSecondary,
         indicatorBoxShadow: "0 2px 8px 0px rgba(0, 0, 0, 0.12)",
         indicatorBorderRadius: "4px"
       },
       Avatar: {
-        color: "#1e293b",
-        textColor: "#e2e8f0"
+        color: DARK_COLORS.bgCard,
+        textColor: DARK_COLORS.textSecondary
       },
       Dialog: {
-        color: "#1e293b",
-        textColor: "#e2e8f0",
-        titleTextColor: "#f8fafc",
+        color: DARK_COLORS.bgCard,
+        textColor: DARK_COLORS.textSecondary,
+        titleTextColor: DARK_COLORS.textPrimary,
         borderRadius: "16px",
-        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.15)"
+        boxShadow: DARK_COLORS.shadowXl
       },
       DataTable: {
         thColor: "var(--bg-secondary)",
         tdColor: "var(--bg-primary)",
         tdColorHover: "var(--bg-secondary)",
         tdColorStriped: "var(--bg-secondary)",
-        thTextColor: "#e5e7eb",
-        tdTextColor: "#d1d5db",
+        thTextColor: DARK_COLORS.textMuted,
+        tdTextColor: DARK_COLORS.textSecondary,
         borderColor: "var(--bg-secondary)",
-        thColorHover: "#2a2a2a",
-        paginationBorderColor: "#333333",
+        thColorHover: DARK_COLORS.bgTableHeader,
+        paginationBorderColor: DARK_COLORS.border,
         loadingColor: "#60a5fa",
       },
       Checkbox: {
@@ -173,8 +209,8 @@ export const createThemeOverrides = (
     : {
       common: {
         primaryColor,
-        primaryColorHover: adjustColor(primaryColor, 20),
-        primaryColorPressed: adjustColor(primaryColor, -20),
+        primaryColorHover: hoverColor,
+        primaryColorPressed: pressedColor,
         primaryColorSuppl: primaryColor,
         borderRadius: "8px",
         fontSize: "14px",
@@ -184,26 +220,25 @@ export const createThemeOverrides = (
       Card: {
         borderRadius: "12px",
         paddingMedium: "20px",
-        color: "#ffffff",
-        textColor: "#0f172a",
+        color: LIGHT_COLORS.bgCard,
+        textColor: LIGHT_COLORS.textPrimary,
       },
       Layout: {
-        color: "#f8fafc",
-        headerColor: "#ffffff",
-        siderColor: "#ffffff",
-        footerColor: "#ffffff",
+        color: LIGHT_COLORS.bgBody,
+        headerColor: LIGHT_COLORS.bgSurface,
+        siderColor: LIGHT_COLORS.bgSurface,
+        footerColor: LIGHT_COLORS.bgSurface,
       },
       Menu: {
         borderRadius: "8px",
         itemColorActive: primaryColor,
-        itemColorActiveHover: adjustColor(primaryColor, 20),
-        itemColorHover: "rgba(99, 102, 241, 0.1)",
+        itemColorActiveHover: hoverColor,
+        itemColorHover: menuHover,
         itemHeight: "40px",
         itemTextColorActive: "#fff",
         itemIconColorActive: "#fff",
         itemIconColorActiveHover: "#fff",
         itemTextColorActiveHover: "#fff",
-        // Collapsed (mini) sidebar active item
         itemColorActiveCollapsed: primaryColor,
       },
     };
@@ -326,36 +361,6 @@ export const generateThemeVariants = (primaryColor: string) => {
     light: createDynamicTheme(primaryColor, false),
     dark: createDynamicTheme(primaryColor, true),
   };
-};
-
-/**
- * Converts a hex color string to an RGB object.
- *
- * @param hex - Hex color string with or without leading '#'
- * @returns Object with r, g, b number properties, or null if parsing fails
- */
-export const hexToRgb = (hex: string): { r: number; g: number; b: number } | null => {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16),
-    }
-    : null;
-};
-
-/**
- * Applies an alpha channel to a hex color, returning an rgba() string.
- *
- * @param color - Hex color string (e.g., '#6366f1')
- * @param opacity - Opacity value between 0 and 1
- * @returns rgba() CSS color string, or the original value if parsing fails
- */
-export const withOpacity = (color: string, opacity: number): string => {
-  const rgb = hexToRgb(color);
-  if (!rgb) return color;
-  return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
 };
 
 /**

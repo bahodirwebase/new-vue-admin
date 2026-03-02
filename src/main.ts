@@ -11,6 +11,7 @@ import router from './router'
  * @see https://www.naiveui.com/en-US/os-theme/docs/import-on-demand
  */
 import naive from 'naive-ui'
+import './styles/variables.css'
 import './styles/main.css'
 import './styles/accessibility.css'
 import './styles/common.css'

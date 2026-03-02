@@ -31,53 +31,57 @@ export const THEME_CONSTANTS = {
   }
 } as const
 
-export const COLOR_PALETTE = {
-  PRIMARY: {
-    50: '#eff6ff',
-    100: '#dbeafe',
-    200: '#bfdbfe',
-    300: '#93c5fd',
-    400: '#60a5fa',
-    500: '#3b82f6',
-    600: '#2563eb',
-    700: '#1d4ed8',
-    800: '#1e40af',
-    900: '#1e3a8a'
-  },
-  SUCCESS: {
-    50: '#f0fdf4',
-    100: '#dcfce7',
-    200: '#bbf7d0',
-    300: '#86efac',
-    400: '#4ade80',
-    500: '#22c55e',
-    600: '#16a34a',
-    700: '#15803d',
-    800: '#166534',
-    900: '#14532d'
-  },
-  WARNING: {
-    50: '#fffbeb',
-    100: '#fef3c7',
-    200: '#fde68a',
-    300: '#fcd34d',
-    400: '#fbbf24',
-    500: '#f59e0b',
-    600: '#d97706',
-    700: '#b45309',
-    800: '#92400e',
-    900: '#78350f'
-  },
-  ERROR: {
-    50: '#fef2f2',
-    100: '#fee2e2',
-    200: '#fecaca',
-    300: '#fca5a5',
-    400: '#f87171',
-    500: '#ef4444',
-    600: '#dc2626',
-    700: '#b91c1c',
-    800: '#991b1b',
-    900: '#7f1d1d'
-  }
+/**
+ * Semantic color palette — matches the CSS variables defined in src/styles/variables.css.
+ * Used as the JS source of truth for Naive UI theme overrides (see theme-utils.ts).
+ * When changing a color here, update the corresponding CSS variable too.
+ */
+export const SEMANTIC_COLORS = {
+  success: '#10b981',
+  warning: '#f59e0b',
+  error:   '#ef4444',
+  info:    '#3b82f6'
+} as const
+
+/**
+ * Dark-mode surface colors used in Naive UI component overrides (theme-utils.ts).
+ * These match the [data-theme="dark"] values in src/styles/variables.css.
+ */
+export const DARK_COLORS = {
+  /** Page / layout background */
+  bgBody:    '#0f172a',
+  /** Card / panel background */
+  bgCard:    '#1e293b',
+  /** Elevated surface (header, popover, etc.) */
+  bgSurface: '#1e293b',
+  /** Table header background */
+  bgTableHeader: '#1a2234',
+
+  textPrimary:   '#f8fafc',
+  textSecondary: '#e2e8f0',
+  textMuted:     '#cbd5e1',
+
+  border: '#334155',
+
+  /** Hover overlay on dark surfaces */
+  hoverOverlay:   'rgba(255, 255, 255, 0.08)',
+  pressedOverlay: 'rgba(255, 255, 255, 0.12)',
+
+  shadowMd: '0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15)',
+  shadowXl: '0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.15)'
+} as const
+
+/**
+ * Light-mode surface colors used in Naive UI component overrides (theme-utils.ts).
+ * These match the :root values in src/styles/variables.css.
+ */
+export const LIGHT_COLORS = {
+  bgBody:    '#f8fafc',
+  bgCard:    '#ffffff',
+  bgSurface: '#ffffff',
+
+  textPrimary:   '#0f172a',
+  textSecondary: '#475569',
+
+  shadowMd: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
 } as const
