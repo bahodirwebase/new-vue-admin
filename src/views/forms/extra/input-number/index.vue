@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue"
 import BasicInputNumber from './widgets/BasicInputNumber.vue'
 import MinMaxInputNumber from './widgets/MinMaxInputNumber.vue'
 import StepInputNumber from './widgets/StepInputNumber.vue'
@@ -12,10 +13,7 @@ import ProductInputNumber from './widgets/ProductInputNumber.vue'
 <template>
   <div class="input-number-demo p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Input Number</h1>
-        <p class="page-subtitle">Advanced number input components with validation, precision control, and interactive features</p>
-      </div>
+      <PageHeader title="Input Number" subtitle="Advanced number input components with validation, precision control, and interactive features" />
       
       <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>

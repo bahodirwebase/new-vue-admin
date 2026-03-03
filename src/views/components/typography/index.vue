@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NSpace, NCard } from 'naive-ui'
 
+import PageHeader from "@/components/custom/PageHeader.vue";
 import Headings from './widgets/Headings.vue'
 import TextStyles from './widgets/TextStyles.vue'
 import FontSizes from './widgets/FontSizes.vue'
@@ -16,10 +17,7 @@ import Blockquote from './widgets/Blockquote.vue'
 <template>
   <div class="typography-page">
     <n-space vertical :size="24">
-      <div class="page-header">
-        <h1 class="page-title">Typography</h1>
-        <p class="page-subtitle">Text styles and typography examples</p>
-      </div>
+      <PageHeader title="Typography" subtitle="Text styles and typography examples" />
 
       <n-card title="Headings">
         <Headings />

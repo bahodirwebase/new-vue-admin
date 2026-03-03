@@ -1,5 +1,6 @@
 <script setup lang="ts">
 
+import PageHeader from "@/components/custom/PageHeader.vue"
 import SimpleWizard from './widgets/SimpleWizard.vue'
 import SimpleWizardSelection from './widgets/SimpleWizardSelection.vue'
 import MediumWizard from './widgets/MediumWizard.vue'
@@ -10,10 +11,7 @@ import ComprehensiveWizard from './widgets/ComprehensiveWizard.vue'
 <template>
   <div class="form-wizard-demo p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Form Wizard</h1>
-        <p class="page-subtitle">Multi-step form wizards with validation and progress tracking</p>
-      </div>
+      <PageHeader title="Form Wizard" subtitle="Multi-step form wizards with validation and progress tracking" />
       
       <!-- Simple Wizard Selection -->
       <SimpleWizardSelection />

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue"
 import BasicDatePicker from './widgets/BasicDatePicker.vue'
 import RangeDatePicker from './widgets/RangeDatePicker.vue'
 import DateTimePicker from './widgets/DateTimePicker.vue'
@@ -13,10 +14,7 @@ import EventDatePicker from './widgets/EventDatePicker.vue'
 <template>
   <div class="datepicker-demo p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Date Picker</h1>
-        <p class="page-subtitle">Advanced date selection components with ranges, shortcuts, and custom formatting</p>
-      </div>
+      <PageHeader title="Date Picker" subtitle="Advanced date selection components with ranges, shortcuts, and custom formatting" />
       
       <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>

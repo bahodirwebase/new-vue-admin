@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue";
 
 import VerticalMenu from './widgets/VerticalMenu.vue'
 import MenuWithIcons from './widgets/MenuWithIcons.vue'
@@ -12,10 +13,7 @@ import MenuWithBadges from './widgets/MenuWithBadges.vue'
 <template>
   <div class="ui-page">
     <n-space vertical :size="24">
-      <div class="page-header">
-        <h1 class="page-title">Menu</h1>
-        <p class="page-subtitle">Navigation menus for organizing content and features</p>
-      </div>
+      <PageHeader title="Menu" subtitle="Navigation menus for organizing content and features" />
 
       <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>

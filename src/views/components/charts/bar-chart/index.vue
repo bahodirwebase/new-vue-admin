@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NSpace, NGrid, NGi } from 'naive-ui'
 
+import PageHeader from "@/components/custom/PageHeader.vue";
 import BasicBarChart from './widgets/BasicBarChart.vue'
 import HorizontalBarChart from './widgets/HorizontalBarChart.vue'
 import StackedBarChart from './widgets/StackedBarChart.vue'
@@ -12,10 +13,7 @@ import RealTimeBarChart from './widgets/RealTimeBarChart.vue'
 <template>
   <div class="bar-charts-page">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Bar Charts</h1>
-        <p class="page-subtitle">Advanced bar chart visualizations with ApexCharts</p>
-      </div>
+      <PageHeader title="Bar Charts" subtitle="Advanced bar chart visualizations with ApexCharts" />
 
       <!-- Basic Bar Chart -->
       <n-grid :x-gap="18" :y-gap="18" cols="xxs:1 md:2" responsive="screen">

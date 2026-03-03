@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue"
 import BasicTreeSelect from './widgets/BasicTreeSelect.vue'
 import MultipleTreeSelect from './widgets/MultipleTreeSelect.vue'
 import CheckableTreeSelect from './widgets/CheckableTreeSelect.vue'
@@ -12,10 +13,7 @@ import FileExplorerTreeSelect from './widgets/FileExplorerTreeSelect.vue'
 <template>
   <div class="tree-select-demo p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Tree Select</h1>
-        <p class="page-subtitle">Hierarchical tree selection components with search, checkable items, and custom rendering</p>
-      </div>
+      <PageHeader title="Tree Select" subtitle="Hierarchical tree selection components with search, checkable items, and custom rendering" />
       
       <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>

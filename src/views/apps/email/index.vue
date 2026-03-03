@@ -7,6 +7,7 @@ import EmailListItem from './widgets/EmailListItem.vue';
 import EmailDetail from './widgets/EmailDetail.vue';
 import EmailComposer from './widgets/EmailComposer.vue';
 import { useEmailFetch } from './composables/useEmailFetch';
+import PageHeader from '@/components/custom/PageHeader.vue';
 import { ITEMS_PER_PAGE } from './constants';
 import type { Email } from './types';
 
@@ -171,8 +172,11 @@ onMounted(() => {
 </script>
 <!-- index.vue -->
 <template>
-  <div class="email-app">
-    <div class="app-container">
+  <div class="email-page">
+    <PageHeader title="Email" subtitle="Manage your inbox and messages" />
+
+    <div class="email-app">
+      <div class="app-container">
       <!-- Backdrop Overlay -->
       <div v-if="sidebarOpen && isMobile" class="sidebar-backdrop" @click="sidebarOpen = false"></div>
 
@@ -283,13 +287,21 @@ onMounted(() => {
 
     <!-- Email Composer Modal -->
     <EmailComposer :visible="composerVisible" @update:visible="composerVisible = $event" @send="handleEmailSent" />
-  </div>
+    </div><!-- /.email-app -->
+  </div><!-- /.email-page -->
 </template>
 
 <style scoped lang="scss">
+.email-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .email-app {
   width: 100%;
-  height: 100vh;
+  flex: 1;
+  min-height: 0;
   background: var(--bg-primary);
   display: flex;
   overflow: hidden;

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue"
 import BasicRadio from './widgets/BasicRadio.vue'
 import ButtonRadio from './widgets/ButtonRadio.vue'
 import VerticalRadio from './widgets/VerticalRadio.vue'
@@ -11,10 +12,7 @@ import SizesRadio from './widgets/SizesRadio.vue'
 <template>
   <div class="radio-demo p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Radio</h1>
-        <p class="page-subtitle">Interactive radio button components with custom styling, icons, and various layout options</p>
-      </div>
+      <PageHeader title="Radio" subtitle="Interactive radio button components with custom styling, icons, and various layout options" />
       
       <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>

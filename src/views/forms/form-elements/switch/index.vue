@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue"
 import BasicSwitch from './widgets/BasicSwitch.vue'
 import LabelsSwitch from './widgets/LabelsSwitch.vue'
 import SizesSwitch from './widgets/SizesSwitch.vue'
@@ -12,10 +13,7 @@ import FormSwitch from './widgets/FormSwitch.vue'
 <template>
   <div class="switch-demo p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Switch</h1>
-        <p class="page-subtitle">Toggle switch components with labels, custom values, events, and form integration</p>
-      </div>
+      <PageHeader title="Switch" subtitle="Toggle switch components with labels, custom values, events, and form integration" />
       
       <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>

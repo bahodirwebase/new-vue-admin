@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue";
 
 import BasicCarousel from './widgets/BasicCarousel.vue'
 import CarouselControls from './widgets/CarouselControls.vue'
@@ -10,10 +11,7 @@ import CarouselDirections from './widgets/CarouselDirections.vue'
 <template>
   <div class="ui-page">
     <n-space vertical :size="24">
-      <div class="page-header">
-        <h1 class="page-title">Carousel</h1>
-        <p class="page-subtitle">A slideshow component for cycling through elements—images or slides of text</p>
-      </div>
+      <PageHeader title="Carousel" subtitle="A slideshow component for cycling through elements—images or slides of text" />
 
       <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>

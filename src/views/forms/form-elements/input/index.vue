@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue"
 import BasicInput from './widgets/BasicInput.vue'
 import TypesInput from './widgets/TypesInput.vue'
 import StatesInput from './widgets/StatesInput.vue'
@@ -10,10 +11,7 @@ import ValidationInput from './widgets/ValidationInput.vue'
 <template>
   <div class="input-demo p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Input</h1>
-        <p class="page-subtitle">Comprehensive input components with validation, states, and custom styling options</p>
-      </div>
+      <PageHeader title="Input" subtitle="Comprehensive input components with validation, states, and custom styling options" />
       
       <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>

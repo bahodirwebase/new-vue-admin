@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue";
 
 import BasicTabs from './widgets/BasicTabs.vue'
 import TabTypes from './widgets/TabTypes.vue'
@@ -10,10 +11,7 @@ import TabFeatures from './widgets/TabFeatures.vue'
 <template>
   <div class="ui-page">
     <n-space vertical :size="24">
-      <div class="page-header">
-        <h1 class="page-title">Tabs</h1>
-        <p class="page-subtitle">Organized content sections with tabbed navigation</p>
-      </div>
+      <PageHeader title="Tabs" subtitle="Organized content sections with tabbed navigation" />
 
       <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>

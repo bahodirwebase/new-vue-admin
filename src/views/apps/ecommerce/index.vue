@@ -14,6 +14,7 @@ import ProductDetail from "./widgets/ProductDetail/index.vue";
 import ShoppingCart from "./widgets/ShoppingCart/index.vue";
 import Checkout from "./widgets/Checkout/index.vue";
 import EcommerceSidebar from "./components/EcommerceSidebar.vue";
+import PageHeader from "@/components/custom/PageHeader.vue";
 import { useBreakpoints } from "@/composables/useBreakpoints";
 import { useEcommerceStore } from "./store";
 
@@ -53,12 +54,8 @@ const getCurrentViewLabel = computed(() => {
 <template>
   <div class="ecommerce-app">
     <!-- Header -->
-    <header class="ecommerce-header">
-      <div class="header-content">
-        <h2>E-commerce ( {{ getCurrentViewLabel }} )</h2>
-        <p>Manage your inventory, pricing, and product details</p>
-      </div>
-      <div class="header-actions">
+    <PageHeader title="E-commerce" :subtitle="`${getCurrentViewLabel} — Manage your inventory, pricing, and product details`" class="ecommerce-header">
+      <template #actions>
         <n-space>
           <n-button
             @click="ecommerceStore.goBack"
@@ -142,8 +139,8 @@ const getCurrentViewLabel = computed(() => {
             Filter
           </n-button>
         </n-space>
-      </div>
-    </header>
+      </template>
+    </PageHeader>
 
     <!-- Main Content -->
     <main class="ecommerce-main">
@@ -170,12 +167,10 @@ const getCurrentViewLabel = computed(() => {
 }
 
 .ecommerce-header {
-  padding: 24px 0;
-  border-bottom: 1px solid var(--n-border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--n-card-color);
+  gap: 1rem;
 }
 
 .ecommerce-main {
@@ -200,9 +195,7 @@ const getCurrentViewLabel = computed(() => {
 
 @media (max-width: 768px) {
   .ecommerce-header {
-    padding: 16px 8px;
     flex-direction: column;
-    gap: 16px;
     align-items: flex-start;
   }
 

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue"
 import BasicUpload from './widgets/BasicUpload.vue'
 import MultipleUpload from './widgets/MultipleUpload.vue'
 import DragUpload from './widgets/DragUpload.vue'
@@ -13,10 +14,7 @@ import ProfileUpload from './widgets/ProfileUpload.vue'
 <template>
   <div class="upload-demo p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Upload</h1>
-        <p class="page-subtitle">File upload components with drag-drop, progress tracking, and validation features</p>
-      </div>
+      <PageHeader title="Upload" subtitle="File upload components with drag-drop, progress tracking, and validation features" />
       
       <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>

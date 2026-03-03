@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NSpace, NGrid, NGi, NCard } from 'naive-ui'
 
+import PageHeader from "@/components/custom/PageHeader.vue";
 import BasicGradients from './widgets/BasicGradients.vue'
 import ColorVariations from './widgets/ColorVariations.vue'
 import GradientAngles from './widgets/GradientAngles.vue'
@@ -12,10 +13,7 @@ import UsageExamples from './widgets/UsageExamples.vue'
 <template>
   <div class="gradient-text-page">
     <n-space vertical :size="24">
-      <div class="page-header">
-        <h1 class="page-title">Gradient Text</h1>
-        <p class="page-subtitle">Beautiful gradient text effects with customizable colors and animations</p>
-      </div>
+      <PageHeader title="Gradient Text" subtitle="Beautiful gradient text effects with customizable colors and animations" />
 
       <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>

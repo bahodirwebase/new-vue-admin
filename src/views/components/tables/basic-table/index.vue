@@ -2,6 +2,7 @@
 import { NSpace, NCard, NButton, NIcon, useMessage } from 'naive-ui'
 import { RefreshOutline } from '@vicons/ionicons5'
 
+import PageHeader from "@/components/custom/PageHeader.vue";
 import SimpleTable from './widgets/SimpleTable.vue'
 import BorderedTable from './widgets/BorderedTable.vue'
 import StripedTable from './widgets/StripedTable.vue'
@@ -18,10 +19,7 @@ const refreshData = () => {
 <template>
   <div class="basic-table">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Basic Table</h1>
-        <p class="page-subtitle">Simple and styled table components with various layout options</p>
-      </div>
+      <PageHeader title="Basic Table" subtitle="Simple and styled table components with various layout options" />
       
       <n-card class="table-card">
         <template #header-extra>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue";
 
 import BasicCollapse from './widgets/BasicCollapse.vue'
 import CollapseFeatures from './widgets/CollapseFeatures.vue'
@@ -11,12 +12,7 @@ import AccordionMode from './widgets/AccordionMode.vue'
 <template>
   <div class="ui-page">
     <n-space vertical :size="24">
-      <div class="page-header">
-        <h1 class="page-title">Collapse</h1>
-        <p class="page-subtitle">
-          Accordion components for building collapsible content sections
-        </p>
-      </div>
+      <PageHeader title="Collapse" subtitle="Accordion components for building collapsible content sections" />
 
       <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>

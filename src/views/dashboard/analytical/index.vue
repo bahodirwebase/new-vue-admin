@@ -12,6 +12,7 @@ import StatisticsByChart from "./widgets/StatisticsByChart.vue";
 import { ChatbubbleOutline, EyeOutline, HeartOutline, ShareSocialOutline, VideocamOutline } from "@vicons/ionicons5";
 
 import { useThemeStore } from "@/stores/theme";
+import PageHeader from "@/components/custom/PageHeader.vue";
 
 
 
@@ -143,10 +144,7 @@ watch(
 
   <div class="analytical-page">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Analytical Dashboard</h1>
-        <p class="page-subtitle">Detailed analytics and insights</p>
-      </div>
+      <PageHeader title="Analytical Dashboard" subtitle="Detailed analytics and insights" />
       <n-grid y-gap="18" x-gap="18" cols="1 xxs:2 sm:3 md:4 lg:5 xl:6"
         responsive="screen">
         <n-gi v-for="(item, index) in statisticsInfo" :key="index">

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue"
 import BasicDynamicTags from './widgets/BasicDynamicTags.vue'
 import ValidationDynamicTags from './widgets/ValidationDynamicTags.vue'
 import ClosableDynamicTags from './widgets/ClosableDynamicTags.vue'
@@ -10,11 +11,7 @@ import ProjectDynamicTags from './widgets/ProjectDynamicTags.vue'
 <template>
   <div class="dynamic-tags-demo p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Dynamic Tags</h1>
-        <p class="page-subtitle">Flexible tag management components with validation, presets, and custom styling options
-        </p>
-      </div>
+      <PageHeader title="Dynamic Tags" subtitle="Flexible tag management components with validation, presets, and custom styling options" />
 
       <n-grid :x-gap="16" :y-gap="16" cols="1 lg:2" responsive="screen">
         <n-gi>

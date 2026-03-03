@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue"
 import BasicInputOtp from './widgets/BasicInputOtp.vue'
 import LengthsInputOtp from './widgets/LengthsInputOtp.vue'
 import ValidationInputOtp from './widgets/ValidationInputOtp.vue'
@@ -11,10 +12,7 @@ import TwoFactorInputOtp from './widgets/TwoFactorInputOtp.vue'
 <template>
   <div class="input-otp-demo p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Input OTP</h1>
-        <p class="page-subtitle">One-time password input components with validation, auto-focus, and two-factor authentication</p>
-      </div>
+      <PageHeader title="Input OTP" subtitle="One-time password input components with validation, auto-focus, and two-factor authentication" />
       
       <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>

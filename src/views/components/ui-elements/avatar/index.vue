@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue";
 
 import AvatarSizes from './widgets/AvatarSizes.vue'
 import AvatarGroups from './widgets/AvatarGroups.vue'
@@ -11,12 +12,7 @@ import AvatarWithFallback from './widgets/AvatarWithFallback.vue'
 <template>
   <div class="ui-page">
     <n-space vertical :size="24">
-      <div class="page-header">
-        <h1 class="page-title">Avatar</h1>
-        <p class="page-subtitle">
-          User profile images, initials, and status indicators
-        </p>
-      </div>
+      <PageHeader title="Avatar" subtitle="User profile images, initials, and status indicators" />
       <n-grid x-gap="12" cols="1 sm:2" responsive="screen" >
         <n-gi>
           <AvatarSizes />

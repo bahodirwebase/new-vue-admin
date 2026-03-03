@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue"
 import BasicSelect from './widgets/BasicSelect.vue'
 import MultipleSelect from './widgets/MultipleSelect.vue'
 import SearchableSelect from './widgets/SearchableSelect.vue'
@@ -10,10 +11,7 @@ import GroupedSelect from './widgets/GroupedSelect.vue'
 <template>
   <div class="select-demo p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Select</h1>
-        <p class="page-subtitle">Advanced select components with multiple selection, search, and grouped options</p>
-      </div>
+      <PageHeader title="Select" subtitle="Advanced select components with multiple selection, search, and grouped options" />
       
       <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NSpace, NGrid, NGi } from 'naive-ui'
 
+import PageHeader from "@/components/custom/PageHeader.vue";
 import BasicPieChart from './widgets/BasicPieChart.vue'
 import DonutChart from './widgets/DonutChart.vue'
 import Pie3DChart from './widgets/Pie3DChart.vue'
@@ -12,10 +13,7 @@ import AdvancedPieChart from './widgets/AdvancedPieChart.vue'
 <template>
   <div class="pie-charts-page">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Pie Charts</h1>
-        <p class="page-subtitle">Advanced pie chart visualizations with ApexCharts</p>
-      </div>
+      <PageHeader title="Pie Charts" subtitle="Advanced pie chart visualizations with ApexCharts" />
 
       <!-- Basic Pie and Donut Charts -->
       <n-grid :x-gap="18" :y-gap="18" cols="xxs:1 md:2" responsive="screen">

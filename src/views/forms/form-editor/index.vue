@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import PageHeader from "@/components/custom/PageHeader.vue"
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import { 
@@ -75,10 +76,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="form-editor">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Form Editor</h1>
-        <p class="page-subtitle">Advanced rich text editor with formatting tools and content management</p>
-      </div>
+      <PageHeader title="Form Editor" subtitle="Advanced rich text editor with formatting tools and content management" />
       
       <n-card title="Editor" >
         <template #header-extra>

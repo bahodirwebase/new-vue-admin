@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { 
-  NCard, 
-  NSpace, 
-  NButton, 
-  NIcon, 
+import {
+  NCard,
+  NSpace,
+  NButton,
+  NIcon,
   useMessage
 } from 'naive-ui'
-import { 
+import {
   AddOutline,
   DownloadOutline,
   RefreshOutline
 } from '@vicons/ionicons5'
 
+import PageHeader from "@/components/custom/PageHeader.vue";
 import SearchFilters from './widgets/SearchFilters.vue'
 import AdvancedTable from './widgets/AdvancedTable.vue'
 import StatisticsGrid from './widgets/StatisticsGrid.vue'
@@ -108,10 +109,7 @@ const exportData = () => {
 <template>
   <div class="data-table">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Data Table</h1>
-        <p class="page-subtitle">Advanced data table with search, filtering, pagination, and user management features</p>
-      </div>
+      <PageHeader title="Data Table" subtitle="Advanced data table with search, filtering, pagination, and user management features" />
       
       <n-card class="table-card">
         <template #header-extra>

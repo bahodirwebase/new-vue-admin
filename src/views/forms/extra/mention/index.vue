@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue"
 import BasicMention from './widgets/BasicMention.vue'
 import PrefixMention from './widgets/PrefixMention.vue'
 import AsyncMention from './widgets/AsyncMention.vue'
@@ -11,10 +12,7 @@ import CommentMention from './widgets/CommentMention.vue'
 <template>
   <div class="mention-demo p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Mention</h1>
-        <p class="page-subtitle">Advanced mention components with async loading, validation, and custom styling options</p>
-      </div>
+      <PageHeader title="Mention" subtitle="Advanced mention components with async loading, validation, and custom styling options" />
       
       <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NSpace, NGrid, NGi } from 'naive-ui'
 
+import PageHeader from "@/components/custom/PageHeader.vue";
 import BasicCountdown from './widgets/BasicCountdown.vue'
 import PrecisionCountdown from './widgets/PrecisionCountdown.vue'
 import CustomFormatCountdown from './widgets/CustomFormatCountdown.vue'
@@ -11,10 +12,7 @@ import RealWorldCountdown from './widgets/RealWorldCountdown.vue'
 <template>
   <div class="count-down-page">
     <n-space vertical :size="24">
-      <div class="page-header">
-        <h1 class="page-title">Countdown</h1>
-        <p class="page-subtitle">Versatile countdown timers with custom formatting and precision control</p>
-      </div>
+      <PageHeader title="Countdown" subtitle="Versatile countdown timers with custom formatting and precision control" />
 
       <!-- Basic and Precision Countdowns -->
       <n-grid :x-gap="18" :y-gap="18" cols="xxs:1 md:2" responsive="screen">

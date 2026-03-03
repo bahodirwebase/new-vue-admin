@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue"
 import BasicRate from './widgets/BasicRate.vue'
 import CountRate from './widgets/CountRate.vue'
 import HalfRate from './widgets/HalfRate.vue'
@@ -13,10 +14,7 @@ import ReviewRate from './widgets/ReviewRate.vue'
 <template>
   <div class="rate-demo p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Rate</h1>
-        <p class="page-subtitle">Interactive rating components with customization options, tooltips, and review features</p>
-      </div>
+      <PageHeader title="Rate" subtitle="Interactive rating components with customization options, tooltips, and review features" />
       
       <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>

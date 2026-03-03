@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NSpace, NGrid, NGi } from 'naive-ui'
 
+import PageHeader from "@/components/custom/PageHeader.vue";
 import BasicMixedChart from './widgets/BasicMixedChart.vue'
 import BarLineChart from './widgets/BarLineChart.vue'
 import AreaColumnChart from './widgets/AreaColumnChart.vue'
@@ -12,10 +13,7 @@ import CustomMixedChart from './widgets/CustomMixedChart.vue'
 <template>
   <div class="mixed-charts-page">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Mixed Charts</h1>
-        <p class="page-subtitle">Advanced mixed chart visualizations with ApexCharts</p>
-      </div>
+      <PageHeader title="Mixed Charts" subtitle="Advanced mixed chart visualizations with ApexCharts" />
 
       <!-- Basic Mixed Chart -->
       <BasicMixedChart />

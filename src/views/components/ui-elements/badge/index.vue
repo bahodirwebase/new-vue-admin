@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue";
 
 import BadgeTypes from './widgets/BadgeTypes.vue'
 import BadgePositions from './widgets/BadgePositions.vue'
@@ -11,10 +12,7 @@ import BadgeOnAvatars from './widgets/BadgeOnAvatars.vue'
 <template>
   <div class="ui-page">
     <n-space vertical :size="24">
-      <div class="page-header">
-        <h1 class="page-title">Badge</h1>
-        <p class="page-subtitle">Status indicators, notifications, and count badges</p>
-      </div>
+      <PageHeader title="Badge" subtitle="Status indicators, notifications, and count badges" />
 
       <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>

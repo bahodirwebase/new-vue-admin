@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue"
 import BasicAutoComplete from './widgets/BasicAutoComplete.vue'
 import FilterAutoComplete from './widgets/FilterAutoComplete.vue'
 import MultipleAutoComplete from './widgets/MultipleAutoComplete.vue'
@@ -11,10 +12,7 @@ import EmailAutoComplete from './widgets/EmailAutoComplete.vue'
 <template>
   <div class="autocomplete-demo p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Auto Complete</h1>
-        <p class="page-subtitle">Smart autocomplete components with filtering, async loading, and custom suggestions</p>
-      </div>
+      <PageHeader title="Auto Complete" subtitle="Smart autocomplete components with filtering, async loading, and custom suggestions" />
       
       <n-grid x-gap="12" cols="1 sm:2" responsive="screen">
         <n-gi>

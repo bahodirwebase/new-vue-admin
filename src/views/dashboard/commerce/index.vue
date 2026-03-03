@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { NGrid, NGi, NFlex } from "naive-ui";
+import PageHeader from "@/components/custom/PageHeader.vue";
 import StatisticsCard from "./widgets/StatisticsCard.vue";
 import RevenueAnalytics from "./widgets/RevenueAnalytics.vue";
 import MonthlyTarget from "./widgets/MonthlyTarget.vue";
@@ -16,10 +17,7 @@ import RecentActivity from "./widgets/RecentActivity.vue";
 <template>
   <div class="analytical-page">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Commerce Dashboard</h1>
-        <p class="page-subtitle">Detailed analytics and insights</p>
-      </div>
+      <PageHeader title="Commerce Dashboard" subtitle="Detailed analytics and insights" />
       <n-grid :x-gap="18" :y-gap="18" cols="xxs:1 md:3 lg:4" responsive="screen">
 
         <n-gi span="xxs:1 md:2 lg:3">

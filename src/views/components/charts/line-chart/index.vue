@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NSpace, NGrid, NGi } from 'naive-ui'
 
+import PageHeader from "@/components/custom/PageHeader.vue";
 import BasicLineChart from './widgets/BasicLineChart.vue'
 import MultiLineChart from './widgets/MultiLineChart.vue'
 import GradientLineChart from './widgets/GradientLineChart.vue'
@@ -11,10 +12,7 @@ import RealTimeLineChart from './widgets/RealTimeLineChart.vue'
 <template>
   <div class="line-charts-page">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Line Charts</h1>
-        <p class="page-subtitle">Advanced line chart visualizations with ApexCharts</p>
-      </div>
+      <PageHeader title="Line Charts" subtitle="Advanced line chart visualizations with ApexCharts" />
 
       <!-- Basic Line Chart -->
       <n-grid :x-gap="18" :y-gap="18" cols="xxs:1 md:2" responsive="screen">

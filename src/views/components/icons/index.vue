@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NSpace, NCard } from 'naive-ui'
 
+import PageHeader from "@/components/custom/PageHeader.vue";
 import PopularIcons from './widgets/PopularIcons.vue'
 import IconSizes from './widgets/IconSizes.vue'
 import IconColors from './widgets/IconColors.vue'
@@ -14,10 +15,7 @@ import AnimatedIcons from './widgets/AnimatedIcons.vue'
 <template>
   <div class="icons-page">
     <n-space vertical :size="24">
-      <div class="page-header">
-        <h1 class="page-title">Icons</h1>
-        <p class="page-subtitle">Icon library and usage examples</p>
-      </div>
+      <PageHeader title="Icons" subtitle="Icon library and usage examples" />
 
       <n-card title="Ionicons 5">
         <PopularIcons />

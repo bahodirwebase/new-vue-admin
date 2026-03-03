@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from "@/components/custom/PageHeader.vue"
 import BasicSlider from './widgets/BasicSlider.vue'
 import RangeSlider from './widgets/RangeSlider.vue'
 import StepsSlider from './widgets/StepsSlider.vue'
@@ -14,10 +15,7 @@ import InteractiveSlider from './widgets/InteractiveSlider.vue'
 <template>
   <div class="slider-demo">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Slider</h1>
-        <p class="page-subtitle">Interactive slider components with ranges, steps, marks, and custom styling options</p>
-      </div>
+      <PageHeader title="Slider" subtitle="Interactive slider components with ranges, steps, marks, and custom styling options" />
       
       <n-grid cols="1 sm:2" responsive="screen" :x-gap="12">
         <n-gi>

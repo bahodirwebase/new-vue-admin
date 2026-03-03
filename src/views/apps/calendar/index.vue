@@ -6,6 +6,7 @@ import CalendarContent from "./widgets/CalendarContent.vue";
 import EventModal from "./widgets/EventModal.vue";
 
 import { useCalendarStore } from "./store";
+import PageHeader from "@/components/custom/PageHeader.vue";
 
 const calendarStore = useCalendarStore();
 
@@ -16,10 +17,7 @@ onMounted(() => {
 <template>
   <div class="calendar-app p-0">
     <n-space vertical :size="18">
-      <div class="page-header">
-        <h1 class="page-title">Calendar</h1>
-        <p class="page-subtitle">Interactive calendar with event management, scheduling, and organization features</p>
-      </div>
+      <PageHeader title="Calendar" subtitle="Interactive calendar with event management, scheduling, and organization features" />
       
       <!-- Main Content -->
       <main class="calendar-main">
