@@ -1,510 +1,265 @@
-<script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
-import { NButton, NIcon, NInput, NCheckbox, NSpin, NPagination, useMessage } from 'naive-ui';
-import { MenuOutline } from '@vicons/ionicons5';
-import EmailSidebar from './widgets/EmailSidebar.vue';
-import EmailListItem from './widgets/EmailListItem.vue';
-import EmailDetail from './widgets/EmailDetail.vue';
-import EmailComposer from './widgets/EmailComposer.vue';
-import { useEmailFetch } from './composables/useEmailFetch';
-import PageHeader from '@/components/custom/PageHeader.vue';
-import { ITEMS_PER_PAGE } from './constants';
-import type { Email } from './types';
-
-const {
-  emails,
-  paginatedEmails,
-  loading,
-  currentPage,
-  totalPages,
-  fetchEmails,
-  search,
-  markAsRead,
-  toggleStar,
-  deleteEmail: deleteEmailFromList,
-} = useEmailFetch();
-
-const message = useMessage();
-const isMobile = ref(window.innerWidth < 768);
-const sidebarOpen = ref(false);
-const composerVisible = ref(false);
-const selectedEmail = ref<Email | undefined>();
-const selectedEmails = ref<string[]>([]);
-const selectAll = ref(false);
-const searchQuery = ref('');
-const currentFolder = ref('inbox');
-const currentLabel = ref<string | null>(null);
-
-// Responsive handling
-if (typeof window !== 'undefined') {
-  window.addEventListener('resize', () => {
-    isMobile.value = window.innerWidth < 768;
-    if (window.innerWidth >= 768) {
-      sidebarOpen.value = false;
-    }
-  });
-}
-
-const currentFolderName = computed(() => {
-  const folderName: Record<string, string> = {
-    inbox: 'Inbox',
-    starred: 'Starred',
-    sent: 'Sent',
-    drafts: 'Drafts',
-    spam: 'Spam',
-    trash: 'Trash',
-  };
-  return folderName[currentFolder.value] || 'Inbox';
-});
-
-const handleSearch = (query: string) => {
-  search(query);
-  currentPage.value = 1;
-};
-
-const handleFolderSelect = (folderId: string) => {
-  currentFolder.value = folderId;
-  currentLabel.value = null;
-  selectedEmail.value = undefined;
-  selectedEmails.value = [];
-  selectAll.value = false;
-  fetchEmails();
-};
-
-const handleLabelSelect = (labelId: string) => {
-  currentLabel.value = labelId;
-  selectedEmail.value = undefined;
-  selectedEmails.value = [];
-  selectAll.value = false;
-};
-
-const selectEmail = (email: Email) => {
-  selectedEmail.value = email;
-  if (!email.read) {
-    markAsRead(email.id);
-  }
-  if (isMobile.value) {
-    sidebarOpen.value = false;
-  }
-};
-
-const handleSelectEmail = (emailId: string, checked: boolean) => {
-  if (checked) {
-    selectedEmails.value.push(emailId);
-  } else {
-    selectedEmails.value = selectedEmails.value.filter((id) => id !== emailId);
-  }
-};
-
-const handleSelectAll = (checked: boolean) => {
-  if (checked) {
-    selectedEmails.value = paginatedEmails.value.map((e) => e.id);
-  } else {
-    selectedEmails.value = [];
-  }
-};
-
-const handleToggleStar = (emailId: string) => {
-  toggleStar(emailId);
-  if (selectedEmail.value?.id === emailId) {
-    selectedEmail.value = emails.value.find((e) => e.id === emailId);
-  }
-};
-
-const deleteEmailConfirm = (emailId: string) => {
-  message.info('Email moved to trash', {
-    closable: true,
-  });
-  deleteEmailFromList(emailId);
-  if (selectedEmail.value?.id === emailId) {
-    selectedEmail.value = undefined;
-  }
-};
-
-const deleteEmail = (emailId: string) => {
-  deleteEmailConfirm(emailId);
-};
-
-const archiveEmail = (emailId: string) => {
-  message.info('Email archived', {
-    closable: true,
-  });
-  deleteEmailFromList(emailId);
-  if (selectedEmail.value?.id === emailId) {
-    selectedEmail.value = undefined;
-  }
-};
-
-const handleDetailAction = (action: string) => {
-  if (!selectedEmail.value) return;
-
-  switch (action) {
-    case 'reply':
-      composerVisible.value = true;
-      break;
-    case 'reply-all':
-      composerVisible.value = true;
-      break;
-    case 'forward':
-      composerVisible.value = true;
-      break;
-    case 'spam':
-      message.warning('Email marked as spam');
-      break;
-    case 'unsubscribe':
-      message.info('Unsubscribe request sent');
-      break;
-  }
-};
-
-const openComposer = () => {
-  composerVisible.value = true;
-};
-
-const handleEmailSent = () => {
-  message.success('Email sent successfully!');
-  fetchEmails();
-};
-
-onMounted(() => {
-  fetchEmails();
-});
-</script>
-<!-- index.vue -->
 <template>
-  <div class="email-page">
-    <PageHeader title="Email" subtitle="Manage your inbox and messages" />
+  <div class="mail-app">
+    <!-- Mobile sidebar backdrop -->
+    <transition name="fade-overlay">
+      <div
+        v-if="isMobile && sidebarOpen"
+        class="mail-backdrop"
+        @click="sidebarOpen = false"
+      />
+    </transition>
 
-    <div class="email-app">
-      <div class="app-container">
-      <!-- Backdrop Overlay -->
-      <div v-if="sidebarOpen && isMobile" class="sidebar-backdrop" @click="sidebarOpen = false"></div>
+    <!-- ── Sidebar ─────────────────────────────────────────────── -->
+    <div class="mail-sidebar-wrap" :class="{ 'is-open': sidebarOpen }">
+      <MailSidebar
+        :folders="store.foldersWithCount.value"
+        :labels="store.labels.value"
+        :active-folder="store.currentFolder.value"
+        :active-label="store.currentLabel.value"
+        @compose="openCompose('new')"
+        @folder-select="onFolderSelect"
+        @label-select="onLabelSelect"
+      />
+    </div>
 
-      <!-- Sidebar -->
-      <div class="sidebar-wrapper" :class="{ 'mobile-open': sidebarOpen }">
-        <EmailSidebar @compose-click="openComposer" @folder-select="handleFolderSelect"
-          @label-select="handleLabelSelect" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
+    <!-- ── Main area ───────────────────────────────────────────── -->
+    <div class="mail-main" :class="{ 'show-detail': !!store.selectedEmail.value && isMobile }">
+
+      <!-- Email list panel -->
+      <div
+        class="mail-list-panel"
+        :class="{ 'is-hidden-mobile': isMobile && !!store.selectedEmail.value }"
+      >
+        <!-- Mobile topbar -->
+        <div v-if="isMobile" class="mobile-topbar">
+          <n-button text @click="sidebarOpen = true">
+            <template #icon><n-icon :component="MenuOutline" size="22" /></template>
+          </n-button>
+          <span class="topbar-title">{{ folderTitle }}</span>
+          <n-button text @click="openCompose('new')">
+            <template #icon><n-icon :component="CreateOutline" size="22" /></template>
+          </n-button>
+        </div>
+
+        <MailList
+          :emails="store.paginatedEmails.value"
+          :loading="store.loading.value"
+          :selected-id="store.selectedEmail.value?.id"
+          :checked-ids="store.selectedIds.value"
+          :all-selected="store.allSelected.value"
+          :current-folder="store.currentFolder.value"
+          :total-pages="store.totalPages.value"
+          :current-page="store.currentPage.value"
+          @select="store.openEmail"
+          @toggle-check="store.toggleCheck"
+          @check-all="store.checkAll"
+          @search="store.search"
+          @star="store.toggleStar"
+          @bulk-delete="store.bulkTrash"
+          @bulk-archive="store.bulkArchive"
+          @bulk-read="store.bulkRead"
+          @page-change="store.setPage"
+        />
       </div>
 
-      <!-- Main Content -->
-      <div class="main-content">
-        <!-- Header -->
-        <div class="app-header">
-          <div class="header-left">
-            <n-button v-if="isMobile" text type="primary" circle @click="sidebarOpen = !sidebarOpen">
-              <template #icon>
-                <n-icon :component="MenuOutline" />
-              </template>
-            </n-button>
-
-            <!-- Search -->
-            <div class="search-bar">
-              <n-input v-model:value="searchQuery" type="text" placeholder="Search emails..." clearable
-                @update:value="handleSearch">
-                <template #prefix>
-                  <n-icon>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                  </n-icon>
-                </template>
-              </n-input>
-            </div>
-          </div>
-
-          <!-- Header Actions -->
-          <div class="header-right">
-            <n-button text type="primary" circle>
-              <template #icon>
-                <n-icon>
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
-                  </svg>
-                </n-icon>
-              </template>
-            </n-button>
-          </div>
-        </div>
-
-        <!-- Email List and Detail -->
-        <div class="content-wrapper">
-          <!-- Email List -->
-          <div class="email-list-container">
-            <div class="list-header">
-              <h2>{{ currentFolderName }}</h2>
-              <div class="list-controls">
-                <n-checkbox v-model:checked="selectAll" @update:checked="handleSelectAll" />
-                <n-button text type="primary" size="small">
-                  <template #icon>
-                    <n-icon>
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
-                      </svg>
-                    </n-icon>
-                  </template>
-                </n-button>
-              </div>
-            </div>
-
-            <!-- Loading State -->
-            <n-spin v-if="loading" />
-
-            <!-- Empty State -->
-            <div v-else-if="paginatedEmails.length === 0" class="empty-state">
-              <n-icon class="empty-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-width="2" />
-                </svg>
-              </n-icon>
-              <p>No emails found</p>
-            </div>
-
-            <!-- Email List -->
-            <div v-else class="emails-list">
-              <EmailListItem v-for="email in paginatedEmails" :key="email.id" :email="email"
-                :is-selected="selectedEmails.includes(email.id)"
-                @select-change="(checked) => handleSelectEmail(email.id, checked)" @click="selectEmail(email)"
-                @star-toggle="toggleStar(email.id)" />
-            </div>
-
-            <!-- Pagination -->
-            <div v-if="totalPages > 1" class="pagination">
-              <n-pagination v-model:page="currentPage" :page-count="totalPages" :page-size="ITEMS_PER_PAGE" />
-            </div>
-          </div>
-
-          <!-- Email Detail -->
-          <div class="email-detail-container" :class="{ active: selectedEmail }">
-            <EmailDetail :email="selectedEmail" @back="selectedEmail = undefined"
-              @star-toggle="handleToggleStar(selectedEmail?.id || '')" @delete="deleteEmail(selectedEmail?.id || '')"
-              @archive="archiveEmail(selectedEmail?.id || '')" @action="handleDetailAction" />
-          </div>
-        </div>
+      <!-- Email detail panel -->
+      <div class="mail-detail-panel">
+        <MailReader
+          :email="store.selectedEmail.value"
+          @back="store.closeEmail"
+          @toggle-star="store.toggleStar"
+          @delete="store.moveToTrash"
+          @archive="store.archive"
+          @mark-read="store.markRead"
+          @reply="openCompose('reply')"
+          @forward="openCompose('forward')"
+        />
       </div>
     </div>
 
-    <!-- Email Composer Modal -->
-    <EmailComposer :visible="composerVisible" @update:visible="composerVisible = $event" @send="handleEmailSent" />
-    </div><!-- /.email-app -->
-  </div><!-- /.email-page -->
+    <!-- ── Compose window ──────────────────────────────────────── -->
+    <transition name="compose-rise">
+      <MailCompose
+        v-if="composeVisible"
+        :mode="composeMode"
+        :reply-to="store.selectedEmail.value"
+        @close="composeVisible = false"
+        @sent="composeVisible = false"
+      />
+    </transition>
+  </div>
 </template>
 
+<script setup lang="ts">
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { NButton, NIcon } from 'naive-ui'
+import { MenuOutline, CreateOutline } from '@vicons/ionicons5'
+import MailSidebar   from './widgets/MailSidebar.vue'
+import MailList      from './widgets/MailList.vue'
+import MailReader    from './widgets/MailReader.vue'
+import MailCompose   from './widgets/MailCompose.vue'
+import { useMailStore } from './composables/useMailStore'
+import type { ComposeMode } from './types'
+
+const store = useMailStore()
+
+const sidebarOpen    = ref(false)
+const composeVisible = ref(false)
+const composeMode    = ref<ComposeMode>('new')
+const windowWidth    = ref(window.innerWidth)
+
+const isMobile = computed(() => windowWidth.value < 1024)
+
+const folderTitle = computed(() => {
+  const folder = store.foldersWithCount.value.find(f => f.id === store.currentFolder.value)
+  return folder?.name ?? 'Inbox'
+})
+
+function onFolderSelect(id: string) {
+  store.selectFolder(id)
+  sidebarOpen.value = false
+}
+
+function onLabelSelect(id: string) {
+  store.selectLabel(id)
+  sidebarOpen.value = false
+}
+
+function openCompose(mode: ComposeMode) {
+  composeMode.value    = mode
+  composeVisible.value = true
+}
+
+function onResize() { windowWidth.value = window.innerWidth }
+
+onMounted(() => window.addEventListener('resize', onResize))
+onUnmounted(() => window.removeEventListener('resize', onResize))
+</script>
+
 <style scoped lang="scss">
-.email-page {
+/* ── Root layout ── */
+.mail-app {
+  display: flex;
+  height: calc(100vh - 64px); /* subtract navbar height */
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-primary);
+}
+
+/* ── Backdrop (mobile) ── */
+.mail-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+}
+
+/* ── Sidebar wrapper ── */
+.mail-sidebar-wrap {
+  width: 240px;
+  flex-shrink: 0;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+}
+
+/* ── Main area ── */
+.mail-main {
+  flex: 1;
+  display: flex;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* ── List panel ── */
+.mail-list-panel {
+  width: 360px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow: hidden;
+  border-right: 1px solid var(--border-color);
 }
 
-.email-app {
-  width: 100%;
+/* ── Detail panel ── */
+.mail-detail-panel {
   flex: 1;
-  min-height: 0;
-  background: var(--bg-primary);
-  display: flex;
+  height: 100%;
   overflow: hidden;
-  border-radius: 12px;
+  min-width: 0;
+}
 
-  .app-container {
-    width: 100%;
-    display: flex;
-    overflow: hidden;
-    position: relative;
-  }
+/* ── Mobile topbar ── */
+.mobile-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+}
 
-  .sidebar-backdrop {
+.topbar-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+/* ── Compose transition ── */
+.compose-rise-enter-active,
+.compose-rise-leave-active {
+  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.22s;
+}
+.compose-rise-enter-from,
+.compose-rise-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+/* ── Fade overlay ── */
+.fade-overlay-enter-active,
+.fade-overlay-leave-active { transition: opacity 0.2s; }
+.fade-overlay-enter-from,
+.fade-overlay-leave-to     { opacity: 0; }
+
+/* ── Responsive: tablet/mobile (<1024px) ── */
+@media (max-width: 1023px) {
+  .mail-sidebar-wrap {
     position: fixed;
-    top: 0;
     left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+
+    &.is-open { transform: translateX(0); }
+  }
+
+  .mail-list-panel {
     width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-    backdrop-filter: blur(2px);
+    flex-shrink: unset;
+    border-right: none;
+
+    &.is-hidden-mobile { display: none; }
   }
 
-  .sidebar-wrapper {
-    width: 280px;
-    background: var(--bg-primary);
-
-    @media (max-width: 768px) {
-      position: fixed;
-      left: 0;
-      top: 0;
-      height: 100vh;
-      z-index: 999;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-
-      &.mobile-open {
-        transform: translateX(0);
-      }
-    }
+  .mail-detail-panel {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: none;
   }
 
-  .main-content {
-    flex: 1;
+  .mail-main.show-detail .mail-detail-panel {
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-
-    .app-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 16px;
-      background: var(--bg-primary);
-      border-bottom: 1px solid var(--border-color);
-      gap: 12px;
-
-      .header-left {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex: 1;
-        min-width: 0;
-
-        .search-bar {
-          flex: 1;
-          max-width: 400px;
-
-          @media (max-width: 768px) {
-            max-width: 100%;
-          }
-        }
-      }
-
-      .header-right {
-        display: flex;
-        gap: 8px;
-      }
-    }
-
-    .content-wrapper {
-      flex: 1;
-      display: flex;
-      gap: 0;
-      overflow: hidden;
-
-      @media (max-width: 1024px) {
-        flex-direction: column;
-      }
-    }
-
-    .email-list-container {
-      width: 380px;
-      display: flex;
-      flex-direction: column;
-      border-right: 1px solid var(--border-color);
-      background: var(--bg-primary);
-      overflow: hidden;
-
-      @media (max-width: 1024px) {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        flex-basis: 40%;
-      }
-
-      @media (max-width: 768px) {
-        width: 100%;
-        flex-basis: auto;
-        border-bottom: 1px solid var(--border-color);
-      }
-
-      .list-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 16px;
-        border-bottom: 1px solid var(--border-color);
-
-        h2 {
-          margin: 0;
-          font-size: 18px;
-          font-weight: 600;
-          color: var(--text-color);
-        }
-
-        .list-controls {
-          display: flex;
-          gap: 8px;
-        }
-      }
-
-      .empty-state {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 32px 16px;
-
-        .empty-icon {
-          font-size: 48px;
-          color: var(--text-tertiary);
-          margin-bottom: 12px;
-        }
-
-        p {
-          margin: 0;
-          color: var(--text-secondary);
-          font-size: 14px;
-        }
-      }
-
-      .emails-list {
-        flex: 1;
-        overflow-y: auto;
-      }
-
-      .pagination {
-        padding: 12px;
-        border-top: 1px solid var(--border-color);
-        display: flex;
-        justify-content: center;
-      }
-    }
-
-    .email-detail-container {
-      flex: 1;
-      background: var(--bg-primary);
-      overflow: hidden;
-
-      @media (max-width: 1024px) {
-        display: none;
-
-        &.active {
-          display: flex;
-        }
-      }
-
-      @media (max-width: 768px) {
-        display: none;
-
-        &.active {
-          display: flex;
-          width: 100%;
-          height: 100%;
-          position: fixed;
-          top: 0;
-          left: 0;
-          z-index: 1000;
-          background: var(--bg-primary);
-        }
-      }
-    }
   }
 }
 
-@media (max-width: 768px) {
-  .email-app {
-    :deep(.n-input__input-el) {
-      font-size: 16px;
-    }
-  }
+/* ── Responsive: small desktop (1024–1200px): hide list width limit ── */
+@media (min-width: 1024px) and (max-width: 1280px) {
+  .mail-list-panel { width: 300px; }
 }
 </style>

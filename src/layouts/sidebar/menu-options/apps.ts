@@ -28,7 +28,7 @@ export default [
     key: "Email",
     icon: () => h(NIcon, { component: MailOutline }),
   },
-  {
+{
     label: "E-commerce",
     key: "Ecommerce",
     icon: () => h(NIcon, { component: StorefrontOutline }),

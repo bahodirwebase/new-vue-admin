@@ -1,101 +1,213 @@
-import { COLOR_PALETTE } from '@/constants/theme';
-// Email papkalarining default ro'yxati
-export const DEFAULT_FOLDERS = [
-  {
-    id: 'inbox',
-    name: 'Inbox',
-    icon: 'inbox',
-    unreadCount: 5,
-    totalCount: 24,
-  },
-  {
-    id: 'starred',
-    name: 'Starred',
-    icon: 'star',
-    unreadCount: 0,
-    totalCount: 8,
-  },
-  {
-    id: 'sent',
-    name: 'Sent',
-    icon: 'send',
-    unreadCount: 0,
-    totalCount: 42,
-  },
-  {
-    id: 'drafts',
-    name: 'Drafts',
-    icon: 'draft',
-    unreadCount: 2,
-    totalCount: 2,
-  },
-  {
-    id: 'spam',
-    name: 'Spam',
-    icon: 'warning',
-    unreadCount: 12,
-    totalCount: 156,
-  },
-  {
-    id: 'trash',
-    name: 'Trash',
-    icon: 'trash',
-    unreadCount: 0,
-    totalCount: 3,
-  },
-];
+import type { Folder, Label, Email } from './types'
+import { COLOR_PALETTE } from '@/constants/theme'
 
+export const FOLDERS: Folder[] = [
+  { id: 'inbox',   name: 'Inbox',   icon: 'InboxOutline',    unread: 0, total: 0 },
+  { id: 'starred', name: 'Starred', icon: 'StarOutline',     unread: 0, total: 0 },
+  { id: 'sent',    name: 'Sent',    icon: 'SendOutline',     unread: 0, total: 0 },
+  { id: 'drafts',  name: 'Drafts',  icon: 'DocumentOutline', unread: 0, total: 0 },
+  { id: 'spam',    name: 'Spam',    icon: 'WarningOutline',  unread: 0, total: 0 },
+  { id: 'trash',   name: 'Trash',   icon: 'TrashOutline',   unread: 0, total: 0 },
+]
 
-
-// Email labellar
-export const EMAIL_LABELS = [
-  { id: 'work', name: 'Work', color: COLOR_PALETTE.PRIMARY[600] },
+export const LABELS: Label[] = [
+  { id: 'work',     name: 'Work',     color: COLOR_PALETTE.PRIMARY[500] },
   { id: 'personal', name: 'Personal', color: COLOR_PALETTE.SUCCESS[500] },
-  { id: 'urgent', name: 'Urgent', color: COLOR_PALETTE.ERROR[500] },
-  { id: 'follow-up', name: 'Follow up', color: COLOR_PALETTE.WARNING[500] },
-  { id: 'archive', name: 'Archive', color: '#8c8c8c' },
-];
+  { id: 'urgent',   name: 'Urgent',   color: COLOR_PALETTE.ERROR[500]   },
+  { id: 'finance',  name: 'Finance',  color: COLOR_PALETTE.WARNING[500] },
+  { id: 'travel',   name: 'Travel',   color: '#8b5cf6'                  },
+]
 
-// Email priority darajalari
-export const EMAIL_PRIORITIES = [
-  { value: 'low', label: 'Low Priority', color: COLOR_PALETTE.SUCCESS[500] },
-  { value: 'normal', label: 'Normal Priority', color: COLOR_PALETTE.PRIMARY[500] },
-  { value: 'high', label: 'High Priority', color: COLOR_PALETTE.ERROR[500] },
-];
+export const ITEMS_PER_PAGE = 20
 
-// Regex patternlar
-export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-export const URL_REGEX = /(https?:\/\/[^\s]+)/g;
+const now = Date.now()
+const ago = (ms: number) => new Date(now - ms)
+const mins  = (n: number) => n * 60 * 1000
+const hours = (n: number) => n * 60 * 60 * 1000
+const days  = (n: number) => n * 24 * 60 * 60 * 1000
 
-// Toastlar uchun messages
-export const TOAST_MESSAGES = {
-  EMAIL_SENT: 'Email successfully sent!',
-  EMAIL_DELETED: 'Email moved to trash',
-  EMAIL_RESTORED: 'Email restored',
-  EMAIL_STARRED: 'Email starred',
-  EMAIL_UNSTARRED: 'Star removed',
-  COPY_SUCCESS: 'Copied to clipboard',
-  ERROR_SENDING: 'Failed to send email',
-  ERROR_LOADING: 'Failed to load emails',
-};
-
-// Pagination settings
-export const ITEMS_PER_PAGE = 20;
-export const COMPACT_ITEMS_PER_PAGE = 15;
-
-// Email compose modal widthlari
-export const COMPOSER_WIDTH = {
-  MOBILE: '95vw',
-  TABLET: '85vw',
-  DESKTOP: '70vw',
-  MAX: 800,
-};
-
-// Debounce delayi (ms)
-export const SEARCH_DEBOUNCE_DELAY = 300;
-export const SAVE_DRAFT_DEBOUNCE_DELAY = 1000;
-
-// Time formats
-export const TIME_FORMAT = 'HH:mm';
-export const DATE_FORMAT = 'DD.MM.YYYY';
-export const DATETIME_FORMAT = 'DD.MM.YYYY HH:mm';
+export const MOCK_EMAILS: Email[] = [
+  {
+    id: 'e1',
+    from: { name: 'Alex Johnson', email: 'alex.johnson@company.com', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=alex' },
+    to: [{ name: 'Me', email: 'me@example.com' }],
+    subject: 'Q4 Budget Report — Action Required',
+    body: `Hi,\n\nI've attached the Q4 budget report for your review. There are a few line items that need your approval before we can finalize the numbers for the board presentation on Friday.\n\nKey highlights:\n• Revenue: $2.4M (+18% YoY)\n• Expenses: $1.8M (within budget)\n• Net profit: $600K\n\nPlease review the attached PDF and sign off by EOD Thursday.\n\nBest,\nAlex`,
+    timestamp: ago(mins(7)),
+    read: false, starred: true, archived: false, deleted: false, draft: false,
+    labels: ['work', 'urgent'], folder: 'inbox',
+    attachments: [{ id: 'a1', name: 'Q4_Budget_Report.pdf', size: 2457600, mimeType: 'application/pdf' }],
+    priority: 'high',
+  },
+  {
+    id: 'e2',
+    from: { name: 'Sarah Williams', email: 'sarah.w@company.com', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=sarah' },
+    to: [{ name: 'Me', email: 'me@example.com' }],
+    subject: 'Team lunch tomorrow? 🍕',
+    body: `Hey!\n\nAre you free for team lunch tomorrow around 12:30? We're thinking of trying that new Italian place on Main Street. Let me know!\n\nCheers,\nSarah`,
+    timestamp: ago(hours(1)),
+    read: false, starred: false, archived: false, deleted: false, draft: false,
+    labels: ['work'], folder: 'inbox',
+    attachments: [],
+    priority: 'normal',
+  },
+  {
+    id: 'e3',
+    from: { name: 'GitHub', email: 'noreply@github.com', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=github' },
+    to: [{ name: 'Me', email: 'me@example.com' }],
+    subject: '[byxora/admin] Pull request opened: feat/dark-mode-improvements',
+    body: `A new pull request has been opened:\n\nTitle: feat/dark-mode-improvements\nOpened by: @devteam\nBranch: feat/dark-mode-improvements → main\n\nDescription:\nImproves dark mode contrast ratios across all components for WCAG AA compliance.\n\nView on GitHub →`,
+    timestamp: ago(hours(3)),
+    read: false, starred: false, archived: false, deleted: false, draft: false,
+    labels: ['work'], folder: 'inbox',
+    attachments: [],
+    priority: 'normal',
+  },
+  {
+    id: 'e4',
+    from: { name: 'Netflix', email: 'info@netflix.com', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=netflix' },
+    to: [{ name: 'Me', email: 'me@example.com' }],
+    subject: 'Your monthly statement is ready',
+    body: `Hi there,\n\nYour statement for March 2026 is now available.\n\nPlan: Premium (4K)\nAmount: $22.99\nBilling date: March 1, 2026\nPayment method: Visa ending in 4242\n\nThank you for being a Netflix member!\n\nNetflix Team`,
+    timestamp: ago(hours(5)),
+    read: true, starred: false, archived: false, deleted: false, draft: false,
+    labels: ['finance'], folder: 'inbox',
+    attachments: [{ id: 'a2', name: 'Netflix_Invoice_Mar2026.pdf', size: 102400, mimeType: 'application/pdf' }],
+    priority: 'low',
+  },
+  {
+    id: 'e5',
+    from: { name: 'Mom', email: 'mom@family.com', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=mom' },
+    to: [{ name: 'Me', email: 'me@example.com' }],
+    subject: 'Coming home for the holidays?',
+    body: `Hi sweetheart,\n\nJust wanted to check if you're planning to come home for the holidays this year? Dad and I are starting to plan things and we'd love to have you here.\n\nWe could do a big family dinner — your aunt and cousins are coming too!\n\nLet me know when you can talk.\n\nLots of love,\nMom ❤️`,
+    timestamp: ago(days(1)),
+    read: true, starred: true, archived: false, deleted: false, draft: false,
+    labels: ['personal'], folder: 'inbox',
+    attachments: [],
+    priority: 'normal',
+  },
+  {
+    id: 'e6',
+    from: { name: 'Stripe', email: 'receipts@stripe.com', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=stripe' },
+    to: [{ name: 'Me', email: 'me@example.com' }],
+    subject: 'Payment received: $1,247.00',
+    body: `Payment Confirmed\n\nAmount: $1,247.00 USD\nDate: March 2, 2026\nCustomer: Acme Corp\nInvoice: INV-2026-0234\n\nThis payment has been applied to your account balance.\n\nView your dashboard →\n\nStripe`,
+    timestamp: ago(days(2)),
+    read: true, starred: false, archived: false, deleted: false, draft: false,
+    labels: ['finance'], folder: 'inbox',
+    attachments: [{ id: 'a3', name: 'receipt_INV-2026-0234.pdf', size: 85000, mimeType: 'application/pdf' }],
+    priority: 'high',
+  },
+  {
+    id: 'e7',
+    from: { name: 'David Chen', email: 'd.chen@company.com', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=david' },
+    to: [{ name: 'Me', email: 'me@example.com' }],
+    cc: [{ name: 'Sarah Williams', email: 'sarah.w@company.com' }],
+    subject: 'Project Apollo — Timeline Update',
+    body: `Hi team,\n\nJust a quick update on Project Apollo milestones:\n\n• Phase 1 (Design): ✅ Complete\n• Phase 2 (Development): 🔄 In progress (75%)\n• Phase 3 (Testing): ⏳ Starts April 1\n• Phase 4 (Launch): 📅 Scheduled May 15\n\nWe're currently on track. I'll send a more detailed report by end of week.\n\nAny questions, feel free to reach out.\n\nDavid`,
+    timestamp: ago(days(3)),
+    read: false, starred: false, archived: false, deleted: false, draft: false,
+    labels: ['work'], folder: 'inbox',
+    attachments: [{ id: 'a4', name: 'Apollo_Timeline_v3.xlsx', size: 347000, mimeType: 'application/vnd.ms-excel' }],
+    priority: 'normal',
+    replyCount: 2,
+  },
+  {
+    id: 'e8',
+    from: { name: 'LinkedIn', email: 'messages@linkedin.com', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=linkedin' },
+    to: [{ name: 'Me', email: 'me@example.com' }],
+    subject: 'You appeared in 47 searches this week',
+    body: `Your profile is getting noticed!\n\nYou appeared in 47 searches this week — that's 23% more than last week.\n\nTop industries viewing your profile:\n• Software & Tech (62%)\n• Finance (18%)\n• Consulting (12%)\n\nBoost your visibility with LinkedIn Premium →`,
+    timestamp: ago(days(3)),
+    read: true, starred: false, archived: false, deleted: false, draft: false,
+    labels: ['personal'], folder: 'inbox',
+    attachments: [],
+    priority: 'low',
+  },
+  {
+    id: 'e9',
+    from: { name: 'Emma Davis', email: 'emma.d@company.com', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=emma' },
+    to: [{ name: 'Me', email: 'me@example.com' }],
+    subject: 'Re: Design Review Notes',
+    body: `Thanks for the detailed feedback! I've addressed most of the points from yesterday's review.\n\nThe updated designs are in Figma — link below. Main changes:\n1. Revised color contrast on the hero section\n2. Fixed spacing inconsistencies in the card grid\n3. Updated mobile breakpoints as discussed\n\nLet me know if you need any changes before the client presentation!\n\nEmma`,
+    timestamp: ago(days(5)),
+    read: true, starred: true, archived: false, deleted: false, draft: false,
+    labels: ['work'], folder: 'inbox',
+    attachments: [],
+    priority: 'normal',
+    replyCount: 4,
+  },
+  {
+    id: 'e10',
+    from: { name: 'AWS', email: 'aws-billing@amazon.com', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=aws' },
+    to: [{ name: 'Me', email: 'me@example.com' }],
+    subject: 'Your AWS bill for February 2026',
+    body: `AWS Billing Statement\n\nAccount: 123456789012\nBilling Period: Feb 1–28, 2026\nTotal: $483.72 USD\n\nTop services:\n• EC2: $214.50\n• RDS: $128.30\n• CloudFront: $89.20\n• S3: $51.72\n\nPayment will be charged on March 5, 2026.\n\nView detailed breakdown →`,
+    timestamp: ago(days(6)),
+    read: true, starred: false, archived: false, deleted: false, draft: false,
+    labels: ['finance'], folder: 'inbox',
+    attachments: [{ id: 'a5', name: 'AWS_Bill_Feb2026.pdf', size: 198000, mimeType: 'application/pdf' }],
+    priority: 'normal',
+  },
+  {
+    id: 'e11',
+    from: { name: 'Jake Wilson', email: 'j.wilson@company.com', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=jake' },
+    to: [{ name: 'Me', email: 'me@example.com' }],
+    subject: 'Quick question about the API docs',
+    body: `Hey,\n\nCould you clarify something in the API documentation? The section on rate limiting is a bit ambiguous — specifically whether the 1000 req/min limit applies per endpoint or globally.\n\nI've checked the old Confluence page but it hasn't been updated since 2024.\n\nThanks!\nJake`,
+    timestamp: ago(days(7)),
+    read: true, starred: false, archived: false, deleted: false, draft: false,
+    labels: ['work'], folder: 'inbox',
+    attachments: [],
+    priority: 'normal',
+  },
+  {
+    id: 'e12',
+    from: { name: 'Airbnb', email: 'automated@airbnb.com', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=airbnb' },
+    to: [{ name: 'Me', email: 'me@example.com' }],
+    subject: '🎉 Your trip to Barcelona is confirmed!',
+    body: `Great news! Your reservation is confirmed.\n\nDestination: Barcelona, Spain\nDates: April 12–18, 2026 (6 nights)\nProperty: Sunny Studio in Gothic Quarter\nHost: Maria G.\nTotal: €720 (paid)\n\nYour check-in instructions will be sent 24 hours before arrival.\n\nEnjoy your trip! 🌟`,
+    timestamp: ago(days(10)),
+    read: true, starred: true, archived: false, deleted: false, draft: false,
+    labels: ['travel', 'personal'], folder: 'inbox',
+    attachments: [{ id: 'a6', name: 'Airbnb_Reservation_BCN.pdf', size: 512000, mimeType: 'application/pdf' }],
+    priority: 'low',
+  },
+  {
+    id: 'e13',
+    from: { name: 'Notion', email: 'hello@mail.notion.so', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=notion' },
+    to: [{ name: 'Me', email: 'me@example.com' }],
+    subject: 'Your weekly workspace digest',
+    body: `Here's what happened in your workspace this week:\n\n📝 12 pages updated\n💬 34 new comments\n✅ 8 tasks completed\n👥 3 new members joined\n\nTop active pages:\n• Product Roadmap 2026\n• Engineering Handbook\n• Q1 OKRs\n\nOpen Notion →`,
+    timestamp: ago(days(12)),
+    read: true, starred: false, archived: false, deleted: false, draft: false,
+    labels: ['work'], folder: 'inbox',
+    attachments: [],
+    priority: 'low',
+  },
+  {
+    id: 'e14',
+    from: { name: 'Apple', email: 'no_reply@email.apple.com', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=apple' },
+    to: [{ name: 'Me', email: 'me@example.com' }],
+    subject: 'Your receipt from Apple',
+    body: `Thank you for your purchase!\n\nOrder #W123456789\nDate: February 10, 2026\n\nItems:\n• Xcode Pro Subscription — $9.99/mo\n• Apple Developer Program — $99.00/yr\n\nTotal charged: $108.99 USD\nApple ID: me@example.com\n\nIf you didn't make this purchase, contact Apple Support immediately.`,
+    timestamp: ago(days(22)),
+    read: true, starred: false, archived: false, deleted: false, draft: false,
+    labels: ['finance'], folder: 'inbox',
+    attachments: [],
+    priority: 'low',
+  },
+  {
+    id: 'e15',
+    from: { name: 'Me', email: 'me@example.com' },
+    to: [{ name: 'Alex Johnson', email: 'alex.johnson@company.com' }],
+    subject: 'Re: Q4 Budget Report — Action Required',
+    body: `Hi Alex,\n\nThanks for sending this over. I'll review the report today and get back to you with my approval before EOD Thursday.\n\nA few quick questions:\n1. Are the Q4 numbers finalized, or are there still projections?\n2. Should I route my approval through the CFO portal or reply directly?\n\nBest,`,
+    timestamp: ago(hours(2)),
+    read: true, starred: false, archived: false, deleted: false, draft: false,
+    labels: ['work'], folder: 'sent',
+    attachments: [],
+    priority: 'normal',
+  },
+]

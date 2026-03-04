@@ -17,7 +17,7 @@ export default [
     component: () => import("@/views/apps/email/index.vue"),
     meta: { title: "Email", icon: "mail-outline", group: "Apps" },
   },
-  {
+{
     path: "apps/ecommerce",
     name: "Ecommerce",
     component: () => import("@/views/apps/ecommerce/index.vue"),

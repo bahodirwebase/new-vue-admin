@@ -1,90 +1,60 @@
-// Email ma'lumotlari uchun turlar
+export interface EmailAddress {
+  name: string
+  email: string
+  avatar?: string
+}
+
 export interface Attachment {
-  id: string;
-  name: string;
-  size: number;
-  type: string;
-  url: string;
+  id: string
+  name: string
+  size: number
+  mimeType: string
 }
 
 export interface Email {
-  id: string;
-  from: {
-    name: string;
-    email: string;
-    avatar?: string;
-  };
-  to: Array<{
-    name: string;
-    email: string;
-  }>;
-  cc?: Array<{
-    name: string;
-    email: string;
-  }>;
-  bcc?: Array<{
-    name: string;
-    email: string;
-  }>;
-  subject: string;
-  body: string;
-  htmlBody?: string;
-  timestamp: Date;
-  read: boolean;
-  starred: boolean;
-  labels: string[];
-  attachments: Attachment[];
-  priority: 'low' | 'normal' | 'high';
-  draft?: boolean;
+  id: string
+  from: EmailAddress
+  to: EmailAddress[]
+  cc?: EmailAddress[]
+  bcc?: EmailAddress[]
+  subject: string
+  body: string
+  timestamp: Date
+  read: boolean
+  starred: boolean
+  archived: boolean
+  deleted: boolean
+  draft: boolean
+  labels: string[]
+  folder: string
+  attachments: Attachment[]
+  priority: 'low' | 'normal' | 'high'
+  replyCount?: number
 }
 
 export interface Folder {
-  id: string;
-  name: string;
-  icon: string;
-  unreadCount: number;
-  totalCount: number;
-  color?: string;
+  id: string
+  name: string
+  icon: string
+  unread: number
+  total: number
 }
 
-export interface Contact {
-  id: string;
-  name: string;
-  email: string;
-  avatar?: string;
-  lastContacted?: Date;
+export interface Label {
+  id: string
+  name: string
+  color: string
 }
 
-export interface SearchFilter {
-  query: string;
-  from?: string;
-  to?: string;
-  subject?: string;
-  hasAttachments?: boolean;
-  isUnread?: boolean;
-  isStarred?: boolean;
-  startDate?: Date;
-  endDate?: Date;
-}
+export type ComposeMode = 'new' | 'reply' | 'reply-all' | 'forward'
 
-export interface EmailComposerState {
-  to: Contact[];
-  cc: Contact[];
-  bcc: Contact[];
-  subject: string;
-  body: string;
-  attachments: Attachment[];
-  isSending: boolean;
-}
-
-export interface EmailListItem {
-  id: string;
-  from: string;
-  subject: string;
-  preview: string;
-  timestamp: Date;
-  read: boolean;
-  starred: boolean;
-  hasAttachments: boolean;
-  avatar?: string;
+export interface ComposeState {
+  to: string
+  cc: string
+  bcc: string
+  subject: string
+  body: string
+  priority: 'low' | 'normal' | 'high'
+  showCc: boolean
+  showBcc: boolean
 }
