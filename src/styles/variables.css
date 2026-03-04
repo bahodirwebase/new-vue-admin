@@ -2,7 +2,7 @@
    DESIGN TOKENS — Single source of truth for all CSS custom properties.
 
    Edit this file to change colors, shadows, or spacing system-wide.
-   JS counterpart: src/constants/theme.ts (DARK_COLORS, SEMANTIC_COLORS)
+   JS counterpart: src/constants/theme.ts (THEME_CONSTANTS)
    Theme store:    src/stores/theme.ts  (updates --primary-color* at runtime)
    ================================================================ */
 
@@ -42,6 +42,8 @@
   --color-error-light: #fee2e2;
   --color-info: #3b82f6;
   --color-info-light: #dbeafe;
+  --color-purple: #8b5cf6;
+  --color-purple-light: #ede9fe;
 
   /* ── Status Indicator Colors (connected / disconnected / pending) ── */
   --status-success: #22c55e;
@@ -71,6 +73,11 @@
   --overlay-dark: rgba(0, 0, 0, 0.7);
   --overlay-dark-sm: rgba(0, 0, 0, 0.1);
   --overlay-light: rgba(255, 255, 255, 0.9);
+
+  /* ── Interactive State Overlays (for Naive UI overrides) ────── */
+  --bg-hover: rgba(0, 0, 0, 0.04);
+  --bg-pressed: rgba(0, 0, 0, 0.06);
+  --bg-table-header: #f1f5f9;
 
   /* ── Gradients ──────────────────────────────────────────────── */
   --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-hover) 100%);
@@ -103,4 +110,8 @@
   --status-success: #4ade80;
   --status-error: #f87171;
   --status-warning: #fbbf24;
+
+  --bg-hover: rgba(255, 255, 255, 0.08);
+  --bg-pressed: rgba(255, 255, 255, 0.12);
+  --bg-table-header: #1a2234;
 }

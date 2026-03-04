@@ -1,5 +1,9 @@
 import type { GlobalThemeOverrides } from "naive-ui";
-import { DARK_COLORS, LIGHT_COLORS } from "@/constants/theme";
+
+/** Reads a CSS custom property from :root at call time. */
+function getCssVar(name: string): string {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+}
 
 /**
  * Converts a hex color string to an RGB object.
@@ -55,8 +59,8 @@ export const adjustColor = (color: string, amount: number): string => {
 /**
  * Creates Naive UI theme overrides based on the given primary color and mode.
  * Covers common components: Card, Layout, Menu, DataTable, Dialog, Dropdown, etc.
- * Surface colors are sourced from DARK_COLORS / LIGHT_COLORS in src/constants/theme.ts,
- * which mirror the CSS variables defined in src/styles/variables.css.
+ * Surface colors are read at runtime from CSS custom properties via getCssVar(),
+ * so they automatically reflect the active theme without any JS duplication.
  *
  * @param primaryColor - Hex color string used as the brand accent color
  * @param isDark - Whether to generate dark mode overrides (default: false)
@@ -81,19 +85,19 @@ export const createThemeOverrides = (
         fontSize: "14px",
         fontFamily:
           "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-        popoverColor: DARK_COLORS.bgCard
+        popoverColor: getCssVar('--bg-secondary')
       },
       Card: {
         borderRadius: "12px",
         paddingMedium: "20px",
-        color: DARK_COLORS.bgCard,
-        textColor: DARK_COLORS.textPrimary,
+        color: getCssVar('--bg-secondary'),
+        textColor: getCssVar('--text-primary'),
       },
       Layout: {
-        color: DARK_COLORS.bgBody,
-        headerColor: DARK_COLORS.bgSurface,
-        siderColor: DARK_COLORS.bgSurface,
-        footerColor: DARK_COLORS.bgSurface,
+        color: getCssVar('--bg-primary'),
+        headerColor: getCssVar('--bg-secondary'),
+        siderColor: getCssVar('--bg-secondary'),
+        footerColor: getCssVar('--bg-secondary'),
       },
       Menu: {
         borderRadius: "8px",
@@ -108,102 +112,102 @@ export const createThemeOverrides = (
         itemColorActiveCollapsed: primaryColor
       },
       Descriptions: {
-        thColor: "var(--bg-primary)",
-        thColorModal: DARK_COLORS.bgTableHeader,
-        tdColor: "var(--bg-secondary)",
-        tdColorModal: DARK_COLORS.bgCard,
-        tdColorStriped: "var(--bg-secondary)",
-        borderColor: DARK_COLORS.border,
+        thColor: getCssVar('--bg-primary'),
+        thColorModal: getCssVar('--bg-table-header'),
+        tdColor: getCssVar('--bg-secondary'),
+        tdColorModal: getCssVar('--bg-secondary'),
+        tdColorStriped: getCssVar('--bg-secondary'),
+        borderColor: getCssVar('--border-color'),
       },
       InternalSelectMenu: {
-        color: DARK_COLORS.bgCard,
-        optionTextColor: DARK_COLORS.textSecondary,
+        color: getCssVar('--bg-secondary'),
+        optionTextColor: getCssVar('--text-secondary'),
         optionTextColorActive: "#ffffff",
-        optionColorPending: DARK_COLORS.hoverOverlay,
+        optionColorPending: getCssVar('--bg-hover'),
         borderRadius: "8px",
-        boxShadow: DARK_COLORS.shadowMd
+        boxShadow: getCssVar('--shadow-md')
       },
       Dropdown: {
-        color: DARK_COLORS.bgCard,
-        optionTextColor: DARK_COLORS.textSecondary,
+        color: getCssVar('--bg-secondary'),
+        optionTextColor: getCssVar('--text-secondary'),
         optionTextColorHover: "#ffffff",
-        optionColorHover: DARK_COLORS.hoverOverlay,
+        optionColorHover: getCssVar('--bg-hover'),
         borderRadius: "8px",
-        boxShadow: DARK_COLORS.shadowMd
+        boxShadow: getCssVar('--shadow-md')
       },
       Popover: {
-        color: DARK_COLORS.bgCard,
-        textColor: DARK_COLORS.textSecondary,
+        color: getCssVar('--bg-secondary'),
+        textColor: getCssVar('--text-secondary'),
         borderRadius: "8px",
-        boxShadow: DARK_COLORS.shadowMd
+        boxShadow: getCssVar('--shadow-md')
       },
       DatePicker: {
-        panelColor: DARK_COLORS.bgCard,
-        panelTextColor: DARK_COLORS.textSecondary,
-        calendarDaysTextColor: DARK_COLORS.textSecondary,
-        itemTextColor: DARK_COLORS.textSecondary,
-        itemColorHover: DARK_COLORS.hoverOverlay,
+        panelColor: getCssVar('--bg-secondary'),
+        panelTextColor: getCssVar('--text-secondary'),
+        calendarDaysTextColor: getCssVar('--text-secondary'),
+        itemTextColor: getCssVar('--text-secondary'),
+        itemColorHover: getCssVar('--bg-hover'),
         borderRadius: "8px",
-        boxShadow: DARK_COLORS.shadowMd
+        boxShadow: getCssVar('--shadow-md')
       },
       TreeSelect: {
-        menuColor: DARK_COLORS.bgCard,
-        menuBoxShadow: DARK_COLORS.shadowMd,
+        menuColor: getCssVar('--bg-secondary'),
+        menuBoxShadow: getCssVar('--shadow-md'),
         menuBorderRadius: "8px",
-        itemTextColor: DARK_COLORS.textSecondary,
-        itemColorHover: DARK_COLORS.hoverOverlay
+        itemTextColor: getCssVar('--text-secondary'),
+        itemColorHover: getCssVar('--bg-hover')
       },
       Tree: {
-        nodeTextColor: DARK_COLORS.textSecondary,
-        nodeColorHover: DARK_COLORS.hoverOverlay,
-        nodeColorPressed: DARK_COLORS.pressedOverlay,
-        nodeColorActive: DARK_COLORS.pressedOverlay
+        nodeTextColor: getCssVar('--text-secondary'),
+        nodeColorHover: getCssVar('--bg-hover'),
+        nodeColorPressed: getCssVar('--bg-pressed'),
+        nodeColorActive: getCssVar('--bg-pressed')
       },
       Cascader: {
-        menuColor: DARK_COLORS.bgCard,
-        menuBoxShadow: DARK_COLORS.shadowMd,
+        menuColor: getCssVar('--bg-secondary'),
+        menuBoxShadow: getCssVar('--shadow-md'),
         menuBorderRadius: "8px",
-        optionTextColor: DARK_COLORS.textSecondary,
-        optionColorHover: DARK_COLORS.hoverOverlay
+        optionTextColor: getCssVar('--text-secondary'),
+        optionColorHover: getCssVar('--bg-hover')
       },
       Tooltip: {
-        color: DARK_COLORS.bgCard,
-        textColor: DARK_COLORS.textSecondary,
+        color: getCssVar('--bg-secondary'),
+        textColor: getCssVar('--text-secondary'),
         borderRadius: "4px",
-        boxShadow: DARK_COLORS.shadowMd
+        boxShadow: getCssVar('--shadow-md')
       },
       Slider: {
-        indicatorColor: DARK_COLORS.bgCard,
-        indicatorTextColor: DARK_COLORS.textSecondary,
+        indicatorColor: getCssVar('--bg-secondary'),
+        indicatorTextColor: getCssVar('--text-secondary'),
         indicatorBoxShadow: "0 2px 8px 0px rgba(0, 0, 0, 0.12)",
         indicatorBorderRadius: "4px"
       },
       Avatar: {
-        color: DARK_COLORS.bgCard,
-        textColor: DARK_COLORS.textSecondary
+        color: getCssVar('--bg-secondary'),
+        textColor: getCssVar('--text-secondary')
       },
       Dialog: {
-        color: DARK_COLORS.bgCard,
-        textColor: DARK_COLORS.textSecondary,
-        titleTextColor: DARK_COLORS.textPrimary,
+        color: getCssVar('--bg-secondary'),
+        textColor: getCssVar('--text-secondary'),
+        titleTextColor: getCssVar('--text-primary'),
         borderRadius: "16px",
-        boxShadow: DARK_COLORS.shadowXl
+        boxShadow: getCssVar('--shadow-xl')
       },
       DataTable: {
-        thColor: "var(--bg-secondary)",
-        tdColor: "var(--bg-primary)",
-        tdColorHover: "var(--bg-secondary)",
-        tdColorStriped: "var(--bg-secondary)",
-        thTextColor: DARK_COLORS.textMuted,
-        tdTextColor: DARK_COLORS.textSecondary,
-        borderColor: "var(--bg-secondary)",
-        thColorHover: DARK_COLORS.bgTableHeader,
-        paginationBorderColor: DARK_COLORS.border,
+        thColor: getCssVar('--bg-secondary'),
+        tdColor: getCssVar('--bg-primary'),
+        tdColorHover: getCssVar('--bg-secondary'),
+        tdColorStriped: getCssVar('--bg-secondary'),
+        thTextColor: getCssVar('--text-tertiary'),
+        tdTextColor: getCssVar('--text-secondary'),
+        borderColor: getCssVar('--bg-secondary'),
+        thColorHover: getCssVar('--bg-table-header'),
+        paginationBorderColor: getCssVar('--border-color'),
         loadingColor: "#60a5fa",
       },
       Checkbox: {
-        color: 'var(--bg-primary)',
-        colorTableHeader: 'var(--bg-primary)',
+        color: getCssVar('--bg-primary'),
+        colorTableHeader: getCssVar('--bg-primary'),
       }
     }
     : {
@@ -220,14 +224,14 @@ export const createThemeOverrides = (
       Card: {
         borderRadius: "12px",
         paddingMedium: "20px",
-        color: LIGHT_COLORS.bgCard,
-        textColor: LIGHT_COLORS.textPrimary,
+        color: getCssVar('--bg-primary'),
+        textColor: getCssVar('--text-primary'),
       },
       Layout: {
-        color: LIGHT_COLORS.bgBody,
-        headerColor: LIGHT_COLORS.bgSurface,
-        siderColor: LIGHT_COLORS.bgSurface,
-        footerColor: LIGHT_COLORS.bgSurface,
+        color: getCssVar('--bg-secondary'),
+        headerColor: getCssVar('--bg-primary'),
+        siderColor: getCssVar('--bg-primary'),
+        footerColor: getCssVar('--bg-primary'),
       },
       Menu: {
         borderRadius: "8px",

@@ -1,5 +1,4 @@
 import type { Folder, Label, Email } from './types'
-import { COLOR_PALETTE } from '@/constants/theme'
 
 export const FOLDERS: Folder[] = [
   { id: 'inbox',   name: 'Inbox',   icon: 'InboxOutline',    unread: 0, total: 0 },
@@ -11,11 +10,11 @@ export const FOLDERS: Folder[] = [
 ]
 
 export const LABELS: Label[] = [
-  { id: 'work',     name: 'Work',     color: COLOR_PALETTE.PRIMARY[500] },
-  { id: 'personal', name: 'Personal', color: COLOR_PALETTE.SUCCESS[500] },
-  { id: 'urgent',   name: 'Urgent',   color: COLOR_PALETTE.ERROR[500]   },
-  { id: 'finance',  name: 'Finance',  color: COLOR_PALETTE.WARNING[500] },
-  { id: 'travel',   name: 'Travel',   color: '#8b5cf6'                  },
+  { id: 'work',     name: 'Work',     color: 'var(--color-primary)' },
+  { id: 'personal', name: 'Personal', color: 'var(--color-success)' },
+  { id: 'urgent',   name: 'Urgent',   color: 'var(--color-error)'   },
+  { id: 'finance',  name: 'Finance',  color: 'var(--color-warning)' },
+  { id: 'travel',   name: 'Travel',   color: 'var(--color-purple)'  },
 ]
 
 export const ITEMS_PER_PAGE = 20

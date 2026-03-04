@@ -48,7 +48,7 @@
             v-for="lid in email.labels.slice(0, 2)"
             :key="lid"
             class="item-label"
-            :style="{ background: labelColor(lid) + '22', color: labelColor(lid) }"
+            :style="{ background: `color-mix(in srgb, ${labelColor(lid)} 13%, transparent)`, color: labelColor(lid) }"
           >{{ labelName(lid) }}</span>
         </div>
       </div>
