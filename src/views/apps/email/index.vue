@@ -140,10 +140,13 @@ onUnmounted(() => window.removeEventListener('resize', onResize))
 /* ── Root layout ── */
 .mail-app {
   display: flex;
-  height: calc(100vh - 64px); /* subtract navbar height */
+  height: calc(100vh - 64px - 32px); /* subtract navbar + page padding */
   overflow: hidden;
   position: relative;
   background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  margin: 16px;
 }
 
 /* ── Backdrop (mobile) ── */
@@ -162,6 +165,7 @@ onUnmounted(() => window.removeEventListener('resize', onResize))
   overflow: hidden;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 100;
+  border-radius: 14px 0 0 14px;
 }
 
 /* ── Main area ── */
