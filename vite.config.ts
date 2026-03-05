@@ -1,9 +1,16 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
+import components from "unplugin-vue-components/vite";
+import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    components({
+      resolvers: [NaiveUiResolver()],
+    }),
+  ],
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
@@ -12,7 +19,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        api: 'modern-compiler',
+        api: "modern-compiler",
       },
     },
   },
@@ -28,12 +35,16 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           // Split naive-ui into its own chunk for better long-term caching
-          if (id.includes('naive-ui') || id.includes('vueuc') || id.includes('@css-render')) {
-            return 'naive-ui'
+          if (
+            id.includes("naive-ui") ||
+            id.includes("vueuc") ||
+            id.includes("@css-render")
+          ) {
+            return "naive-ui";
           }
           // Group remaining node_modules into a shared vendor chunk
-          if (id.includes('node_modules')) {
-            return 'vendor'
+          if (id.includes("node_modules")) {
+            return "vendor";
           }
         },
       },
