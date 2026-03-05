@@ -14,10 +14,13 @@
   .chat-sidebar {
     width: 320px;
     height: 100%;
-    border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
     border-radius: 0 !important;
+    padding: 0 !important;
+    .n-card__content {
+      padding: 0 !important;
+    }
   }
 
   .mobile-profile-header {
@@ -177,7 +180,7 @@
 
   .chat-header {
     padding: 16px;
-    border-bottom: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -279,7 +282,7 @@
   }
 
   .chat-input {
-    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
     background: var(--bg-primary);
     padding: 16px;
   }
