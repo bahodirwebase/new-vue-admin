@@ -1,51 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { NCard, NButton, NAvatar } from 'naive-ui';
+import { LEADS } from '../constants';
 
-const leads = ref([
-    {
-        id: 1,
-        name: 'Silvia Zieme',
-        time: 'Just Now',
-        avatar: 'https://i.pravatar.cc/40?img=5'
-    },
-    {
-        id: 2,
-        name: 'Luke King',
-        time: '1 Minute Ago',
-        avatar: 'https://i.pravatar.cc/40?img=12'
-    },
-    {
-        id: 3,
-        name: 'Kim Ortiz',
-        time: '2 Minute Ago',
-        avatar: 'https://i.pravatar.cc/40?img=8'
-    },
-    {
-        id: 4,
-        name: 'Ethan Carter',
-        time: '4 Minute Ago',
-        avatar: 'https://i.pravatar.cc/40?img=15'
-    },
-    {
-        id: 5,
-        name: 'Liam Johnson',
-        time: '8 Minute Ago',
-        avatar: 'https://i.pravatar.cc/40?img=3'
-    },
-    {
-        id: 6,
-        name: 'Noah Smith',
-        time: '12 Minute Ago',
-        avatar: 'https://i.pravatar.cc/40?img=7'
-    },
-    {
-        id: 7,
-        name: 'Mason Brown',
-        time: '17 Minute Ago',
-        avatar: 'https://i.pravatar.cc/40?img=11'
-    }
-]);
+const leads = LEADS;
 </script>
 
 <template>

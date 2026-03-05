@@ -1,44 +1,21 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
 import { ChevronDownOutline } from '@vicons/ionicons5'
 import VueApexCharts from 'vue3-apexcharts'
+import { CONVERSION_STATS, CONVERSION_PERIOD_OPTIONS } from '../constants'
+import { useCommerce } from '../composables/useCommerce'
 
 const apexchart = VueApexCharts
+const { selectedConversionPeriod: selectedPeriod, setConversionPeriod } = useCommerce()
 
-interface Stat {
-  label: string
-  value: number
-  trend: number
-}
-
-const selectedPeriod = ref('This Week')
-
-const periodOptions = [
-  { label: 'Today', key: 'today' },
-  { label: 'This Week', key: 'thisweek' },
-  { label: 'This Month', key: 'thismonth' },
-  { label: 'This Year', key: 'thisyear' }
-]
-
-const handlePeriodSelect = (key: string) => {
-  const option = periodOptions.find(opt => opt.key === key)
-  if (option) {
-    selectedPeriod.value = option.label
-  }
-}
-
-const stats = ref<Stat[]>([
-  { label: 'Product Views', value: 25000, trend: 9 },
-  { label: 'Add to Cart', value: 12000, trend: 6 },
-  { label: 'Proceed to Checkout', value: 8500, trend: 4 },
-  { label: 'Completed Purchases', value: 6200, trend: 7 },
-  { label: 'Abandoned Carts', value: 3000, trend: -5 }
-])
+const periodOptions = CONVERSION_PERIOD_OPTIONS
+const handlePeriodSelect = setConversionPeriod
+const stats = CONVERSION_STATS
 
 const series = computed(() => [{
   name: 'Conversion',
-  data: stats.value.map(stat => stat.value)
+  data: stats.map(stat => stat.value)
 }])
 
 const chartOptions = computed(() => ({
@@ -78,7 +55,7 @@ const chartOptions = computed(() => ({
     }
   },
   xaxis: {
-    categories: stats.value.map(stat => stat.label),
+    categories: stats.map(stat => stat.label),
     labels: {
       show: false
     },

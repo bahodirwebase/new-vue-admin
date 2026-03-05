@@ -1,48 +1,18 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
 import { EllipsisHorizontalOutline } from '@vicons/ionicons5'
 import VueApexCharts from 'vue3-apexcharts'
+import { TRAFFIC_SOURCES, TRAFFIC_COLORS, MENU_OPTIONS } from '../constants'
 
 const apexchart = VueApexCharts
-
-interface TrafficSource {
-  name: string
-  percentage: number
-}
-
-const trafficSources = ref<TrafficSource[]>([
-  { name: 'Direct Traffic', percentage: 40 },
-  { name: 'Organic Search', percentage: 30 },
-  { name: 'Social Media', percentage: 15 },
-  { name: 'Referral Traffic', percentage: 10 },
-  { name: 'Email Campaigns', percentage: 5 }
-])
-
-const colors = ['var(--primary-color-800)', 'var(--primary-color-600)', 'var(--primary-color-400)', 'var(--primary-color-200)', 'var(--primary-color)']
-
-const menuOptions = [
-  { label: 'View Details', key: 'details' },
-  { label: 'Export Data', key: 'export' },
-  { label: 'Settings', key: 'settings' }
-]
-
-const handleMenuSelect = (key: string) => {
-  switch (key) {
-    case 'viewall':
-      // Navigate to traffic sources page
-      break
-    case 'export':
-      // Export traffic data
-      break
-    case 'settings':
-      // Open traffic settings
-      break
-  }
-}
+const trafficSources = TRAFFIC_SOURCES
+const colors = TRAFFIC_COLORS
+const menuOptions = MENU_OPTIONS
+const handleMenuSelect = (_key: string) => {}
 
 const series = computed(() => [{
-  data: trafficSources.value.map((source, index) => ({
+  data: trafficSources.map((source, index) => ({
     x: source.name,
     y: source.percentage,
     fillColor: colors[index]

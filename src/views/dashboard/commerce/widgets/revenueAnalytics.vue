@@ -1,49 +1,17 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
 import { ChevronDownOutline } from '@vicons/ionicons5'
 import VueApexCharts from 'vue3-apexcharts'
+import { REVENUE_SERIES, REVENUE_CATEGORIES, PERIOD_OPTIONS } from '../constants'
+import { useCommerce } from '../composables/useCommerce'
 
 const apexchart = VueApexCharts
+const { selectedPeriod, setPeriod } = useCommerce()
 
-const selectedPeriod = ref('Last 8 Days')
-
-const periodOptions = [
-  {
-    label: 'Last 7 Days',
-    key: 'last7days'
-  },
-  {
-    label: 'Last 8 Days',
-    key: 'last8days'
-  },
-  {
-    label: 'Last 14 Days',
-    key: 'last14days'
-  },
-  {
-    label: 'Last 30 Days',
-    key: 'last30days'
-  }
-]
-
-const handlePeriodSelect = (key: string) => {
-  const option = periodOptions.find(opt => opt.key === key)
-  if (option) {
-    selectedPeriod.value = option.label
-  }
-}
-
-const series = ref([
-  {
-    name: 'Revenue',
-    data: [9000, 10000, 9500, 11500, 12000, 13500, 12000, 11500, 12500]
-  },
-  {
-    name: 'Order',
-    data: [5500, 4000, 6000, 4500, 5000, 8500, 6000, 5000, 5500]
-  }
-])
+const periodOptions = PERIOD_OPTIONS
+const handlePeriodSelect = setPeriod
+const series = REVENUE_SERIES
 
 const chartOptions = computed(() => ({
   chart: {
@@ -96,7 +64,7 @@ const chartOptions = computed(() => ({
     }
   },
   xaxis: {
-    categories: ['12 Aug', '13 Aug', '14 Aug', '15 Aug', '16 Aug', '17 Aug', '18 Aug', '19 Aug', '20 Aug'],
+    categories: REVENUE_CATEGORIES,
     labels: {
       style: {
         colors: '#999999',

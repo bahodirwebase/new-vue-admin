@@ -3,37 +3,11 @@ import { computed } from 'vue'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
 import { EllipsisHorizontalOutline } from '@vicons/ionicons5'
 import VueApexCharts from 'vue3-apexcharts'
+import { MENU_OPTIONS } from '../constants'
 
 const apexchart = VueApexCharts
-
-const menuOptions = [
-  {
-    label: 'View Details',
-    key: 'details'
-  },
-  {
-    label: 'Export Report',
-    key: 'export'
-  },
-  {
-    label: 'Settings',
-    key: 'settings'
-  }
-]
-
-const handleMenuSelect = (key: string) => {
-  switch (key) {
-    case 'viewdetails':
-      // Navigate to target details page
-      break
-    case 'export':
-      // Open target edit modal
-      break
-    case 'settings':
-      // Open target settings
-      break
-  }
-}
+const menuOptions = MENU_OPTIONS
+const handleMenuSelect = (_key: string) => {}
 
 const chartOptions = computed(() => ({
   chart: {

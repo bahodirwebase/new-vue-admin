@@ -1,101 +1,17 @@
 <script setup lang="ts">
-import { ref, computed, h } from 'vue'
-import { NButton, NInput, NDropdown, NIcon, NDataTable } from 'naive-ui'
+import { h } from 'vue'
+import { NCard, NButton, NInput, NDropdown, NIcon, NDataTable } from 'naive-ui'
 import { SearchOutline, ChevronDownOutline } from '@vicons/ionicons5'
 import type { DataTableColumns } from 'naive-ui'
 import CustomTag from '@/components/custom/CustomTag.vue'
+import type { Order } from '../types'
+import { CATEGORY_FILTER_OPTIONS } from '../constants'
+import { useCommerce } from '../composables/useCommerce'
 
-interface Order {
-  no: number
-  orderId: string
-  customer: string
-  product: string
-  productIcon: string
-  qty: number
-  total: number
-  status: 'Shipped' | 'Processing' | 'Delivered' | 'Pending'
-}
+const { searchQuery, selectedCategory, filteredOrders, setCategory } = useCommerce()
 
-const searchQuery = ref('')
-const selectedCategory = ref('All Categories')
-
-const categoryOptions = [
-  { label: 'All Categories', key: 'all' },
-  { label: 'Electronics', key: 'electronics' },
-  { label: 'Fashion', key: 'fashion' },
-  { label: 'Home & Kitchen', key: 'home' }
-]
-
-const handleCategorySelect = (key: string) => {
-  const option = categoryOptions.find(opt => opt.key === key)
-  if (option) {
-    selectedCategory.value = option.label
-  }
-}
-
-const orders = ref<Order[]>([
-  {
-    no: 1,
-    orderId: '#10234',
-    customer: 'Amaya Weller',
-    product: 'Wireless Headphones',
-    productIcon: '🎧',
-    qty: 2,
-    total: 100,
-    status: 'Shipped'
-  },
-  {
-    no: 2,
-    orderId: '#10235',
-    customer: 'Sebastian Adams',
-    product: 'Running Shoes',
-    productIcon: '👟',
-    qty: 1,
-    total: 75,
-    status: 'Processing'
-  },
-  {
-    no: 3,
-    orderId: '#10236',
-    customer: 'Suzanne Bright',
-    product: 'Smartwatch',
-    productIcon: '⌚',
-    qty: 1,
-    total: 150,
-    status: 'Delivered'
-  },
-  {
-    no: 4,
-    orderId: '#10237',
-    customer: 'Peter Howl',
-    product: 'Coffee Maker',
-    productIcon: '☕',
-    qty: 1,
-    total: 60,
-    status: 'Pending'
-  },
-  {
-    no: 5,
-    orderId: '#10238',
-    customer: 'Anita Singh',
-    product: 'Bluetooth Speaker',
-    productIcon: '🔊',
-    qty: 3,
-    total: 90,
-    status: 'Shipped'
-  }
-])
-
-const filteredOrders = computed(() => {
-  if (!searchQuery.value) return orders.value
-
-  const query = searchQuery.value.toLowerCase()
-  return orders.value.filter(order =>
-    order.customer.toLowerCase().includes(query) ||
-    order.product.toLowerCase().includes(query) ||
-    order.orderId.toLowerCase().includes(query)
-  )
-})
+const categoryOptions = CATEGORY_FILTER_OPTIONS
+const handleCategorySelect = setCategory
 
 const getStatusType = (status: Order['status']) => {
   const statusMap = {

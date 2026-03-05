@@ -1,28 +1,17 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { NButton } from 'naive-ui'
 import VueApexCharts from 'vue3-apexcharts'
+import { CATEGORIES, CATEGORY_COLORS } from '../constants'
 
 const apexchart = VueApexCharts
+const categories = CATEGORIES
+const colors = CATEGORY_COLORS
 
-interface Category {
-  name: string
-  value: number
-}
-
-const categories = ref<Category[]>([
-  { name: 'Electronics', value: 1200000 },
-  { name: 'Fashion', value: 950000 },
-  { name: 'Home & Kitchen', value: 750000 },
-  { name: 'Beauty & Personal Care', value: 500000 }
-])
-
-const colors = ['var(--primary-color)', 'var(--primary-color-800)', 'var(--primary-color-500)', 'var(--primary-color-300)']
-
-const series = computed(() => categories.value.map(cat => cat.value))
+const series = computed(() => categories.map(cat => cat.value))
 
 const totalSales = computed(() => {
-  return categories.value.reduce((sum, cat) => sum + cat.value, 0)
+  return categories.reduce((sum, cat) => sum + cat.value, 0)
 })
 
 const chartOptions = computed(() => ({
@@ -31,7 +20,7 @@ const chartOptions = computed(() => ({
     fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
   },
   colors: colors,
-  labels: categories.value.map(cat => cat.name),
+  labels: categories.map(cat => cat.name),
   dataLabels: {
     enabled: false
   },

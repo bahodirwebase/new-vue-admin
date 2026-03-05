@@ -1,81 +1,11 @@
 <script setup lang="ts">
-import { ref, markRaw, toRaw } from 'vue'
 import { NButton, NDropdown, NIcon } from 'naive-ui'
-import {
-  EllipsisHorizontalOutline,
-  CartOutline,
-  PricetagOutline,
-  StarOutline,
-  AlertCircleOutline,
-  TimeOutline
-} from '@vicons/ionicons5'
+import { EllipsisHorizontalOutline } from '@vicons/ionicons5'
+import { ACTIVITIES, MENU_OPTIONS } from '../constants'
 
-interface Activity {
-  icon: any
-  iconColor: string
-  iconBg: string
-  text: string
-  time: string
-}
-
-const activities = ref<Activity[]>([
-  {
-    icon: markRaw(toRaw(CartOutline)),
-    iconColor: '#ffffff',
-    iconBg: 'var(--primary-color)',
-    text: '<strong>Maureen Steel</strong> purchased 2 items totaling <strong>$120</strong>.',
-    time: '10:30 AM'
-  },
-  {
-    icon: markRaw(toRaw(PricetagOutline)),
-    iconColor: '#ffffff',
-    iconBg: 'var(--primary-color-200)',
-    text: 'The price of <strong>"Smart TV"</strong> was updated from <strong>$500</strong> to <strong>$450</strong>.',
-    time: '9:45 AM'
-  },
-  {
-    icon: markRaw(toRaw(StarOutline)),
-    iconColor: '#ffffff',
-    iconBg: 'var(--primary-color-400)',
-    text: '<strong>Vincent Laurent</strong> left a 5-star review for <strong>"Wireless Headphones."</strong>',
-    time: '8:40 AM'
-  },
-  {
-    icon: markRaw(toRaw(AlertCircleOutline)),
-    iconColor: '#ffffff',
-    iconBg: 'var(--primary-color-600)',
-    text: '<strong>"Running Shoes"</strong> stock is below 10 units.',
-    time: '7:55 AM'
-  },
-  {
-    icon: markRaw(toRaw(TimeOutline)),
-    iconColor: '#ffffff',
-    iconBg: 'var(--primary-color-800)',
-    text: '<strong>Damian Ugo\'s</strong> order status changed from <strong>"Pending"</strong> to <strong>"Processing."</strong>',
-    time: '7:00 AM'
-  }
-])
-
-const menuOptions = [
-  { label: 'View All', key: 'viewall' },
-  { label: 'Mark as Read', key: 'markread' },
-  { label: 'Settings', key: 'settings' }
-]
-
-const handleMenuSelect = (key: string) => {
-  // TODO: Implement menu actions based on selected key
-  switch (key) {
-    case 'markallread':
-      // Mark all activities as read
-      break
-    case 'markread':
-      // Mark specific activity as read
-      break
-    case 'settings':
-      // Open activity settings
-      break
-  }
-}
+const activities = ACTIVITIES
+const menuOptions = MENU_OPTIONS
+const handleMenuSelect = (_key: string) => {}
 </script>
 
 <template>

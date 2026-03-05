@@ -1,46 +1,8 @@
 <script setup lang="ts">
-import { CashOutline, CartOutline, PeopleOutline } from '@vicons/ionicons5'
 import { NIcon } from 'naive-ui'
+import { STAT_CARDS } from '../constants'
 
-interface StatCard {
-  title: string
-  value: string
-  trend: string
-  isPositive: boolean
-  period: string
-  icon: any
-  color: 'orange' | 'gray' | 'blue'
-}
-
-const cards: StatCard[] = [
-  {
-    title: 'Total Sales',
-    value: '$983,410',
-    trend: '+3.34%',
-    isPositive: true,
-    period: 'vs last week',
-    icon: CashOutline,
-    color: 'orange'
-  },
-  {
-    title: 'Total Orders',
-    value: '58,375',
-    trend: '-2.69%',
-    isPositive: false,
-    period: 'vs last week',
-    icon: CartOutline,
-    color: 'gray'
-  },
-  {
-    title: 'Total Visitors',
-    value: '237,782',
-    trend: '+8.02%',
-    isPositive: true,
-    period: 'vs last week',
-    icon: PeopleOutline,
-    color: 'blue'
-  }
-]
+const cards = STAT_CARDS
 </script>
 
 <template>

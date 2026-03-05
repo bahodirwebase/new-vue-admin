@@ -1,52 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { NButton, NDropdown, NIcon } from 'naive-ui'
+import { NCard, NButton, NDropdown, NIcon } from 'naive-ui'
 import { EllipsisHorizontalOutline } from '@vicons/ionicons5'
+import { COUNTRIES, ACTIVE_USER_TOTAL, ACTIVE_USER_TREND, MENU_OPTIONS } from '../constants'
 
-interface Country {
-  name: string
-  percentage: number
-}
-
-const totalUsers = ref(2758)
-const trendPercentage = ref(8.02)
-
-const countries = ref<Country[]>([
-  { name: 'United States', percentage: 36 },
-  { name: 'United Kingdom', percentage: 24 },
-  { name: 'Indonesia', percentage: 17.5 },
-  { name: 'Russia', percentage: 15 }
-])
-
-const menuOptions = [
-  {
-    label: 'View Details',
-    key: 'details'
-  },
-  {
-    label: 'Export Data',
-    key: 'export'
-  },
-  {
-    label: 'Settings',
-    key: 'settings'
-  }
-]
-
-const handleMenuSelect = (key: string) => {
-  // TODO: Implement menu actions based on selected key
-  switch (key) {
-    case 'viewall':
-      // Navigate to all users page
-      break
-    case 'export':
-      // Export user data
-      break
-    case 'settings':
-      // Open user settings
-      break
-  }
-}
+const totalUsers = ACTIVE_USER_TOTAL
+const trendPercentage = ACTIVE_USER_TREND
+const countries = COUNTRIES
+const menuOptions = MENU_OPTIONS
+const handleMenuSelect = (_key: string) => {}
 </script>
 
 <template>
@@ -102,13 +63,13 @@ const handleMenuSelect = (key: string) => {
 }
 
 .menu-button {
-  color: #999999;
+  color: var(--text-tertiary);
   padding: 4px;
   transition: color 0.3s ease;
 }
 
 .menu-button:hover {
-  color: #666666;
+  color: var(--text-secondary);
 }
 
 .active-user__stats {
@@ -117,7 +78,7 @@ const handleMenuSelect = (key: string) => {
   align-items: flex-start;
   margin-bottom: 28px;
   padding-bottom: 24px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .stats-main {
@@ -136,7 +97,7 @@ const handleMenuSelect = (key: string) => {
 
 .stats-main__label {
   font-size: 14px;
-  color: #999999;
+  color: var(--text-secondary);
   font-weight: 400;
 }
 
@@ -151,12 +112,12 @@ const handleMenuSelect = (key: string) => {
 .stats-trend__value {
   font-size: 16px;
   font-weight: 600;
-  color: #22c55e;
+  color: var(--color-success);
 }
 
 .stats-trend__label {
   font-size: 12px;
-  color: #999999;
+  color: var(--text-secondary);
   font-weight: 400;
 }
 
@@ -180,7 +141,7 @@ const handleMenuSelect = (key: string) => {
 
 .country-item__name {
   font-size: 14px;
-  color: #999999;
+  color: var(--text-secondary);
   font-weight: 400;
 }
 

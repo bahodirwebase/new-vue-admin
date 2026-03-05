@@ -1,47 +1,33 @@
 <script setup lang="ts">
-import { ref, watch, toRef, onMounted } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { NCard, NButton, NIcon, NDropdown } from 'naive-ui';
 import VueApexCharts from 'vue3-apexcharts';
-import { useThemeStore } from '@/stores/theme';
 import type { ApexOptions } from 'apexcharts';
-const themeStore = useThemeStore();
+import { LINE_CHART_SERIES, LINE_CHART_CATEGORIES, LINE_CHART_DROPDOWN } from '../constants';
+import { useAnalytical } from '../composables/useAnalytical';
+
 const apexchart = VueApexCharts;
+const { isDark } = useAnalytical();
 
-const isDark = toRef(themeStore, 'isDark');
-const dropdownOptions = [
-  { label: 'Export', key: 'export' },
-  { label: 'Share', key: 'share' },
-  { label: 'Settings', key: 'settings' }
-];
+const series = LINE_CHART_SERIES;
+const dropdownOptions = LINE_CHART_DROPDOWN;
 
-const series = ref([
-  {
-    name: 'Calls',
-    data: [70, 25, 65, 100, 70, 30, 60, 65,]
-  }
-]);
-
-const chartOptions = ref({
+const chartOptions = ref<ApexOptions>({
   chart: {
     type: 'line',
     height: 280,
-    toolbar: {
-      show: false
-    },
-    zoom: {
-      enabled: false
-    },
-    sparkline: { enabled: false }, // Card ichiga to'liq sig'ishi uchun
+    toolbar: { show: false },
+    zoom: { enabled: false },
+    sparkline: { enabled: false },
     dropShadow: {
       enabled: true,
       top: 10,
       left: 0,
       blur: 4,
-      color: "var(--color-error)", // Soya rangi
+      color: 'var(--color-error)',
       opacity: 0.25,
     },
   },
-
   stroke: {
     curve: 'smooth',
     width: 3,
@@ -52,55 +38,32 @@ const chartOptions = ref({
     colors: ['var(--primary-color)'],
     strokeColors: 'var(--bg-primary)',
     strokeWidth: 2,
-    hover: {
-      size: 7
-    }
+    hover: { size: 7 }
   },
   grid: {
     show: true,
     borderColor: 'var(--border-color)',
     strokeDashArray: 3,
     position: 'back',
-    xaxis: {
-      lines: {
-        show: false
-      }
-    },
-    yaxis: {
-      lines: {
-        show: true
-      }
-    }
+    xaxis: { lines: { show: false } },
+    yaxis: { lines: { show: true } }
   },
   xaxis: {
-    categories: ['Jan 2', 'Jan 9', 'Jan 16', 'Jan 23', 'Jan 30', 'Jan 35', 'Jan 35', 'Jan 35'],
+    categories: LINE_CHART_CATEGORIES,
     labels: {
-      style: {
-        colors: 'var(--text-secondary)',
-        fontSize: '12px',
-        fontWeight: 500
-      }
+      style: { colors: 'var(--text-secondary)', fontSize: '12px', fontWeight: 500 }
     },
-    axisBorder: {
-      show: false
-    },
-    axisTicks: {
-      show: false
-    }
+    axisBorder: { show: false },
+    axisTicks: { show: false }
   },
   yaxis: {
     min: 0,
     max: 100,
     tickAmount: 5,
     labels: {
-      style: {
-        colors: 'var(--text-secondary)',
-        fontSize: '12px',
-        fontWeight: 500
-      }
+      style: { colors: 'var(--text-secondary)', fontSize: '12px', fontWeight: 500 }
     }
   },
-
   annotations: {
     xaxis: [
       {
@@ -113,31 +76,21 @@ const chartOptions = ref({
     ]
   },
   tooltip: {
-    theme: 'light', // Initial theme, will be updated by watch
-    // style: {
-    //   fontSize: '12px'
-    // },
+    theme: 'light',
     y: {
-      formatter: function (val: any) {
-        return val + ' calls'
-      }
+      formatter: (val: any) => val + ' calls'
     }
   },
 });
-const setThemeChart = (newValue: boolean) => {
+
+const setTheme = (dark: boolean) => {
   if (chartOptions.value.tooltip) {
-    chartOptions.value.tooltip.theme = newValue ? 'dark' : 'light'
+    chartOptions.value.tooltip.theme = dark ? 'dark' : 'light'
   }
 }
-watch(
-  isDark,
-  (newValue) => {
-    setThemeChart(newValue)
-  }
-)
-onMounted(() => {
-  setThemeChart(isDark.value)
-})
+
+watch(isDark, setTheme)
+onMounted(() => setTheme(isDark.value))
 </script>
 
 <template>
@@ -158,8 +111,7 @@ onMounted(() => {
     </div>
 
     <div class="chart-wrapper">
-      <apexchart type="line" height="280" :options="(chartOptions as ApexOptions)" :series="series"
-        :key="(isDark as any)" />
+      <apexchart type="line" height="280" :options="chartOptions" :series="series" :key="(isDark as any)" />
     </div>
   </n-card>
 </template>
@@ -191,12 +143,10 @@ onMounted(() => {
   margin: 0 -1rem;
 }
 
-/* Dark mode specific styles */
 [data-theme="dark"] .menu-btn:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .chart-card {
     border-radius: 1rem;

@@ -1,35 +1,29 @@
-<script setup>
-import { ref } from 'vue';
+<script setup lang="ts">
 import { NCard, NButton, NIcon, NList, NListItem } from 'naive-ui';
 import VueApexCharts from 'vue3-apexcharts';
+import { BROWSER_STATS, BROWSER_COLORS } from '../constants';
 
 const apexchart = VueApexCharts;
 
-const series = ref([14, 32, 54, 10]);
+const series = BROWSER_STATS.map(s => s.value);
 
-const chartOptions = ref({
+const chartOptions = {
   chart: {
-    type: 'donut',
+    type: 'donut' as const,
     fontFamily: 'Inter, sans-serif'
   },
-  labels: ['Chrome', 'Firefox', 'Edge', 'Other'],
-  colors: ['var(--color-warning)', 'var(--color-primary)', 'var(--color-info)', 'var(--text-tertiary)'],
+  labels: BROWSER_STATS.map(s => s.name),
+  colors: BROWSER_COLORS,
   plotOptions: {
     pie: {
       donut: {
         size: '75%',
-        labels: {
-          show: false
-        }
+        labels: { show: false }
       }
     }
   },
-  dataLabels: {
-    enabled: false
-  },
-  legend: {
-    show: false
-  },
+  dataLabels: { enabled: false },
+  legend: { show: false },
   stroke: {
     show: true,
     width: 8,
@@ -38,12 +32,10 @@ const chartOptions = ref({
   tooltip: {
     enabled: true,
     y: {
-      formatter: function (val) {
-        return val + ' projects'
-      }
+      formatter: (val: number) => val + ' projects'
     }
   }
-});
+};
 </script>
 
 <template>
@@ -65,39 +57,12 @@ const chartOptions = ref({
     </div>
 
     <n-list :show-divider="true" size="small">
-      <n-list-item>
+      <n-list-item v-for="stat in BROWSER_STATS" :key="stat.name">
         <div class="browser-stat">
-          <div class="stat-indicator chrome"></div>
+          <div class="stat-indicator" :style="{ background: stat.colorVar }"></div>
           <div class="stat-content">
-            <span class="stat-label">Chrome:</span>
-            <span class="stat-value">14</span>
-          </div>
-        </div>
-      </n-list-item>
-      <n-list-item>
-        <div class="browser-stat">
-          <div class="stat-indicator firefox"></div>
-          <div class="stat-content">
-            <span class="stat-label">Firefox:</span>
-            <span class="stat-value">32</span>
-          </div>
-        </div>
-      </n-list-item>
-      <n-list-item>
-        <div class="browser-stat">
-          <div class="stat-indicator edge"></div>
-          <div class="stat-content">
-            <span class="stat-label">Edge:</span>
-            <span class="stat-value">54</span>
-          </div>
-        </div>
-      </n-list-item>
-      <n-list-item>
-        <div class="browser-stat">
-          <div class="stat-indicator other"></div>
-          <div class="stat-content">
-            <span class="stat-label">Other:</span>
-            <span class="stat-value">10</span>
+            <span class="stat-label">{{ stat.name }}:</span>
+            <span class="stat-value">{{ stat.value }}</span>
           </div>
         </div>
       </n-list-item>
@@ -113,6 +78,9 @@ const chartOptions = ref({
 }
 
 .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1rem;
 }
 
@@ -152,22 +120,6 @@ const chartOptions = ref({
   flex-shrink: 0;
 }
 
-.stat-indicator.chrome {
-  background: var(--color-warning);
-}
-
-.stat-indicator.firefox {
-  background: var(--color-primary);
-}
-
-.stat-indicator.edge {
-  background: var(--color-info);
-}
-
-.stat-indicator.other {
-  background: var(--text-tertiary);
-}
-
 .stat-content {
   display: flex;
   align-items: center;
@@ -186,7 +138,6 @@ const chartOptions = ref({
   font-weight: 700;
 }
 
-/* Naive UI List overrides */
 :deep(.n-list-item) {
   padding: 0.25rem 0;
 }
@@ -195,12 +146,10 @@ const chartOptions = ref({
   border-bottom: none;
 }
 
-/* Dark mode specific styles */
 [data-theme="dark"] .expand-btn:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .projects-card {
     border-radius: 1rem;
@@ -208,10 +157,6 @@ const chartOptions = ref({
 
   .chart-container {
     margin: 0 auto 1rem;
-  }
-
-  .stats-grid {
-    gap: 0.75rem;
   }
 }
 </style>

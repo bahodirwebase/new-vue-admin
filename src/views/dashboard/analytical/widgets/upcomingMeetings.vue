@@ -1,36 +1,9 @@
-<script setup>
-import { ref } from 'vue';
+<script setup lang="ts">
 import { NCard, NIcon } from 'naive-ui';
+import { UPCOMING_MEETINGS, LATER_MEETINGS } from '../constants';
 
-const meetings = ref([
-  {
-    id: 1,
-    title: "Sam Saltman's Meeting - Sales Team",
-    subtitle: '',
-    iconColor: 'linear-gradient(135deg, #10b981 0%, #3b82f6 100%)'
-  }
-]);
-
-const laterMeetings = ref([
-  {
-    id: 2,
-    title: "Tom Harris's Meeting - Product Development",
-    subtitle: '',
-    iconColor: 'linear-gradient(135deg, #3b82f6 0%, #6366f1 100%)'
-  },
-  {
-    id: 3,
-    title: "Rachel Nguyen's Meeting - Client Success Review",
-    subtitle: '',
-    iconColor: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)'
-  },
-  {
-    id: 4,
-    title: "Emma Foster's Meeting - Team Performance Update",
-    subtitle: '',
-    iconColor: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)'
-  }
-]);
+const meetings = UPCOMING_MEETINGS;
+const laterMeetings = LATER_MEETINGS;
 </script>
 
 <template>
@@ -58,7 +31,6 @@ const laterMeetings = ref([
         </div>
         <div class="meeting-info">
           <h4 class="meeting-title">{{ meeting.title }}</h4>
-          <p class="meeting-subtitle">{{ meeting.subtitle }}</p>
         </div>
       </div>
     </div>
@@ -77,7 +49,6 @@ const laterMeetings = ref([
           </div>
           <div class="meeting-info">
             <h4 class="meeting-title">{{ meeting.title }}</h4>
-            <p class="meeting-subtitle">{{ meeting.subtitle }}</p>
           </div>
         </div>
       </div>
@@ -154,12 +125,6 @@ const laterMeetings = ref([
   color: var(--text-primary);
   margin: 0;
   line-height: 1.4;
-}
-
-.meeting-subtitle {
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  margin: 0.25rem 0 0 0;
 }
 
 .time-section {
