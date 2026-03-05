@@ -121,6 +121,8 @@ const chartOptions = computed(() => ({
   margin: 0 -8px 24px -8px;
   border-radius: 12px;
   padding: 12px 8px;
+  min-height: 80px;
+  contain: layout;
 }
 
 .traffic-sources__legend {

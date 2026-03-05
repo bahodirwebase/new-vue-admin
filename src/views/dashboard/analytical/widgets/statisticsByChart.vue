@@ -42,6 +42,8 @@ withDefaults(defineProps<IProps>(), {
 <style scoped>
 .chart-wrapper {
     margin: -40px -20px;
+    min-height: 150px;
+    contain: layout;
 }
 
 .custom-badge {

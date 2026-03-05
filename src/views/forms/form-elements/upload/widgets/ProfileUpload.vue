@@ -30,7 +30,7 @@ const handleProfileChange = (options: any) => {
   <n-card title="Real World Example - Profile Picture">
     <n-space vertical :size="16">
       <div class="profile-upload">
-        <n-avatar v-if="profilePicture" :size="120" :src="profilePicture.url" />
+        <n-avatar v-if="profilePicture" :size="120" :src="profilePicture.url" alt="Profile picture" />
         <n-avatar v-else :size="120">
           <n-icon size="48">
             <PersonOutline />

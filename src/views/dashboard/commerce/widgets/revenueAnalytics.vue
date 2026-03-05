@@ -218,6 +218,8 @@ const chartOptions = computed(() => ({
 
 .revenue-analytics__chart {
   margin: 0 -8px;
+  min-height: 350px;
+  contain: layout;
 }
 
 /* Custom ApexCharts tooltip styling */

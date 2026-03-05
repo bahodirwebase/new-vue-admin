@@ -142,6 +142,8 @@ const chartOptions = computed(() => ({
 
 .monthly-target__chart {
   margin: 0 -12px;
+  min-height: 280px;
+  contain: layout;
 }
 
 .monthly-target__info {

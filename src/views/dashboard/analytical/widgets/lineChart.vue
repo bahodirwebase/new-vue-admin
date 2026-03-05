@@ -141,6 +141,8 @@ onMounted(() => setTheme(isDark.value))
 
 .chart-wrapper {
   margin: 0 -1rem;
+  min-height: 280px;
+  contain: layout;
 }
 
 [data-theme="dark"] .menu-btn:hover {

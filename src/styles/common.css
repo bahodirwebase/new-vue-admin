@@ -25,6 +25,12 @@
 .n-card {
   margin-bottom: 12px;
   background: var(--bg-primary);
+  /*
+   * CSS Containment: layout changes inside a card (naive-ui measuring inputs,
+   * ApexCharts reading offsetWidth) are isolated to this element and do not
+   * propagate a full-page reflow.
+   */
+  contain: layout;
 }
 
 .n-list {

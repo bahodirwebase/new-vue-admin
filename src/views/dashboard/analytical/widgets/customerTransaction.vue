@@ -51,7 +51,7 @@ const columns: DataTableColumns<Transaction> = [
     title: "Customer",
     key: "customer",
     render: (row) => h("div", { class: "customer-cell" }, [
-      h(NAvatar, { round: true, size: 40, src: row.avatar, style: "flex-shrink: 0" }),
+      h(NAvatar, { round: true, size: 40, src: row.avatar, style: "flex-shrink: 0", alt: row.customer }),
       h("span", { class: "customer-name" }, row.customer),
     ]),
   },

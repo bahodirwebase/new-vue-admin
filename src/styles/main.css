@@ -48,6 +48,25 @@ body {
   opacity: 0;
 }
 
+/* =============================================
+   FORCED REFLOW MITIGATIONS
+   =============================================
+   ApexCharts reads offsetWidth of its canvas wrapper on mount and resize.
+   Containing its layout prevents that read from triggering a page-wide reflow.
+*/
+.apexcharts-canvas {
+  contain: layout;
+}
+
+/*
+   Cards that animate on hover use transform. Declaring will-change upfront
+   promotes them to a compositor layer so the browser skips a layout pass
+   when the hover begins.
+*/
+.n-card {
+  will-change: transform;
+}
+
 /* Utility classes */
 .boxed-layout {
   max-width: 1400px;

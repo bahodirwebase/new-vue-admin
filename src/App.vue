@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watch } from 'vue'
+import { watch, onMounted, onUnmounted } from 'vue'
 import { NConfigProvider, NMessageProvider, NGlobalStyle } from 'naive-ui'
 import { THEME_CONSTANTS } from '@/constants/theme'
 import { useThemeStore } from '@/stores/theme'
@@ -41,6 +41,40 @@ const themeStore = useThemeStore()
 watch(primaryColor, (newColor) => {
   logoColor.value = newColor
 }, { immediate: true })
+
+/**
+ * Naive UI renders role="heading" on .n-card-header but omits aria-level,
+ * which fails ARIA spec. Patch existing and future elements via MutationObserver.
+ */
+function patchCardHeaders(root: Element | Document = document) {
+  root.querySelectorAll<HTMLElement>('.n-card-header[role="heading"]:not([aria-level])').forEach(el => {
+    el.setAttribute('aria-level', '2')
+  })
+}
+
+let ariaObserver: MutationObserver | null = null
+
+onMounted(() => {
+  patchCardHeaders()
+  ariaObserver = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      mutation.addedNodes.forEach(node => {
+        if (!(node instanceof Element)) return
+        if (node.classList.contains('n-card-header') &&
+            node.getAttribute('role') === 'heading' &&
+            !node.getAttribute('aria-level')) {
+          node.setAttribute('aria-level', '2')
+        }
+        patchCardHeaders(node)
+      })
+    }
+  })
+  ariaObserver.observe(document.body, { childList: true, subtree: true })
+})
+
+onUnmounted(() => {
+  ariaObserver?.disconnect()
+})
 
 
 </script>

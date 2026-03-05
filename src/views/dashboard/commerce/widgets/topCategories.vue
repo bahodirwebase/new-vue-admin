@@ -158,6 +158,8 @@ const handleSeeAll = () => {
 
 .top-categories__chart {
   margin: 0 -8px 24px -8px;
+  min-height: 320px;
+  contain: layout;
 }
 
 .top-categories__legend {

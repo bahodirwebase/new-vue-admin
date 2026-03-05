@@ -105,6 +105,8 @@ const chartOptions = {
   justify-content: center;
   align-items: center;
   margin: 0 auto 1.5rem;
+  min-height: 240px;
+  contain: layout;
 }
 
 .browser-stat {

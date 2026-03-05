@@ -205,6 +205,8 @@ const chartOptions = computed(() => ({
   margin: 0 -12px;
   border-radius: 12px;
   padding: 16px 12px 8px 12px;
+  min-height: 200px;
+  contain: layout;
 }
 
 /* ApexCharts customization */
