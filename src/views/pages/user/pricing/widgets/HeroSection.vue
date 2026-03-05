@@ -22,7 +22,7 @@ const {
         <div class="header-actions">
           <div class="toggle-container">
             <span class="toggle-label" :class="{ active: !isYearly }">Monthly</span>
-            <n-switch v-model="isYearly" size="large" />
+            <n-switch v-model="isYearly" size="large" aria-label="Toggle billing period: monthly or yearly" />
             <span class="toggle-label" :class="{ active: isYearly }">
               Yearly
               <CustomTag type="success" size="small">Save {{ getDiscountPercentage() }}%</CustomTag>

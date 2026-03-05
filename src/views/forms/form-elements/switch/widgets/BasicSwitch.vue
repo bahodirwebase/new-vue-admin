@@ -7,7 +7,7 @@ const basicSwitch = ref(false)
 <template>
   <n-card title="Basic Switch">
     <n-space vertical :size="16">
-      <n-switch v-model:value="basicSwitch" />
+      <n-switch v-model:value="basicSwitch" aria-label="Toggle switch" />
       <n-p>Switch state: {{ basicSwitch ? 'ON' : 'OFF' }}</n-p>
     </n-space>
   </n-card>

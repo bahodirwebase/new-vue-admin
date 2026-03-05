@@ -14,15 +14,15 @@ const features = reactive({
       <div>Feature Toggles:</div>
       <n-space vertical :size="8">
         <n-space align="center" :size="12">
-          <n-switch v-model:value="features.beta" />
+          <n-switch v-model:value="features.beta" aria-label="Beta Features" />
           <span>Beta Features</span>
         </n-space>
         <n-space align="center" :size="12">
-          <n-switch v-model:value="features.advanced" />
+          <n-switch v-model:value="features.advanced" aria-label="Advanced Mode" />
           <span>Advanced Mode</span>
         </n-space>
         <n-space align="center" :size="12">
-          <n-switch v-model:value="features.experimental" />
+          <n-switch v-model:value="features.experimental" aria-label="Experimental Features" />
           <span>Experimental Features</span>
         </n-space>
       </n-space>

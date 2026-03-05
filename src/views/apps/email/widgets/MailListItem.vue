@@ -24,7 +24,7 @@
 
     <!-- Avatar -->
     <div class="item-avatar">
-      <n-avatar round size="small" :src="email.from.avatar" :fallback-src="fallbackAvatar" :alt="email.from.name">
+      <n-avatar round size="small" :src="email.from.avatar" :fallback-src="fallbackAvatar" :img-props="{ alt: email.from.name }">
         {{ initials(email.from.name) }}
       </n-avatar>
     </div>

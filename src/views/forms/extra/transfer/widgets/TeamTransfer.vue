@@ -43,7 +43,7 @@ const teamOptions = [
 
 const renderTeamMember = ({ option }: any) => {
   return h('div', { style: 'display: flex; align-items: center; gap: 8px;' }, [
-    h(NAvatar, { size: 24, src: option.avatar, alt: option.label }),
+    h(NAvatar, { size: 24, src: option.avatar, imgProps: { alt: option.label } }),
     h('div', [
       h('div', { style: 'font-weight: 600;' }, option.label),
       h('div', { style: 'font-size: 12px; color: var(--text-secondary);' }, option.role)
@@ -53,7 +53,7 @@ const renderTeamMember = ({ option }: any) => {
 
 const renderAssignedMember = ({ option }: any) => {
   return h('div', { style: 'display: flex; align-items: center; gap: 8px;' }, [
-    h(NAvatar, { size: 20, src: option.avatar, alt: option.label }),
+    h(NAvatar, { size: 20, src: option.avatar, imgProps: { alt: option.label } }),
     h('span', option.label)
   ])
 }

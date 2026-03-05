@@ -17,7 +17,7 @@ const leads = LEADS;
         <div class="leads-list">
             <div v-for="lead in leads" :key="lead.id" class="lead-item">
                 <div class="lead-left">
-                    <n-avatar :size="40" :src="lead.avatar" round :alt="lead.name" />
+                    <n-avatar :size="40" :src="lead.avatar" round :img-props="{ alt: lead.name }" />
                     <span class="lead-name">{{ lead.name }}</span>
                 </div>
                 <span class="lead-time">{{ lead.time }}</span>

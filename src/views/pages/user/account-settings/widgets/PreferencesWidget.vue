@@ -47,8 +47,9 @@ const handleSavePreferences = async () => {
           <h4>{{ item.title }}</h4>
           <p>{{ item.description }}</p>
         </div>
-        <n-switch 
-          :value="preferences[item.key as keyof Preferences]" 
+        <n-switch
+          :value="preferences[item.key as keyof Preferences]"
+          :aria-label="item.title"
           @update:value="(value: boolean) => updatePreference(item.key as keyof Preferences, value)"
         />
       </div>
