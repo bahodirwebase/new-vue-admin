@@ -21,17 +21,17 @@ export function useCommerce() {
 
   function setPeriod(key: string) {
     const option = PERIOD_OPTIONS.find(opt => opt.key === key)
-    if (option) selectedPeriod.value = option.label
+    if (option) selectedPeriod.value = String(option.label)
   }
 
   function setConversionPeriod(key: string) {
     const option = CONVERSION_PERIOD_OPTIONS.find(opt => opt.key === key)
-    if (option) selectedConversionPeriod.value = option.label
+    if (option) selectedConversionPeriod.value = String(option.label)
   }
 
   function setCategory(key: string) {
     const option = CATEGORY_FILTER_OPTIONS.find(opt => opt.key === key)
-    if (option) selectedCategory.value = option.label
+    if (option) selectedCategory.value = String(option.label)
   }
 
   return {
