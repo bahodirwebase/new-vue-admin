@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watch, onMounted, onUnmounted } from 'vue'
+import { watch, onMounted, onUnmounted, shallowRef } from 'vue'
 import { NConfigProvider, NMessageProvider, NGlobalStyle } from 'naive-ui'
 import { THEME_CONSTANTS } from '@/constants/theme'
 import { useThemeStore } from '@/stores/theme'
@@ -7,7 +7,9 @@ import { useAppInit } from '@/composables/useAppInit'
 import { useThemeConfig } from '@/composables/useThemeConfig'
 import LoadingOverlay from '@/components/LoadingOverlay.vue'
 import WinterSnowEffect from '@/components/WinterSnowEffect.vue'
-import hljs from 'highlight.js/lib/core'
+
+const hljs = shallowRef()
+import('highlight.js/lib/core').then(m => { hljs.value = m.default })
 
 /**
  * App Component - Root application component
@@ -28,8 +30,7 @@ const { theme, appClasses, themeOverrides, primaryColor } = useThemeConfig()
 
 // Initialize app state
 const { isLoading, logoColor } = useAppInit({
-  loadingDuration: 2000,
-  simulateLoading: true
+  simulateLoading: false
 })
 
 // Get theme store for additional reactive data
@@ -55,6 +56,13 @@ function patchCardHeaders(root: Element | Document = document) {
 let ariaObserver: MutationObserver | null = null
 
 onMounted(() => {
+  // Remove the HTML shell spinner now that Vue has mounted
+  const shell = document.getElementById('app-shell')
+  if (shell) {
+    shell.classList.add('hide')
+    shell.addEventListener('transitionend', () => shell.remove(), { once: true })
+  }
+
   patchCardHeaders()
   ariaObserver = new MutationObserver((mutations) => {
     for (const mutation of mutations) {

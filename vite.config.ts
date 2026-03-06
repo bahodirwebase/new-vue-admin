@@ -28,7 +28,7 @@ export default defineConfig({
     open: true,
   },
   build: {
-    target: "es2015",
+    target: "esnext",
     minify: "esbuild",
     sourcemap: false,
     rollupOptions: {
