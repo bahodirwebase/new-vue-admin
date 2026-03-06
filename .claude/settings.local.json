@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -sO \"https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2\")",
+      "Bash(mv \"UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7SUc.woff2\" \"inter-latin-ext.woff2\")",
+      "Bash(curl -sO \"https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2\")",
+      "Bash(mv \"UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2\" \"inter-latin.woff2\")",
+      "Bash(curl -s \"https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJnecmNE.woff2\" -o \"poppins-400-latin-ext.woff2\")",
+      "Bash(curl -s \"https://fonts.gstatic.com/s/poppins/v24/pxiEyp8kv8JHgFVrJJfecg.woff2\" -o \"poppins-400-latin.woff2\")",
+      "Bash(curl -s \"https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1JlFc-K.woff2\" -o \"poppins-500-latin-ext.woff2\")",
+      "Bash(curl -s \"https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2\" -o \"poppins-500-latin.woff2\")",
+      "Bash(curl -s \"https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1JlFc-K.woff2\" -o \"poppins-600-latin-ext.woff2\")",
+      "Bash(curl -s \"https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLEj6Z1xlFQ.woff2\" -o \"poppins-600-latin.woff2\")",
+      "Bash(curl -s \"https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1JlFc-K.woff2\" -o \"poppins-700-latin-ext.woff2\")",
+      "Bash(curl -s \"https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLCz7Z1xlFQ.woff2\" -o \"poppins-700-latin.woff2\")",
+      "Bash(curl -s \"https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDD4Z1JlFc-K.woff2\" -o \"poppins-800-latin-ext.woff2\")",
+      "Bash(curl -s \"https://fonts.gstatic.com/s/poppins/v24/pxiByp8kv8JHgFVrLDD4Z1xlFQ.woff2\" -o \"poppins-800-latin.woff2\")"
+    ]
+  }
+}

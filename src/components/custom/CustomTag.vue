@@ -131,7 +131,7 @@ const handleClose = (e: MouseEvent) => {
   white-space: nowrap;
   vertical-align: middle;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  font-family: var(--font-primary);
+  font-family: var(--font-primary) !important;
   font-weight: 500;
   border: 1px solid transparent;
   user-select: none;

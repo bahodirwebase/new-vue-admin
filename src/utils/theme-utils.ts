@@ -84,7 +84,7 @@ export const createThemeOverrides = (
         borderRadius: "8px",
         fontSize: "14px",
         fontFamily:
-          "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI'",
         popoverColor: getCssVar('--bg-secondary')
       },
       Card: {
@@ -219,7 +219,7 @@ export const createThemeOverrides = (
         borderRadius: "8px",
         fontSize: "14px",
         fontFamily:
-          "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
       },
       Card: {
         borderRadius: "12px",
